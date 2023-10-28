@@ -1,3 +1,4 @@
+"use client"
 import StarComp from "../../(homePage)/(products section)/StarComp"
 import AddToMyCart from "./AddToMyCart";
 function DescripSection({ rating, name, description, price, totalRated }) {
@@ -24,7 +25,7 @@ function DescripSection({ rating, name, description, price, totalRated }) {
       <div>
         <p className="text-lg font-semibold mb-5">Product Details :</p>
         <ul className="list-disc">
-          {description
+          {description && description
             .split(reg)
             .slice(1, description.split(reg).length - 1)
             .map((i, j) => (

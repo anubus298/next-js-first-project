@@ -20,7 +20,7 @@ function ProductCard({ item, type }) {
   type == "mobiles" ? (wdth5 = 150) : (wdth5 = 250);
 
   return (
-    <div className="flex justify-center h-[420px] select-none">
+    <div className="flex justify-center h-[380px] select-none">
       <div className=" sm:w-[300px] bg-secondarySecondarylight  h-full md:rounded-lg p-5">
         <div className="flex justify-center h-[180px] relative">
           <ProductImg
@@ -35,7 +35,7 @@ function ProductCard({ item, type }) {
           />
         </div>
         <div className="h-[0.5px] bg-black w-full  "></div>
-        <div className="h-[150px] overflow-hidden flex items-center justify-center text-center ">
+        <div className="h-[100px] overflow-hidden flex items-center justify-center text-center ">
           <ProductDescription
             text={item.name.split(reg, 3).join(",") }
             type={type}
@@ -48,7 +48,7 @@ function ProductCard({ item, type }) {
             <ProductImg
               width={wdth}
               height={250}
-              name={item.expand?.brand.brandName}
+              name={""}
               src={`http://127.0.0.1:8090/api/files/${item.expand?.brand.collectionId}/${item.expand?.brand.id}/${item.expand?.brand.img}?thumb=0x30`}
             />
           </div>
@@ -62,7 +62,7 @@ function ProductCard({ item, type }) {
             id={item.id}
           />
           <StarComp count={item.rating} size={15} readonly={true} />
-          <p className="text-secondaryLight">({item.totalRated})</p>
+          <p className="text-secondary text-xs">({item.totalRated} user)</p>
         </div>
       </div>
     </div>

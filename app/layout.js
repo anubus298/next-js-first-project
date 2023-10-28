@@ -1,5 +1,7 @@
 import "public/globals.css";
 import Navbar from "./navbar";
+import FooterComp from "./(footer)/footer";
+
 import { Ubuntu } from "next/font/google";
 export const metadata = {
   title: "SafoMart",
@@ -18,6 +20,7 @@ export default function RootLayout({ children }) {
         <div className="container mx-auto">
           <Navbar />
           {children}
+          <FooterComp/>
         </div>
       </body>
     </html>

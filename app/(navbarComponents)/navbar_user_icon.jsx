@@ -22,7 +22,7 @@ function Navbar_user_icon() {
     <div className="flex relative">
       <CartIcon />
       <Menu>
-        <Menu.Button className="hover:text-secondary transition p-2 flex items-center gap-x-2">
+        <Menu.Button className="hover:text-secondary transition m-2 flex items-center gap-x-2">
           <FontAwesomeIcon icon={faUser} />
           <p>{pb.authStore.model?.username}</p>{" "}
         </Menu.Button>

@@ -1,17 +1,14 @@
-import { useRouter } from "next/navigation";
-import PocketBase from "pocketbase";
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
 function CartIcon() {
-const pb = new PocketBase("http://127.0.0.1:8090");
-const router = useRouter();
-  return (  
-    <a href="/mycart/user" className=" px-2 flex items-center gap-x-1 cursor-pointer">
+  return (
+    <a
+      href="/mycart/user"
+      className=" mx-2 flex items-center gap-x-1 cursor-pointer"
+    >
       <FontAwesomeIcon
         icon={faCartShopping}
         className=" hover:text-secondary transition"
-        
       />
     </a>
   );

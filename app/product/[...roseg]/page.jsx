@@ -11,7 +11,6 @@ async function Page({ params }) {
       }/records/${params.roseg[1]}`
     );
     let content = await res.json();
-
     return content;
   }
   let data = await getDescription();

@@ -2,17 +2,14 @@ import Card from "./card";
 function Cart_cards({
   products,
   deleteItemFromCart,
-  count,
   priceSummary,
   setpriceSummary,
-  originalData,
 }) {
   return (
     <>
       {products.map((product, i) => {
         return (
           <Card
-            originalData={originalData}
             deleteItemFromCart={deleteItemFromCart}
             setpriceSummary={setpriceSummary}
             priceSummary={priceSummary}

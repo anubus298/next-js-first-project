@@ -1,12 +1,22 @@
-import PocketBase from "pocketbase";
+import Image from "next/image";
 import Login_panel from "./(loginComponents)/login_panel";
-function Page({ params }) {
-  const pb = new PocketBase("http://127.0.0.1:8090");
+import "@radix-ui/themes/styles.css";
+import { Theme } from "@radix-ui/themes";
+import "../../../public/css/theme-config.css";
+function Page() {
 
   return (
-    <div className="flex justify-center items-center w-full bg-main  p-5 sm:p-10 ">
-      <Login_panel/>
-    </div>
+    <Theme>
+      <div className="flex justify-around items-center w-full h-full  p-5 sm:p-10 ">
+        <Image
+          alt="woman shopping"
+          height={450}
+          width={450}
+          src="/loginPage/x35.png"
+        />
+        <Login_panel />
+      </div>
+    </Theme>
   );
 }
 

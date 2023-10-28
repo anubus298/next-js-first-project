@@ -1,39 +1,36 @@
 "use client";
-import PocketBase from "pocketbase";
 import Cart_empty from "./cart_empty";
 import "@radix-ui/themes/styles.css";
 import { Theme } from "@radix-ui/themes";
 import { Table } from "@radix-ui/themes";
+import TableHeader from "./(components)/TableHeader";
 import Cart_cards from "./cart_cards";
 function Cart_product_section({
-  originalData,
   id,
   products,
   count,
   priceSummary,
   setpriceSummary,
 }) {
-  async function deleteItemFromCart(deleteThisProduct, origin) {
+  async function deleteItemFromCart(deleteThisProduct, sign) {
     const reg = /(Pro)(\w*)/;
-    let data = { ...origin };
     const collectionName = deleteThisProduct.collectionName.replace(
       reg,
       (str, p1, p2) => {
-        return p1.toLowerCase() + "duct_" + p2.toLowerCase();
+        return p1.toLowerCase() + "duct_" + p2.toLowerCase() + sign;
       }
     );
-    data[collectionName] = data[collectionName].filter((item) => {
-      return item != deleteThisProduct.id;
-    });
+    let requestBody = {};
+    requestBody[collectionName] = deleteThisProduct.id;
     const res = fetch("http://localhost:3000/api/products/UpdateCart", {
+      cache : "no-cache",
       method: "PATCH",
       "Content-Type": "application/json",
-      body: JSON.stringify(data),
+      body: JSON.stringify(requestBody),
       headers: {
         id: id,
       },
     });
-   
   }
   return (
     <Theme>
@@ -41,26 +38,10 @@ function Cart_product_section({
         {!products && <Cart_empty />}
         {products && count != 0 && (
           <Table.Root>
-            <Table.Header>
-              <Table.Row>
-                <Table.ColumnHeaderCell>
-                  <p className="text-center">Product</p>
-                </Table.ColumnHeaderCell>
-                <Table.ColumnHeaderCell>
-                  <p className="text-center">Price</p>
-                </Table.ColumnHeaderCell>
-                <Table.ColumnHeaderCell>
-                  <p className="text-center">Quantity</p>
-                </Table.ColumnHeaderCell>
-                <Table.ColumnHeaderCell>
-                  <p className="text-center">Total</p>
-                </Table.ColumnHeaderCell>
-              </Table.Row>
-            </Table.Header>
+            <TableHeader />
             <Table.Body>
               <Cart_cards
                 deleteItemFromCart={deleteItemFromCart}
-                originalData={originalData}
                 products={products}
                 count={count}
                 setpriceSummary={setpriceSummary}

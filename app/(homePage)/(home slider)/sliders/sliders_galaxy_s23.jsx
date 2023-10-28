@@ -1,19 +1,20 @@
 import Image from "next/image";
 function Sliders_galaxy_s23() {
   return (
-    <div className="flex justify-center relative h-[500px]">
+    <div className="flex justify-center relative h md:h-[500px]">
       <Image
-        className="absolute "
+        className=" "
         quality={100}
         style={{
           objectFit: "cover",
+          objectPosition: "center",
         }}
-        src={"/home_s23.jpeg"}
+        src={"/slidersImgs/home_s23.jpeg"}
         alt="home"
-        height={500}
-        width={1200}
+        fill
+        sizes="(max-width: 768px) 100vw,80vw"
       />
-      <div className="z-20 w-full p-16 flex  ">
+      <div className="z-20 w-full md:p-16 flex  ">
         <div className="flex justify-center items-center">
           <div className="flex text-center text-white sm:text-start px-12 my-12 sm:my-0 sm:px-0 flex-col gap-y-12">
             <div className="flex space-x-1">
