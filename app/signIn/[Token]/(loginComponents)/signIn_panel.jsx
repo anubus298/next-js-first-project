@@ -1,10 +1,11 @@
 "use client";
 import PocketBase from "pocketbase";
-import { isValidAtom } from "@/app/(navbarComponents)/navbar_user_icon";
-import { useAtom } from "jotai";
+import { setCookie } from "../../../functions/cookiesFunctions";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { useAtom } from "jotai";
+import { isValidAtom } from "../../../(navbarComponents)/navbar_user_icon";
 function SignIn_panel() {
   const {
     register,
@@ -17,43 +18,20 @@ function SignIn_panel() {
   const [isValid, setIsvalid] = useAtom(isValidAtom);
 
   const [errorMsg, setErrorMsg] = useState("");
-  const onSubmit = async (datara) => {
-    // try {
-    //   setErrorMsg("");
-    //   await pb.collection("users").create(data);
-
-    //   router.push("/");
-    // } catch (e) {
-    //   console.log(e);
-    //   setErrorMsg("invalid input");
-    // }
+  const onSubmit = async (data) => {
     try {
-      // setErrorMsg("");
-      // const response = await fetch("/api/auth/signup", {
-      //   method: "POST",
-      //   headers: { "Content-Type": "application/json" },
-      //   body: JSON.stringify(datara),
-      // });
-      await pb.collection("users").authWithPassword(data.email, data.password);
+      setErrorMsg("")
+      await pb.collection("users").create(data);
+      await pb.collection('users').requestVerification(data.email);
       if (pb.authStore.isValid) {
         setIsvalid(true);
-        router.push("/");
+        document.cookie = pb.authStore.exportToCookie({ httpOnly: false });
       }
-      // if (!response.ok) {
-      //   setError("Failed to authenticate user");
-      //   return;
-      // }
-      // const data = await response.json();
-      // if (data?.token) {
-      //   router.push("/");
-      //   setIsvalid(true);
-      // } else {
-      //   setError("Failed to authenticate user");
-      // }
     } catch (e) {
-      console.log(e);
-      setErrorMsg("no such email or password");
+      setErrorMsg("Error : " + e);
     }
+    router.push("/");
+
   };
   return (
     <div className="bg-secondarySecondarylight rounded-lg p-6  sm:p-10 flex flex-col justify-center text-main text-center font-bold">

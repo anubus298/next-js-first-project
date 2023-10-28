@@ -55,6 +55,7 @@ export default function ImgSection({ imgs, id, cId }) {
                 src={`http://127.0.0.1:8090/api/files/${cId}/${id}/${imgs[index]}?thumb=0x500`}
                 height={500}
                 width={500}
+        
                 alt=""
                 set
               />

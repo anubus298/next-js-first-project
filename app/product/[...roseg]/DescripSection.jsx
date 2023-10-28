@@ -1,4 +1,4 @@
-import StarComp from "@/app/(homePage)/(products section)/StarComp";
+import StarComp from "../../(homePage)/(products section)/StarComp"
 import AddToMyCart from "./AddToMyCart";
 function DescripSection({ rating, name, description, price, totalRated }) {
   const reg = /\n/;

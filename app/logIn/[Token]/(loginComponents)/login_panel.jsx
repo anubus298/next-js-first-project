@@ -1,10 +1,11 @@
 "use client";
 import PocketBase from "pocketbase";
-import { useAtom } from "jotai";
-import { isValidAtom } from "../../../(navbarComponents)/navbar_user_icon";
+import {setCookie} from "../../../functions/cookiesFunctions"
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { useAtom } from "jotai";
+import { isValidAtom } from "../../../(navbarComponents)/navbar_user_icon";
 function Login_panel() {
   const {
     register,
@@ -15,7 +16,7 @@ function Login_panel() {
   const pb = new PocketBase("http://127.0.0.1:8090");
   const router = useRouter();
   const [errorMsg, setErrorMsg] = useState("");
-  const [isValid, setIsvalid] = useAtom(isValidAtom);
+  const [isValid,setIsvalid] = useAtom(isValidAtom)
 
   const onSubmit = async (data) => {
     try {
@@ -23,12 +24,13 @@ function Login_panel() {
 
       await pb.collection("users").authWithPassword(data.email, data.password);
       if (pb.authStore.isValid) {
-        setIsvalid(true);
+        document.cookie = pb.authStore.exportToCookie({ httpOnly: false })
+        setIsvalid(true)
         router.push("/");
       }
     } catch (e) {
       console.log(e);
-      setErrorMsg("no such email or password");
+      setErrorMsg("error : " + e);
     }
   };
   return (

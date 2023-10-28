@@ -18,7 +18,7 @@ async function getFrontProducts() {
   return data;
 }
 
-async function Header_homePage() {
+async function Featured() {
   let data = await getFrontProducts();
   return (
     <>
@@ -41,4 +41,4 @@ async function Header_homePage() {
   );
 }
 
-export default Header_homePage;
+export default Featured;

@@ -8,8 +8,8 @@ import Navbar_sign_in from "./navbar_sign_in";
 import { useEffect, useState } from "react";
 function Account_logic() {
   const pb = new PocketBase("http://127.0.0.1:8090");
-  const [isValid, setIsvalid] = useAtom(isValidAtom);
   const [domLoaded, setDomLoaded] = useState(false);
+  const [isValid, setIsvalid] = useAtom(isValidAtom);
   useEffect(() => {
     setDomLoaded(true);
   }, []);

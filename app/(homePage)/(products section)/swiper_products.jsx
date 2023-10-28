@@ -10,19 +10,22 @@ import { useEffect, useState } from "react";
 
 function SwiperProducts(props) {
   const [swiperPerview, setSwiperPerview] = useState(4);
+  const [navigationEnabled, setNavigationEnabled] = useState(true);
   useEffect(() => {
     if (document.documentElement.clientWidth < 1024) {
       setSwiperPerview(3);
+      setNavigationEnabled(false)
     }
     if (document.documentElement.clientWidth < 768) {
       setSwiperPerview(2);
+      
     }
   }, []);
   return (
     <div className="text-center">
       <Swiper
         modules={[Navigation, Pagination, Autoplay]}
-        navigation={true}
+        navigation={navigationEnabled}
         className=""
         slidesPerView={swiperPerview}
         autoplay={{

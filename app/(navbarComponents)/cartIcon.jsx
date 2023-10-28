@@ -7,15 +7,13 @@ function CartIcon() {
 const pb = new PocketBase("http://127.0.0.1:8090");
 const router = useRouter();
   return (  
-    <div className=" px-2 flex items-center gap-x-1 ">
+    <a href="/mycart/user" className=" px-2 flex items-center gap-x-1 cursor-pointer">
       <FontAwesomeIcon
         icon={faCartShopping}
-        className="cursor-pointer hover:text-secondary transition"
-        onClick={() =>
-          router.push(`/mycart/${pb.authStore.token.slice(0, 10)}`)
-        }
+        className=" hover:text-secondary transition"
+        
       />
-    </div>
+    </a>
   );
 }
 

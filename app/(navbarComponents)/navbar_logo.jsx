@@ -1,10 +1,8 @@
 "use client";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
 function Navbar_logo() {
-  const router = useRouter();
   return (
-    <div className="cursor-pointer" onClick={() => router.push("/")}>
+    <a href="/" className="cursor-pointer" >
       
       <Image
         src={"/logo.svg"}
@@ -12,7 +10,7 @@ function Navbar_logo() {
         height={200}
         alt="SafoMart"
       />
-    </div>
+    </a>
   );
 }
 

@@ -1,4 +1,5 @@
 "use client";
+import {deleteCookie, setCookie} from "../functions/cookiesFunctions"
 const pb = new PocketBase("http://127.0.0.1:8090");
 export const isValidAtom = atom(pb.authStore.isValid);
 import { atom, useAtom } from "jotai";
@@ -19,14 +20,13 @@ function Navbar_user_icon() {
   const router = useRouter();
   return (
     <div className="flex relative">
-      <CartIcon/>
+      <CartIcon />
       <Menu>
         <Menu.Button className="hover:text-secondary transition p-2 flex items-center gap-x-2">
           <FontAwesomeIcon icon={faUser} />
-          <p>{pb.authStore.model.username}</p>{" "}
+          <p>{pb.authStore.model?.username}</p>{" "}
         </Menu.Button>
         <Menu.Items className="bg-secondary flex flex-col rounded-lg gap-y-4 p-4 absolute top-full z-50 ">
-          
           <Menu.Item>
             {({ active }) => (
               <div
@@ -49,8 +49,9 @@ function Navbar_user_icon() {
                   `${active && "bg-main"}`
                 }
                 onClick={() => {
-                  setIsvalid(false);
                   pb.authStore.clear();
+                  setIsvalid(false);
+                  deleteCookie("pb_auth");
                   router.push("/");
                   router.refresh();
                 }}

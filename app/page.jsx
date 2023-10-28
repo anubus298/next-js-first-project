@@ -1,13 +1,12 @@
 import FooterComp from "./(footer)/footer";
 import ProductSection from "./(homePage)/(products section)/productSection";
-import Header_homePage from "./(homePage)/(section 1)/header_homePage";
-import Center_homePage from "./(homePage)/(iphone 15 pro)/center_homePage";
-
+import Featured from "./(homePage)/(featured)/featured";
+import Home_slider from "./(homePage)/(home slider)/home_slider"
 export default function Page() {
   return (
     <div className="w-full bg-secondarySecondary">
-      <Header_homePage />
-      <Center_homePage/>
+      <Home_slider/>
+      <Featured />
       <ProductSection type={'laptops'}/>
       <ProductSection type={'mobiles'}/>
       <ProductSection type={'tvs'}/>
