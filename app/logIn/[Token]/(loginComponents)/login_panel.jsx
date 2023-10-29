@@ -38,8 +38,8 @@ function Login_panel() {
         } catch (_) {
           pb.authStore.clear();
         }
-        setIsvalid(true);
-        router.push("/");
+        pb.authStore.isValid && setIsvalid(true);
+        pb.authStore.isValid && router.push("/");
       } else throw new Error();
     } catch (e) {
       console.log(e);
@@ -85,8 +85,9 @@ function Login_panel() {
 
         <div className="flex w-full justify-between items-center">
           <div className="flex  items-center space-x-2">
-            <Checkbox color="red"
-            {...register("remember", { required: true })}
+            <Checkbox
+              color="red"
+              {...register("remember", { required: true })}
             />
             <p>Remember me</p>
           </div>

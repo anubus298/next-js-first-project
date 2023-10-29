@@ -8,12 +8,12 @@ export async function POST(request: NextRequest) {
   try {
     await pb.collection("users").authWithPassword(body.email, body.password);
     if (pb.authStore.isValid) {
-      cookies().set(
-        "pb_auth",
-        pb.authStore.exportToCookie().replace(reg, (str, p1, p2) => {
-          return p2;
-        })
-      );
+      // cookies().set(
+      //   "pb_auth",
+      //   pb.authStore.exportToCookie().replace(reg, (str, p1, p2) => {
+      //     return p2;
+      //   })
+      // );
       cookies().set(
         "pb_auth",
         pb.authStore.exportToCookie({ httpOnly: false })

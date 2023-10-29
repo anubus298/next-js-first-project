@@ -36,7 +36,7 @@ function Cart_product_section({
     <Theme>
       <div className="min-h-[250px] me-5 select-none">
         {!products && <Cart_empty />}
-        {products && count != 0 && (
+        {products  && (
           <Table.Root>
             <TableHeader />
             <Table.Body>

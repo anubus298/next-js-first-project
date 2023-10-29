@@ -50,10 +50,10 @@ function Navbar_user_icon() {
                 }
                 onClick={() => {
                   pb.authStore.clear();
-                  setIsvalid(false);
-                  deleteCookie("pb_auth");
                   router.push("/");
-                  router.refresh();
+                  deleteCookie("pb_auth");
+                  setIsvalid(false);
+          
                 }}
               >
                 <FontAwesomeIcon icon={faSignOut} />
