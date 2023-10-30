@@ -1,0 +1,13 @@
+-add all footer/support pages
+-make all the pages responsive
+-add tablet/wearables items
+-add categories pages
+-add a search bar
+-add setting page
+-fix feature section
+-make more animations (loading circle)
+-make a payment page
+-add favorites page/icon
+-make newsletter
+-add shipping settings to cart
+-arrange your project files

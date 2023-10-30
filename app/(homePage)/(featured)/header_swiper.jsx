@@ -21,7 +21,7 @@ function Header_swiper(props) {
         {props.products.map((product, index) => {
           return (
             <SwiperSlide
-              key={product.id}
+              key={product.id + index + 13}
               className={` overflow-hidden z-[${
                 10 - index
               }] rounded-b-lg cursor-pointer hover:brightness-90 force-flex flex-col  p-1 items-center `}
@@ -30,11 +30,12 @@ function Header_swiper(props) {
                 <Image
                   src={`http://127.0.0.1:8090/api/files/${product.collectionId}/${product.id}/${product.mainImg}?thumb=300x300`}
                   alt="SafoMart"
+                  sizes={"(max-width: 768px) 150px ,(max-width: 1000px) 200px,300px"}
                   width={300}
                   height={300}
                 />
               </div>
-              <div
+              <a href={`/product/${props.type}/${product.id}`}
                 className="bg-main text-secondarySecondarylight rounded-b-lg  p-5 w-full h-1/6
              flex flex-col justify-center text-center "
               >
@@ -44,7 +45,7 @@ function Header_swiper(props) {
                 <p className="text-sm tracking-wider text-secondary ">
                   {product.price}$
                 </p>
-              </div>
+              </a>
             </SwiperSlide>
           );
         })}

@@ -1,7 +1,7 @@
 import Image from "next/image";
 function Sliders_surface_14() {
   return (
-    <div className="flex justify-center relative h-[500px]">
+    <div className="flex justify-center relative md:h-[500px]">
         <Image
           className="absolute "
           quality={100}

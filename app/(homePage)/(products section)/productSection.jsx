@@ -11,7 +11,7 @@ async function getPro(type) {
   const res = await fetch(
     `http://127.0.0.1:8090/api/collections/Pro${
       type[0].toUpperCase() + type.slice(1, type.length)
-    }/records?page=1&perPage=500&skipTotal=1&expand=brand`
+    }/records?page=1&perPage=500&skipTotal=1&expand=brand`,
   );
   let content = await res.json();
 

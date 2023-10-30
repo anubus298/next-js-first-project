@@ -9,7 +9,9 @@ function Page() {
       <div className="flex justify-around items-center w-full h-full  p-5 sm:my-10 ">
         <SignIn_panel />
         <Image
+          className="hidden md:block"
           alt="woman shopping"
+          sizes={"(max-width : 767px) 0vw"}
           height={450}
           width={450}
           src="/loginPage/134.png"

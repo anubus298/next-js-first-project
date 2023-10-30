@@ -1,29 +1,48 @@
 "use client";
-import { useEffect, useState } from "react";
-import { Form } from "react-hook-form";
-import { Dialog } from "@headlessui/react";
-import { Menu, Transition } from "@headlessui/react";
-
-function AddToMyCart({ price }) {
-  const [count, setcount] = useState(1);
-  useEffect(() => {
-    setcount(1);
-  }, []);
-  const [open, setopen] = useState(false);
-  function closing() {
-    return 0;
+import { AlertDialog, Button, Flex } from "@radix-ui/themes";
+import addToCart from "../../functions/addToCart";
+import "@radix-ui/themes/styles.css";
+import { Theme } from "@radix-ui/themes";
+import { useRouter } from "next/navigation";
+function AddToMyCart({ collectionName, id }) {
+  const router = useRouter()
+  async function handleADD(collectionName, id) {
+    let res = await addToCart(collectionName, id);
+    res.status == 401 && router.push("/logIn/QCqsf8q9")
   }
   return (
-    <>
-      <div className=" transition w-full p-5 px-8  text-white flex gap-2 flex-col font-bold select-none">
-        <button
-          onClick={() => setopen(false)}
-          className="bg-secondary hover:bg-secondaryLight  transition rounded-lg font-bold p-2"
-        >
-          <p>ADD TO CART</p>
-        </button>
-      </div>
-    </>
+    <Theme>
+      <AlertDialog.Root>
+        <AlertDialog.Trigger>
+          <button className="bg-secondary text-white hover:bg-secondaryLight  transition rounded-lg font-bold p-2 w-full">
+            <p>ADD TO CART</p>
+          </button>
+        </AlertDialog.Trigger>
+        <AlertDialog.Content className="select-none" style={{ maxWidth: 450 }}>
+          <AlertDialog.Title>Adding item</AlertDialog.Title>
+          <AlertDialog.Description size="2">
+            Are you sure you want to Add this item to your cart?
+          </AlertDialog.Description>
+
+          <Flex gap="3" mt="4" justify="end">
+            <AlertDialog.Cancel>
+              <Button variant="soft" color="gray">
+                Cancel
+              </Button>
+            </AlertDialog.Cancel>
+            <AlertDialog.Action>
+              <Button
+                variant="solid"
+                color="red"
+                onClick={() => handleADD(collectionName, id)}
+              >
+                Add
+              </Button>
+            </AlertDialog.Action>
+          </Flex>
+        </AlertDialog.Content>
+      </AlertDialog.Root>
+    </Theme>
   );
 }
 

@@ -5,6 +5,8 @@ function Navbar_logo() {
     <a href="/" className="cursor-pointer" >
       
       <Image
+      priority
+      className="w-auto"
         src={"/logo.svg"}
         width={200}
         height={200}

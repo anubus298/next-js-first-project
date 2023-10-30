@@ -50,6 +50,7 @@ function Home_slider_iphone_15() {
             <Image
               src="/icon_battery__fztnats2mpme_large.png"
               width={50}
+              className="h-auto w-auto"
               height={50}
               alt="icon"
             />
@@ -58,12 +59,14 @@ function Home_slider_iphone_15() {
             </div>
           </div>
         </div>
-        <div className="relative w-1/2">
+        <div className=" w-1/2">
         <Image
           src="/pro15all_colors.jpg"
           alt="ff"
-          fill
-          sizes="(max-width: 768px) 100vw,80vw"
+          width={500}
+          className="w-auto h-auto"
+          height={300}
+          sizes="(max-width: 768px) 50vw,50vw"
         />
         </div>
       </div>

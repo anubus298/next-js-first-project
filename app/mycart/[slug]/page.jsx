@@ -1,7 +1,6 @@
-export const fetchCache = "force-no-store";
+export const fetchCache = "force-no-cache";
 import PocketBase from "pocketbase";
 import { cookies } from "next/headers";
-import { encodeNextPBCookie } from "../../functions/encodeCookie";
 import CartUI from "./cartUI";
 
 async function Page() {

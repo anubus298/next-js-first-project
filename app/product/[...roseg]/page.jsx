@@ -1,14 +1,13 @@
 import BackComp from "../back";
 import DescripSection from "./DescripSection";
 import ImgSection from "./ImgsSection";
-
 async function Page({ params }) {
   async function getDescription() {
     const res = await fetch(
       `http://127.0.0.1:8090/api/collections/Pro${
         params.roseg[0][0].toUpperCase() +
         params.roseg[0].slice(1, params.roseg[0].length)
-      }/records/${params.roseg[1]}`
+      }/records/${params.roseg[1]}`,{cache : "no-cache"}
     );
     let content = await res.json();
     return content;

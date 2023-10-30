@@ -5,6 +5,7 @@ import { Theme } from "@radix-ui/themes";
 import { Table } from "@radix-ui/themes";
 import TableHeader from "./(components)/TableHeader";
 import Cart_cards from "./cart_cards";
+import { useRouter } from "next/navigation";
 function Cart_product_section({
   id,
   products,
@@ -22,8 +23,7 @@ function Cart_product_section({
     );
     let requestBody = {};
     requestBody[collectionName] = deleteThisProduct.id;
-    const res = fetch("http://localhost:3000/api/products/UpdateCart", {
-      cache : "no-cache",
+    const res = await fetch("http://localhost:3000/api/products/UpdateCart", {
       method: "PATCH",
       "Content-Type": "application/json",
       body: JSON.stringify(requestBody),
@@ -31,12 +31,18 @@ function Cart_product_section({
         id: id,
       },
     });
-  }
+    // revalidatePath("","page")
+    // const rev = await fetch(
+    //   "http://localhost:3000/api/revalidate?path=/mycart/[slug]"
+    // );
+    router.refresh()
+}
+ const router = useRouter()
   return (
     <Theme>
       <div className="min-h-[250px] me-5 select-none">
         {!products && <Cart_empty />}
-        {products  && (
+        {products && (
           <Table.Root>
             <TableHeader />
             <Table.Body>

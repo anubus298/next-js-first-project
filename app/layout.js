@@ -1,4 +1,4 @@
-import "public/globals.css";
+import "public/css/globals.css";
 import Navbar from "./navbar";
 import FooterComp from "./(footer)/footer";
 

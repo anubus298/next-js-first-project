@@ -1,16 +1,11 @@
 "use client";
-import {deleteCookie, setCookie} from "../functions/cookiesFunctions"
+import { deleteCookie } from "../functions/cookiesFunctions";
 const pb = new PocketBase("http://127.0.0.1:8090");
 export const isValidAtom = atom(pb.authStore.isValid);
 import { atom, useAtom } from "jotai";
 import PocketBase from "pocketbase";
 import { Menu } from "@headlessui/react";
-import {
-  faUser,
-  faCartShopping,
-  faSignOut,
-  faGear,
-} from "@fortawesome/free-solid-svg-icons";
+import { faUser, faSignOut, faGear } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useRouter } from "next/navigation";
 import CartIcon from "./cartIcon";
@@ -53,7 +48,6 @@ function Navbar_user_icon() {
                   router.push("/");
                   deleteCookie("pb_auth");
                   setIsvalid(false);
-          
                 }}
               >
                 <FontAwesomeIcon icon={faSignOut} />

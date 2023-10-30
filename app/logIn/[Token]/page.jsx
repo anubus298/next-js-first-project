@@ -4,13 +4,14 @@ import "@radix-ui/themes/styles.css";
 import { Theme } from "@radix-ui/themes";
 import "../../../public/css/theme-config.css";
 function Page() {
-
   return (
     <Theme>
       <div className="flex justify-around items-center w-full h-full  p-5 sm:p-10 ">
         <Image
-          alt="woman shopping"
+          className="hidden md:block"
+          alt="man shopping"
           height={450}
+          sizes={"(max-width : 767px) 0vw"}
           width={450}
           src="/loginPage/x35.png"
         />

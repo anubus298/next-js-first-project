@@ -9,7 +9,7 @@ import Sliders_galaxy_s23 from "./sliders/sliders_galaxy_s23"
 import Sliders_surface_14 from "./sliders/sliders_surface_14"
 function Home_slider() {
   return (
-    <div className="w-full mb-4 select-none">
+    <div className="w-full mb-4 select-none h-fit overflow-hidden">
       <Swiper
         modules={[Navigation, Autoplay]}
         navigation={true}

@@ -47,9 +47,9 @@ function Login_panel() {
     }
   };
   return (
-    <div className="bg-secondarySecondarylight rounded-lg px-6 h-[620px]  w-1/2  sm:px-10 flex flex-col justify-evenly  text-main text-center font-bold select-none">
-      <div className=" text-start">
-        <p className="text-4xl mb-2">Create an account</p>
+    <div className="bg-secondarySecondarylight rounded-lg px-6 h-[620px] w-full md:w-1/2  sm:px-10 flex flex-col justify-evenly  text-main text-center font-bold select-none">
+      <div className=" text-center md:text-start">
+        <p className="text-2xl md:text-4xl mb-2">Create an account</p>
       </div>
       <form
         onSubmit={handleSubmit(onSubmit)}
@@ -60,7 +60,7 @@ function Login_panel() {
             autoComplete="off"
             type="text"
             placeholder="username"
-            className="w-full text-lg text-white bg-secondary font-normal py-4 px-3 rounded-md  placeholder:text-red-200 focus-visible:outline-none"
+            className="w-full text-lg text-white bg-secondary font-normal py-2 md:py-4 px-3 rounded-md  placeholder:text-red-200 focus-visible:outline-none"
             {...register("username", { required: true })}
           />
           {errors.exampleRequired && <span>This field is required</span>}
@@ -70,7 +70,7 @@ function Login_panel() {
             autoComplete="off"
             type="email"
             placeholder="email"
-            className="w-full text-lg text-white bg-secondary font-normal py-4 px-3 rounded-md  placeholder:text-red-200 focus-visible:outline-none"
+            className="w-full text-lg text-white bg-secondary font-normal py-2 md:py-4 px-3 rounded-md  placeholder:text-red-200 focus-visible:outline-none"
             {...register("email", { required: true })}
           />
           {errors.exampleRequired && <span>This field is required</span>}
@@ -81,7 +81,7 @@ function Login_panel() {
             autoComplete="off"
             type="password"
             placeholder="password"
-            className="w-full text-lg text-white bg-secondary font-normal py-4 px-3 rounded-md placeholder:text-red-200 focus-visible:outline-none"
+            className="w-full text-lg text-white bg-secondary font-normal py-2 md:py-4 px-3 rounded-md placeholder:text-red-200 focus-visible:outline-none"
             {...register("password", { required: true })}
           />
           {errors.exampleRequired && <span>This field is required</span>}
@@ -91,7 +91,7 @@ function Login_panel() {
             autoComplete="off"
             type="password"
             placeholder="confirm password"
-            className="w-full text-lg text-white bg-secondary font-normal py-4 px-3 rounded-md placeholder:text-red-200 focus-visible:outline-none"
+            className="w-full text-lg text-white bg-secondary font-normal py-2 md:py-4 px-3 rounded-md placeholder:text-red-200 focus-visible:outline-none"
             {...register("passwordConfirm", { required: true })}
           />
           {errors.exampleRequired && <span>This field is required</span>}

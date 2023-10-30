@@ -12,10 +12,6 @@ export default function ImgSection({ imgs, id, cId }) {
       ? setWdthclient(document.documentElement.clientWidth - 10)
       : setWdthclient(500);
   }, []);
-  let prev = 0;
-  function handleClicking(prev, j) {
-    setIndex(j);
-  }
   return (
     <div className="md:w-1/2 flex flex-col-reverse md:flex-row justify-start gap-5 items-center">
       <div
@@ -27,7 +23,7 @@ export default function ImgSection({ imgs, id, cId }) {
           return (
             <div
               key={id + j}
-              className="bg-white p-1  w-[50px] h-[50px] flex justify-center items-center cursor-pointer outline-none hover:outline-black hover:outline-1 "
+              className="bg-white p-1 overflow-hidden  w-[50px] h-[50px] flex justify-center items-center cursor-pointer outline-none hover:outline-black hover:outline-1 "
               onClick={() => setIndex(j)}
             >
               <Image
@@ -35,27 +31,22 @@ export default function ImgSection({ imgs, id, cId }) {
                 alt=""
                 height={50}
                 width={50}
-                className=""
               />
             </div>
           );
         })}
       </div>
-      <div className="bg-white p-2 rounded-lg flex overflow-hidden justify-center items-center h-[500px] md:w-[500px] relative">
-        <FontAwesomeIcon
-          height={16}
-          width={16}
-          className="absolute top-2  right-2   text-black z-50"
-          icon={faUpRightAndDownLeftFromCenter}
-        />
+      <div className="bg-white p-2 rounded-lg flex overflow-hidden justify-center items-center h-[500px] md:w-[500px] w-11/12 ">
+      
         <TransformWrapper>
           <TransformComponent>
             <div className="h-[500px] flex items-center  ">
               <Image
+                className=""
                 src={`http://127.0.0.1:8090/api/files/${cId}/${id}/${imgs[index]}?thumb=0x500`}
                 height={500}
                 width={500}
-        
+                sizes={"(max-width: 768px) 90vw ,(max-width: 1024px) 60vw,40vw"}
                 alt=""
                 set
               />
@@ -63,6 +54,18 @@ export default function ImgSection({ imgs, id, cId }) {
           </TransformComponent>
         </TransformWrapper>
       </div>
+
+
+
+
+
     </div>
+
+
+
+
+
+
+
   );
 }

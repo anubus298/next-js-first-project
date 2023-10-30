@@ -8,7 +8,7 @@ function Counter({
   sign,
 }) {
   return (
-    <div className=" flex p-4 w-full ">
+    <div className=" flex p-4 w-fit ">
       <div
         className=" bg-white text-main p-2 cursor-pointer"
         onClick={() => {

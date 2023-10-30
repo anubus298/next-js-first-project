@@ -1,6 +1,6 @@
-import Image from "next/image";
 import ProductDescription from "./productdescription";
 import ProductImg from "./productImg";
+import BrandImg from "./brandImg";
 import StarComp from "./StarComp";
 function ProductCard({ item, type }) {
   let wdth = 0;
@@ -15,7 +15,8 @@ function ProductCard({ item, type }) {
     if (item.expand?.brand.brandName == "asus") wdth = 65;
     if (item.expand?.brand.brandName == "oppo") wdth = 65;
     if (item.expand?.brand.brandName == "lg") wdth = 70;
-    if (item.expand?.brand.brandName == "nokia") wdth = 90;
+    if (item.expand?.brand.brandName == "nokia") wdth = 70;
+    if (item.expand?.brand.brandName == "realme") wdth = 50;
   }
   type == "mobiles" ? (wdth5 = 150) : (wdth5 = 250);
 
@@ -37,22 +38,24 @@ function ProductCard({ item, type }) {
         <div className="h-[0.5px] bg-black w-full  "></div>
         <div className="h-[100px] overflow-hidden flex items-center justify-center text-center ">
           <ProductDescription
-            text={item.name.split(reg, 3).join(",") }
+            text={item.name.split(reg, 3).join(",")}
             type={type}
             classes={"transition"}
             id={item.id}
           />
         </div>
-        {item.expand && (
-          <div className="h-[30px] flex justify-center ">
-            <ProductImg
+
+        <div className="h-[30px] flex justify-center relative ">
+          {item.expand && (
+            <BrandImg
               width={wdth}
               height={250}
               name={""}
               src={`http://127.0.0.1:8090/api/files/${item.expand?.brand.collectionId}/${item.expand?.brand.id}/${item.expand?.brand.img}?thumb=0x30`}
             />
-          </div>
-        )}
+          )}
+        </div>
+
         <div className="flex justify-evenly items-center mt-auto">
           <ProductDescription
             classes="text-secondary text-2xl "
