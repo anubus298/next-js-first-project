@@ -2,7 +2,7 @@ import { Table } from "@radix-ui/themes";
 
 function TableHeader() {
   return (
-    <Table.Header>
+    <Table.Header className="text-lg ">
       <Table.Row>
         <Table.ColumnHeaderCell>
           <p className="text-center">Product</p>

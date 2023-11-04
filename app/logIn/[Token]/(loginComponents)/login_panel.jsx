@@ -9,6 +9,7 @@ import { useAtom } from "jotai";
 import { isValidAtom } from "../../../(navbarComponents)/navbar_user_icon";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
+import { ColorRing } from 'react-loader-spinner'
 function Login_panel() {
   const {
     register,
@@ -19,18 +20,25 @@ function Login_panel() {
   const pb = new PocketBase("http://127.0.0.1:8090");
   const [errorMsg, setErrorMsg] = useState("");
   const [isValid, setIsvalid] = useAtom(isValidAtom);
+  const [isloading, setisloading] = useState(false);
   const router = useRouter();
   const onSubmit = async (data) => {
     try {
       setErrorMsg("");
-      const res = await fetch("http://localhost:3000/api/login", {
-        method: "POST",
-        "Content-Type": "application/json",
-        body: JSON.stringify(data),
-        headers: {
-          remember: data.remember,
-        },
-      });
+      setisloading(true)
+      const res = await fetch(
+        `http://localhost:3000/api/login?survive=${data.remember}`,
+        {
+          method: "POST",
+          "Content-Type": "application/json",
+          body: JSON.stringify(data),
+          headers: {
+            remember: data.remember,
+          },
+        }
+      );
+      setisloading(false)
+
       if (res.status == 200) {
         pb.authStore.loadFromCookie(getCookie("pb_auth"));
         try {
@@ -42,8 +50,7 @@ function Login_panel() {
         pb.authStore.isValid && router.push("/");
       } else throw new Error();
     } catch (e) {
-      console.log(e);
-      setErrorMsg("error : " + e);
+      setErrorMsg(e);
     }
   };
   return (
@@ -63,6 +70,7 @@ function Login_panel() {
         <div className="flex gap-x-3 w-full p-2 justify-start items-center">
           <input
             autoComplete="off"
+            value={"gg@gmail.com"}
             type="email"
             placeholder="email"
             className="w-full text-lg text-white bg-secondary font-normal py-2 md:py-6 px-3 rounded-md  placeholder:text-red-200 focus-visible:outline-none"
@@ -74,6 +82,7 @@ function Login_panel() {
         <div className="flex gap-x-3 w-full p-2 justify-start items-center">
           <input
             autoComplete="off"
+            value={"987612345saf"}
             type="password"
             placeholder="password"
             className="w-full text-lg text-white bg-secondary font-normal py-2 md:py-6 px-3 rounded-md placeholder:text-red-200 focus-visible:outline-none"
@@ -96,10 +105,19 @@ function Login_panel() {
           </a>
         </div>
         <button
-          className="bg-main hover:bg-gray-950 transition p-2 rounded-lg text-white w-full"
+          className="bg-main hover:bg-gray-950 transition p-2 rounded-lg text-white w-full flex justify-center items-center"
           type="submit"
         >
-          Connect
+          <ColorRing
+            visible={isloading}
+            height="25"
+            width="25"
+            ariaLabel="blocks-loading"
+            wrapperStyle={{}}
+            wrapperClass="blocks-wrapper"
+            colors={["#e15b64", "#f47e60", "#f8b26a", "#abbd81", "#849b87"]}
+          />
+          {!isloading && <p>Connect</p>}
         </button>
       </form>
       <div className="flex justify-end w-full">

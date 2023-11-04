@@ -17,10 +17,10 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={mooli.className}>
+        <Navbar />
         <div className="container mx-auto">
-          <Navbar />
           {children}
-          <FooterComp/>
+          <FooterComp />
         </div>
       </body>
     </html>

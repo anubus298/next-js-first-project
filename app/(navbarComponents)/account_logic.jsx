@@ -20,8 +20,8 @@ function Account_logic() {
         (isValid ? (
           <Navbar_user_icon />
         ) : (
-          <div className="flex sm:flex-row flex-col-reverse gap-y-2 items-center">
-            <Navbar_log_in />
+          <div className="flex sm:flex-row flex-col-reverse md:gap-y-2 items-center">
+            <Navbar_log_in/>
             <Navbar_sign_in />
           </div>
         )) : <User_skeleton/>}

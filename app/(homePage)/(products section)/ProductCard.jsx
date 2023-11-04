@@ -35,7 +35,7 @@ function ProductCard({ item, type }) {
             src={`http://127.0.0.1:8090/api/files/${item.collectionId}/${item.id}/${item.imgs[0]}?thumb=Wx0`}
           />
         </div>
-        <div className="h-[0.5px] bg-black w-full  "></div>
+        <div className="h-[0.5px] bg-gray-300 w-full  "></div>
         <div className="h-[100px] overflow-hidden flex items-center justify-center text-center ">
           <ProductDescription
             text={item.name.split(reg, 3).join(",")}

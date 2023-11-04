@@ -10,14 +10,16 @@ export async function PATCH(request: NextRequest) {
     pb.authStore.isValid && (await pb.collection("users").authRefresh());
   } catch (_) {
     pb.authStore.clear();
+  return new Response("user not logged!", { status: 401 });
+
   }
   try {
-    const req: Request = await pb
+    const req = await pb
       .collection("Carts")
       .update(pb.authStore.model.id, body);
   } catch (error) {
     return new Response(error.message, {
-      status: 300,
+      status: 400,
     });
   }
   return new Response("Updated!", { status: 200 });

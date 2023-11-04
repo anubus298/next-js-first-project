@@ -33,7 +33,7 @@ function Card({ product, setpriceSummary, priceSummary, deleteItemFromCart }) {
         <p>${product.price}</p>
       </Table.Cell>
 
-      <Table.Cell>
+      <Table.Cell justify={"center"}>
         <Counter
           quantity={quantity}
           setquantity={setquantity}

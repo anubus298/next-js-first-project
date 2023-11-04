@@ -1,62 +1,73 @@
 "use client";
-import { deleteCookie } from "../functions/cookiesFunctions";
+import { deleteCookie, getCookie } from "../functions/cookiesFunctions";
 const pb = new PocketBase("http://127.0.0.1:8090");
+pb.authStore.loadFromCookie(getCookie("pb_auth"));
 export const isValidAtom = atom(pb.authStore.isValid);
 import { atom, useAtom } from "jotai";
 import PocketBase from "pocketbase";
-import { Menu } from "@headlessui/react";
+import { Menu, Transition } from "@headlessui/react";
 import { faUser, faSignOut, faGear } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useRouter } from "next/navigation";
-import CartIcon from "./cartIcon";
+import { CartIcon } from "./cartIcon";
 function Navbar_user_icon() {
   const pb = new PocketBase("http://127.0.0.1:8090");
+  pb.authStore.loadFromCookie(getCookie("pb_auth"));
   const [isValid, setIsvalid] = useAtom(isValidAtom);
   const router = useRouter();
   return (
     <div className="flex relative">
       <CartIcon />
-      <Menu>
+      <Menu className="relative" as={"menu"}>
         <Menu.Button className="hover:text-secondary transition m-2 flex items-center gap-x-2">
           <FontAwesomeIcon icon={faUser} />
           <p>{pb.authStore.model?.username}</p>{" "}
         </Menu.Button>
-        <Menu.Items className="bg-secondary flex flex-col rounded-lg gap-y-4 p-4 absolute top-full z-50 ">
-          <Menu.Item>
-            {({ active }) => (
-              <div
-                className={
-                  " px-1 justify-between flex items-center gap-x-1 cursor-pointer transition ease-out" +
-                  `${active && "bg-main"}`
-                }
-              >
-                <FontAwesomeIcon icon={faGear} />
-
-                <a href="/account-settings">settings</a>
-              </div>
-            )}
-          </Menu.Item>
-          <Menu.Item>
-            {({ active }) => (
-              <div
-                className={
-                  " px-1 justify-between flex items-center gap-x-1 cursor-pointer transition ease-out " +
-                  `${active && "bg-main"}`
-                }
-                onClick={() => {
-                  pb.authStore.clear();
-                  router.push("/");
-                  deleteCookie("pb_auth");
-                  setIsvalid(false);
-                }}
-              >
-                <FontAwesomeIcon icon={faSignOut} />
-
-                <p>Sign out</p>
-              </div>
-            )}
-          </Menu.Item>
-        </Menu.Items>
+        <Transition
+          enter="transition ease-out duration-100"
+          enterFrom="transform opacity-0 scale-95"
+          enterTo="transform opacity-100 scale-100"
+          leave="transition ease-in duration-75"
+          leaveFrom="transform opacity-100 scale-100"
+          leaveTo="transform opacity-0 scale-95"
+        >
+          <Menu.Items className="bg-secondary flex flex-col rounded-lg gap-y-4 p-4 absolute right-10 z-50 ">
+            <Menu.Item>
+              {({ active }) => (
+                <div
+                  className={
+                    " p-1 justify-between flex items-center gap-x-1 cursor-pointer transition ease-out" +
+                    `${active && "bg-main"}`
+                  }
+                >
+                  <a href="/account-settings" className="hover:text-main flex items-center space-x-2">
+                    <FontAwesomeIcon icon={faGear} />
+                    <p>settings</p>
+                  </a>
+                </div>
+              )}
+            </Menu.Item>
+            <Menu.Item>
+              {({ active }) => (
+                <div
+                  className={
+                    " p-1  flex items-center space-x-2 cursor-pointer transition ease-out " +
+                    `${active && "b"}`
+                  }
+                  onClick={() => {
+                    pb.authStore.clear();
+                    router.push("/");
+                    deleteCookie("pb_auth");
+                    setIsvalid(false);
+                  }}
+                >
+                  <FontAwesomeIcon icon={faSignOut} />
+                  <p>Logout</p>
+                </div>
+              )}
+            </Menu.Item>
+          </Menu.Items>
+        </Transition>
       </Menu>
     </div>
   );

@@ -8,7 +8,8 @@ function Counter({
   sign,
 }) {
   return (
-    <div className=" flex p-4 w-fit ">
+    <div className="w-full flex justify-center  ">
+    <div className=" flex   ">
       <div
         className=" bg-white text-main p-2 cursor-pointer"
         onClick={() => {
@@ -34,6 +35,7 @@ function Counter({
       >
         +
       </div>
+    </div>
     </div>
   );
 }

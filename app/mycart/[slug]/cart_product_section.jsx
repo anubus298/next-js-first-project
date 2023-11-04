@@ -35,12 +35,12 @@ function Cart_product_section({
     // const rev = await fetch(
     //   "http://localhost:3000/api/revalidate?path=/mycart/[slug]"
     // );
-    router.refresh()
-}
- const router = useRouter()
+    router.refresh();
+  }
+  const router = useRouter();
   return (
     <Theme>
-      <div className="min-h-[250px] me-5 select-none">
+      <div className="min-h-[250px]  select-none md:me-5">
         {!products && <Cart_empty />}
         {products && (
           <Table.Root>

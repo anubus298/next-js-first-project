@@ -9,7 +9,7 @@ export default async function addToCart(collectionName, id) {
     cache: "no-cache",
     method: "PATCH",
     "Content-Type": "application/json",
-    body: JSON.stringify(collectionNameRe),
+    body: JSON.stringify(requestBody),
   });
   return res;
 }
