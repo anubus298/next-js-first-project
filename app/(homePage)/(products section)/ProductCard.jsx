@@ -22,7 +22,7 @@ function ProductCard({ item, type }) {
 
   return (
     <div className="flex justify-center h-[380px] select-none">
-      <div className=" sm:w-[300px] bg-secondarySecondarylight  h-full md:rounded-lg p-5">
+      <div className="w-full mx-5 sm:mx-0 sm:w-[300px] bg-secondarySecondarylight  h-full md:rounded-lg p-5">
         <div className="flex justify-center h-[180px] relative">
           <ProductImg
             width={wdth5}

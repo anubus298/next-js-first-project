@@ -16,7 +16,7 @@ function Header_swiper(props) {
         effect={"cards"}
         grabCursor={true}
         modules={[EffectCards]}
-        className=" h-[250px] w-[200px] md:h-[400px] md:w-[300px]"
+        className=" h-[290px] w-[200px] md:h-[400px] md:w-[300px]"
       >
         {props.products.map((product, index) => {
           return (
@@ -24,7 +24,7 @@ function Header_swiper(props) {
               key={product.id + index + 13}
               className={` overflow-hidden z-[${
                 10 - index
-              }] rounded-b-lg cursor-pointer hover:brightness-90 force-flex flex-col  p-1 items-center `}
+              }] rounded-b-lg cursor-pointer hover:brightness-95 force-flex flex-col  p-1 items-center `}
             >
               <div className="flex items-center bg-white h-5/6">
                 <Image
@@ -39,10 +39,10 @@ function Header_swiper(props) {
                 className="bg-main text-secondarySecondarylight rounded-b-lg  p-5 w-full h-1/6
              flex flex-col justify-center text-center "
               >
-                <p className="tracking-widest font-bolder text-sm sm:text-lg">
+                <p className="tracking-widest font-bolder text-sm sm:text-lg font-bold">
                   {product.productName}
                 </p>
-                <p className="text-sm tracking-wider text-secondary ">
+                <p className=" tracking-wider text-secondary font-bold">
                   {product.price}$
                 </p>
               </a>

@@ -111,7 +111,7 @@ function Login_panel() {
           <div className="flex  items-center space-x-2">
             <Checkbox
               color="red"
-              {...register("Subscibe", { required: true })}
+              {...register("Subscibe", { required: false })}
             />
             <p>Subscribe to email notifications</p>
           </div>

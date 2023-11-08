@@ -10,18 +10,20 @@ import { faUser, faSignOut, faGear } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useRouter } from "next/navigation";
 import { CartIcon } from "./cartIcon";
+import FavoriteIcon from "./FavoriteIcon"
 function Navbar_user_icon() {
   const pb = new PocketBase("http://127.0.0.1:8090");
   pb.authStore.loadFromCookie(getCookie("pb_auth"));
   const [isValid, setIsvalid] = useAtom(isValidAtom);
   const router = useRouter();
   return (
-    <div className="flex relative">
+    <div className="flex">
+      <FavoriteIcon/>
       <CartIcon />
       <Menu className="relative" as={"menu"}>
         <Menu.Button className="hover:text-secondary transition m-2 flex items-center gap-x-2">
           <FontAwesomeIcon icon={faUser} />
-          <p>{pb.authStore.model?.username}</p>{" "}
+          <p className="max-w-[90px] md:max-w-[120px] overflow-hidden">{pb.authStore.model?.username}</p>{" "}
         </Menu.Button>
         <Transition
           enter="transition ease-out duration-100"
@@ -74,3 +76,8 @@ function Navbar_user_icon() {
 }
 
 export default Navbar_user_icon;
+
+
+
+
+        

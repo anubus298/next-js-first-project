@@ -1,9 +1,9 @@
 export const fetchCache = "force-no-cache";
 import PocketBase from "pocketbase";
 import { cookies } from "next/headers";
-import CartUI from "./cartUI";
+import FavoriteUI from "./FavoriteUI";
 async function Page() {
-  async function getCartInfo() {
+  async function getFavorite() {
     const pb = new PocketBase("http://127.0.0.1:8090");
     let pb_auth_cookie = await cookies().get("pb_auth");
     pb.authStore.loadFromCookie(pb_auth_cookie?.value);
@@ -12,7 +12,7 @@ async function Page() {
     } catch (_) {
       pb.authStore.clear();
     }
-    const res = await pb.collection("Carts").getFullList({
+    const res = await pb.collection("Favorites").getFullList({
       expand:
         "product_laptops,product_mobiles,product_tvs,product_tablets,product_wearables",
     });
@@ -24,11 +24,10 @@ async function Page() {
       Object.values(data[0]?.expand).map((type) => {
         type.map((product) => {
           result.push(product);
-          fullPRICE += Number(product.price);
+          //   fullPRICE += Number(product.price);
           count += 1;
         });
       });
-      // pb.authStore.exportToCookie({ httpOnly: false });
       return {
         products: result,
         fullStartingPrice: fullPRICE,
@@ -44,16 +43,10 @@ async function Page() {
       };
     }
   }
-  let info = await getCartInfo();
+  let info = await getFavorite();
   return (
     <>
-      <CartUI
-        fetch={info}
-        id={info?.origin ? info?.origin[0]?.id : undefined}
-        products={info.products}
-        count={info.count}
-        fullStartingPrice={info.fullStartingPrice}
-      />
+      <FavoriteUI products={info.products} />
     </>
   );
 }

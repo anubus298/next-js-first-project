@@ -32,9 +32,9 @@ function AddToMyCart({ collectionName, id }) {
   }
   return (
     <Theme>
-      <AlertDialog.Root>
-        <AlertDialog.Trigger>
-          <button className="bg-main text-white hover:bg-gray-900 flex justify-center items-center  transition rounded-lg font-bold p-2 w-full">
+      <AlertDialog.Root >
+        <AlertDialog.Trigger style={{width : "100%"}}>
+          <button className="bg-main  text-white hover:bg-gray-900 flex justify-center items-center  transition rounded-lg md:rounded-s-none font-bold p-2 sm:w-[450px] h-full">
             {!isloading && <p>ADD TO CART</p>}
             <ColorRing
               visible={isloading}

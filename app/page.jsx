@@ -7,10 +7,10 @@ export default function Page() {
     <div className="w-full bg-secondarySecondary">
       <Home_slider />
       <Featured />
-      <ProductSection type={"laptops"} />
-      <ProductSection type={"mobiles"} />
-      <ProductSection type={"tvs"} />
-      <ProductSection type={"tablets"} />
+      <ProductSection showHeader={true} type={"laptops"} />
+      <ProductSection showHeader={true} type={"mobiles"} />
+      <ProductSection showHeader={true} type={"tvs"} />
+      <ProductSection showHeader={true} type={"tablets"} />
     </div>
   );
 }

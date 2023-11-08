@@ -70,7 +70,7 @@ function Login_panel() {
         <div className="flex gap-x-3 w-full p-2 justify-start items-center">
           <input
             autoComplete="off"
-            value={"gg@gmail.com"}
+            value={"darknight22@gmail.com"}
             type="email"
             placeholder="email"
             className="w-full text-lg text-white bg-secondary font-normal py-2 md:py-6 px-3 rounded-md  placeholder:text-red-200 focus-visible:outline-none"

@@ -8,7 +8,11 @@ function Navbar_ship_to_region() {
     [isCartOpen, setisCartOpen] = useState(false),
     regex = /\/mycart\/*/;
   useEffect(() => {
-    pathname.search(regex) != -1 ? setisCartOpen(true) : setisCartOpen(false);
+    pathname.search(regex) != -1
+      ? document.documentElement.clientWidth > 780
+        ? setisCartOpen(true)
+        : setisCartOpen(false)
+      : setisCartOpen(false);
   }, [pathname]);
   return (
     isCartOpen && (

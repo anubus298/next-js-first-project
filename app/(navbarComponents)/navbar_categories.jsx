@@ -1,4 +1,12 @@
 "use client";
+import {
+  faMobile,
+  faTv,
+  faLaptop,
+  faGlasses,
+  faTablet,
+} from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Menu, Transition } from "@headlessui/react";
 import { useState } from "react";
 function Navbar_categories() {
@@ -26,50 +34,65 @@ function Navbar_categories() {
             <Menu.Item>
               {({ active }) => (
                 <a
-                  className={`${active && "bg-main"}`}
-                  href="/productsSection/Mobile"
+                  className={`${
+                    active && "bg-main"
+                  } flex items-center space-x-3 p-1 transition rounded-sm`}
+                  href="/productsSection/Mobiles"
                 >
-                  Mobile
+                  <FontAwesomeIcon icon={faMobile} />
+                  <p>Mobiles</p>
                 </a>
               )}
             </Menu.Item>
             <Menu.Item>
               {({ active }) => (
                 <a
-                  className={`${active && "bg-main"}`}
-                  href="/productsSection/Tablets"
-                >
-                  Tablets
-                </a>
-              )}
-            </Menu.Item>
-            <Menu.Item>
-              {({ active }) => (
-                <a
-                  className={`${active && "bg-main"}`}
+                  className={`${
+                    active && "bg-main"
+                  } flex items-center space-x-3 p-1 transition rounded-sm`}
                   href="/productsSection/TVHomes"
                 >
-                  TV & Homes
+                  <FontAwesomeIcon icon={faTv} />
+                  <p>TVs</p>
                 </a>
               )}
             </Menu.Item>
             <Menu.Item>
               {({ active }) => (
                 <a
-                  className={`${active && "bg-main"}`}
-                  href="/productsSection/PCs"
+                  className={`${
+                    active && "bg-main"
+                  } flex items-center space-x-3 p-1 transition rounded-sm`}
+                  href="/productsSection/Tablets"
                 >
-                  PCs
+                  <FontAwesomeIcon icon={faTablet} />
+                  <p>Tablets</p>
                 </a>
               )}
             </Menu.Item>
             <Menu.Item>
               {({ active }) => (
                 <a
-                  className={`${active && "bg-main"}`}
+                  className={`${
+                    active && "bg-main"
+                  } flex items-center space-x-3 p-1 transition rounded-sm`}
+                  href="/productsSection/Laptops"
+                >
+                  <FontAwesomeIcon icon={faLaptop} />
+                  <p>Laptops</p>
+                </a>
+              )}
+            </Menu.Item>
+            <Menu.Item>
+              {({ active }) => (
+                <a
+                  className={`${
+                    active && "bg-main"
+                  } flex items-center space-x-3 p-1 transition rounded-sm`}
                   href="/productsSection/Accessories"
                 >
-                  Accessories
+                  <FontAwesomeIcon icon={faGlasses} />
+                  <p>Accessories</p>
                 </a>
               )}
             </Menu.Item>
@@ -94,7 +117,7 @@ function Navbar_categories() {
           <Menu.Items className="bg-secondary flex flex-col rounded-lg gap-y-4 p-4 absolute left-0 w-[150px] z-50">
             <Menu.Item>
               {({ active }) => (
-                <a className={`${active && "bg-main"}`} href="/WhoWeAre">
+                <a className={`${active && "bg-main"} `} href="/WhoWeAre">
                   Who we are
                 </a>
               )}

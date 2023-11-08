@@ -13,7 +13,7 @@ function CartIcon() {
         setnotifCount(0);
         localStorage.setItem("NotificationCount", 0);
       }}
-      className=" mx-2 flex items-center gap-x-1 cursor-pointer relative"
+      className=" me-2 flex items-center gap-x-1 cursor-pointer relative"
     >
       {notifCount > 0 && (
         <div className="absolute bg-secondary text-white rounded-full top-0 left-2 h-4 w-4 flex justify-center items-center text-xs">
