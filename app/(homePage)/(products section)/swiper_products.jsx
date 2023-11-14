@@ -6,8 +6,8 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import ProductCard from "./ProductCard";
-import { useEffect, useState } from "react";
-
+import { Suspense, useEffect, useState } from "react";
+import Fallback_productCard from "./(fallback)/Fallback_productCard";
 function SwiperProducts(props) {
   const [swiperPreview, setSwiperPreview] = useState(4);
   const [navigationEnabled, setNavigationEnabled] = useState(true);
@@ -36,8 +36,10 @@ function SwiperProducts(props) {
       >
         {props.data.items.map((item) => {
           return (
-            <SwiperSlide className="flex justify-center " key={item.id}>
-              <ProductCard item={item} type={props.type} />
+            <SwiperSlide className="flex justify-center "  key={item.id}>
+              <Suspense fallback={<Fallback_productCard />}>
+                <ProductCard item={item} type={props.type} />
+              </Suspense>
             </SwiperSlide>
           );
         })}

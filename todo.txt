@@ -2,12 +2,12 @@
 -make all the pages responsive
 -add tablet/wearables items
 -add categories pages
--add a search bar
+-add a search bar -D
 -add setting page
 -fix feature section
 -make more animations (loading circle)
 -make a payment page
--add favorites page/icon
+-add favorites page/icon -D
 -make newsletter
 -add shipping settings to cart
 -arrange your project files

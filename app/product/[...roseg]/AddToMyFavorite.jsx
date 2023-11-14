@@ -9,11 +9,16 @@ import "@radix-ui/themes/styles.css";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHeart } from "@fortawesome/free-solid-svg-icons";
-function AddToMyFavorite({ collectionName, id }) {
+import {
+  faHeartCircleCheck,
+  faHeartCirclePlus,
+} from "@fortawesome/free-solid-svg-icons";
+
+function AddToMyFavorite({ collectionName, id, already }) {
   const [isloading, setisloading] = useState(false);
   const router = useRouter();
   const [notifCount, setnotifCount] = useAtom(NotificationFavoriteCount);
+  const [IsAddedfromThebutton, setIsAddedfromThebutton] = useState(false);
   async function handleFavorite(collectionName, id) {
     setisloading(true);
 
@@ -26,6 +31,7 @@ function AddToMyFavorite({ collectionName, id }) {
     if (res.status == 200) {
       localStorage.setItem("NotificationFavoriteCount", Number(notifCount + 1));
       setnotifCount(notifCount + 1);
+      setIsAddedfromThebutton(true);
     }
     if (res.status == 400) {
     }
@@ -35,10 +41,19 @@ function AddToMyFavorite({ collectionName, id }) {
       onClick={() => {
         handleFavorite(collectionName, id);
       }}
-      className="bg-main w-1/5 text-white  flex justify-center items-center  transition rounded-lg md:rounded-e-none font-bold p-2"
+      className="bg-main w-1/5 flex justify-center h-[50px] items-center transition rounded-lg md:rounded-e-none font-bold p-2 disabled:text-red-600 text-white"
+      disabled={already || IsAddedfromThebutton}
     >
       {!isloading && (
-        <FontAwesomeIcon icon={faHeart} className="text-red-600 " size="2x" />
+        <FontAwesomeIcon
+          icon={
+            already || IsAddedfromThebutton
+              ? faHeartCircleCheck
+              : faHeartCirclePlus
+          }
+          className=" "
+          size="2x"
+        />
       )}
       <ColorRing
         visible={isloading}

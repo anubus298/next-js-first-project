@@ -7,6 +7,8 @@ function DescripSection({
   rating,
   name,
   description,
+  alreadyForCart,
+  alreadyForFavorite,
   price,
   totalRated,
   collectionName,
@@ -47,10 +49,17 @@ function DescripSection({
         </ul>
       </div>
       <div className="flex space-x-1">
-      <AddToMyFavorite  collectionName={collectionName} id={id} />
-      <AddToMyCart collectionName={collectionName} id={id} />
+        <AddToMyFavorite
+          already={alreadyForFavorite}
+          collectionName={collectionName}
+          id={id}
+        />
+        <AddToMyCart
+          already={alreadyForCart}
+          collectionName={collectionName}
+          id={id}
+        />
       </div>
-      
     </div>
   );
 }

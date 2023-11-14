@@ -2,7 +2,7 @@ import { atom, useAtom } from "jotai";
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 export const NotificationCount = atom(
-  Number(localStorage.getItem("NotificationCount")) ?? 0
+  Number(localStorage.getItem("NotificationCount") ?? 0)
 );
 function CartIcon() {
   const [notifCount, setnotifCount] = useAtom(NotificationCount);

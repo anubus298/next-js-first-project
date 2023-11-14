@@ -36,7 +36,7 @@ function Navbar_categories() {
                 <a
                   className={`${
                     active && "bg-main"
-                  } flex items-center space-x-3 p-1 transition rounded-sm`}
+                  } flex items-center space-x-3 p-1 rounded-lg transition`}
                   href="/productsSection/Mobiles"
                 >
                   <FontAwesomeIcon icon={faMobile} />
@@ -49,7 +49,7 @@ function Navbar_categories() {
                 <a
                   className={`${
                     active && "bg-main"
-                  } flex items-center space-x-3 p-1 transition rounded-sm`}
+                  } flex items-center space-x-3 p-1 rounded-lg transition`}
                   href="/productsSection/TVHomes"
                 >
                   <FontAwesomeIcon icon={faTv} />
@@ -62,7 +62,7 @@ function Navbar_categories() {
                 <a
                   className={`${
                     active && "bg-main"
-                  } flex items-center space-x-3 p-1 transition rounded-sm`}
+                  } flex items-center space-x-3 p-1 rounded-lg transition`}
                   href="/productsSection/Tablets"
                 >
                   <FontAwesomeIcon icon={faTablet} />
@@ -75,7 +75,7 @@ function Navbar_categories() {
                 <a
                   className={`${
                     active && "bg-main"
-                  } flex items-center space-x-3 p-1 transition rounded-sm`}
+                  } flex items-center space-x-3 p-1 rounded-lg transition`}
                   href="/productsSection/Laptops"
                 >
                   <FontAwesomeIcon icon={faLaptop} />
@@ -88,7 +88,7 @@ function Navbar_categories() {
                 <a
                   className={`${
                     active && "bg-main"
-                  } flex items-center space-x-3 p-1 transition rounded-sm`}
+                  } flex items-center space-x-3 p-1 rounded-lg transition`}
                   href="/productsSection/Accessories"
                 >
                   <FontAwesomeIcon icon={faGlasses} />
@@ -114,31 +114,45 @@ function Navbar_categories() {
           leaveFrom="transform opacity-100 scale-100"
           leaveTo="transform opacity-0 scale-95"
         >
-          <Menu.Items className="bg-secondary flex flex-col rounded-lg gap-y-4 p-4 absolute left-0 w-[150px] z-50">
+          <Menu.Items className="bg-secondary flex flex-col rounded-lg gap-y-4 p-4 absolute left-0 w-[180px] z-50">
             <Menu.Item>
               {({ active }) => (
-                <a className={`${active && "bg-main"} `} href="/WhoWeAre">
+                <a
+                  className={`${
+                    active && "bg-main"
+                  } transition p-1 rounded-lg `}
+                  href="/WhoWeAre"
+                >
                   Who we are
                 </a>
               )}
             </Menu.Item>
             <Menu.Item>
               {({ active }) => (
-                <a className={`${active && "bg-main"}`} href="/WorkWithUs">
+                <a
+                  className={`${active && "bg-main"} transition p-1 rounded-lg`}
+                  href="/WorkWithUs"
+                >
                   Work with us
                 </a>
               )}
             </Menu.Item>
             <Menu.Item>
               {({ active }) => (
-                <a className={`${active && "bg-main"}`} href="/Feedback">
+                <a
+                  className={`${active && "bg-main"} transition p-1 rounded-lg`}
+                  href="/Feedback"
+                >
                   Feedback
                 </a>
               )}
             </Menu.Item>
             <Menu.Item>
               {({ active }) => (
-                <a className={`${active && "bg-main"}`} href="/ProductSupport">
+                <a
+                  className={`${active && "bg-main"} transition p-1 rounded-lg`}
+                  href="/ProductSupport"
+                >
                   Product Support
                 </a>
               )}

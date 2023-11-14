@@ -23,7 +23,7 @@ function Cart_product_section({
     );
     let requestBody = {};
     requestBody[collectionName] = deleteThisProduct.id;
-    const res = await fetch("http://localhost:3000/api/products/UpdateCart", {
+    const res = await fetch("http://localhost:8000/api/products/UpdateCart", {
       method: "PATCH",
       "Content-Type": "application/json",
       body: JSON.stringify(requestBody),
@@ -31,10 +31,7 @@ function Cart_product_section({
         id: id,
       },
     });
-    // revalidatePath("","page")
-    // const rev = await fetch(
-    //   "http://localhost:3000/api/revalidate?path=/mycart/[slug]"
-    // );
+
     router.refresh();
   }
   const router = useRouter();

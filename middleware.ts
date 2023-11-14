@@ -17,7 +17,11 @@ export function middleware(request: NextRequest) {
   }
 
   // go to login page if user try to acces cart
-  if (request.nextUrl.pathname.startsWith("/mycart") && !pb.authStore.isValid) {
+  if (
+    (request.nextUrl.pathname.startsWith("/mycart") ||
+      request.nextUrl.pathname.startsWith("/favorite")) &&
+    !pb.authStore.isValid
+  ) {
     return NextResponse.redirect(new URL("/logIn/kqfa6xx33", request.url));
   }
   return NextResponse.next();

@@ -2,16 +2,17 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import { EffectCards } from "swiper/modules";
 import Image from "next/image";
+import Fallback_header_swiper from "./(fallback)/Fallback_header_swiper"
 import "swiper/css";
 import "swiper/css/effect-cards";
 import "public/swiper.css";
+import { Suspense } from "react";
 function Header_swiper(props) {
-  let vv = "fff";
-  vv.toUpperCase;
 
   return (
     <div className="">
       <div className="w-full p-2 flex justify-center bg-main text-white text-lg tracking-widest font-bold rounded-t-lg"></div>
+      <Suspense fallback={<Fallback_header_swiper/>}>
       <Swiper
         effect={"cards"}
         grabCursor={true}
@@ -50,6 +51,8 @@ function Header_swiper(props) {
           );
         })}
       </Swiper>
+      </Suspense>
+   
     </div>
   );
 }

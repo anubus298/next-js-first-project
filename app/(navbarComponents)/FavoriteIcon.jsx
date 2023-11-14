@@ -8,7 +8,7 @@ function FavoriteIcon() {
   const [notifCount, setnotifCount] = useAtom(NotificationFavoriteCount);
   return (
     <a
-      href="/favorite/user"
+      href="/favorite"
       onClick={() => {
         setnotifCount(0);
         localStorage.setItem("NotificationFavoriteCount", 0);

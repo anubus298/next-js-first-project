@@ -4,8 +4,9 @@ import Cart_order_summary from "./cart_order_summary";
 import Cart_product_section from "./cart_product_section";
 import Cart_payment_methods from "./cart_payment_methods";
 import { useState } from "react";
-function CartUI({ products, count, fullStartingPrice ,id}) {
+function CartUI({ products, count, fullStartingPrice, id }) {
   const [priceSummary, setpriceSummary] = useState(fullStartingPrice);
+  const [cardCountArray, setcardCountArray] = useState([]);
   return (
     <>
       <BackComp />
@@ -20,7 +21,13 @@ function CartUI({ products, count, fullStartingPrice ,id}) {
           />
         </div>
         <div className="flex  gap-y-5 flex-col justify-between w-full md:w-3/12">
-          {count && <Cart_order_summary price={priceSummary} count={count} />}
+          {count && (
+            <Cart_order_summary
+              price={priceSummary}
+              setpriceSummary={setpriceSummary}
+              count={count}
+            />
+          )}
           <Cart_payment_methods />
         </div>
       </div>
