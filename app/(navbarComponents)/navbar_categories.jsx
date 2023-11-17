@@ -8,18 +8,11 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Menu, Transition } from "@headlessui/react";
-import { useState } from "react";
 function Navbar_categories() {
-  const [isShowing1, setIsShowing1] = useState(false);
-  const [isShowing2, setIsShowing2] = useState(false);
-
   return (
     <div className="flex ">
       <Menu className="relative" as={"menu"}>
-        <Menu.Button
-          onClick={() => setIsShowing1((isShowing1) => !isShowing1)}
-          className="hover:text-secondary transition p-2 "
-        >
+        <Menu.Button className="hover:text-secondary transition p-2 ">
           Categories
         </Menu.Button>
         <Transition
@@ -50,7 +43,7 @@ function Navbar_categories() {
                   className={`${
                     active && "bg-main"
                   } flex items-center space-x-3 p-1 rounded-lg transition`}
-                  href="/productsSection/TVHomes"
+                  href="/productsSection/Tvs"
                 >
                   <FontAwesomeIcon icon={faTv} />
                   <p>TVs</p>
@@ -100,10 +93,7 @@ function Navbar_categories() {
         </Transition>
       </Menu>
       <Menu className="relative" as={"menu"}>
-        <Menu.Button
-          onClick={() => setIsShowing2((isShowing2) => !isShowing2)}
-          className="hover:text-secondary transition p-2 "
-        >
+        <Menu.Button className="hover:text-secondary transition p-2 ">
           Support
         </Menu.Button>
         <Transition

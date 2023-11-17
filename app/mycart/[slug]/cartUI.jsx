@@ -6,11 +6,10 @@ import Cart_payment_methods from "./cart_payment_methods";
 import { useState } from "react";
 function CartUI({ products, count, fullStartingPrice, id }) {
   const [priceSummary, setpriceSummary] = useState(fullStartingPrice);
-  const [cardCountArray, setcardCountArray] = useState([]);
   return (
     <>
       <BackComp />
-      <div className="w-full bg-secondarySecondarylight md:px-8 flex md:flex-row flex-col ">
+      <div className="w-full bg-secondarySecondarylight md:px-8 flex md:flex-row flex-col min-h-[380px]">
         <div className="md:w-9/12 max-h-[600px] overflow-y-auto">
           <Cart_product_section
             id={id}

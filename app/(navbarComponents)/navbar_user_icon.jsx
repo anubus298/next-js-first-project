@@ -33,16 +33,16 @@ function Navbar_user_icon() {
           leaveFrom="transform opacity-100 scale-100"
           leaveTo="transform opacity-0 scale-95"
         >
-          <Menu.Items className="bg-secondary flex flex-col rounded-lg gap-y-4 p-4 absolute right-10 z-50 ">
+          <Menu.Items className="bg-secondary flex flex-col rounded-lg gap-y-4 p-4 absolute right-5 z-50 ">
             <Menu.Item>
               {({ active }) => (
                 <div
                   className={
-                    " p-1 justify-between flex items-center gap-x-1 cursor-pointer transition ease-out" +
-                    `${active && "bg-main"}`
+                    " p-1 justify-between flex items-center gap-x-1 cursor-pointer transition ease-out " +
+                    `${active && "bg-main "} transition p-1 rounded-lg `
                   }
                 >
-                  <a href="/account-settings" className="hover:text-main flex items-center space-x-2">
+                  <a href="/account-settings" className=" flex items-center space-x-2">
                     <FontAwesomeIcon icon={faGear} />
                     <p>settings</p>
                   </a>
@@ -53,8 +53,8 @@ function Navbar_user_icon() {
               {({ active }) => (
                 <div
                   className={
-                    " p-1  flex items-center space-x-2 cursor-pointer transition ease-out " +
-                    `${active && "b"}`
+                    " p-1  flex items-center gap-x-2 cursor-pointer transition ease-out " +
+                    `${active && "bg-main"} transition p-1 rounded-lg`
                   }
                   onClick={() => {
                     pb.authStore.clear();

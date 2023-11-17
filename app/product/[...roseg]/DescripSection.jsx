@@ -36,7 +36,7 @@ function DescripSection({
       </div>
       <div>
         <p className="text-lg font-semibold mb-5">Product Details :</p>
-        <ul className="list-disc">
+        <ul className="list-disc min-h-[300px]">
           {description &&
             description
               .split(reg)

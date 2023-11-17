@@ -75,6 +75,7 @@ function AddToMyCart({ collectionName, id, already }) {
           <AlertDialog.Trigger style={{ width: "100%" }}>
             <button
               disabled={already || isAddedFromTheButton}
+              onClick={()=>window.scrollTo(30,0)}
               className="bg-main min-w-[400px] text-white enabled:hover:bg-gray-900 flex justify-center items-center  transition rounded-lg md:rounded-s-none font-bold p-2 sm:w-[450px] h-full disabled:text-gray-400 disabled:cursor-default "
             >
               {!(already || isAddedFromTheButton) && !isloading && (
@@ -93,7 +94,7 @@ function AddToMyCart({ collectionName, id, already }) {
             </button>
           </AlertDialog.Trigger>
           <AlertDialog.Content
-            className="select-none"
+            className="select-none z-50"
             style={{ maxWidth: 450 }}
           >
             <AlertDialog.Title>Adding item</AlertDialog.Title>
