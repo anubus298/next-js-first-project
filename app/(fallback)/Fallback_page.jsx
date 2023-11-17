@@ -1,13 +1,20 @@
 "use client";
 import { Skeleton } from "antd";
+import { useEffect } from "react";
+import { useState } from "react";
 function Fallback_page() {
-  const num = [1, 2, 3, 4];
+  const [num, setnum] = useState([1, 2, 3, 4]);
+  useEffect(() => {
+    if (document.documentElement.clientWidth < 500){
+      setnum([1])
+    }
+  }, []);
   return (
     <div className="flex justify-between w-full select-none bg-main p-2">
       {num.map((item, index) => {
         return (
           <div
-            className="flex justify-center h-[380px] select-none"
+            className="flex justify-center h-[380px] select-none w-full md:w-auto"
             key={index * 2 + index * 3 + index}
           >
             <div className="w-full mx-5 sm:mx-0 sm:w-[300px] bg-secondarySecondarylight  h-full md:rounded-lg p-5">

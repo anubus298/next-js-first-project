@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  important : true,
+  important: true,
   content: [
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
@@ -15,10 +15,13 @@ module.exports = {
       },
       colors: {
         main: "#000000",
-        secondary : "#D64550",
-        secondaryLight : "#EA9E8D",
-        secondarySecondary : "#ffffff",
-        secondarySecondarylight : "#f2f1f1"
+        secondary: "#D64550",
+        secondaryLight: "#EA9E8D",
+        secondarySecondary: "#ffffff",
+        secondarySecondarylight: "#f2f1f1",
+      },
+      fontFamily: {
+        lato: ["var(--font-Lato)"],
       },
     },
   },

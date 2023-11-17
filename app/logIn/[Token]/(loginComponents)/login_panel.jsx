@@ -9,7 +9,7 @@ import { useAtom } from "jotai";
 import { isValidAtom } from "../../../(navbarComponents)/navbar_user_icon";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
-import { ColorRing } from 'react-loader-spinner'
+import { ColorRing } from "react-loader-spinner";
 function Login_panel() {
   const {
     register,
@@ -22,10 +22,10 @@ function Login_panel() {
   const [isValid, setIsvalid] = useAtom(isValidAtom);
   const [isloading, setisloading] = useState(false);
   const router = useRouter();
-  const onSubmit = async (data) => {
+  async function ONSubmit(data) {
     try {
       setErrorMsg("");
-      setisloading(true)
+      setisloading(true);
       const res = await fetch(
         `http://localhost:8000/api/login?survive=${data.remember}`,
         {
@@ -37,7 +37,7 @@ function Login_panel() {
           },
         }
       );
-      setisloading(false)
+      setisloading(false);
 
       if (res.status == 200) {
         pb.authStore.loadFromCookie(getCookie("pb_auth"));
@@ -52,9 +52,9 @@ function Login_panel() {
     } catch (e) {
       setErrorMsg(e);
     }
-  };
+  }
   return (
-    <div className="bg-secondarySecondarylight rounded-lg  h-[500px] w-full md:w-1/2  sm:px-10 flex flex-col justify-evenly  text-main text-center font-bold select-none">
+    <div className="bg-secondarySecondarylight rounded-lg  h-[500px] w-full md:w-1/2  sm:px-10 flex flex-col justify-evenly  text-main text-center font-bold select-none font-lato">
       <div className=" text-center md:text-start">
         <p className="text-2xl md:text-4xl mb-2">Login to Safomart</p>
         <p className="text-gray-400 text-sm md:text-base font-normal">
@@ -63,7 +63,7 @@ function Login_panel() {
         </p>
       </div>
       <form
-        onSubmit={handleSubmit(onSubmit)}
+        onSubmit={handleSubmit(ONSubmit)}
         className="flex flex-col gap-y-5 justify-center items-center "
       >
         {/* register your input into the hook by invoking the "register" function */}
@@ -95,6 +95,7 @@ function Login_panel() {
         <div className="flex px-4 md:px-0 w-full justify-between items-center">
           <div className="flex  items-center space-x-2">
             <Checkbox
+            className="cursor-pointer"
               color="red"
               {...register("remember", { required: true })}
             />

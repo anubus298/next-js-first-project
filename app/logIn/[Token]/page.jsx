@@ -6,7 +6,7 @@ import "../../../public/css/theme-config.css";
 function Page() {
   return (
     <Theme>
-      <div className="flex justify-around items-center w-full h-full  p-5 sm:p-10 ">
+      <div className="flex justify-around items-center w-full h-full  p-5 sm:p-10 font-lato">
         <Image
           className="hidden md:block"
           alt="man shopping"

@@ -1,3 +1,4 @@
+export const fetchCache = "force-no-cache";
 import PocketBase from "pocketbase";
 import SidePallete from "./SidePallete";
 import MainPallete from "./MainPallete";

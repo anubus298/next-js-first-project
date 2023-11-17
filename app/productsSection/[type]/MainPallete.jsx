@@ -85,7 +85,7 @@ function MainPallete({ data, typeForHref }) {
 
   return (
     <div className="rounded-lg">
-      <div className="filterpallete p-1 md:p-4 rounded-t-md h-14 border-[.5px] border-secondarySecondarylight">
+      <div className="p-1 flex items-center md:p-4 rounded-t-md h-14 border-[.5px] border-secondarySecondarylight">
         <FilterPallete
           Reference={Reference}
           setIsLoading={setIsLoading}
@@ -101,7 +101,7 @@ function MainPallete({ data, typeForHref }) {
             <Card
               key={product.id}
               bordered={true}
-              className="w-44 md:w-56 h-72 py-2 md:py-4 hover:shadow-lg hover:-translate-y-1 duration-200 ease-out"
+              className="w-44 md:w-56 h-72 py-2 md:py-4 hover:shadow-lg hover:-translate-y-1 duration-200 ease-out font-lato"
               cover={
                 <Image
                   alt="ss"
@@ -172,14 +172,14 @@ function CardTitle({ collectionId, img, id, brandId, name, typeForHref }) {
         )}
       </div>
       <a href={`/product/${typeForHref}/${id}`}>
-        <h4>{name}</h4>
+        <p className="text-sm md:text-base">{name}</p>
       </a>
     </div>
   );
 }
 function CardDescription({ price, rating, id, typeForHref }) {
   return (
-    <div className="flex items-center justify-evenly">
+    <div className="flex flex-col-reverse md:flex-row items-center justify-evenly">
       <a
         href={`/product/${typeForHref}/${id}`}
         className="text-secondary font-bold text-lg"

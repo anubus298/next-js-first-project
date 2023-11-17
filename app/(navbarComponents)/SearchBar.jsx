@@ -9,11 +9,8 @@ import { useEffect } from "react";
 
 function SearchBar() {
   const [value, setvalue] = useState("");
-  const [width, setwidth] = useState(0);
   const searchParams = useSearchParams();
-  useEffect(() => {
-    setwidth(document.documentElement.clientWidth);
-  }, []);
+
   const {
     register,
     handleSubmit,
@@ -25,21 +22,21 @@ function SearchBar() {
     router.push("/search?for=" + data.search.split(" ").join("+"));
   };
   return (
-    width > 750 &&
     searchParams == "" && (
       <div className="rounded-lg bg-white p-1">
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form onSubmit={handleSubmit(onSubmit)} className="flex items-center font-lato">
           <input
             type="text"
-            name="searchValue "
+            name="searchValue"
+            autoComplete="off"
             onChange={(e) => setvalue(e.target.value)}
-            className="placeholder:bg-white ps-1 focus-visible:outline-none text-main placeholder:text-gray-500  "
+            className="placeholder:bg-white placeholder:font-lato placeholder:text-lg text-lg p-2 md:py-0 md:pe-0 md:ps-1 focus-visible:outline-none text-main placeholder:text-gray-500  w-full md:w-auto"
             placeholder="Search"
             {...register("search", { required: true })}
           />
           <button
             type="submit"
-            className="text-main cursor-pointer hover:text-secondary transition"
+            className="text-main cursor-pointer hover:text-secondary transition "
             href={"/search?for=" + value.split(" ").join("+")}
           >
             <FontAwesomeIcon icon={faSearch} size="1x" />

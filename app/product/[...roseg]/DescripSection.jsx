@@ -14,7 +14,7 @@ function DescripSection({
   collectionName,
   id,
 }) {
-  const reg = /\n/;
+
   return (
     <div className="md:w-1/2 flex flex-col gap-y-10">
       <div>
@@ -22,7 +22,7 @@ function DescripSection({
       </div>
       <div className="flex justify-between items-center">
         <div className="flex justify-between gap-x-5 items-center">
-          <p className="text-secondary text-4xl font-bold select-none">
+          <p className="text-secondary text-4xl font-extrabold select-none">
             ${price}
             <span className=" text-xs font-normal">(including VAT)</span>
           </p>
@@ -39,8 +39,8 @@ function DescripSection({
         <ul className="list-disc min-h-[300px]">
           {description &&
             description
-              .split(reg)
-              .slice(1, description.split(reg).length - 1)
+              .split(/\n/)
+              .slice(1, description.split(/\n/).length - 1)
               .map((i, j) => (
                 <li className=" text-sm my-2 text-gray-800" key={j * 542}>
                   {i}

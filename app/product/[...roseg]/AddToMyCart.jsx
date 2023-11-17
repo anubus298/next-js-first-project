@@ -12,11 +12,14 @@ import "@radix-ui/themes/styles.css";
 import { Theme } from "@radix-ui/themes";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { message } from "antd";
 function AddToMyCart({ collectionName, id, already }) {
   const [isloading, setisloading] = useState(false);
   const [isAddedFromTheButton, setIsAddedfromThebutton] = useState(false);
   const router = useRouter();
   const [notifCount, setnotifCount] = useAtom(NotificationCount);
+  const [messageApi, contextHolder] = message.useMessage();
+
   const [alertmessage, setalertmessagetype] = useState([
     false,
     "success",
@@ -27,11 +30,7 @@ function AddToMyCart({ collectionName, id, already }) {
     let res = await addToCart(collectionName, id);
     setisloading(false);
     if (res.status == 401) {
-      setalertmessagetype([
-        true,
-        "info",
-        "You will be redirected to the login page...",
-      ]);
+      messageApi.info("You must login first ,redirecting to login page ...");
       setTimeout(() => {
         router.push("/logIn/QCqsf8q9");
       }, 5000);
@@ -39,11 +38,11 @@ function AddToMyCart({ collectionName, id, already }) {
     if (res.status == 200) {
       localStorage.setItem("NotificationCount", Number(notifCount + 1));
       setnotifCount(notifCount + 1);
-      setalertmessagetype([true, "success", "Done"]);
+      messageApi.success("Added successfully to the cart");
       setIsAddedfromThebutton(true);
     }
     if (res.status == 400) {
-      setalertmessagetype([true, "error", "Error"]);
+      messageApi.error("Error accrued");
     }
   }
   useEffect(() => {
@@ -59,6 +58,7 @@ function AddToMyCart({ collectionName, id, already }) {
         token: { colorSuccess: "#d9535d", colorSuccessBorder: "#000000" },
       }}
     >
+      {contextHolder}
       {alertmessage[0] && (
         <Alert
           closable={true}
@@ -66,7 +66,7 @@ function AddToMyCart({ collectionName, id, already }) {
           description={<AlertMessage Message type={alertmessage[1]} />}
           message={alertmessage[2]}
           type={alertmessage[1]}
-          className="fixed w-[450px] bottom-1 left-2 z-[99]"
+          className="fixed w-[450px] bottom-1 left-2 z-[99] font-lato"
         />
       )}
 
@@ -75,8 +75,8 @@ function AddToMyCart({ collectionName, id, already }) {
           <AlertDialog.Trigger style={{ width: "100%" }}>
             <button
               disabled={already || isAddedFromTheButton}
-              onClick={()=>window.scrollTo(30,0)}
-              className="bg-main min-w-[400px] text-white enabled:hover:bg-gray-900 flex justify-center items-center  transition rounded-lg md:rounded-s-none font-bold p-2 sm:w-[450px] h-full disabled:text-gray-400 disabled:cursor-default "
+              onClick={() => window.scrollTo(30, 0)}
+              className="bg-main min-w-[200px] md:min-w-[400px] text-white enabled:hover:bg-gray-900 flex justify-center items-center  transition rounded-lg md:rounded-s-none font-bold p-2 sm:w-[450px] h-full disabled:text-gray-400 disabled:cursor-default "
             >
               {!(already || isAddedFromTheButton) && !isloading && (
                 <p>ADD TO CART</p>

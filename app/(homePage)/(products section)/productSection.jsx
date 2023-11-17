@@ -11,14 +11,17 @@ import SwiperProducts from "./swiper_products";
 import shuffle from "../../functions/shuffle";
 
 async function getPro(type, count) {
-  const res = await fetch(
-    `http://127.0.0.1:8090/api/collections/Pro${
-      type[0].toUpperCase() + type.slice(1, type.length)
-    }/records?page=1&perPage=${count ? count : 16}&skipTotal=1&expand=brand`
-  );
-  let content = await res.json();
-
-  return content;
+  try {
+    const res = await fetch(
+      `http://127.0.0.1:8090/api/collections/Pro${
+        type[0].toUpperCase() + type.slice(1, type.length)
+      }/records?page=1&perPage=${count ? count : 16}&skipTotal=1&expand=brand&sort=@random`,{cache : "no-cache"}
+    );
+    let content = await res.json();
+    return content;
+  } catch (error) {
+    throw new Error(error)
+  }
 }
 
 async function ProductSection({
@@ -65,7 +68,7 @@ async function ProductSection({
           <a
             className="hover:text-white cursor-pointer text-secondary flex items-center space-x-2 "
             href={
-              "/productSection/" +
+              "/productsSection/" +
               type[0].toUpperCase() +
               type.slice(1, type.length)
             }

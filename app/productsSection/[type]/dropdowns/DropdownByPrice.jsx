@@ -108,7 +108,7 @@ function DropdownByPrice({
           selectable: true,
         }}
       >
-        <Button className="flex items-center justify-between gap-x-2">
+        <Button className="flex items-center justify-between gap-x-2 ">
           <div className="flex items-center gap-x-3">
             <FontAwesomeIcon className="text-gray-600" icon={faFilter} />
             <p>Filters</p>
@@ -121,6 +121,7 @@ function DropdownByPrice({
       }).length != 3 && (
         <Button
           type="text"
+          className=""
           icon={<FontAwesomeIcon icon={faXmark} />}
           onClick={() => {
             setFilterParams({

@@ -2,57 +2,66 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import { EffectCards } from "swiper/modules";
 import Image from "next/image";
-import Fallback_header_swiper from "./(fallback)/Fallback_header_swiper"
+import Fallback_header_swiper from "./(fallback)/Fallback_header_swiper";
 import "swiper/css";
 import "swiper/css/effect-cards";
 import "public/swiper.css";
 import { Suspense } from "react";
+import { useRouter } from "next/navigation";
 function Header_swiper(props) {
-
+  const router = useRouter();
   return (
     <div className="">
       <div className="w-full p-2 flex justify-center bg-main text-white text-lg tracking-widest font-bold rounded-t-lg"></div>
-      <Suspense fallback={<Fallback_header_swiper/>}>
-      <Swiper
-        effect={"cards"}
-        grabCursor={true}
-        modules={[EffectCards]}
-        className=" h-[290px] w-[200px] md:h-[400px] md:w-[300px]"
-      >
-        {props.products.map((product, index) => {
-          return (
-            <SwiperSlide
-              key={product.id + index + 13}
-              className={` overflow-hidden z-[${
-                10 - index
-              }] rounded-b-lg cursor-pointer hover:brightness-95 force-flex flex-col  p-1 items-center `}
-            >
-              <div className="flex items-center bg-white h-5/6">
-                <Image
-                  src={`http://127.0.0.1:8090/api/files/${product.collectionId}/${product.id}/${product.mainImg}?thumb=300x300`}
-                  alt="SafoMart"
-                  sizes={"(max-width: 768px) 150px ,(max-width: 1000px) 200px,300px"}
-                  width={300}
-                  height={300}
-                />
-              </div>
-              <a href={`/product/${props.type}/${product.id}`}
-                className="bg-main text-secondarySecondarylight rounded-b-lg  p-5 w-full h-1/6
-             flex flex-col justify-center text-center "
+      <Suspense fallback={<Fallback_header_swiper />}>
+        <Swiper
+          effect={"cards"}
+          grabCursor={true}
+          modules={[EffectCards]}
+          className=" h-[290px] w-[200px] md:h-[400px] md:w-[300px]"
+        >
+          {props.products.map((product, index) => {
+            return (
+              <SwiperSlide
+                key={product.id + index + 13}
+                className={` overflow-hidden z-[${
+                  10 - index
+                }] rounded-b-lg cursor-pointer hover:brightness-95 force-flex flex-col  p-1 items-center `}
               >
-                <p className="tracking-widest font-bolder text-sm sm:text-lg font-bold">
-                  {product.productName}
-                </p>
-                <p className=" tracking-wider text-secondary font-bold">
-                  {product.price}$
-                </p>
-              </a>
-            </SwiperSlide>
-          );
-        })}
-      </Swiper>
+                <div className="flex items-center bg-white h-5/6">
+                  <Image
+                    src={`http://127.0.0.1:8090/api/files/${product.collectionId}/${product.id}/${product.mainImg}?thumb=300x300`}
+                    alt="SafoMart"
+                    onClick={() =>
+                      router.push(
+                        `/product/${props.type}s/${product?.Corresponding_id}`
+                      )
+                    }
+                    sizes={
+                      "(max-width: 768px) 150px ,(max-width: 1000px) 200px,300px"
+                    }
+                    className="cursor-pointer"
+                    width={300}
+                    height={300}
+                  />
+                </div>
+                <a
+                  href={`/product/${props.type}/${product?.Corresponding_id}`}
+                  className="bg-main text-secondarySecondarylight rounded-b-lg  p-5 w-full h-1/6
+             flex flex-col justify-center text-center "
+                >
+                  <p className="tracking-widest font-bolder text-sm sm:text-lg font-bold">
+                    {product.productName}
+                  </p>
+                  <p className=" tracking-wider text-secondary font-bold">
+                    {product.price}$
+                  </p>
+                </a>
+              </SwiperSlide>
+            );
+          })}
+        </Swiper>
       </Suspense>
-   
     </div>
   );
 }

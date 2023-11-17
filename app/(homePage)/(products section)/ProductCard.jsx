@@ -21,8 +21,8 @@ function ProductCard({ item, type }) {
   type == "mobiles" ? (wdth5 = 150) : (wdth5 = 250);
 
   return (
-    <div className="flex justify-center h-[380px] select-none">
-      <div className="w-full mx-5 sm:mx-0 sm:w-[300px] bg-secondarySecondarylight  h-full md:rounded-lg p-5">
+    <div className="flex justify-center h-[380px] select-none w-11/12 md:w-auto rounded-lg md:rounded-none">
+      <div className="w-full mx-5 sm:mx-0 sm:w-[300px] bg-secondarySecondarylight  h-full rounded-lg p-5">
         <div className="flex justify-center h-[180px] relative">
           <ProductImg
             width={wdth5}

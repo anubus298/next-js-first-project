@@ -19,6 +19,7 @@ function Login_panel() {
   const pb = new PocketBase("http://127.0.0.1:8090");
   const [errorMsg, setErrorMsg] = useState("");
   const [isValid, setIsvalid] = useAtom(isValidAtom);
+ 
   const router = useRouter();
   const onSubmit = async (data) => {
     try {
@@ -47,13 +48,13 @@ function Login_panel() {
     }
   };
   return (
-    <div className="bg-secondarySecondarylight rounded-lg px-6 h-[620px] w-full md:w-1/2  sm:px-10 flex flex-col justify-evenly  text-main text-center font-bold select-none">
+    <div className="bg-secondarySecondarylight rounded-lg font-lato font-semibold px-6 h-[620px] w-full md:w-1/2  sm:px-10 flex flex-col justify-evenly  text-main text-center select-none">
       <div className=" text-center md:text-start">
         <p className="text-2xl md:text-4xl mb-2">Create an account</p>
       </div>
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="flex flex-col gap-y-5 justify-center items-center "
+        className="flex flex-col gap-y-5 justify-center items-center font-lato"
       >
         <div className="flex gap-x-3 w-full p-2 justify-start items-center">
           <input
@@ -100,7 +101,7 @@ function Login_panel() {
 
         <div className="flex-col flex w-full justify-between space-y-3">
           <div className="flex  items-center space-x-2">
-            <Checkbox color="red" {...register("Term", { required: true })} />
+            <Checkbox className="cursor-pointer" color="red" {...register("Term", { required: true })} />
             <p>
               Accept
               <span className="cursor-pointer">

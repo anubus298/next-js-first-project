@@ -23,7 +23,7 @@ function Navbar_user_icon() {
       <Menu className="relative" as={"menu"}>
         <Menu.Button className="hover:text-secondary transition m-2 flex items-center gap-x-2">
           <FontAwesomeIcon icon={faUser} />
-          <p className="max-w-[90px] md:max-w-[120px] overflow-hidden">{pb.authStore.model?.username}</p>{" "}
+          <p className="max-w-[90px] md:max-w-[120px] overflow-hidden">{pb.authStore.model?.username}</p>
         </Menu.Button>
         <Transition
           enter="transition ease-out duration-100"

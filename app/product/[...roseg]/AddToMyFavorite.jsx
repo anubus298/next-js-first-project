@@ -13,8 +13,11 @@ import {
   faHeartCircleCheck,
   faHeartCirclePlus,
 } from "@fortawesome/free-solid-svg-icons";
+import { message } from "antd";
+import { ConfigProvider } from "antd";
 
 function AddToMyFavorite({ collectionName, id, already }) {
+  const [messageApi, contextHolder] = message.useMessage();
   const [isloading, setisloading] = useState(false);
   const router = useRouter();
   const [notifCount, setnotifCount] = useAtom(NotificationFavoriteCount);
@@ -26,45 +29,58 @@ function AddToMyFavorite({ collectionName, id, already }) {
     setisloading(false);
 
     if (res.status == 401) {
-      router.push("/logIn/QCqsf8q9");
+      messageApi.info("You must login first ,redirecting to login page ...");
+      setTimeout(() => {
+        router.push("/logIn/QCqsf8q9");
+      }, 5000);
     }
     if (res.status == 200) {
+      messageApi.success("Added successfully to the cart");
       localStorage.setItem("NotificationFavoriteCount", Number(notifCount + 1));
       setnotifCount(notifCount + 1);
       setIsAddedfromThebutton(true);
     }
     if (res.status == 400) {
+      messageApi.error("Error accrued");
     }
   }
   return (
-    <button
-      onClick={() => {
-        handleFavorite(collectionName, id);
+    <ConfigProvider
+      theme={{
+        token: { colorSuccess: "#d9535d", colorSuccessBorder: "#000000" },
       }}
-      className="bg-main w-1/5 flex justify-center h-[50px] items-center transition rounded-lg md:rounded-e-none font-bold p-2 disabled:text-red-600 text-white"
-      disabled={already || IsAddedfromThebutton}
     >
-      {!isloading && (
-        <FontAwesomeIcon
-          icon={
-            already || IsAddedfromThebutton
-              ? faHeartCircleCheck
-              : faHeartCirclePlus
-          }
-          className=" "
-          size="2x"
+      {contextHolder}
+
+      <button
+        onClick={() => {
+          handleFavorite(collectionName, id);
+        }}
+        className="bg-main w-1/5 flex justify-center h-[50px] items-center transition rounded-lg md:rounded-e-none font-bold p-2 disabled:text-red-600 text-white"
+        disabled={already || IsAddedfromThebutton}
+      >
+        {!isloading && (
+          <FontAwesomeIcon
+            icon={
+              already || IsAddedfromThebutton
+                ? faHeartCircleCheck
+                : faHeartCirclePlus
+            }
+            className=" "
+            size="2x"
+          />
+        )}
+        <ColorRing
+          visible={isloading}
+          height="25"
+          width="25"
+          ariaLabel="blocks-loading"
+          wrapperStyle={{}}
+          wrapperClass="blocks-wrapper"
+          colors={["#e15b64", "#f47e60", "#f8b26a", "#abbd81", "#849b87"]}
         />
-      )}
-      <ColorRing
-        visible={isloading}
-        height="25"
-        width="25"
-        ariaLabel="blocks-loading"
-        wrapperStyle={{}}
-        wrapperClass="blocks-wrapper"
-        colors={["#e15b64", "#f47e60", "#f8b26a", "#abbd81", "#849b87"]}
-      />
-    </button>
+      </button>
+    </ConfigProvider>
   );
 }
 

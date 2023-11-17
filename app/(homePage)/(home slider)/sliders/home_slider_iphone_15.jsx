@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 function Home_slider_iphone_15() {
   return (
     <div className="w-full  h-full p-16 md:flex flex-col justify-center items-center bg-black text-white">
-      <div className="flex-col flex sm:flex-row  justify-around w-full ">
+      <div className="flex-col flex sm:flex-row items-center md:items-start justify-around w-full ">
         <div className="flex text-center sm:text-start px-12 my-12 sm:my-0 sm:px-0 flex-col gap-y-12">
           <div className="flex flex-col md:flex-row space-x-1">
             <p className="text-4xl font-extrabold">IPHONE 15 PRO</p>
@@ -59,7 +59,7 @@ function Home_slider_iphone_15() {
             </div>
           </div>
         </div>
-        <div className=" w-1/2">
+        <div className="  md:w-1/2">
         <Image
           src="/pro15all_colors.jpg"
           alt="ff"
