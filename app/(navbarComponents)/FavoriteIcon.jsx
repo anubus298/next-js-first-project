@@ -1,9 +1,7 @@
 import { atom, useAtom } from "jotai";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-export const NotificationFavoriteCount = atom(
-  Number(localStorage.getItem("NotificationFavoriteCount")) ?? 0
-);
+export const NotificationFavoriteCount = atom(0);
 function FavoriteIcon({ size }) {
   const [notifCount, setnotifCount] = useAtom(NotificationFavoriteCount);
   return (

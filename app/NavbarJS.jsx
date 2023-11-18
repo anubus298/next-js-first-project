@@ -8,11 +8,10 @@ import Sticky from "react-stickynode";
 import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
-import Drawer_main from "./(navbarComponents)/(drawer)/Drawer_main"
+import Drawer_main from "./(navbarComponents)/(drawer)/Drawer_main";
 function NavbarJS() {
-  const [issmallscreen, setissmallscreen] = useState(
-    document.documentElement.clientWidth < 560
-  );
+  const [issmallscreen, setissmallscreen] = useState(false);
+
   const [open, setOpen] = useState(false);
 
   const showDrawer = () => {
@@ -43,14 +42,12 @@ function NavbarJS() {
           )}
           {issmallscreen && (
             <button type="primary" onClick={showDrawer}>
-              <FontAwesomeIcon size="2x" icon={faBars}/>
+              <FontAwesomeIcon size="2x" icon={faBars} />
             </button>
           )}
         </div>
       </div>
-      {issmallscreen && (
-<Drawer_main open={open} onClose={onClose}/>        
-      )}
+      {issmallscreen && <Drawer_main open={open} onClose={onClose} />}
     </Sticky>
   );
 }

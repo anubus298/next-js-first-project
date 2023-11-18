@@ -1,7 +1,7 @@
-import SearchBar from "../(navbarComponents)/SearchBar";
 function PageSearch({ searchParams }) {
   return (
     <div>
+      <p>ya salam</p>
     </div>
   );
 }

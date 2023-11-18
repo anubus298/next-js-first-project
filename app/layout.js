@@ -1,7 +1,7 @@
 import "public/css/globals.css";
-import NavbarJS from "./NavbarJS"
+import NavbarJS from "./NavbarJS";
 import FooterComp from "./(footer)/FooterJS";
-
+import Providers from "./providers";
 import { Lato } from "next/font/google";
 export const metadata = {
   title: "SafoMart",
@@ -18,9 +18,11 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={`${mooli.variable} ` + mooli.className}>
-        <NavbarJS />
-        <div className="container mx-auto ">{children}</div>
-        <FooterComp />
+        <Providers>
+          <NavbarJS />
+          <div className="container mx-auto ">{children}</div>
+          <FooterComp />
+        </Providers>
       </body>
     </html>
   );

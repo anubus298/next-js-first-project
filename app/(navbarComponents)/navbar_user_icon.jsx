@@ -1,8 +1,6 @@
 "use client";
-import { deleteCookie, getCookie } from "../functions/cookiesFunctions";
-const pb = new PocketBase("http://127.0.0.1:8090");
-pb.authStore.loadFromCookie(getCookie("pb_auth"));
-export const isValidAtom = atom(pb.authStore.isValid);
+
+export const isValidAtom = atom(false);
 import { atom, useAtom } from "jotai";
 import PocketBase from "pocketbase";
 import { Menu, Transition } from "@headlessui/react";
@@ -10,20 +8,38 @@ import { faUser, faSignOut, faGear } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useRouter } from "next/navigation";
 import { CartIcon } from "./cartIcon";
-import FavoriteIcon from "./FavoriteIcon"
+import FavoriteIcon from "./FavoriteIcon";
 function Navbar_user_icon() {
+  function getCookie(name) {
+    let matches = document.cookie.match(
+      new RegExp(
+        "(?:^|; )" +
+          name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, "\\$1") +
+          "=([^;]*)"
+      )
+    );
+    return matches ? decodeURIComponent(matches[1]) : undefined;
+  }
+  function deleteCookie(name) {
+    setCookie(name, "", {
+      "max-age": -1,
+    });
+  }
   const pb = new PocketBase("http://127.0.0.1:8090");
   pb.authStore.loadFromCookie(getCookie("pb_auth"));
   const [isValid, setIsvalid] = useAtom(isValidAtom);
+  setIsvalid(pb.authStore.isValid);
   const router = useRouter();
   return (
     <div className="flex">
-      <FavoriteIcon/>
+      <FavoriteIcon />
       <CartIcon />
       <Menu className="relative" as={"menu"}>
         <Menu.Button className="hover:text-secondary transition m-2 flex items-center gap-x-2">
           <FontAwesomeIcon icon={faUser} />
-          <p className="max-w-[90px] md:max-w-[120px] overflow-hidden">{pb.authStore.model?.username}</p>
+          <p className="max-w-[90px] md:max-w-[120px] overflow-hidden">
+            {pb.authStore.model?.username}
+          </p>
         </Menu.Button>
         <Transition
           enter="transition ease-out duration-100"
@@ -42,7 +58,10 @@ function Navbar_user_icon() {
                     `${active && "bg-main "} transition p-1 rounded-lg `
                   }
                 >
-                  <a href="/account-settings" className=" flex items-center space-x-2">
+                  <a
+                    href="/account-settings"
+                    className=" flex items-center space-x-2"
+                  >
                     <FontAwesomeIcon icon={faGear} />
                     <p>settings</p>
                   </a>
@@ -75,9 +94,15 @@ function Navbar_user_icon() {
   );
 }
 
+function getCookie(name) {
+  let matches = document.cookie.match(
+    new RegExp(
+      "(?:^|; )" +
+        name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, "\\$1") +
+        "=([^;]*)"
+    )
+  );
+  return matches ? decodeURIComponent(matches[1]) : undefined;
+}
+
 export default Navbar_user_icon;
-
-
-
-
-        
