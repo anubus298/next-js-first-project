@@ -2,8 +2,6 @@
 import Image from "next/image";
 import { Suspense, useEffect, useState } from "react";
 import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
-import Fallback_imgsection2 from "../(fallback)/Fallback_imgsection2";
-import Fallback_imgsection1 from "../(fallback)/Fallback_imgsection";
 import { Skeleton } from "antd";
 export default function ImgSection({ imgs, id, cId }) {
   const [index, setIndex] = useState(0);
@@ -44,19 +42,14 @@ export default function ImgSection({ imgs, id, cId }) {
         <TransformWrapper>
           <TransformComponent>
             <div className="h-[500px] flex items-center  ">
-              <Suspense fallback={<Skeleton.Image />}>
-                <Image
-                  className="w-auto"
-                  src={`http://127.0.0.1:8090/api/files/${cId}/${id}/${imgs[index]}?thumb=0x500`}
-                  height={500}
-                  width={500}
-                  sizes={
-                    "(max-width: 768px) 90vw ,(max-width: 1024px) 60vw,40vw"
-                  }
-                  alt=""
-                  set
-                />
-              </Suspense>
+              <Image
+                className="w-auto"
+                src={`http://127.0.0.1:8090/api/files/${cId}/${id}/${imgs[index]}?thumb=0x500`}
+                height={500}
+                width={500}
+                sizes={"(max-width: 768px) 90vw ,(max-width: 1024px) 60vw,40vw"}
+                alt=""
+              />
             </div>
           </TransformComponent>
         </TransformWrapper>

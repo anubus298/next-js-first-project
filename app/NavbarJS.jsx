@@ -9,11 +9,10 @@ import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import Drawer_main from "./(navbarComponents)/(drawer)/Drawer_main";
+
 function NavbarJS() {
   const [issmallscreen, setissmallscreen] = useState(false);
-
   const [open, setOpen] = useState(false);
-
   const showDrawer = () => {
     setOpen(true);
   };

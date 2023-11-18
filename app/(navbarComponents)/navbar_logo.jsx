@@ -1,5 +1,6 @@
-"use client";
+"use client"
 import Image from "next/image";
+
 function Navbar_logo() {
   return (
     <a href="/" className="cursor-pointer">

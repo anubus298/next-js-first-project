@@ -1,8 +1,8 @@
 import "public/css/globals.css";
-import NavbarJS from "./NavbarJS";
+import NavbarJS  from "./NavbarJS";
 import FooterComp from "./(footer)/FooterJS";
-import Providers from "./providers";
 import { Lato } from "next/font/google";
+import Providers from "./providers";
 export const metadata = {
   title: "SafoMart",
   description: "Technology Market",
@@ -21,8 +21,8 @@ export default function RootLayout({ children }) {
         <Providers>
           <NavbarJS />
           <div className="container mx-auto ">{children}</div>
-          <FooterComp />
         </Providers>
+        <FooterComp />
       </body>
     </html>
   );

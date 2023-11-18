@@ -6,9 +6,9 @@ import { useForm } from "react-hook-form";
 import { getCookie } from "../../../functions/cookiesFunctions";
 import { useState } from "react";
 import { useAtom } from "jotai";
-import { isValidAtom } from "../../../(navbarComponents)/navbar_user_icon";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+import { isValidUserAtom } from "../../../functions/atomCookie";
 function Login_panel() {
   const {
     register,
@@ -18,8 +18,8 @@ function Login_panel() {
   } = useForm();
   const pb = new PocketBase("http://127.0.0.1:8090");
   const [errorMsg, setErrorMsg] = useState("");
-  const [isValid, setIsvalid] = useAtom(isValidAtom);
- 
+  const [isValid, setIsvalid] = useAtom(isValidUserAtom);
+
   const router = useRouter();
   const onSubmit = async (data) => {
     try {

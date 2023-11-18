@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form";
 import { getCookie } from "../../../functions/cookiesFunctions";
 import { useState } from "react";
 import { useAtom } from "jotai";
-import { isValidAtom } from "../../../(navbarComponents)/navbar_user_icon";
+import { isValidUserAtom } from "../../../functions/atomCookie";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { ColorRing } from "react-loader-spinner";
@@ -19,7 +19,7 @@ function Login_panel() {
   } = useForm();
   const pb = new PocketBase("http://127.0.0.1:8090");
   const [errorMsg, setErrorMsg] = useState("");
-  const [isValid, setIsvalid] = useAtom(isValidAtom);
+  const [isValid, setIsvalid] = useAtom(isValidUserAtom);
   const [isloading, setisloading] = useState(false);
   const router = useRouter();
    function ONSubmit(data) {

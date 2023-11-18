@@ -6,15 +6,23 @@ import {
   faUser,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { deleteCookie } from "../../functions/cookiesFunctions";
+import { deleteCookie, getCookie } from "../../functions/cookiesFunctions";
 import { Collapse } from "antd";
 import { useAtom } from "jotai";
 import { useRouter } from "next/navigation";
 import PocketBase from "pocketbase";
-import { isValidAtom } from "../navbar_user_icon";
+import { isValidUserAtom } from "../../functions/atomCookie";
+import { useEffect } from "react";
+
 function Drawer_logIn() {
-  const [isValid, setIsvalid] = useAtom(isValidAtom);
+  const [isValid, setIsvalid] = useAtom(isValidUserAtom);
   const pb = new PocketBase("http://127.0.0.1:8090");
+  useEffect(() => {
+    pb.authStore.loadFromCookie(getCookie("pb_auth"));
+    if (pb.authStore.isValid) {
+      setIsvalid(true);
+    }
+  }, [isValid]);
   const router = useRouter();
   return !isValid ? (
     <div className="w-full flex flex-col gap-y-1">

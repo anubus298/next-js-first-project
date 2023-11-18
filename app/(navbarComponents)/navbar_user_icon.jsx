@@ -1,15 +1,23 @@
 "use client";
-
-export const isValidAtom = atom(false);
-import { atom, useAtom } from "jotai";
-import PocketBase from "pocketbase";
 import { Menu, Transition } from "@headlessui/react";
 import { faUser, faSignOut, faGear } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useRouter } from "next/navigation";
 import { CartIcon } from "./cartIcon";
 import FavoriteIcon from "./FavoriteIcon";
+import PocketBase from "pocketbase";
+import { isValidUserAtom } from "../functions/atomCookie";
+import { useAtom } from "jotai";
+
 function Navbar_user_icon() {
+  const pb = new PocketBase("http://127.0.0.1:8090");
+  pb.authStore.loadFromCookie(getCookie("pb_auth"));
+  const [isValidUser, setisValidUser] = useAtom(isValidUserAtom);
+  function deleteCookie(name) {
+    setCookie(name, "", {
+      "max-age": -1,
+    });
+  }
   function getCookie(name) {
     let matches = document.cookie.match(
       new RegExp(
@@ -20,15 +28,25 @@ function Navbar_user_icon() {
     );
     return matches ? decodeURIComponent(matches[1]) : undefined;
   }
-  function deleteCookie(name) {
-    setCookie(name, "", {
-      "max-age": -1,
-    });
+  function setCookie(name, value, options = {}) {
+    options = {
+      path: "/",
+      ...options,
+      secure: true,
+      expires: new Date(Date.now() + 86400e3).toUTCString(),
+    };
+
+    let updatedCookie =
+      encodeURIComponent(name) + "=" + encodeURIComponent(value);
+    for (let optionKey in options) {
+      updatedCookie += "; " + optionKey;
+      let optionValue = options[optionKey];
+      if (optionValue !== true) {
+        updatedCookie += "=" + optionValue;
+      }
+    }
+    document.cookie = updatedCookie;
   }
-  const pb = new PocketBase("http://127.0.0.1:8090");
-  pb.authStore.loadFromCookie(getCookie("pb_auth"));
-  const [isValid, setIsvalid] = useAtom(isValidAtom);
-  setIsvalid(pb.authStore.isValid);
   const router = useRouter();
   return (
     <div className="flex">
@@ -79,7 +97,7 @@ function Navbar_user_icon() {
                     pb.authStore.clear();
                     router.push("/");
                     deleteCookie("pb_auth");
-                    setIsvalid(false);
+                    setisValidUser(false);
                   }}
                 >
                   <FontAwesomeIcon icon={faSignOut} />
@@ -92,17 +110,6 @@ function Navbar_user_icon() {
       </Menu>
     </div>
   );
-}
-
-function getCookie(name) {
-  let matches = document.cookie.match(
-    new RegExp(
-      "(?:^|; )" +
-        name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, "\\$1") +
-        "=([^;]*)"
-    )
-  );
-  return matches ? decodeURIComponent(matches[1]) : undefined;
 }
 
 export default Navbar_user_icon;
