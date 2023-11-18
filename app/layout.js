@@ -1,6 +1,6 @@
 import "public/css/globals.css";
-import NavbarJS from "./Navbar"
-import FooterComp from "./(footer)/Footer";
+import NavbarJS from "./NavbarJS"
+import FooterComp from "./(footer)/FooterJS";
 
 import { Lato } from "next/font/google";
 export const metadata = {
