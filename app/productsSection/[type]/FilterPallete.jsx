@@ -1,7 +1,6 @@
 "use client";
 import { Space } from "antd";
-import { useEffect, useState } from "react";
-import DropdownByPrice from "./dropdowns/DropdownByPrice";
+import DropdownByPrice from "./(dropdowns)/DropdownByPrice";
 function FilterPallete({
   brandList,
   FilterParams,
