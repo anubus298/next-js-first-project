@@ -22,36 +22,56 @@ function Login_panel() {
   const [isValid, setIsvalid] = useAtom(isValidAtom);
   const [isloading, setisloading] = useState(false);
   const router = useRouter();
-  async function ONSubmit(data) {
-    try {
-      setErrorMsg("");
-      setisloading(true);
-      const res = await fetch(
-        `http://localhost:8000/api/login?survive=${data.remember}`,
-        {
-          method: "POST",
-          "Content-Type": "application/json",
-          body: JSON.stringify(data),
-          headers: {
-            remember: data.remember,
-          },
-        }
-      );
-      setisloading(false);
+   function ONSubmit(data) {
+    // try {
+    //   setErrorMsg("");
+    //   setisloading(true);
+    //   const res = await fetch(
+    //     `http://localhost:8000/api/login?survive=${data.remember}`,
+    //     {
+    //       method: "POST",
+    //       "Content-Type": "application/json",
+    //       body: JSON.stringify(data),
+    //       headers: {
+    //         remember: data.remember,
+    //       },
+    //     }
+    //   );
+    //   setisloading(false);
 
-      if (res.status == 200) {
+    //   if (res.status == 200) {
+    //     pb.authStore.loadFromCookie(getCookie("pb_auth"));
+    //     try {
+    //       pb.authStore.isValid && (await pb.collection("users").authRefresh());
+    //     } catch (_) {
+    //       pb.authStore.clear();
+    //     }
+    //     pb.authStore.isValid && setIsvalid(true);
+    //     pb.authStore.isValid && router.push("/");
+    //   } else throw new Error();
+    // } catch (e) {
+    //   setErrorMsg(e);
+    // }
+    setErrorMsg("");
+    setisloading(true);
+    fetch(`http://localhost:8000/api/login?survive=${data.remember}`, {
+      method: "POST",
+      "Content-Type": "application/json",
+      body: JSON.stringify(data),
+      headers: {
+        remember: data.remember,
+      },
+    })
+      .then((res) => {
+        res.json();
+        setisloading(false);
+      })
+      .catch((e) => setErrorMsg(e))
+      .then((data) => {
         pb.authStore.loadFromCookie(getCookie("pb_auth"));
-        try {
-          pb.authStore.isValid && (await pb.collection("users").authRefresh());
-        } catch (_) {
-          pb.authStore.clear();
-        }
         pb.authStore.isValid && setIsvalid(true);
         pb.authStore.isValid && router.push("/");
-      } else throw new Error();
-    } catch (e) {
-      setErrorMsg(e);
-    }
+      });
   }
   return (
     <div className="bg-secondarySecondarylight rounded-lg  h-[500px] w-full md:w-1/2  sm:px-10 flex flex-col justify-evenly  text-main text-center font-bold select-none font-lato">
@@ -95,7 +115,7 @@ function Login_panel() {
         <div className="flex px-4 md:px-0 w-full justify-between items-center">
           <div className="flex  items-center space-x-2">
             <Checkbox
-            className="cursor-pointer"
+              className="cursor-pointer"
               color="red"
               {...register("remember", { required: true })}
             />
