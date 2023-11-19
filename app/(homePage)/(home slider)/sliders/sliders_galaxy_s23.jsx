@@ -23,14 +23,14 @@ function Sliders_galaxy_s23() {
             </div>
             <div className="flex flex-col gap-y-5 md:w-1/2">
               <p className="text-4xl font-extrabold">Ultra Evolved</p>
-              <p className="hidden sm:block">
+              <p className="hidden sm:block font-semibold">
                 Get ready to become your group&apos;s go-to photographer.
                 We&apos;ve packed Galaxy&apos;s biggest sensor, light-absorbing
                 pixels and video stabilization technology into one epic camera
                 for life&apos;s most share-worthy moments.
               </p>
               <a
-                className="text-gray-300 text-lg"
+                className="text-secondaryLight text-2xl font-extrabold"
                 href="/product/mobiles/59kkyk5iv6d61wz"
               >
                 Buy now

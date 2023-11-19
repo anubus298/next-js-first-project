@@ -3,7 +3,7 @@ import { Footer } from "flowbite-react";
 
 function FooterComp() {
   return (
-    <Footer container={true} className="bg-main  rounded-none mt-16 font-bold">
+    <Footer container={true} className="bg-main  rounded-none mt-16 font-semibold">
       <div className="w-full text-center ">
         <div className="w-full justify-between sm:flex sm:items-center sm:justify-between ">
           <Footer.LinkGroup>

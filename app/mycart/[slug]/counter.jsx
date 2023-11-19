@@ -2,8 +2,6 @@
 function Counter({
   quantity,
   setquantity,
-  priceSummary,
-  setpriceSummary,
   setsign,
   sign,
 }) {

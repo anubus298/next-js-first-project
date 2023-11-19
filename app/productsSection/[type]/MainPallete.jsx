@@ -5,8 +5,9 @@ import Card from "antd/es/card/Card";
 import Meta from "antd/es/card/Meta";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+import Fallback_card from "./(fallback)/fallback_card";
 import FilterPallete from "./FilterPallete";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 function MainPallete({ data, typeForHref }) {
   let brandList = data.map((i) => {
     if (i.expand?.brand?.brandName) {
@@ -19,6 +20,7 @@ function MainPallete({ data, typeForHref }) {
   brandList = [...new Set(brandList)];
   const [arrangment, setarrangment] = useState(data);
   const [IsLoading, setIsLoading] = useState(false);
+  const [domloaded, setdomloaded] = useState(false);
   const [RememberBrand, setRememberBrand] = useState("default");
   const [Reference, setReference] = useState(data);
   const [FilterParams, setFilterParams] = useState({
@@ -81,6 +83,9 @@ function MainPallete({ data, typeForHref }) {
       }
     }
   }, [FilterParams]);
+  useEffect(() => {
+    setdomloaded(true);
+  }, []);
   const router = useRouter();
 
   return (
@@ -96,47 +101,64 @@ function MainPallete({ data, typeForHref }) {
         />
       </div>
       <div className=" p-1 md:p-4 rounded-b-md bg-secondarySecondarylight h-full flex justify-evenly md:justify-normal gap-y-4 md:gap-x-6 md:gap-y-8 flex-wrap">
+        {!domloaded && (
+          <div className="w-full h-[300px] flex justify-center items-center">
+            <ColorRing
+              visible={true}
+              height="100"
+              width="100"
+              ariaLabel="blocks-loading"
+              wrapperStyle={{}}
+              wrapperClass="blocks-wrapper"
+              colors={["#e15b64", "#f47e60", "#f8b26a", "#abbd81", "#849b87"]}
+            />
+          </div>
+        )}
         {arrangment.map((product) => {
           return (
-            <Card
-              key={product.id}
-              bordered={true}
-              className="w-44 md:w-56 h-72 py-2 md:py-4 hover:shadow-lg hover:-translate-y-1 duration-200 ease-out font-lato"
-              cover={
-                <Image
-                  alt="ss"
-                  className="h-[150px] w-auto mx-auto cursor-pointer"
-                  src={`http://127.0.0.1:8090/api/files/${product.collectionId}/${product.id}/${product.imgs[0]}`}
-                  height={150}
-                  width={150}
-                  onClick={() =>
-                    router.push(`/product/${typeForHref}/${product.id}`)
+            domloaded && (
+              <Suspense fallback={<Fallback_card />}>
+                <Card
+                  bordered={true}
+                  key={product.id}
+                  className="w-44 md:w-56 h-72 py-2 md:py-4 hover:shadow-lg hover:-translate-y-1 duration-200 ease-out font-lato"
+                  cover={
+                    <Image
+                      alt="ss"
+                      className="h-[150px] w-auto mx-auto cursor-pointer"
+                      src={`http://127.0.0.1:8090/api/files/${product.collectionId}/${product.id}/${product.imgs[0]}`}
+                      height={150}
+                      width={150}
+                      onClick={() =>
+                        router.push(`/product/${typeForHref}/${product.id}`)
+                      }
+                    />
                   }
-                />
-              }
-            >
-              <Meta
-                title={
-                  <CardTitle
-                    collectionId={product.expand?.brand.collectionId}
-                    img={product.expand?.brand.img}
-                    brandId={product.expand?.brand.id}
-                    id={product.id}
-                    name={product.name}
-                    typeForHref={typeForHref}
-                  />
-                }
-                description={
-                  <CardDescription
-                    price={product.price}
-                    rating={product.rating}
-                    id={product.id}
-                    totalRated={product.totalRated}
-                    typeForHref={typeForHref}
-                  />
-                }
-              ></Meta>
-            </Card>
+                >
+                  <Meta
+                    title={
+                      <CardTitle
+                        collectionId={product.expand?.brand.collectionId}
+                        img={product.expand?.brand.img}
+                        brandId={product.expand?.brand.id}
+                        id={product.id}
+                        name={product.name}
+                        typeForHref={typeForHref}
+                      />
+                    }
+                    description={
+                      <CardDescription
+                        price={product.price}
+                        rating={product.rating}
+                        id={product.id}
+                        totalRated={product.totalRated}
+                        typeForHref={typeForHref}
+                      />
+                    }
+                  ></Meta>
+                </Card>
+              </Suspense>
+            )
           );
         })}
         {IsLoading && (

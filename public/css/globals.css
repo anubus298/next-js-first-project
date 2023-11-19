@@ -4,15 +4,28 @@
 
 body {
   background-color: #ffff;
+}
 
+:root {
+  --swiper-navigation-color: #D64550 !important;
 }
 
 .star-svg {
   display: inline !important;
 }
 
-
 .bg-gradient-white {
-  background: rgb(255,255,255);
-  background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.4962184702982756) 20%, rgba(255,255,255,0.5018207111946341) 50%, rgba(255,255,255,0.49901959074645486) 80%, rgba(255,255,255,0) 100%); 
+  background: rgb(255, 255, 255);
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.4962184702982756) 20%,
+    rgba(255, 255, 255, 0.5018207111946341) 50%,
+    rgba(255, 255, 255, 0.49901959074645486) 80%,
+    rgba(255, 255, 255, 0) 100%
+  );
+}
+
+* {
+  font-family: var(--font-Lato) !important;
 }

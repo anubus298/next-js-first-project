@@ -1,6 +1,7 @@
 "use client";
 import Image from "next/image";
 import { Suspense, useEffect, useState } from "react";
+import ReactImageZoom from "react-image-zoom";
 import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 import { Skeleton } from "antd";
 export default function ImgSection({ imgs, id, cId }) {
@@ -39,20 +40,14 @@ export default function ImgSection({ imgs, id, cId }) {
       </div>
 
       <div className="bg-white p-2 rounded-lg flex overflow-hidden justify-center items-center h-[500px] md:w-[500px] w-11/12 ">
-        <TransformWrapper>
-          <TransformComponent>
-            <div className="h-[500px] flex items-center  ">
-              <Image
-                className="w-auto"
-                src={`http://127.0.0.1:8090/api/files/${cId}/${id}/${imgs[index]}?thumb=0x500`}
-                height={500}
-                width={500}
-                sizes={"(max-width: 768px) 90vw ,(max-width: 1024px) 60vw,40vw"}
-                alt=""
-              />
-            </div>
-          </TransformComponent>
-        </TransformWrapper>
+          <Image
+            className="w-auto"
+            src={`http://127.0.0.1:8090/api/files/${cId}/${id}/${imgs[index]}?thumb=0x500`}
+            height={500}
+            width={500}
+            sizes={"(max-width: 768px) 90vw ,(max-width: 1024px) 60vw,40vw"}
+            alt=""
+          />
       </div>
     </div>
   );

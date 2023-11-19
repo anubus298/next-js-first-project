@@ -9,31 +9,30 @@ import { useAtom } from "jotai";
 import { isValidUserAtom } from "../functions/atomCookie";
 import { getCookie } from "../functions/cookiesFunctions";
 function Account_logic() {
-  const [domLoaded, setDomLoaded] = useState(false);
   const [isValidUser, setisValidUser] = useAtom(isValidUserAtom);
+  const [domloaded, setdomloaded] = useState(false);
   const pb = new PocketBase("http://127.0.0.1:8090");
   useEffect(() => {
     pb.authStore.loadFromCookie(getCookie("pb_auth"));
     if (pb.authStore.isValid) {
       setisValidUser(true);
+    } else {
+      setisValidUser(false);
     }
-
-    setDomLoaded(true);
-  }, [isValidUser]);
+    setdomloaded(true);
+  }, []);
   return (
     <div>
-      {domLoaded ? (
-        isValidUser ? (
+      {!domloaded && <User_skeleton />}
+      {domloaded &&
+        (isValidUser ? (
           <Navbar_user_icon />
         ) : (
           <div className="flex sm:flex-row flex-col-reverse md:gap-y-2 items-center">
             <Navbar_log_in />
             <Navbar_sign_in />
           </div>
-        )
-      ) : (
-        <User_skeleton />
-      )}
+        ))}
     </div>
   );
 }

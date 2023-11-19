@@ -14,17 +14,16 @@ function DescripSection({
   collectionName,
   id,
 }) {
-
   return (
     <div className="md:w-1/2 flex flex-col gap-y-10">
       <div>
-        <p className="text-2xl sm:text-3xl font-semibold">{name}</p>
+        <p className="text-2xl sm:text-3xl font-black">{name}</p>
       </div>
       <div className="flex justify-between items-center">
         <div className="flex justify-between gap-x-5 items-center">
-          <p className="text-secondary text-4xl font-extrabold select-none">
+          <p className="text-secondary text-4xl font-black select-none">
             ${price}
-            <span className=" text-xs font-normal">(including VAT)</span>
+            <span className=" text-xs ">(including VAT)</span>
           </p>
           <div className="flex items-end gap-x-2 select-none">
             <StarComp count={rating} size={20} readonly={true} />
@@ -35,8 +34,8 @@ function DescripSection({
         </div>
       </div>
       <div>
-        <p className="text-lg font-semibold mb-5">Product Details :</p>
-        <ul className="list-disc min-h-[300px]">
+        <p className="text-lg font-black mb-5">Product Details :</p>
+        <ul className="list-disc min-h-[300px] font-semibold">
           {description &&
             description
               .split(/\n/)

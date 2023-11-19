@@ -12,7 +12,7 @@ function Home_slider_iphone_15() {
               href="/product/mobiles/15"
               className=" text-black  bg-white my-2 md:px-2 text-xl rounded-lg font-extrabold flex justify-center items-center gap-x-2 font-bolder transition hover:text-secondary "
             >
-              <p>BUY NOW</p>
+              <p className="">BUY NOW</p>
               <FontAwesomeIcon icon={faAngleRight} />
             </a>
           </div>
@@ -23,14 +23,14 @@ function Home_slider_iphone_15() {
               height={50}
               alt="icon"
             />
-            <div className="">
+            <div className=" text-lg  font-semibold">
               <p>
                 A17 Pro chip <br />
                 with 6-core GPU
               </p>
             </div>
           </div>
-          <div className="md:flex gap-x-3 items-center hidden">
+          <div className="md:flex gap-x-3 items-center hidden text-lg  font-semibold">
             <Image
               src="/icon_3camera__gci3u4rfz0y2_large.png"
               width={50}
@@ -46,7 +46,7 @@ function Home_slider_iphone_15() {
               </p>
             </div>
           </div>
-          <div className="md:flex gap-x-3 items-center hidden">
+          <div className="md:flex gap-x-3 items-center hidden text-lg  font-semibold">
             <Image
               src="/icon_battery__fztnats2mpme_large.png"
               width={50}

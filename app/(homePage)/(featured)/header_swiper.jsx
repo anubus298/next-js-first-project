@@ -26,7 +26,7 @@ function Header_swiper(props) {
                 key={product.id + index + 13}
                 className={` overflow-hidden z-[${
                   10 - index
-                }] rounded-b-lg cursor-pointer hover:brightness-95 force-flex flex-col  p-1 items-center `}
+                }] rounded-b-lg cursor-pointer hover:brightness-95 force-flex flex-col  p-1 items-center font-lato`}
               >
                 <div className="flex items-center bg-white h-5/6">
                   <Image
@@ -50,10 +50,10 @@ function Header_swiper(props) {
                   className="bg-main text-secondarySecondarylight rounded-b-lg  p-5 w-full h-1/6
              flex flex-col justify-center text-center "
                 >
-                  <p className="tracking-widest font-bolder text-sm sm:text-lg font-bold">
+                  <p className="tracking-widest text-sm sm:text-lg font-semibold">
                     {product.productName}
                   </p>
-                  <p className=" tracking-wider text-secondary font-bold">
+                  <p className=" tracking-wider text-secondary font-semibold">
                     {product.price}$
                   </p>
                 </a>

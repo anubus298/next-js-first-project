@@ -16,12 +16,12 @@ function Navbar_categories() {
           Categories
         </Menu.Button>
         <Transition
-          enter="transition ease-out duration-100"
-          enterFrom="transform opacity-0 scale-95"
-          enterTo="transform opacity-100 scale-100"
-          leave="transition ease-in duration-75"
-          leaveFrom="transform opacity-100 scale-100"
-          leaveTo="transform opacity-0 scale-95"
+          enter="transition ease-out duration-200"
+          enterFrom="transform opacity-0 scale-y-75"
+          enterTo="transform opacity-100 scale-y-100"
+          leave="transition ease-in duration-100"
+          leaveFrom="transform opacity-100 scale-y-100"
+          leaveTo="transform opacity-0 scale-y-75"
         >
           <Menu.Items className="bg-secondary flex flex-col rounded-lg gap-y-4 p-4 absolute  w-[150px] left-0 z-50">
             <Menu.Item>
@@ -97,12 +97,12 @@ function Navbar_categories() {
           Support
         </Menu.Button>
         <Transition
-          enter="transition ease-out duration-100"
-          enterFrom="transform opacity-0 scale-95"
-          enterTo="transform opacity-100 scale-100"
-          leave="transition ease-in duration-75"
-          leaveFrom="transform opacity-100 scale-100"
-          leaveTo="transform opacity-0 scale-95"
+       enter="transition ease-out duration-200"
+       enterFrom="transform opacity-0 scale-y-75"
+       enterTo="transform opacity-100 scale-y-100"
+       leave="transition ease-in duration-100"
+       leaveFrom="transform opacity-100 scale-y-100"
+       leaveTo="transform opacity-0 scale-y-75"
         >
           <Menu.Items className="bg-secondary flex flex-col rounded-lg gap-y-4 p-4 absolute left-0 w-[180px] z-50">
             <Menu.Item>

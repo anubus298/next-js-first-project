@@ -41,7 +41,7 @@ function Card({ product, setpriceSummary, priceSummary, deleteItemFromCart }) {
             />
           </div>
           <a
-            className="text-lg"
+            className="text-lg font-bold"
             href={"/product" + "/" + type + "/" + product.id}
           >
             {product.name}
@@ -50,7 +50,7 @@ function Card({ product, setpriceSummary, priceSummary, deleteItemFromCart }) {
       </Table.RowHeaderCell>
 
       <Table.Cell justify={"center"}>
-        <p className="text-lg">${product.price}</p>
+        <p className="text-lg ">${product.price}</p>
       </Table.Cell>
 
       <Table.Cell justify={"center"}>

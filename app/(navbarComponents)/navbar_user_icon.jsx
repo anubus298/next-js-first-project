@@ -8,10 +8,13 @@ import FavoriteIcon from "./FavoriteIcon";
 import PocketBase from "pocketbase";
 import { isValidUserAtom } from "../functions/atomCookie";
 import { useAtom } from "jotai";
+import { useEffect } from "react";
 
 function Navbar_user_icon() {
   const pb = new PocketBase("http://127.0.0.1:8090");
-  pb.authStore.loadFromCookie(getCookie("pb_auth"));
+  useEffect(() => {
+    pb.authStore.loadFromCookie(getCookie("pb_auth"));
+  }, []);
   const [isValidUser, setisValidUser] = useAtom(isValidUserAtom);
   function deleteCookie(name) {
     setCookie(name, "", {
@@ -60,12 +63,12 @@ function Navbar_user_icon() {
           </p>
         </Menu.Button>
         <Transition
-          enter="transition ease-out duration-100"
-          enterFrom="transform opacity-0 scale-95"
-          enterTo="transform opacity-100 scale-100"
-          leave="transition ease-in duration-75"
-          leaveFrom="transform opacity-100 scale-100"
-          leaveTo="transform opacity-0 scale-95"
+         enter="transition ease-out duration-200"
+       enterFrom="transform opacity-0 scale-y-75"
+       enterTo="transform opacity-100 scale-y-100"
+       leave="transition ease-in duration-100"
+       leaveFrom="transform opacity-100 scale-y-100"
+       leaveTo="transform opacity-0 scale-y-75"
         >
           <Menu.Items className="bg-secondary flex flex-col rounded-lg gap-y-4 p-4 absolute right-5 z-50 ">
             <Menu.Item>

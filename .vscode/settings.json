@@ -2,6 +2,9 @@
     "cSpell.words": [
         "alertmessage",
         "arrangment",
+        "fontawesome",
+        "fortawesome",
+        "issmallscreen",
         "Isvalid",
         "mycart",
         "notif",
@@ -10,8 +13,10 @@
         "Secondarylight",
         "setarrangment",
         "setcontent",
+        "setissmallscreen",
         "setprice",
         "setquantity",
+        "stickynode",
         "Swiper",
         "Wdthclient"
     ]

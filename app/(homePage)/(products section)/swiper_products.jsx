@@ -11,6 +11,7 @@ import Fallback_productCard from "./(fallback)/Fallback_productCard";
 function SwiperProducts(props) {
   const [swiperPreview, setSwiperPreview] = useState(4);
   const [navigationEnabled, setNavigationEnabled] = useState(true);
+  const [domloaded, setdomloaded] = useState(false);
   useEffect(() => {
     if (document.documentElement.clientWidth < 1024) {
       setSwiperPreview(2);
@@ -20,7 +21,9 @@ function SwiperProducts(props) {
       setSwiperPreview(1);
       setNavigationEnabled(false);
     }
+    setdomloaded(true);
   }, []);
+
   return (
     <div className="text-center">
       <Swiper
@@ -36,10 +39,12 @@ function SwiperProducts(props) {
       >
         {props.data.items.map((item) => {
           return (
-            <SwiperSlide className="flex justify-center "  key={item.id}>
-              <Suspense fallback={<Fallback_productCard />}>
+            <SwiperSlide className="flex justify-center" key={item.id}>
+              {domloaded ? (
                 <ProductCard item={item} type={props.type} />
-              </Suspense>
+              ) : (
+                <Fallback_productCard />
+              )}
             </SwiperSlide>
           );
         })}

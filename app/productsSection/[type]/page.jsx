@@ -3,11 +3,14 @@ export const fetchCache = "force-no-store";
 import PocketBase from "pocketbase";
 import SidePallete from "./SidePallete";
 import MainPallete from "./MainPallete";
+import { Suspense } from "react";
 async function Page({ params }) {
   async function getAllItems() {
     const pb = new PocketBase("http://127.0.0.1:8090");
     const type = "Pro" + params.type;
-    let res = pb.collection(type).getFullList({ sort: "@random" ,expand: "brand"});
+    let res = pb
+      .collection(type)
+      .getFullList({ sort: "@random", expand: "brand" });
     return res;
   }
   let data = await getAllItems();
@@ -17,7 +20,9 @@ async function Page({ params }) {
         <SidePallete count={data.length} type={params.type} />
       </div>
       <div className="w-full md:w-4/5 min-h[500px] md:min-h-screen">
-        <MainPallete data={data} typeForHref={params.type.toLowerCase() }/>
+        <Suspense fallback={<div className="w-full h-full bg-red-600"></div>}>
+          <MainPallete data={data} typeForHref={params.type.toLowerCase()} />
+        </Suspense>
       </div>
     </div>
   );

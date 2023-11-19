@@ -7,7 +7,9 @@ export default function Page() {
   return (
     <div className="w-full bg-secondarySecondary">
       <Home_slider />
-      <Featured />
+      <Suspense fallback={<div className="bg-red-600 w-full h-16"></div>}>
+        <Featured />
+      </Suspense>
       <Suspense fallback={<Fallback_page />}>
         <ProductSection showHeader={true} type={"laptops"} />
       </Suspense>

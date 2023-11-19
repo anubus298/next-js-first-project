@@ -5,14 +5,16 @@ import Account_logic from "./(navbarComponents)/account_logic";
 import Navbar_ship_to_region from "./(navbarComponents)/navbar_ship_to_region";
 import SearchBar from "./(navbarComponents)/SearchBar";
 import Sticky from "react-stickynode";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import Drawer_main from "./(navbarComponents)/(drawer)/Drawer_main";
-
+import User_skeleton from "./(navbarComponents)/User_skeleton";
+import Navbar_banner from "./(navbarComponents)/banner";
 function NavbarJS() {
   const [issmallscreen, setissmallscreen] = useState(false);
   const [open, setOpen] = useState(false);
+  const [show, setshow] = useState(true);
   const showDrawer = () => {
     setOpen(true);
   };
@@ -26,18 +28,21 @@ function NavbarJS() {
   }, []);
   return (
     <Sticky enabled={true} innerZ={999}>
-      <div className="bg-main select-none text-secondarySecondarylight w-full justify-between flex sm:gap-x-5 p-2 md:p-5 mb-10 items-center  font-semibold    ">
+      <Suspense fallback={<div className="w-full h-9 bg-secondaryLight"></div>}>
+      <Navbar_banner show={show} setshow={setshow} />
+      </Suspense>
+      <div className="bg-main select-none text-secondarySecondarylight w-full justify-between flex sm:gap-x-5 p-2 md:p-5 mb-2 items-center  font-semibold    ">
         <div className="flex items-center gap-x-1">
           <Navbar_logo />
           <Navbar_ship_to_region />
         </div>
         <div className="flex items-center w-full sm:w-auto justify-end sm:justify-normal sm:gap-x-1">
           {!issmallscreen && (
-            <>
+            <Suspense fallback={<User_skeleton />}>
               <SearchBar />
               <Navbar_categories />
               <Account_logic />
-            </>
+            </Suspense>
           )}
           {issmallscreen && (
             <button type="primary" onClick={showDrawer}>
