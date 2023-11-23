@@ -7,6 +7,7 @@ import { Table } from "@radix-ui/themes";
 import { useState } from "react";
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 function Card_favorite({
   product,
   setpriceSummary,
@@ -41,12 +42,12 @@ function Card_favorite({
             }
           />
           <div className="flex flex-col justify-center">
-            <a
+            <Link
               className="text-lg"
               href={"/product" + "/" + type + "/" + product.id}
             >
               {product.name}
-            </a>
+            </Link>
             <p className="text-secondary text-lg">${product.price}</p>
           </div>
           <div className="absolute bottom-1 right-0 ">

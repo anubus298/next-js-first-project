@@ -4,12 +4,12 @@ import { Checkbox } from "@radix-ui/themes";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { getCookie } from "../../../functions/cookiesFunctions";
-import { useState } from "react";
-import { useAtom } from "jotai";
-import { isValidUserAtom } from "../../../functions/atomCookie";
+import { useContext, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { ColorRing } from "react-loader-spinner";
+import { AuthContext } from "../../../(lib)/context-provider";
+import Link from "next/link";
 function Login_panel() {
   const {
     register,
@@ -19,10 +19,11 @@ function Login_panel() {
   } = useForm();
   const pb = new PocketBase("http://127.0.0.1:8090");
   const [errorMsg, setErrorMsg] = useState("");
-  const [isValid, setIsvalid] = useAtom(isValidUserAtom);
+  const { isValid, setisValid } = useContext(AuthContext);
+
   const [isloading, setisloading] = useState(false);
   const router = useRouter();
-   function ONSubmit(data) {
+  function ONSubmit(data) {
     // try {
     //   setErrorMsg("");
     //   setisloading(true);
@@ -46,7 +47,6 @@ function Login_panel() {
     //     } catch (_) {
     //       pb.authStore.clear();
     //     }
-    //     pb.authStore.isValid && setIsvalid(true);
     //     pb.authStore.isValid && router.push("/");
     //   } else throw new Error();
     // } catch (e) {
@@ -69,7 +69,7 @@ function Login_panel() {
       .catch((e) => setErrorMsg(e))
       .then((data) => {
         pb.authStore.loadFromCookie(getCookie("pb_auth"));
-        pb.authStore.isValid && setIsvalid(true);
+        pb.authStore.isValid && setisValid(true);
         pb.authStore.isValid && router.push("/");
       });
   }
@@ -93,7 +93,7 @@ function Login_panel() {
             value={"darknight22@gmail.com"}
             type="email"
             placeholder="email"
-            className="w-full text-lg text-white bg-secondary font-normal py-2 md:py-6 px-3 rounded-md  placeholder:text-red-200 focus-visible:outline-none"
+            className="w-full text-lg text-white bg-secondary font-semibold py-2 md:py-6 px-3 rounded-md  placeholder:text-red-200 focus-visible:outline-none"
             {...register("email", { required: true })}
           />
           {errors.exampleRequired && <span>This field is required</span>}
@@ -105,7 +105,7 @@ function Login_panel() {
             value={"987612345saf"}
             type="password"
             placeholder="password"
-            className="w-full text-lg text-white bg-secondary font-normal py-2 md:py-6 px-3 rounded-md placeholder:text-red-200 focus-visible:outline-none"
+            className="w-full text-lg text-white bg-secondary font-semibold py-2 md:py-6 px-3 rounded-md placeholder:text-red-200 focus-visible:outline-none"
             {...register("password", { required: true })}
           />
           {errors.exampleRequired && <span>This field is required</span>}
@@ -121,9 +121,9 @@ function Login_panel() {
             />
             <p>Remember me</p>
           </div>
-          <a href="/forgot-password" className="text-gray-500 text-sm">
+          <Link href="/forgot-password" className="text-gray-500 text-sm">
             forgot password?
-          </a>
+          </Link>
         </div>
         <button
           className="bg-main hover:bg-gray-950 transition p-2 rounded-lg text-white w-full flex justify-center items-center"
@@ -142,13 +142,13 @@ function Login_panel() {
         </button>
       </form>
       <div className="flex justify-end w-full">
-        <a
+        <Link
           href="/signIn/new"
           className=" p-2 rounded-lg text-main hover:text-gray-900 transition w-fit flex items-center space-x-2"
         >
           <p>Sign up</p>
           <FontAwesomeIcon icon={faArrowRight} />
-        </a>
+        </Link>
       </div>
     </div>
   );

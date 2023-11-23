@@ -1,9 +1,10 @@
 "use client"
 import Image from "next/image";
+import Link from "next/link";
 
 function Navbar_logo() {
   return (
-    <a href="/" className="cursor-pointer">
+    <Link href="/" className="cursor-pointer">
       <Image
         className="w-auto"
         src={"/logo.svg"}
@@ -11,7 +12,7 @@ function Navbar_logo() {
         height={200}
         alt="SafoMart"
       />
-    </a>
+    </Link>
   );
 }
 

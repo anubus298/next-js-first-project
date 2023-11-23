@@ -1,10 +1,6 @@
-'use client'
-import { Provider } from 'jotai'
+"use client";
+import IsValidProvider from "./(lib)/context-provider";
 
 export default function Providers({ children }) {
-  return (
-    <Provider>
-      {children}
-    </Provider>
-  )
+  return <IsValidProvider>{children}</IsValidProvider>;
 }

@@ -5,10 +5,11 @@ import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { getCookie } from "../../../functions/cookiesFunctions";
 import { useState } from "react";
-import { useAtom } from "jotai";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
-import { isValidUserAtom } from "../../../functions/atomCookie";
+import { AuthContext } from "../../../(lib)/context-provider";
+import { useContext } from "react";
+import Link from "next/link";
 function Login_panel() {
   const {
     register,
@@ -18,7 +19,7 @@ function Login_panel() {
   } = useForm();
   const pb = new PocketBase("http://127.0.0.1:8090");
   const [errorMsg, setErrorMsg] = useState("");
-  const [isValid, setIsvalid] = useAtom(isValidUserAtom);
+  const { isValid, setisValid } = useContext(AuthContext);
 
   const router = useRouter();
   const onSubmit = async (data) => {
@@ -39,7 +40,7 @@ function Login_panel() {
         } catch (_) {
           pb.authStore.clear();
         }
-        setIsvalid(true);
+        setisValid(true);
         router.push("/");
       } else throw new Error();
     } catch (e) {
@@ -101,11 +102,15 @@ function Login_panel() {
 
         <div className="flex-col flex w-full justify-between space-y-3">
           <div className="flex  items-center space-x-2">
-            <Checkbox className="cursor-pointer" color="red" {...register("Term", { required: true })} />
+            <Checkbox
+              className="cursor-pointer"
+              color="red"
+              {...register("Term", { required: true })}
+            />
             <p>
               Accept
               <span className="cursor-pointer">
-                <a href="/termOfUse "> term of use</a>
+                <Link href="/termOfUse "> term of use</Link>
               </span>
             </p>
           </div>
@@ -125,13 +130,13 @@ function Login_panel() {
         </button>
       </form>
       <div className="flex justify-start w-full">
-        <a
+        <Link
           href="/Login/new"
           className=" p-2 rounded-lg text-main hover:text-gray-900 transition w-fit flex items-center space-x-2"
         >
           <FontAwesomeIcon icon={faArrowLeft} />
           <p>Log in instead</p>
-        </a>
+        </Link>
       </div>
     </div>
   );
@@ -155,7 +160,7 @@ export default Login_panel;
 //   } = useForm();
 //   const pb = new PocketBase("http://127.0.0.1:8090");
 //   const router = useRouter();
-//   const [isValid, setIsvalid] = useAtom(isValidAtom);
+//   const [isValid, setisValid] = useAtom(isValidAtom);
 
 //   const [errorMsg, setErrorMsg] = useState("");
 //   const onSubmit = async (data) => {
@@ -164,7 +169,7 @@ export default Login_panel;
 //       await pb.collection("users").create(data);
 //       await pb.collection('users').requestVerification(data.email);
 //       if (pb.authStore.isValid) {
-//         setIsvalid(true);
+//         setisValid(true);
 //         document.cookie = pb.authStore.exportToCookie({ httpOnly: false });
 //       }
 //     } catch (e) {

@@ -8,6 +8,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Menu, Transition } from "@headlessui/react";
+import Link from "next/link";
 function Navbar_categories() {
   return (
     <div className="flex ">
@@ -26,7 +27,7 @@ function Navbar_categories() {
           <Menu.Items className="bg-secondary flex flex-col rounded-lg gap-y-4 p-4 absolute  w-[150px] left-0 z-50">
             <Menu.Item>
               {({ active }) => (
-                <a
+                <Link
                   className={`${
                     active && "bg-main"
                   } flex items-center space-x-3 p-1 rounded-lg transition`}
@@ -34,12 +35,12 @@ function Navbar_categories() {
                 >
                   <FontAwesomeIcon icon={faMobile} />
                   <p>Mobiles</p>
-                </a>
+                </Link>
               )}
             </Menu.Item>
             <Menu.Item>
               {({ active }) => (
-                <a
+                <Link
                   className={`${
                     active && "bg-main"
                   } flex items-center space-x-3 p-1 rounded-lg transition`}
@@ -47,12 +48,12 @@ function Navbar_categories() {
                 >
                   <FontAwesomeIcon icon={faTv} />
                   <p>TVs</p>
-                </a>
+                </Link>
               )}
             </Menu.Item>
             <Menu.Item>
               {({ active }) => (
-                <a
+                <Link
                   className={`${
                     active && "bg-main"
                   } flex items-center space-x-3 p-1 rounded-lg transition`}
@@ -60,12 +61,12 @@ function Navbar_categories() {
                 >
                   <FontAwesomeIcon icon={faTablet} />
                   <p>Tablets</p>
-                </a>
+                </Link>
               )}
             </Menu.Item>
             <Menu.Item>
               {({ active }) => (
-                <a
+                <Link
                   className={`${
                     active && "bg-main"
                   } flex items-center space-x-3 p-1 rounded-lg transition`}
@@ -73,12 +74,12 @@ function Navbar_categories() {
                 >
                   <FontAwesomeIcon icon={faLaptop} />
                   <p>Laptops</p>
-                </a>
+                </Link>
               )}
             </Menu.Item>
             <Menu.Item>
               {({ active }) => (
-                <a
+                <Link
                   className={`${
                     active && "bg-main"
                   } flex items-center space-x-3 p-1 rounded-lg transition`}
@@ -86,7 +87,7 @@ function Navbar_categories() {
                 >
                   <FontAwesomeIcon icon={faGlasses} />
                   <p>Accessories</p>
-                </a>
+                </Link>
               )}
             </Menu.Item>
           </Menu.Items>
@@ -97,54 +98,54 @@ function Navbar_categories() {
           Support
         </Menu.Button>
         <Transition
-       enter="transition ease-out duration-200"
-       enterFrom="transform opacity-0 scale-y-75"
-       enterTo="transform opacity-100 scale-y-100"
-       leave="transition ease-in duration-100"
-       leaveFrom="transform opacity-100 scale-y-100"
-       leaveTo="transform opacity-0 scale-y-75"
+          enter="transition ease-out duration-200"
+          enterFrom="transform opacity-0 scale-y-75"
+          enterTo="transform opacity-100 scale-y-100"
+          leave="transition ease-in duration-100"
+          leaveFrom="transform opacity-100 scale-y-100"
+          leaveTo="transform opacity-0 scale-y-75"
         >
           <Menu.Items className="bg-secondary flex flex-col rounded-lg gap-y-4 p-4 absolute left-0 w-[180px] z-50">
             <Menu.Item>
               {({ active }) => (
-                <a
+                <Link
                   className={`${
                     active && "bg-main"
                   } transition p-1 rounded-lg `}
                   href="/WhoWeAre"
                 >
                   Who we are
-                </a>
+                </Link>
               )}
             </Menu.Item>
             <Menu.Item>
               {({ active }) => (
-                <a
+                <Link
                   className={`${active && "bg-main"} transition p-1 rounded-lg`}
                   href="/WorkWithUs"
                 >
                   Work with us
-                </a>
+                </Link>
               )}
             </Menu.Item>
             <Menu.Item>
               {({ active }) => (
-                <a
+                <Link
                   className={`${active && "bg-main"} transition p-1 rounded-lg`}
                   href="/Feedback"
                 >
                   Feedback
-                </a>
+                </Link>
               )}
             </Menu.Item>
             <Menu.Item>
               {({ active }) => (
-                <a
+                <Link
                   className={`${active && "bg-main"} transition p-1 rounded-lg`}
                   href="/ProductSupport"
                 >
                   Product Support
-                </a>
+                </Link>
               )}
             </Menu.Item>
           </Menu.Items>

@@ -14,8 +14,9 @@ function Home_slider() {
         modules={[Navigation, Autoplay]}
         navigation={true}
         slidesPerView={1}
+        grabCursor={false}
         autoplay={{
-          delay: 3000,
+          delay: 3000 ,
           disableOnInteraction: true,
         }}
       >

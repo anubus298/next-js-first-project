@@ -14,7 +14,6 @@ function Drawer_main({ open, onClose }) {
       closeIcon={
         <FontAwesomeIcon icon={faXmark} className="text-white " size="3x" />
       }
-      title="Menu"
       placement="right"
       onClose={onClose}
       open={open}

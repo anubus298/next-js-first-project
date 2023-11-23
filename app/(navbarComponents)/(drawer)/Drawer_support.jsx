@@ -2,6 +2,7 @@
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Collapse } from "antd";
+import Link from "next/link";
 
 function Drawer_Support() {
   const items = [
@@ -10,30 +11,30 @@ function Drawer_Support() {
       label: <p className="text-white font-bold text-lg">Support</p>,
       children: (
         <div className="bg-secondary text-white flex flex-col gap-y-2 p-3 rounded-lg text-lg font-semibold">
-          <a
+          <Link
             href="/productsSection/Mobiles"
-            className="flex items-center gap-x-1 p-2 border-b-2 border-white"
+            className="flex items-center gap-x-1 p-2 border-b-2 border-white text-white"
           >
             <p>Who we are</p>
-          </a>
-          <a
+          </Link>
+          <Link
             href="/productsSection/Tvs"
-            className="flex items-center gap-x-1 p-2 border-b-2 border-white"
+            className="flex items-center gap-x-1 p-2 border-b-2 border-white text-white"
           >
             <p>Work with us</p>
-          </a>
-          <a
+          </Link>
+          <Link
             href="/productsSection/Tablets"
-            className="flex items-center gap-x-1 p-2 border-b-2 border-white"
+            className="flex items-center gap-x-1 p-2 border-b-2 border-white text-white"
           >
             <p>Feedback</p>
-          </a>
-          <a
+          </Link>
+          <Link
             href="/productsSection/Laptops"
-            className="flex items-center gap-x-1 p-2 border-b-2 border-white"
+            className="flex items-center gap-x-1 p-2  text-white"
           >
             <p>Product Support</p>
-          </a>
+          </Link>
         </div>
       ),
     },
@@ -51,7 +52,7 @@ function Drawer_Support() {
         )}
         expandIconPosition="end"
         ghost
-        className="border-2 border-white font-lato"
+        className="border-2 border-white text-white font-lato"
         items={items}
       />
     </div>

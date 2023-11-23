@@ -1,5 +1,6 @@
 "use client";
 import {
+  faBox,
   faChevronRight,
   faGear,
   faSignOut,
@@ -8,43 +9,38 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { deleteCookie, getCookie } from "../../functions/cookiesFunctions";
 import { Collapse } from "antd";
-import { useAtom } from "jotai";
 import { useRouter } from "next/navigation";
 import PocketBase from "pocketbase";
-import { isValidUserAtom } from "../../functions/atomCookie";
-import { useEffect, useState } from "react";
+import { AuthContext } from "../../(lib)/context-provider";
+import { useContext } from "react";
+import Link from "next/link";
+import Avatar from "antd/es/avatar/avatar";
 
 function Drawer_logIn() {
-  const [isValid, setIsvalid] = useAtom(isValidUserAtom);
+  const { isValid, setisValid } = useContext(AuthContext);
   const pb = new PocketBase("http://127.0.0.1:8090");
-  useEffect(() => {
-      pb.authStore.loadFromCookie(getCookie("pb_auth"));
-      if (pb.authStore.isValid) {
-        setIsvalid(true);
-      } else {
-        setIsvalid(false);
-      }
-  }, []);
   const router = useRouter();
   return !isValid ? (
     <div className="w-full flex flex-col gap-y-1">
-      <a
+      <Link
         href="/logIn/sfqpbk55"
         className="w-full bg-secondarySecondarylight text-main font-bold text-center rounded-lg text-lg p-2"
       >
         Log in
-      </a>
-      <a
+      </Link>
+      <Link
         href="/signIn/"
         className="w-full  text-secondarySecondarylight border-secondarySecondarylight border-2 font-bold text-center rounded-lg text-lg p-2"
       >
         Sign up
-      </a>
+      </Link>
     </div>
   ) : (
-    <div className="w-full flex flex-col gap-y-1">
+    <div className="w-full flex flex-col gap-y-1 text-white">
       <div className="flex flex-col items-center gap-x-2 justify-center">
-        <FontAwesomeIcon icon={faUser} size="3x" />
+        <Avatar size="default" className="bg-green-500">
+          {pb.authStore.model?.username[0].toUpperCase()}
+        </Avatar>
         <Collapse
           className="text-white"
           ghost
@@ -69,16 +65,25 @@ function Drawer_logIn() {
                 <div className="bg-secondary rounded-lg text-white flex flex-col gap-y-2 p-2 font-bold text-lg font-lato">
                   <div className="flex items-center gap-x-1 p-2">
                     <FontAwesomeIcon icon={faGear} />
-                    <a href="/account-settings">Settings</a>
+                    <Link className="text-white" href="/account-settings">
+                      Account
+                    </Link>
+                  </div>
+                  <div className="flex items-center gap-x-1 p-2">
+                    <FontAwesomeIcon icon={faBox} />
+                    <Link className="text-white" href="/account-settings">
+                      Commands
+                    </Link>
                   </div>
                   <div className="flex items-center gap-x-1 p-2">
                     <FontAwesomeIcon icon={faSignOut} />
                     <a
+                    className="text-white"
                       onClick={() => {
                         pb.authStore.clear();
                         router.push("/");
                         deleteCookie("pb_auth");
-                        setIsvalid(false);
+                        setisValid(false);
                       }}
                     >
                       Log out

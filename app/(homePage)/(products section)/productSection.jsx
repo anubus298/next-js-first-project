@@ -10,6 +10,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import SwiperProducts from "./swiper_products";
 import shuffle from "../../functions/shuffle";
 import { Suspense } from "react";
+import Link from "next/link";
 
 async function getPro(type, count) {
   try {
@@ -51,9 +52,8 @@ async function ProductSection({
       <div className="bg-main">
         <div className="   border-white w-full flex justify-start  font-extrabold pt-2 px-2 ">
           {showHeader && (
-            <a
-              href={"/productSection/" + data.items[0]?.collectionName}
-              className="bg-black select-none cursor-pointer text-secondary flex pt-2 px-2 rounded-t-lg justify-center text-center items-center gap-x-3 text-4xl py-2"
+            <div
+              className="bg-main select-none cursor-pointer text-secondary flex pt-2 px-2 rounded-t-lg justify-center text-center items-center gap-x-3 text-4xl py-2"
             >
               <p className="">{type.toUpperCase()}</p>
               {type === "laptops" ? (
@@ -67,7 +67,7 @@ async function ProductSection({
               ) : (
                 <FontAwesomeIcon size="1x" icon={faGlasses} />
               )}
-            </a>
+            </div>
           )}
         </div>
         <div>
@@ -75,7 +75,7 @@ async function ProductSection({
         </div>
         {data.items[0] && (
           <div className="w-full flex items-center space-x-2  justify-end pt-1 px-4 ">
-            <a
+            <Link
               className="hover:text-white cursor-pointer text-secondary flex items-center space-x-2 "
               href={
                 "/productsSection/" +
@@ -85,7 +85,7 @@ async function ProductSection({
             >
               <p className=" font-extrabold">SEE MORE</p>
               <FontAwesomeIcon icon={faArrowRight} size="1x" />
-            </a>
+            </Link>
           </div>
         )}
       </div>

@@ -1,5 +1,5 @@
 "use client";
-import { Rate } from "antd";
+import { Popover, Rate } from "antd";
 import { ColorRing } from "react-loader-spinner";
 import Card from "antd/es/card/Card";
 import Meta from "antd/es/card/Meta";
@@ -8,6 +8,7 @@ import Image from "next/image";
 import Fallback_card from "./(fallback)/fallback_card";
 import FilterPallete from "./FilterPallete";
 import { Suspense, useEffect, useState } from "react";
+import Link from "next/link";
 function MainPallete({ data, typeForHref }) {
   let brandList = data.map((i) => {
     if (i.expand?.brand?.brandName) {
@@ -193,22 +194,36 @@ function CardTitle({ collectionId, img, id, brandId, name, typeForHref }) {
           />
         )}
       </div>
-      <a href={`/product/${typeForHref}/${id}`}>
+      <Link href={`/product/${typeForHref}/${id}`}>
         <p className="text-sm md:text-base">{name}</p>
-      </a>
+      </Link>
     </div>
   );
 }
-function CardDescription({ price, rating, id, typeForHref }) {
+function CardDescription({ price, rating, id, typeForHref, totalRated }) {
   return (
     <div className="flex flex-col-reverse md:flex-row items-center justify-evenly">
-      <a
+      <Link
         href={`/product/${typeForHref}/${id}`}
         className="text-secondary font-bold text-lg"
       >
         ${price}
-      </a>
-      <Rate className="text-xs gap-x-2 " defaultValue={rating} disabled />
+      </Link>
+      <Popover
+        content={
+          <div className="flex flex-col items-center">
+            <p className=" font-extrabold">{rating}/5</p>
+            <p className="text-xs text-gray-600">({totalRated})</p>
+          </div>
+        }
+      >
+        <Rate
+          allowHalf={true}
+          className="text-xs gap-x-2 "
+          defaultValue={rating}
+          disabled
+        />
+      </Popover>
     </div>
   );
 }

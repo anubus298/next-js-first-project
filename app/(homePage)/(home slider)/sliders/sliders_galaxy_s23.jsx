@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 function Sliders_galaxy_s23() {
   return (
     <div className="flex justify-center relative h-[500px]">
@@ -29,12 +30,12 @@ function Sliders_galaxy_s23() {
                 pixels and video stabilization technology into one epic camera
                 for life&apos;s most share-worthy moments.
               </p>
-              <a
+              <Link
                 className="text-secondaryLight text-2xl font-extrabold"
                 href="/product/mobiles/59kkyk5iv6d61wz"
               >
                 Buy now
-              </a>
+              </Link>
             </div>
           </div>
         </div>

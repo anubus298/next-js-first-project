@@ -6,6 +6,7 @@ import TotalCell from "./(components)/TotalCell";
 import { useState } from "react";
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 function Card({ product, setpriceSummary, priceSummary, deleteItemFromCart }) {
   const [quantity, setquantity] = useState(1);
   const [eachCount, seteachCount] = useState(0);
@@ -40,12 +41,12 @@ function Card({ product, setpriceSummary, priceSummary, deleteItemFromCart }) {
               }
             />
           </div>
-          <a
+          <Link
             className="text-lg font-bold"
             href={"/product" + "/" + type + "/" + product.id}
           >
             {product.name}
-          </a>
+          </Link>
         </div>
       </Table.RowHeaderCell>
 

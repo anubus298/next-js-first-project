@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Link from "next/link";
 function Home_slider_iphone_15() {
   return (
     <div className="w-full  h-full p-16 md:flex flex-col justify-center items-center bg-black text-white">
@@ -8,13 +9,13 @@ function Home_slider_iphone_15() {
         <div className="flex text-center sm:text-start px-12 my-12 sm:my-0 sm:px-0 flex-col gap-y-12">
           <div className="flex flex-col md:flex-row space-x-1">
             <p className="text-4xl font-extrabold">IPHONE 15 PRO</p>
-            <a
+            <Link
               href="/product/mobiles/15"
               className=" text-black  bg-white my-2 md:px-2 text-xl rounded-lg font-extrabold flex justify-center items-center gap-x-2 font-bolder transition hover:text-secondary "
             >
               <p className="">BUY NOW</p>
               <FontAwesomeIcon icon={faAngleRight} />
-            </a>
+            </Link>
           </div>
           <div className="md:flex gap-x-3 items-center hidden">
             <Image

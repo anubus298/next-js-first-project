@@ -1,12 +1,13 @@
 -add all footer/support pages 
 -make all the pages responsive
--add tablet/wearables items
+-add wearables items
 -add categories pages
 -add setting page
 -make a payment page
 -add track product page
 -add costumers rating and reviews
--make newsletter
 -add shipping settings to cart
 -arrange your project files
--fix cart hydration error
+-fix cart hydration error -D
+-fix BrandImg size
+-make share buttons working

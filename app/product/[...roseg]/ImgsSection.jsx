@@ -2,9 +2,12 @@
 import Image from "next/image";
 import { Suspense, useEffect, useState } from "react";
 import ReactImageZoom from "react-image-zoom";
+import { faFacebook, faXTwitter } from "@fortawesome/free-brands-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 import { Skeleton } from "antd";
-export default function ImgSection({ imgs, id, cId }) {
+import { faShare } from "@fortawesome/free-solid-svg-icons";
+export default function ImgSection({ imgs, id, cId, searchParams }) {
   const [index, setIndex] = useState(0);
   const [wdthclient, setWdthclient] = useState(500);
   useEffect(() => {
@@ -13,33 +16,34 @@ export default function ImgSection({ imgs, id, cId }) {
       : setWdthclient(500);
   }, []);
   return (
-    <div className="md:w-1/2 flex flex-col-reverse md:flex-row justify-start gap-5 items-center">
-      <div
-        className={
-          "md:w-[80px] md:h-[500px] gap-[1px] sm:gap-2 w-full flex overflow-x-auto md:overflow-x-hidden md:items-center md:py-5 md:overflow-y-auto flex-row md:flex-col"
-        }
-      >
-        {imgs.map((img, j) => {
-          return (
-            <div
-              key={id + j}
-              className="bg-white p-1 overflow-hidden  w-[50px] h-[50px] flex justify-center items-center cursor-pointer outline-none sm:hover:outline-black hover:outline-1 "
-              onClick={() => setIndex(j)}
-            >
-              <Suspense fallback={<Skeleton.Image />}>
-                <Image
-                  src={`http://127.0.0.1:8090/api/files/${cId}/${id}/${imgs[j]}`}
-                  alt=""
-                  height={50}
-                  width={50}
-                />
-              </Suspense>
-            </div>
-          );
-        })}
-      </div>
+    <div className="flex flex-col md:w-1/2 justify-between">
+      <div className="w-full flex flex-col-reverse md:flex-row justify-start gap-5 items-center">
+        <div
+          className={
+            "md:w-[80px] md:h-[500px] gap-[1px] sm:gap-2 w-full flex overflow-x-auto md:overflow-x-hidden md:items-center md:py-5 md:overflow-y-auto flex-row md:flex-col"
+          }
+        >
+          {imgs.map((img, j) => {
+            return (
+              <div
+                key={id + j}
+                className="bg-white p-1 overflow-hidden  w-[50px] h-[50px] flex justify-center items-center cursor-pointer outline-none sm:hover:outline-black hover:outline-1 "
+                onClick={() => setIndex(j)}
+              >
+                <Suspense fallback={<Skeleton.Image />}>
+                  <Image
+                    src={`http://127.0.0.1:8090/api/files/${cId}/${id}/${imgs[j]}`}
+                    alt=""
+                    height={50}
+                    width={50}
+                  />
+                </Suspense>
+              </div>
+            );
+          })}
+        </div>
 
-      <div className="bg-white p-2 rounded-lg flex overflow-hidden justify-center items-center h-[500px] md:w-[500px] w-11/12 ">
+        <div className="bg-white p-2 rounded-lg flex overflow-hidden justify-center items-center h-[500px] md:w-[500px] w-11/12 ">
           <Image
             className="w-auto"
             src={`http://127.0.0.1:8090/api/files/${cId}/${id}/${imgs[index]}?thumb=0x500`}
@@ -48,6 +52,26 @@ export default function ImgSection({ imgs, id, cId }) {
             sizes={"(max-width: 768px) 90vw ,(max-width: 1024px) 60vw,40vw"}
             alt=""
           />
+        </div>
+      </div>
+      <div className="flex w-full justify-start select-none">
+        <div className="flex items-center">
+          <div className="flex gap-x-2 bg-main py-1 px-3 text-textWhiteWithSecondary  justify-evenly w-fit rounded-s-lg">
+            <FontAwesomeIcon
+              icon={faXTwitter}
+              size="1x"
+              className="cursor-pointer"
+            />
+            <FontAwesomeIcon
+              icon={faFacebook}
+              size="1x"
+              className="cursor-pointer"
+            />
+          </div>
+          <div className="bg-secondary text-white p-1 h-full flex items-center rounded-e-lg">
+            <FontAwesomeIcon icon={faShare} flip="horizontal" />
+          </div>
+        </div>
       </div>
     </div>
   );

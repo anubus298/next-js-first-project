@@ -1,8 +1,12 @@
 "use client";
 
+import { faCrown } from "@fortawesome/free-solid-svg-icons";
+import { faFacebook, faXTwitter } from "@fortawesome/free-brands-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import StarComp from "../../(homePage)/(products section)/StarComp";
 import AddToMyCart from "./AddToMyCart";
 import AddToMyFavorite from "./AddToMyFavorite";
+import { Popover } from "antd";
 function DescripSection({
   rating,
   name,
@@ -12,22 +16,29 @@ function DescripSection({
   price,
   totalRated,
   collectionName,
+  searchParams,
   id,
 }) {
   return (
     <div className="md:w-1/2 flex flex-col gap-y-10">
-      <div>
+      <div className=" flex gap-x-4 items-center">
         <p className="text-2xl sm:text-3xl font-black">{name}</p>
+        {/* {searchParams?.q == "1" && (
+          <div className="bg-red-700 rounded-full flex flex-col h-[70px] w-[70px] text-gold justify-center items-center p-1 select-none">
+            <FontAwesomeIcon icon={faCrown} rotate={50} className="  text-xl" />
+            <p className="font-bold text-xs">Best seller</p>
+          </div>
+        )} */}
       </div>
       <div className="flex justify-between items-center">
         <div className="flex justify-between gap-x-5 items-center">
           <p className="text-secondary text-4xl font-black select-none">
             ${price}
-            <span className=" text-xs ">(including VAT)</span>
+            <span className="block md:inline text-xs ">(including VAT)</span>
           </p>
           <div className="flex items-end gap-x-2 select-none">
             <StarComp count={rating} size={20} readonly={true} />
-            <p className="inline text-sm text-gray-400">
+            <p className="block md:inline text-sm text-gray-400">
               ({totalRated} users )
             </p>
           </div>
@@ -47,6 +58,7 @@ function DescripSection({
               ))}
         </ul>
       </div>
+
       <div className="flex space-x-1">
         <AddToMyFavorite
           already={alreadyForFavorite}

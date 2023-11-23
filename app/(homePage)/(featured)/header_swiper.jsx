@@ -8,6 +8,7 @@ import "swiper/css/effect-cards";
 import "public/swiper.css";
 import { Suspense } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 function Header_swiper(props) {
   const router = useRouter();
   return (
@@ -34,7 +35,7 @@ function Header_swiper(props) {
                     alt="SafoMart"
                     onClick={() =>
                       router.push(
-                        `/product/${props.type}s/${product?.Corresponding_id}`
+                        `/product/${props.type}s/${product?.Corresponding_id}?q=1`
                       )
                     }
                     sizes={
@@ -45,8 +46,8 @@ function Header_swiper(props) {
                     height={300}
                   />
                 </div>
-                <a
-                  href={`/product/${props.type}/${product?.Corresponding_id}`}
+                <Link
+                  href={`/product/${props.type}s/${product?.Corresponding_id}?q=1`}
                   className="bg-main text-secondarySecondarylight rounded-b-lg  p-5 w-full h-1/6
              flex flex-col justify-center text-center "
                 >
@@ -56,7 +57,7 @@ function Header_swiper(props) {
                   <p className=" tracking-wider text-secondary font-semibold">
                     {product.price}$
                   </p>
-                </a>
+                </Link>
               </SwiperSlide>
             );
           })}

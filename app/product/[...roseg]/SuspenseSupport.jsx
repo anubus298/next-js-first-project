@@ -4,7 +4,7 @@ import PocketBase from "pocketbase";
 import SuggestedSection from "./SuggestedSection";
 import ImgSection from "./ImgsSection";
 import { cookies } from "next/headers";
-async function SuspenseSupport({ params }) {
+async function SuspenseSupport({ params,searchParams }) {
   async function getDescription() {
     try {
       const pb = new PocketBase("http://127.0.0.1:8090");
@@ -61,8 +61,8 @@ async function SuspenseSupport({ params }) {
     <>
       <BackComp />
       <div className="bg-secondarySecondarylight  w-full gap-y-5 flex p-5 md:flex-row flex-col">
-        <ImgSection imgs={data.imgs} id={data.id} cId={data.collectionId} />
-        <DescripSection {...data} />
+        <ImgSection imgs={data.imgs} id={data.id} cId={data.collectionId}  />
+        <DescripSection {...data} searchParams={searchParams}/>
       </div>
       <SuggestedSection CurrentPageProductId={data.id} type={data.type} />
     </>

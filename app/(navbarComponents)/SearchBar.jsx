@@ -24,7 +24,10 @@ function SearchBar() {
   return (
     searchParams == "" && (
       <div className="rounded-lg bg-white p-1">
-        <form onSubmit={handleSubmit(onSubmit)} className="flex items-center font-lato">
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className="flex items-center font-lato"
+        >
           <input
             type="text"
             name="searchValue"
@@ -34,11 +37,7 @@ function SearchBar() {
             placeholder="Search"
             {...register("search", { required: true })}
           />
-          <button
-            type="submit"
-            className="text-main cursor-pointer hover:text-secondary transition "
-            href={"/search?for=" + value.split(" ").join("+")}
-          >
+          <button type="submit" className="text-main cursor-pointer">
             <FontAwesomeIcon icon={faSearch} size="1x" />
           </button>
         </form>

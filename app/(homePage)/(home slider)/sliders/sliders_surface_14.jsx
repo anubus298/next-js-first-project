@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 function Sliders_surface_14() {
   return (
     <div className="flex justify-center relative md:h-[500px]">
@@ -31,12 +32,12 @@ function Sliders_surface_14() {
               </p>
             </div>
           </div>
-          <a
+          <Link
             href="/product/laptops/f5yn23myfd2poue"
             className=" md:self-end bg-orange-500 text-white p-2 px-16 rounded-lg border-white  border-2"
           >
             Buy now
-          </a>
+          </Link>
 
           <div className="flex text-center text-black sm:text-start md:px-12 my-12 sm:my-0 sm:px-0 flex-col gap-y-12  md:w-[250px]">
             <div className="flex flex-col gap-y-5 ">
