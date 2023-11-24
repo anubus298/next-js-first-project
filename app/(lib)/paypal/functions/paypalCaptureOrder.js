@@ -1,18 +1,21 @@
-async function paypalCreateOrder(orderID) {
+export default async function paypalCreateOrder(orderID, setisError) {
   try {
-    let response = await fetch("/api/paypal/captureorder", {
-      method: "POST",
-      body: {
-        orderID: orderID,
-      },
-      orderID,
-    });
-    if (response.data.success) {
-    }
+    let response = await fetch(
+      "http://localhost:8000/api/paypal/captureorder",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          orderID: orderID,
+        }),
+      }
+    );
+    let data = await response.json();
+    return data;
   } catch (err) {
-    // Order is not successful
-    // Your custom code
-    // Like showing an error toast
-    // toast.error('Some Error Occured')
+    setisError(true);
+    return null;
   }
 }

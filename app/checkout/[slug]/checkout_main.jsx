@@ -13,17 +13,27 @@ function Checkout_main({ data }) {
   const steps = [
     {
       title: "Payment methods",
-      content: <StepOne setmethod={setmethod} setCurrent={setCurrent} current={current}/>,
+      content: (
+        <StepOne
+          setmethod={setmethod}
+          setCurrent={setCurrent}
+          current={current}
+        />
+      ),
     },
     {
-      title: "Payment methods",
+      title: "Payment",
       content:
         method &&
-        (method == "manual" ? <StepOne_manual /> : <StepOne_paypal />),
+        (method == "manual" ? (
+          <StepOne_manual setCurrent={setCurrent} current={current} />
+        ) : (
+          <StepOne_paypal setCurrent={setCurrent} current={current} />
+        )),
     },
     {
-      title: "Verification",
-      content: <StepTwo data={data} />,
+      title: "Configuration",
+      content: <StepThree data={data} />,
     },
     {
       title: "Last",

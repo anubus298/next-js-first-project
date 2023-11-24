@@ -1,15 +1,18 @@
-export default async function paypalCreateOrder() {
+export default async function paypalCreateOrder(setisError) {
   try {
-    let response = await fetch("/api/paypal/createorder", {
+    let response = await fetch("http://localhost:8000/api/paypal/createorder", {
       method: "POST",
-      body: {
-        order_price: amountRef.current.value,
+      headers: {
+        "Content-Type": "application/json",
       },
+      body: JSON.stringify({
+        order_price: 5,
+      }),
     });
-    return new Response("ok", { status: 200 });
+    let data = await response.json();
+    return data;
   } catch (err) {
-    // Your custom code to show an error like showing a toast:
+    setisError(true);
     return err;
-    // toast.error('Some Error Occured')
   }
 }

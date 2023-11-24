@@ -69,7 +69,10 @@ function Login_panel() {
       .catch((e) => setErrorMsg(e))
       .then((data) => {
         pb.authStore.loadFromCookie(getCookie("pb_auth"));
-        pb.authStore.isValid && setisValid(true);
+        if (pb.authStore.isValid) {
+          setisValid(false);
+          setisValid(true);
+        }
         pb.authStore.isValid && router.push("/");
       });
   }

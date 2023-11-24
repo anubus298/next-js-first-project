@@ -15,9 +15,6 @@ export async function GET(request: NextRequest) {
       pb.authStore.clear();
       return new Response("user not logged!", { status: 401 });
     }
-    //    const reqCarts = await pb
-    //       .collection("Carts")
-    //       .getFirstListItem(`${body.type}="${body.id}"`,{sort : `${body.type}`});
 
     const record = await pb.collection("Carts").getOne(pb.authStore.model.id);
     if (record[type]?.includes(id, 0)) {
@@ -29,7 +26,5 @@ export async function GET(request: NextRequest) {
     return new Response(error, { status: 500 });
   }
 
-  //    const reqFavo = await pb
-  //       .collection("Favorites")
-  //       .getList(pb.authStore.model.id, body);
+
 }

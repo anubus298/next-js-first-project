@@ -3,34 +3,39 @@
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 import paypalCreateOrder from "../../../(lib)/paypal/functions/paypalCreateOrder";
 import paypalCaptureOrder from "../../../(lib)/paypal/functions/paypalCaptureOrder";
-function StepOne_paypal() {
+import { useState } from "react";
+import { useRef } from "react";
+function StepOne_paypal({ current, setCurrent }) {
+  const SSdm = useRef(undefined);
+  const [isError, setisError] = useState(false);
   return (
-    <div className="w-full h-[450px] flex justify-center items-center bg-secondarySecondarylight p-4 font-semibold mt-5">
-      <PayPalScriptProvider
-        options={{
-          clientId: process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID,
-          currency: "USD",
-          intent: "capture",
-        }}
-      >
+    <PayPalScriptProvider
+      options={{
+        clientId: process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID,
+        currency: "USD",
+        intent: "capture",
+      }}
+    >
+      <div className="w-full min-h-[450px] flex flex-col justify-center items-center bg-secondarySecondarylight p-4 font-semibold mt-5">
         <PayPalButtons
           style={{
             color: "gold",
             shape: "rect",
             label: "pay",
-            height: 50,
           }}
-          createOrder={async (data, actions) => {
-            let order_id = await paypalCreateOrder();
-            return order_id + "";
+          createOrder={async () => {
+            let order = await paypalCreateOrder(setisError);
+            SSdm.current = order;
+            return order;
           }}
-          onApprove={async (data, actions) => {
-            let response = await paypalCaptureOrder(data.orderID);
-            if (response) return true;
+          onApprove={async () => {
+            let res = await paypalCaptureOrder(SSdm.current, setisError);
+            res.success && setCurrent(current + 1);
           }}
         />
-      </PayPalScriptProvider>
-    </div>
+        {isError && <p className="text-4xl text-red-600">Error happened</p>}
+      </div>
+    </PayPalScriptProvider>
   );
 }
 
