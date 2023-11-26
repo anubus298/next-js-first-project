@@ -1,4 +1,8 @@
-export default async function paypalCreateOrder(orderID, setisError) {
+export default async function paypalCreateOrder(
+  productProcessingIds,
+  orderID,
+  setisError
+) {
   try {
     let response = await fetch(
       "http://localhost:8000/api/paypal/captureorder",
@@ -9,6 +13,7 @@ export default async function paypalCreateOrder(orderID, setisError) {
         },
         body: JSON.stringify({
           orderID: orderID,
+          productProcessingIds: productProcessingIds,
         }),
       }
     );

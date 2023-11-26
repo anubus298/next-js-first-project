@@ -5,7 +5,12 @@ import paypalCreateOrder from "../../../(lib)/paypal/functions/paypalCreateOrder
 import paypalCaptureOrder from "../../../(lib)/paypal/functions/paypalCaptureOrder";
 import { useState } from "react";
 import { useRef } from "react";
-function Payment_paypal({ current, setCurrent ,data}) {
+function Payment_paypal({
+  current,
+  setCurrent,
+  productProcessingIds,
+  settrackingIds,
+}) {
   const SSdm = useRef(undefined);
   const [isError, setisError] = useState(false);
   return (
@@ -24,13 +29,22 @@ function Payment_paypal({ current, setCurrent ,data}) {
             label: "pay",
           }}
           createOrder={async () => {
-            let order = await paypalCreateOrder(data,setisError);
+            let order = await paypalCreateOrder(
+              productProcessingIds,
+              setisError
+            );
             SSdm.current = order;
             return order;
           }}
-          onApprove={async () => {
-            let res = await paypalCaptureOrder(SSdm.current, setisError);
-            res.success && setCurrent(current + 1);
+          onApprove={async (data, action) => {
+            let order = await paypalCaptureOrder(
+              productProcessingIds,
+              data.orderID,
+              setisError
+            );
+            if (!isError) {
+              setCurrent(current + 1);
+            }
           }}
           onError={() => {
             setisError(true);

@@ -18,6 +18,7 @@
         "setmethod",
         "setprice",
         "setquantity",
+        "settracking",
         "setuser",
         "stickynode",
         "Swiper",

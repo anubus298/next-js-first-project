@@ -19,20 +19,21 @@ function TotalCell({ deleteItemFromCart, product, quantity }) {
             className="select-none"
             style={{ maxWidth: 450 }}
           >
-            <AlertDialog.Title>Deleting item</AlertDialog.Title>
-            <AlertDialog.Description size="2">
+            <AlertDialog.Title className="font-black">Deleting item</AlertDialog.Title>
+            <AlertDialog.Description className="font-semibold" size="2">
               Are you sure you want to delete this item from your cart?
             </AlertDialog.Description>
 
             <Flex gap="3" mt="4" justify="end">
               <AlertDialog.Cancel>
-                <Button variant="soft" color="gray">
+                <Button className="font-semibold cursor-pointer" variant="soft" color="gray">
                   Cancel
                 </Button>
               </AlertDialog.Cancel>
               <AlertDialog.Action>
                 <Button
                   variant="solid"
+                  className="font-semibold cursor-pointer"
                   color="red"
                   onClick={() => deleteItemFromCart(product, "-")}
                 >

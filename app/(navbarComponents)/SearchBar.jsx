@@ -23,7 +23,7 @@ function SearchBar() {
   };
   return (
     searchParams == "" && (
-      <div className="rounded-lg bg-white p-1">
+      <div className="rounded-md bg-white p-1">
         <form
           onSubmit={handleSubmit(onSubmit)}
           className="flex items-center font-lato"

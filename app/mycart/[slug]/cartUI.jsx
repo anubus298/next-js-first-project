@@ -4,7 +4,7 @@ import Cart_order_summary from "./cart_order_summary";
 import Cart_product_section from "./cart_product_section";
 import Cart_payment_methods from "./cart_payment_methods";
 import { useState } from "react";
-function CartUI({ products, count, fullStartingPrice, id }) {
+function CartUI({ products, count, fullStartingPrice, id ,arrayOfproductCounts}) {
   const [priceSummary, setpriceSummary] = useState(fullStartingPrice);
   return (
     <>
@@ -23,6 +23,7 @@ function CartUI({ products, count, fullStartingPrice, id }) {
           {count && (
             <Cart_order_summary
               price={priceSummary}
+              arrayOfproductCounts={arrayOfproductCounts}
               setpriceSummary={setpriceSummary}
               count={count}
             />

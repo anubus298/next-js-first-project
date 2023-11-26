@@ -49,8 +49,8 @@ function Login_panel() {
     }
   };
   return (
-    <div className="bg-secondarySecondarylight rounded-lg font-lato font-semibold px-6 h-[620px] w-full md:w-1/2  sm:px-10 flex flex-col justify-evenly  text-main text-center select-none">
-      <div className=" text-center md:text-start">
+    <div className="bg-secondarySecondarylight font-lato font-semibold px-6 h-[620px] w-full md:w-1/2  sm:px-10 flex flex-col justify-evenly  text-main text-center select-none">
+      <div className="font-extrabold text-center md:text-start">
         <p className="text-2xl md:text-4xl mb-2">Create an account</p>
       </div>
       <form
@@ -61,9 +61,22 @@ function Login_panel() {
           <input
             autoComplete="off"
             type="text"
-            placeholder="username"
-            className="w-full text-lg text-white bg-secondary font-normal py-2 md:py-4 px-3 rounded-md  placeholder:text-red-200 focus-visible:outline-none"
-            {...register("username", { required: true })}
+            placeholder="First name"
+            className="w-full text-lg text-main border-main border-2 font-semibold py-1 md:py-4 px-3  focus-visible:outline-none"
+            {...register("first_name", {
+              required: true,
+              pattern: /^[a-zA-ZÀ-ÖØ-öø-ÿ']+$/,
+            })}
+          />
+          <input
+            autoComplete="off"
+            type="text"
+            placeholder="Last name"
+            className="w-full text-lg text-main border-main border-2 font-semibold py-1 md:py-4 px-3  focus-visible:outline-none"
+            {...register("last_name", {
+              required: true,
+              pattern: /^[a-zA-ZÀ-ÖØ-öø-ÿ']+$/,
+            })}
           />
           {errors.exampleRequired && <span>This field is required</span>}
         </div>
@@ -71,9 +84,12 @@ function Login_panel() {
           <input
             autoComplete="off"
             type="email"
-            placeholder="email"
-            className="w-full text-lg text-white bg-secondary font-normal py-2 md:py-4 px-3 rounded-md  placeholder:text-red-200 focus-visible:outline-none"
-            {...register("email", { required: true })}
+            placeholder="Email"
+            className="w-full text-lg text-main border-main border-2 font-semibold py-1 md:py-4 px-3   focus-visible:outline-none"
+            {...register("email", {
+              required: true,
+              pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+            })}
           />
           {errors.exampleRequired && <span>This field is required</span>}
         </div>
@@ -82,9 +98,13 @@ function Login_panel() {
           <input
             autoComplete="off"
             type="password"
-            placeholder="password"
-            className="w-full text-lg text-white bg-secondary font-normal py-2 md:py-4 px-3 rounded-md placeholder:text-red-200 focus-visible:outline-none"
-            {...register("password", { required: true })}
+            placeholder="Password"
+            className="w-full text-lg text-main border-main border-2 font-semibold py-1 md:py-4 px-3  focus-visible:outline-none"
+            {...register("password", {
+              required: true,
+              pattern:
+                /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
+            })}
           />
           {errors.exampleRequired && <span>This field is required</span>}
         </div>
@@ -92,9 +112,13 @@ function Login_panel() {
           <input
             autoComplete="off"
             type="password"
-            placeholder="confirm password"
-            className="w-full text-lg text-white bg-secondary font-normal py-2 md:py-4 px-3 rounded-md placeholder:text-red-200 focus-visible:outline-none"
-            {...register("passwordConfirm", { required: true })}
+            placeholder="Confirm password"
+            className="w-full text-lg text-main border-main border-2 font-semibold py-1 md:py-4 px-3  focus-visible:outline-none"
+            {...register("passwordConfirm", {
+              required: true,
+              pattern:
+                /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
+            })}
           />
           {errors.exampleRequired && <span>This field is required</span>}
         </div>
@@ -117,13 +141,13 @@ function Login_panel() {
           <div className="flex  items-center space-x-2">
             <Checkbox
               color="red"
-              {...register("Subscibe", { required: false })}
+              {...register("Subscribe", { required: false })}
             />
             <p>Subscribe to email notifications</p>
           </div>
         </div>
         <button
-          className="bg-main hover:bg-gray-950 transition p-2 rounded-lg text-white w-full"
+          className="bg-secondaryYellow text-main transition p-2 rounded-lg  w-full"
           type="submit"
         >
           create account
@@ -142,96 +166,3 @@ function Login_panel() {
   );
 }
 export default Login_panel;
-
-// "use client";
-// import PocketBase from "pocketbase";
-// import { setCookie } from "../../../functions/cookiesFunctions";
-// import { useForm } from "react-hook-form";
-// import { useState } from "react";
-// import { useRouter } from "next/navigation";
-// import { useAtom } from "jotai";
-// import { isValidAtom } from "../../../(navbarComponents)/navbar_user_icon";
-// function SignIn_panel() {
-//   const {
-//     register,
-//     handleSubmit,
-//     watch,
-//     formState: { errors },
-//   } = useForm();
-//   const pb = new PocketBase("http://127.0.0.1:8090");
-//   const router = useRouter();
-//   const [isValid, setisValid] = useAtom(isValidAtom);
-
-//   const [errorMsg, setErrorMsg] = useState("");
-//   const onSubmit = async (data) => {
-//     try {
-//       setErrorMsg("")
-//       await pb.collection("users").create(data);
-//       await pb.collection('users').requestVerification(data.email);
-//       if (pb.authStore.isValid) {
-//         setisValid(true);
-//         document.cookie = pb.authStore.exportToCookie({ httpOnly: false });
-//       }
-//     } catch (e) {
-//       setErrorMsg("Error : " + e);
-//     }
-//     router.push("/");
-
-//   };
-//   return (
-//     <div className="bg-secondarySecondarylight rounded-lg p-6  sm:p-10 flex flex-col justify-center text-main text-center font-bold">
-//       <form
-//         onSubmit={handleSubmit(onSubmit)}
-//         className="flex flex-col gap-y-5 justify-center items-center"
-//       >
-//         <div className="flex gap-x-3 w-full p-2 justify-end items-center">
-//           <label className="w-1/3">Username</label>
-//           <input
-//             type="text"
-//             className="w-2/3 bg-secondaryLight font-normal py-2 rounded-lg"
-//             {...register("username", { required: true })}
-//           />
-//           {errors.email && <span>This field is required</span>}
-//         </div>
-//         <div className="flex gap-x-3 w-full p-2 justify-end items-center">
-//           <label className="w-1/3">Email</label>
-//           <input
-//             type="email"
-//             className="w-2/3 bg-secondaryLight font-normal py-2 rounded-lg"
-//             {...register("email", { required: true })}
-//           />
-//           {errors.email && <span>This field is required</span>}
-//         </div>
-
-//         <div className="flex gap-x-3 w-full p-2 justify-end items-center">
-//           <label className="w-1/3">password</label>
-//           <input
-//             type="password"
-//             className="w-2/3 bg-secondaryLight font-normal py-2 rounded-lg"
-//             {...register("password", { required: true })}
-//           />
-//           {errors.password && <span>This field is required</span>}
-//         </div>
-//         <div className="flex gap-x-3 w-full p-2 justify-end items-center">
-//           <label className="w-1/3">confirm password</label>
-//           <input
-//             type="password"
-//             className="w-2/3 bg-secondaryLight font-normal py-2 rounded-lg"
-//             {...register("passwordConfirm", { required: true })}
-//           />
-//           {errors.password && <span>This field is required</span>}
-//         </div>
-//         {errorMsg && <p className="text-red-600">{errorMsg}</p>}
-
-//         <button
-//           className="bg-secondary p-2 rounded-lg text-white w-fit"
-//           type="submit"
-//         >
-//           Sign in
-//         </button>
-//       </form>
-//     </div>
-//   );
-// }
-
-// export default SignIn_panel;

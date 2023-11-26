@@ -1,3 +1,4 @@
+objectives :
 -add all footer/support pages 
 -make all the pages responsive
 -add wearables items
@@ -14,5 +15,7 @@
 
 remember : 
 add validation pattern to api
+to delete error responses in api routes
+
 additional : 
 make shipment cost calculator api

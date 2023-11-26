@@ -14,7 +14,7 @@ function Cart_Review({ data, melon, setuserInfo, setCurrent, current }) {
     setCurrent(current + 1);
   }
   return (
-    <div className="w-full gap-y-4  min-h-[450px] flex flex-col md:flex-row justify-evenly items-center bg-secondarySecondarylight p-4 font-semibold mt-5">
+    <div className="w-full gap-y-4  min-h-[450px] flex flex-col  md:flex-row justify-evenly items-center bg-secondarySecondarylight p-4 font-semibold mt-5">
       <div className="flex flex-col items-center gap-y-2 select-none w-full mx-2 md:mx-0 md:w-[405px]">
         <p className="text-2xl font-extrabold text-center ">Your Products</p>
 
@@ -24,7 +24,7 @@ function Cart_Review({ data, melon, setuserInfo, setCurrent, current }) {
               className="w-full items-center p-2 px-4 rounded-lg bg-white shadow-lg"
               key={i + "qdq" + i}
             >
-              <div className="flex gap-x-5 items-center h-[70px] overflow-auto sm:overflow-hidden">
+              <div className="flex gap-x-5 items-center h-[120px] overflow-auto sm:overflow-hidden">
                 <div className="h-[70px] flex  items-center">
                   <Image
                     src={`http://127.0.0.1:8090/api/files/${product.collectionId}/${product.id}/${product.imgs[0]}`}
@@ -34,10 +34,10 @@ function Cart_Review({ data, melon, setuserInfo, setCurrent, current }) {
                     className="w-auto h-auto"
                   />
                 </div>
-                <div className="flex flex-col">
+                <div className="flex flex-col h-full justify-evenly">
                   <p className="text-lg font-bold ">{product.name}</p>
                   <p className="text-sm text-gray-600 ">${product.price}</p>
-                  <p className="text-sm">Number : {melon[i]}</p>
+                  <p className="text-sm">Quantity : {melon[i]}</p>
                 </div>
               </div>
             </div>
@@ -117,7 +117,7 @@ function Cart_Review({ data, melon, setuserInfo, setCurrent, current }) {
               min: 2,
             })}
             name="country"
-            class={
+            className={
               "block w-full py-2 pl-3 pr-10 mt-1 leading-5 focus:outline-none focus:ring-secondary focus:border-main placeholder:font-normal sm:text-sm " +
               (errors.country && "text-red-600")
             }

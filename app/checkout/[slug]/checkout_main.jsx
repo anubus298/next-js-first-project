@@ -19,6 +19,8 @@ function Checkout_main({ data, melon }) {
     phone: undefined,
     town_city: undefined,
   });
+  const [productProcessingIds, setproductProcessingIds] = useState(undefined);
+  const [addToShelterOnce, setaddToShelterOnce] = useState(true);
   const steps = [
     {
       title: "Cart Review",
@@ -42,6 +44,9 @@ function Checkout_main({ data, melon }) {
           userInfo={userInfo}
           setCurrent={setCurrent}
           current={current}
+          addToShelterOnce={addToShelterOnce}
+          setaddToShelterOnce={setaddToShelterOnce}
+          setproductProcessingIds={setproductProcessingIds}
         />
       ),
     },
@@ -60,14 +65,22 @@ function Checkout_main({ data, melon }) {
       content:
         method &&
         (method == "manual" ? (
-          <Payment_manual setCurrent={setCurrent} current={current} />
+          <Payment_manual
+            productProcessingIds={productProcessingIds}
+            setCurrent={setCurrent}
+            current={current}
+          />
         ) : (
-          <Payment_paypal setCurrent={setCurrent} current={current} />
+          <Payment_paypal
+            productProcessingIds={productProcessingIds}
+            setCurrent={setCurrent}
+            current={current}
+          />
         )),
     },
     {
       title: "Order Confirmation",
-      content: <Order_Confirmation data={data} />,
+      content: <Order_Confirmation />,
     },
   ];
   const next = () => {
@@ -97,26 +110,6 @@ function Checkout_main({ data, melon }) {
           items={items}
         />
         <div>{steps[current].content}</div>
-        <div>
-          {current < steps.length - 1 && (
-            <Button className="bg-main" type="primary" onClick={() => next()}>
-              Next
-            </Button>
-          )}
-          {current === steps.length - 1 && (
-            <Button
-              type="primary"
-              onClick={() => message.success("Processing complete!")}
-            >
-              Done
-            </Button>
-          )}
-          {current > 0 && (
-            <Button style={{ margin: "0 8px" }} onClick={() => prev()}>
-              Previous
-            </Button>
-          )}
-        </div>
       </div>
     </ConfigProvider>
   );

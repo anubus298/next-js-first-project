@@ -21,7 +21,7 @@ function Newsletter_main() {
   return (
     <div className="w-full bg-secondary text-textWhiteWithSecondary columns-2 font-lato p-2 py-4 md:p-8 md:py-16 flex flex-col md:flex-row select-none overflow-hidden">
       <div className="flex text-center md:text-start flex-col items-center justify-center gap-y-2 md:gap-y-5 w-full md:w-7/12">
-        <p className="text-6xl font-bold">Spark Your Tech Adventure</p>
+        <p className="text-6xl font-extrabold">Spark Your Tech Adventure</p>
         <p className="font-semibold text-sm">
           Embark on a journey through the latest and greatest in technology with
           our newsletter.
@@ -32,20 +32,20 @@ function Newsletter_main() {
         </p>
       </div>
       <div className="flex px-2 md:px-0 gap-y-2 flex-wrap md:flex-nowrap justify-center h-[150px] w-full md:w-5/12 items-end">
-        <form onSubmit={handleSubmit(OnSubmit)} className="w-full">
+        <form onSubmit={handleSubmit(OnSubmit)} className="w-full shadow-md">
           <input
-            className={"focus-visible:outline-none mb-2 md:mb-0  font-bold placeholder:text-lg rounded-lg md:rounded-r-none md:rounded-l-lg p-4 border-t mr-0 border-b border-l text-gray-800 border-gray-200 bg-white placeholder:font-lato w-full md:w-9/12 " + (Done && "cursor-not-allowed bg-gray-400")}
+            className={"focus-visible:outline-none mb-2 md:mb-0  font-bold placeholder:text-lg  md:rounded-r-none  p-4 border-t mr-0 border-b border-l text-gray-800 border-main  bg-white placeholder:font-lato w-full md:w-9/12 " + (Done && "cursor-not-allowed bg-gray-400")}
             placeholder="your@mail.com"
             autoComplete="off"
             type={"email"}
-            {...register("email", { required: true })}
+            {...register("email", { required: true ,pattern : /^[^\s@]+@[^\s@]+\.[^\s@]+$/})}
             disabled={Done}
           />
           <button
             disabled={Done}
             type="submit"
             className={
-              "rounded-lg md:rounded-s-none md:rounded-r-lg  font-bold p-4 uppercase  border-t border-b border-r w-full md:w-3/12 text-textWhiteWithSecondary bg-main border-main"
+              "rounded-lg md:rounded-s-none md:rounded-r-lg  font-bold p-4 uppercase  border-t border-b border-r w-full md:w-3/12 text-main bg-secondaryYellow border-secondaryYellow "
             }
           >
             {!Done ? (

@@ -21,7 +21,7 @@ function Navbar_log_in() {
           <FontAwesomeIcon
             icon={faRightToBracket}
             size="1x"
-            className="hover:text-secondary transition"
+            className=""
           />
         </div>
       </Popover>

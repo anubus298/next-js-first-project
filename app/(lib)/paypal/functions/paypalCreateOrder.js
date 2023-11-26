@@ -1,4 +1,7 @@
-export default async function paypalCreateOrder(setisError) {
+export default async function paypalCreateOrder(
+  productProcessingIds,
+  setisError
+) {
   try {
     let response = await fetch("http://localhost:8000/api/paypal/createorder", {
       method: "POST",
@@ -6,7 +9,7 @@ export default async function paypalCreateOrder(setisError) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        order_price: 5,
+        ProcessingIds: productProcessingIds,
       }),
     });
     let data = await response.json();

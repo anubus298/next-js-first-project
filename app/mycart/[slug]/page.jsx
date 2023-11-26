@@ -34,6 +34,7 @@ async function Page() {
         fullStartingPrice: fullPRICE,
         count: count,
         origin: data,
+        arrayOfproductCounts: result.map((i) => 1),
       };
     } catch (error) {
       return {
@@ -41,6 +42,7 @@ async function Page() {
         fullStartingPrice: undefined,
         count: undefined,
         origin: undefined,
+        arrayOfproductCounts: undefined,
       };
     }
   }
@@ -48,11 +50,11 @@ async function Page() {
   return (
     <>
       <CartUI
-        fetch={info}
         id={info?.origin ? info?.origin[0]?.id : undefined}
         products={info.products}
         count={info.count}
         fullStartingPrice={info.fullStartingPrice}
+        arrayOfproductCounts={info.arrayOfproductCounts}
       />
     </>
   );

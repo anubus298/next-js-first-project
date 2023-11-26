@@ -28,9 +28,7 @@ function Navbar_categories() {
             <Menu.Item>
               {({ active }) => (
                 <Link
-                  className={`${
-                    active && "bg-main"
-                  } flex items-center space-x-3 p-1 rounded-lg transition`}
+                  className={`$ flex items-center space-x-3 p-1 rounded-lg transition`}
                   href="/productsSection/Mobiles"
                 >
                   <FontAwesomeIcon icon={faMobile} />
@@ -41,9 +39,7 @@ function Navbar_categories() {
             <Menu.Item>
               {({ active }) => (
                 <Link
-                  className={`${
-                    active && "bg-main"
-                  } flex items-center space-x-3 p-1 rounded-lg transition`}
+                  className={`$ flex items-center space-x-3 p-1 rounded-lg transition`}
                   href="/productsSection/Tvs"
                 >
                   <FontAwesomeIcon icon={faTv} />
@@ -54,9 +50,7 @@ function Navbar_categories() {
             <Menu.Item>
               {({ active }) => (
                 <Link
-                  className={`${
-                    active && "bg-main"
-                  } flex items-center space-x-3 p-1 rounded-lg transition`}
+                  className={`$ flex items-center space-x-3 p-1 rounded-lg transition`}
                   href="/productsSection/Tablets"
                 >
                   <FontAwesomeIcon icon={faTablet} />
@@ -67,9 +61,7 @@ function Navbar_categories() {
             <Menu.Item>
               {({ active }) => (
                 <Link
-                  className={`${
-                    active && "bg-main"
-                  } flex items-center space-x-3 p-1 rounded-lg transition`}
+                  className={`$ flex items-center space-x-3 p-1 rounded-lg transition`}
                   href="/productsSection/Laptops"
                 >
                   <FontAwesomeIcon icon={faLaptop} />
@@ -80,9 +72,7 @@ function Navbar_categories() {
             <Menu.Item>
               {({ active }) => (
                 <Link
-                  className={`${
-                    active && "bg-main"
-                  } flex items-center space-x-3 p-1 rounded-lg transition`}
+                  className={`$ flex items-center space-x-3 p-1 rounded-lg transition`}
                   href="/productsSection/Accessories"
                 >
                   <FontAwesomeIcon icon={faGlasses} />
@@ -109,9 +99,7 @@ function Navbar_categories() {
             <Menu.Item>
               {({ active }) => (
                 <Link
-                  className={`${
-                    active && "bg-main"
-                  } transition p-1 rounded-lg `}
+                  className={`$ transition p-1 rounded-lg `}
                   href="/WhoWeAre"
                 >
                   Who we are
@@ -121,7 +109,7 @@ function Navbar_categories() {
             <Menu.Item>
               {({ active }) => (
                 <Link
-                  className={`${active && "bg-main"} transition p-1 rounded-lg`}
+                  className={`transition p-1 rounded-lg`}
                   href="/WorkWithUs"
                 >
                   Work with us
@@ -131,7 +119,7 @@ function Navbar_categories() {
             <Menu.Item>
               {({ active }) => (
                 <Link
-                  className={`${active && "bg-main"} transition p-1 rounded-lg`}
+                  className={`transition p-1 rounded-lg`}
                   href="/Feedback"
                 >
                   Feedback
@@ -141,7 +129,7 @@ function Navbar_categories() {
             <Menu.Item>
               {({ active }) => (
                 <Link
-                  className={`${active && "bg-main"} transition p-1 rounded-lg`}
+                  className={`transition p-1 rounded-lg`}
                   href="/ProductSupport"
                 >
                   Product Support

@@ -22,7 +22,7 @@ function Navbar_sign_in() {
           <FontAwesomeIcon
             icon={faUserPlus}
             size="1x"
-            className="hover:text-secondary transition"
+            className=""
           />
         </div>
       </Popover>

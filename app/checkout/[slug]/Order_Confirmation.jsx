@@ -3,7 +3,7 @@ import Confetti from "react-confetti";
 import Link from "next/link";
 import { useRef } from "react";
 
-function Order_Confirmation({ data }) {
+function Order_Confirmation() {
   const pallete = useRef(null);
   return (
     <div
@@ -17,8 +17,12 @@ function Order_Confirmation({ data }) {
         width={pallete.clientWidth}
         height={pallete.clientHeight}
       />
-      <p class="bg-green-100 border-l-4 border-green-500 text-green-700 p-4 mt-4">
-        🎉 <strong>Thank You for Your Purchase!</strong> 🎉
+      <p className="bg-green-100 border-l-4 border-green-500 text-green-700 p-4 mt-4">
+        🎉
+        <strong className="text-center w-full">
+          Thank You for Your Purchase!
+        </strong>
+        🎉
         <br />
         Congratulations! Your payment has been successfully processed,
         <br />
@@ -27,46 +31,30 @@ function Order_Confirmation({ data }) {
         and can&apos;t wait for you to enjoy your new products
         <br />
         <br />
-        <strong>Order Details:</strong>
-        <br />- Order Number: <span class="font-bold">[XXXXXX]</span>
-        <br />- Date: <span class="font-bold">[Date]</span>
-        <br />- Total Amount: <span class="font-bold">[Amount]</span>
-        <br />
-        <br />
-        <strong>Shipping Information:</strong>
-        <br />
-        Your <span class="font-bold">[product/service]</span> will be shipped
-        to:
-        <br />
-        [Customer Name]
-        <br />
-        [Shipping Address]
-        <br />
-        <br />
-        <strong>Estimated Delivery Time:</strong>
-        <br />
-        [Provide an estimated delivery time if applicable]
-        <br />
-        <br />
-        <strong>Track Your Order:</strong>
-        <br />
-        Thank you for your purchase! To stay updated on the status of your order
+        To stay updated on the status of your order
         <br />
         and track your products in real-time by clicking the commands icon
         <br />
-        tracking regularly.
+        tracking regularly. or
+        <Link className="font-bold text-secondary" href={"/commands"}>
+           Click here
+        </Link>
         <br />
         <br />
         If you have any questions or need assistance,
         <br /> feel free to contact our customer support at
-        <span class="font-semibold text-secondary">
+        <span className="font-semibold text-secondary">
           <Link href={"/support"}> Support page</Link>
         </span>
         <br />
         <br />
         Thank you again for choosing
-        <span class="font-extrabold"> Safomart</span>.<br /> We hope you have a
-        fantastic experience with your purchase!
+        <span className="font-extrabold text-lg"> Safomart</span>.<br /> We hope you
+        have a fantastic experience with your purchase!
+        <br />
+        <Link className="font-black" href="/">
+          Go back to main page
+        </Link>
       </p>
     </div>
   );
