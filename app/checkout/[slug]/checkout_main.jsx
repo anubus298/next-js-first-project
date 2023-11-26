@@ -1,20 +1,54 @@
 "use client";
 import React, { useState } from "react";
 import { Button, ConfigProvider, message, Steps, theme } from "antd";
-import StepOne from "./StepOne";
-import StepOne_paypal from "./(methods)/StepOne_paypal";
-import StepOne_manual from "./(methods)/StepOne_manual";
-import StepTwo from "./StepTwo";
-import StepThree from "./StepThree";
-function Checkout_main({ data }) {
+import Payment_method from "./Payment_method";
+import Payment_paypal from "./(methods)/Payment_paypal";
+import Payment_manual from "./(methods)/Payment_manual";
+import Cart_Review from "./Cart_Review";
+import Shipping_Billing from "./Shipping_Billing";
+import Order_Confirmation from "./Order_Confirmation";
+function Checkout_main({ data, melon }) {
   const [method, setmethod] = useState(false);
   const [current, setCurrent] = useState(0);
-
+  const [userInfo, setuserInfo] = useState({
+    address: undefined,
+    code_postal: undefined,
+    country: undefined,
+    first_name: undefined,
+    last_name: undefined,
+    phone: undefined,
+    town_city: undefined,
+  });
   const steps = [
     {
-      title: "Payment methods",
+      title: "Cart Review",
       content: (
-        <StepOne
+        <Cart_Review
+          data={data}
+          melon={melon}
+          setuserInfo={setuserInfo}
+          setCurrent={setCurrent}
+          current={current}
+        />
+      ),
+    },
+    {
+      title: "Shipping & Billing",
+      content: (
+        <Shipping_Billing
+          products={data.products.map((product, index) => {
+            return { ...product, count: melon[index] };
+          })}
+          userInfo={userInfo}
+          setCurrent={setCurrent}
+          current={current}
+        />
+      ),
+    },
+    {
+      title: "Payment method",
+      content: (
+        <Payment_method
           setmethod={setmethod}
           setCurrent={setCurrent}
           current={current}
@@ -26,18 +60,14 @@ function Checkout_main({ data }) {
       content:
         method &&
         (method == "manual" ? (
-          <StepOne_manual setCurrent={setCurrent} current={current} />
+          <Payment_manual setCurrent={setCurrent} current={current} />
         ) : (
-          <StepOne_paypal setCurrent={setCurrent} current={current} />
+          <Payment_paypal setCurrent={setCurrent} current={current} />
         )),
     },
     {
-      title: "Configuration",
-      content: <StepThree data={data} />,
-    },
-    {
-      title: "Last",
-      content: <StepThree />,
+      title: "Order Confirmation",
+      content: <Order_Confirmation data={data} />,
     },
   ];
   const next = () => {
@@ -61,7 +91,11 @@ function Checkout_main({ data }) {
       }}
     >
       <div className="my-16">
-        <Steps current={current} items={items} />
+        <Steps
+          className="font-extrabold select-none"
+          current={current}
+          items={items}
+        />
         <div>{steps[current].content}</div>
         <div>
           {current < steps.length - 1 && (

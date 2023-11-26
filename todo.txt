@@ -12,5 +12,7 @@
 -fix BrandImg size
 -make share buttons working
 
+remember : 
+add validation pattern to api
 additional : 
 make shipment cost calculator api

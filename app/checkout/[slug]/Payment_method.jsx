@@ -3,7 +3,7 @@
 import { Button } from "antd";
 import Image from "next/image";
 
-function StepOne({ setmethod, setCurrent, current }) {
+function Payment_method({ setmethod, setCurrent, current }) {
   return (
     <div className="w-full h-[450px] flex justify-center items-center bg-secondarySecondarylight p-4 font-semibold mt-5">
       <form className="w-[200px] flex flex-col gap-y-3">
@@ -35,4 +35,4 @@ function StepOne({ setmethod, setCurrent, current }) {
   );
 }
 
-export default StepOne;
+export default Payment_method;

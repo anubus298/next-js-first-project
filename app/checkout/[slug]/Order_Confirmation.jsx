@@ -3,7 +3,7 @@ import Confetti from "react-confetti";
 import Link from "next/link";
 import { useRef } from "react";
 
-function StepThree({ data }) {
+function Order_Confirmation({ data }) {
   const pallete = useRef(null);
   return (
     <div
@@ -72,4 +72,4 @@ function StepThree({ data }) {
   );
 }
 
-export default StepThree;
+export default Order_Confirmation;

@@ -2,7 +2,7 @@ export const fetchCache = "force-no-store";
 import Checkout_main from "./checkout_main";
 import PocketBase from "pocketbase";
 import { cookies } from "next/headers";
-async function Page() {
+async function Page({ searchParams }) {
   async function getCartInfo() {
     const pb = new PocketBase("http://127.0.0.1:8090");
     let pb_auth_cookie = await cookies().get("pb_auth");
@@ -34,7 +34,7 @@ async function Page() {
     }
   }
   let info = await getCartInfo();
-  return <Checkout_main data={info} />;
+  return <Checkout_main data={info} melon={searchParams.melon.split(",")} />;
 }
 
 export default Page;

@@ -7,7 +7,7 @@ body {
 }
 
 :root {
-  --swiper-navigation-color: #D64550 !important;
+  --swiper-navigation-color: #d64550 !important;
 }
 
 .star-svg {
@@ -29,3 +29,6 @@ body {
 * {
   font-family: var(--font-Lato) !important;
 }
+
+
+

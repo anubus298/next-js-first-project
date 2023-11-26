@@ -13,9 +13,12 @@
         "Secondarylight",
         "setarrangment",
         "setcontent",
+        "setis",
         "setissmallscreen",
+        "setmethod",
         "setprice",
         "setquantity",
+        "setuser",
         "stickynode",
         "Swiper",
         "Wdthclient"
