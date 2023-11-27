@@ -3,26 +3,31 @@ import shuffle from "../../functions/shuffle";
 import Fallback_header_swiper from "./(fallback)/Fallback_header_swiper";
 import { Suspense } from "react";
 async function getFrontProducts() {
-  const ps = await fetch(
-    `${process.env.pocketBaseUrl}/api/collections/frontProducts/records?page=1&perPage=15&skipTotal=1&sort=-created`,
-    { cache: "no-cache" }
-  );
-  const res = await ps.json();
-  res["items"] = shuffle(res["items"]);
+  try {
+    const ps = await fetch(
+      `${process.env.pocketBaseUrl}/api/collections/frontProducts/records?page=1&perPage=15&skipTotal=1&sort=-created`,
+      { cache: "no-cache" }
+    );
+    const res = await ps.json();
 
-  let data = {
-    mobile: [],
-    laptop: [],
-    tv: [],
-    wearable: [],
-  };
-  res["items"].forEach((item) => {
-    if (!data[item.type]) {
-      data[item.type] = [];
-    }
-    data[item.type].push(item);
-  });
-  return data;
+    res["items"] = shuffle(res["items"]);
+
+    let data = {
+      mobile: [],
+      laptop: [],
+      tv: [],
+      wearable: [],
+    };
+    res["items"].forEach((item) => {
+      if (!data[item.type]) {
+        data[item.type] = [];
+      }
+      data[item.type].push(item);
+    });
+    return data;
+  } catch (error) {
+    return undefined;
+  }
 }
 
 async function Featured() {
@@ -36,15 +41,16 @@ async function Featured() {
         className={`w-full py-8 bg-secondarySecondarylight  gap-y-3 gap-x-8 sm:gap-x-16 flex justify-center flex-wrap u  items-center `}
       >
         <Suspense fallback={<Fallback_header_swiper />}>
-          {Object.keys(data).map((key) => {
-            return (
-              <Header_swiper
-                products={data[key]}
-                type={key}
-                key={data[key]["collectionId"]}
-              />
-            );
-          })}
+          {data &&
+            Object.keys(data).map((key) => {
+              return (
+                <Header_swiper
+                  products={data[key]}
+                  type={key}
+                  key={data[key]["collectionId"]}
+                />
+              );
+            })}
         </Suspense>
       </div>
     </>
