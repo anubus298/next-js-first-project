@@ -2,11 +2,12 @@
 const nextConfig = {
   env: {
     customUrl: 'http://localhost:8000',
-    pocketBaseUrl: 'http://127.0.0.1:8090',
+    pocketBaseUrl: 'http://localhost:8090',
   },
   experimental: {
     swcPlugins: [["@swc-jotai/react-refresh", {}]],
   },
+  
   images:{
     remotePatterns : [
       {
