@@ -5,7 +5,8 @@ import { cookies } from "next/headers";
 import FavoriteUI from "./FavoriteUI";
 async function Page() {
   async function getFavorite() {
-    const pb = new PocketBase("http://127.0.0.1:8090");
+    const pb = new PocketBase(process.env.pocketBaseUrl);
+
     let pb_auth_cookie = await cookies().get("pb_auth");
     pb.authStore.loadFromCookie(pb_auth_cookie?.value);
     try {

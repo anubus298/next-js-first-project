@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 
 function Newsletter_main() {
   async function OnSubmit(data) {
-    await fetch(`http://localhost:8000/api/newsletter`, {
+    await fetch(`/api/newsletter`, {
       method: "POST",
       "Content-Type": "application/json",
       body: JSON.stringify(data),

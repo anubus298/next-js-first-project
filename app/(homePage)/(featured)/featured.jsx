@@ -4,7 +4,7 @@ import Fallback_header_swiper from "./(fallback)/Fallback_header_swiper";
 import { Suspense } from "react";
 async function getFrontProducts() {
   const ps = await fetch(
-    "http://127.0.0.1:8090/api/collections/frontProducts/records?page=1&perPage=15&skipTotal=1&sort=-created",{cache : "no-cache"}
+    "/api/collections/frontProducts/records?page=1&perPage=15&skipTotal=1&sort=-created",{cache : "no-cache"}
   );
   const res = await ps.json();
   res["items"] = shuffle(res["items"]);

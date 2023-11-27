@@ -17,7 +17,8 @@ function Login_panel() {
     watch,
     formState: { errors },
   } = useForm();
-  const pb = new PocketBase("http://127.0.0.1:8090");
+  const pb = new PocketBase(process.env.pocketBaseUrl);
+
   const [errorMsg, setErrorMsg] = useState("");
   const { isValid, setisValid } = useContext(AuthContext);
 
@@ -54,7 +55,7 @@ function Login_panel() {
     // }
     setErrorMsg("");
     setisloading(true);
-    fetch(`http://localhost:8000/api/login?survive=${data.remember}`, {
+    fetch(`/api/login?survive=${data.remember}`, {
       method: "POST",
       "Content-Type": "application/json",
       body: JSON.stringify(data),

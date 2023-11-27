@@ -6,7 +6,8 @@ export async function GET(request: NextRequest) {
     const headersList = headers();
     const id = headersList.get("id");
     const type = headersList.get("type");
-    const pb = new PocketBase("http://127.0.0.1:8090");
+    const pb = new PocketBase(process.env.pocketBaseUrl);
+
     const token = request.cookies.get("pb_auth");
     pb.authStore.loadFromCookie(token.value);
     try {

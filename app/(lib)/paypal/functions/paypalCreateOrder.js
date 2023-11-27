@@ -3,7 +3,7 @@ export default async function paypalCreateOrder(
   setisError
 ) {
   try {
-    let response = await fetch("http://localhost:8000/api/paypal/createorder", {
+    let response = await fetch("/api/paypal/createorder", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -8,7 +8,8 @@ export async function GET(request: NextRequest) {
     const type = searchParams.get("type");
     const regex = /(Pro)(\S)/;
     const field = searchParams.get("field");
-    const pb = new PocketBase("http://127.0.0.1:8090");
+    const pb = new PocketBase(process.env.pocketBaseUrl);
+
     let typeChanged = "";
     pb.authStore.loadFromCookie(token?.value);
 

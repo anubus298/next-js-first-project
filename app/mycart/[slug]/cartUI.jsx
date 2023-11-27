@@ -4,12 +4,13 @@ import Cart_order_summary from "./cart_order_summary";
 import Cart_product_section from "./cart_product_section";
 import Cart_payment_methods from "./cart_payment_methods";
 import { useState } from "react";
+import Refresh from "./Refresh";
 function CartUI({ products, count, fullStartingPrice, id ,arrayOfproductCounts}) {
   const [priceSummary, setpriceSummary] = useState(fullStartingPrice);
   return (
     <>
       <BackComp />
-      <div className="w-full bg-secondarySecondarylight md:px-8 flex md:flex-row flex-col min-h-[380px]">
+      <div className="w-full bg-secondarySecondarylight md:px-8 flex md:flex-row flex-col min-h-[380px] relative">
         <div className="md:w-9/12 max-h-[600px] overflow-y-auto">
           <Cart_product_section
             id={id}
@@ -28,6 +29,7 @@ function CartUI({ products, count, fullStartingPrice, id ,arrayOfproductCounts})
               count={count}
             />
           )}
+          <Refresh/>
           <Cart_payment_methods />
         </div>
       </div>

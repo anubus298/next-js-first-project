@@ -15,7 +15,7 @@ import Link from "next/link";
 async function getPro(type, count) {
   try {
     const res = await fetch(
-      `http://127.0.0.1:8090/api/collections/Pro${
+      `${process.env.pocketBaseUrl}/api/collections/Pro${
         type[0].toUpperCase() + type.slice(1, type.length)
       }/records?page=1&perPage=${
         count ? count : 16

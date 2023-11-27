@@ -32,8 +32,3 @@ module.exports = {
   plugins: [],
 };
 
-// main: "#000000",
-//         secondary: "#D64550",
-//         secondaryLight: "#EA9E8D",
-//         secondarySecondary: "#ffffff",
-//         secondarySecondarylight: "#f2f1f1",

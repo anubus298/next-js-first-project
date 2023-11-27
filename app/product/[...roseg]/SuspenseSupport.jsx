@@ -7,7 +7,8 @@ import { cookies } from "next/headers";
 async function SuspenseSupport({ params,searchParams }) {
   async function getDescription() {
     try {
-      const pb = new PocketBase("http://127.0.0.1:8090");
+      const pb = new PocketBase(process.env.pocketBaseUrl);
+
       const regex = /(Pro)(\S)/;
       let pb_auth_cookie = await cookies().get("pb_auth"),
         typeChanged = "";
@@ -70,43 +71,3 @@ async function SuspenseSupport({ params,searchParams }) {
 }
 
 export default SuspenseSupport;
-
-// async function fetching() {
-//   try {
-//     const token = request.cookies.get("pb_auth");
-
-//     const field = searchParams.get("field");
-//     const pb = new PocketBase("http://127.0.0.1:8090");
-//     let typeChanged = "";
-//     pb.authStore.loadFromCookie(token?.value);
-
-//     try {
-//       // get an up-to-date auth store state by veryfing and refreshing the loaded auth model (if any)
-//       pb.authStore.isValid && (await pb.collection("users").authRefresh());
-//       const res = await pb.collection(type).getOne(id);
-//       typeChanged = res.collectionName.replace(regex, (str, p1, p2) => {
-//         return p2.toLowerCase();
-//       });
-//       const res1 = await pb.collection("Carts").getOne(pb.authStore.model.id);
-
-//       return NextResponse.json({
-//         ...res,
-//         type: typeChanged,
-//         already: res1[field].includes(id, 0),
-//         hasCookie: request.cookies.has("pb_auth"),
-//       });
-//     } catch (_) {
-//       // clear the auth store on failed refresh
-//       pb.authStore.clear();
-//       const res = await pb.collection(type).getOne(id);
-//       return NextResponse.json({
-//         ...res,
-//         type: typeChanged,
-//         already: false,
-//         hasCookie: request.cookies.has("pb_auth"),
-//       });
-//     }
-//   } catch (error) {
-//     return new Response(error);
-//   }
-// }

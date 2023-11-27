@@ -3,17 +3,10 @@ import paypal from "@paypal/checkout-server-sdk";
 import checkoutNodeJssdk from "@paypal/checkout-server-sdk";
 import PocketBase from "pocketbase";
 
-interface Payer {
-  name: string;
-  phone: number;
-  address: { string };
-}
-interface Response_body_create {
-  products: [ProductsInfo];
-  payer: [];
-}
+
 export async function POST(requesT: NextRequest) {
-  const pb = new PocketBase("http://127.0.0.1:8090");
+  const pb = new PocketBase(process.env.pocketBaseUrl);
+
   try {
     const body = await requesT.json();
     const token = requesT.cookies.get("pb_auth");

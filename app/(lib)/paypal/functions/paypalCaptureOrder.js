@@ -5,7 +5,7 @@ export default async function paypalCreateOrder(
 ) {
   try {
     let response = await fetch(
-      "http://localhost:8000/api/paypal/captureorder",
+      "/api/paypal/captureorder",
       {
         method: "POST",
         headers: {

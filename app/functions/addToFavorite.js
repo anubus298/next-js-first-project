@@ -5,7 +5,7 @@ export default async function addToFavorite(collectionName, id) {
     });
     let requestBody = {};
     requestBody[collectionNameRe] = id;
-    const res = await fetch("http://localhost:8000/api/products/UpdateFavorite", {
+    const res = await fetch("/api/products/UpdateFavorite", {
       cache: "no-cache",
       method: "PATCH",
       "Content-Type": "application/json",

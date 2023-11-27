@@ -23,7 +23,7 @@ function Cart_product_section({
     );
     let requestBody = {};
     requestBody[collectionName] = deleteThisProduct.id;
-    const res = await fetch("http://localhost:8000/api/products/UpdateCart", {
+    const res = await fetch("/api/products/UpdateCart", {
       method: "PATCH",
       "Content-Type": "application/json",
       body: JSON.stringify(requestBody),

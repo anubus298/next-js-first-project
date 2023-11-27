@@ -17,7 +17,8 @@ function Login_panel() {
     watch,
     formState: { errors },
   } = useForm();
-  const pb = new PocketBase("http://127.0.0.1:8090");
+  const pb = new PocketBase(process.env.pocketBaseUrl);
+
   const [errorMsg, setErrorMsg] = useState("");
   const { isValid, setisValid } = useContext(AuthContext);
 
@@ -25,7 +26,7 @@ function Login_panel() {
   const onSubmit = async (data) => {
     try {
       setErrorMsg("");
-      const res = await fetch("http://localhost:8000/api/signIn", {
+      const res = await fetch("/api/signIn", {
         method: "POST",
         "Content-Type": "application/json",
         body: JSON.stringify(data),

@@ -6,7 +6,8 @@ import MainPallete from "./MainPallete";
 import { Suspense } from "react";
 async function Page({ params }) {
   async function getAllItems() {
-    const pb = new PocketBase("http://127.0.0.1:8090");
+    const pb = new PocketBase(process.env.pocketBaseUrl);
+
     const type = "Pro" + params.type;
     let res = pb
       .collection(type)

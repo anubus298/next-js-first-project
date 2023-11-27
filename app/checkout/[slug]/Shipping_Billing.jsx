@@ -58,7 +58,7 @@ function Shipping_Billing({
       }),
     };
     async function CallToken(datac) {
-      const res = await fetch(`http://localhost:8000/api/payments/token`, {
+      const res = await fetch(`/api/payments/token`, {
         method: "POST",
         "Content-Type": "application/json",
         body: JSON.stringify(datac),

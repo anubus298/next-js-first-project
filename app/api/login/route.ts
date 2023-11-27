@@ -2,7 +2,7 @@ import PocketBase from "pocketbase";
 import { cookies } from "next/headers";
 import { type NextRequest } from "next/server";
 export async function POST(request: NextRequest) {
-  const pb = new PocketBase("http://127.0.0.1:8090");
+  const pb = new PocketBase(process.env.pocketBaseUrl);
   const reg = /(pb_auth)=(\S*)/;
   const body = await request.json();
   const path = request.nextUrl.searchParams.get("survive");
