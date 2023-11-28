@@ -84,7 +84,7 @@ function Navbar_user_icon() {
                 <div
                   className={
                     " p-1 justify-between flex items-center gap-x-1 cursor-pointer transition ease-out  " +
-                    `${active && "bg-main "} transition p-1 rounded-lg `
+                    ` transition p-1 rounded-lg `
                   }
                 >
                   <Link
@@ -102,13 +102,10 @@ function Navbar_user_icon() {
                 <div
                   className={
                     " p-1  flex items-center gap-x-2 cursor-pointer transition ease-out " +
-                    `${active && "bg-main"} transition p-1 rounded-lg`
+                    ` transition p-1 rounded-lg`
                   }
                   onClick={() => {
-                    pb.authStore.clear();
-                    router.push("/");
-                    deleteCookie("pb_auth");
-                    setisValid(false);
+                    router.push("/commands");
                   }}
                 >
                   <FontAwesomeIcon icon={faBox} />
@@ -121,7 +118,7 @@ function Navbar_user_icon() {
                 <div
                   className={
                     " p-1  flex items-center gap-x-2 cursor-pointer transition ease-out " +
-                    `${active && "bg-main"} transition p-1 rounded-lg`
+                    ` transition p-1 rounded-lg`
                   }
                   onClick={() => {
                     pb.authStore.clear();
