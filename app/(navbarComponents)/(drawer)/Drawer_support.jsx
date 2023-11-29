@@ -33,7 +33,7 @@ function Drawer_Support() {
             href="/productsSection/Laptops"
             className="flex items-center gap-x-1 p-2  text-white"
           >
-            <p>Product Support</p>
+            <p>Product support</p>
           </Link>
         </div>
       ),

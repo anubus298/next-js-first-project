@@ -115,13 +115,15 @@ function MainPallete({ data, typeForHref }) {
             />
           </div>
         )}
-        {arrangment.map((product) => {
+        {arrangment.map((product, index) => {
           return (
             domloaded && (
-              <Suspense fallback={<Fallback_card />}>
+              <Suspense
+                key={product.id + index * 113}
+                fallback={<Fallback_card />}
+              >
                 <Card
                   bordered={true}
-                  key={product.id}
                   className="w-44 md:w-56 h-72 py-2 md:py-4 hover:shadow-lg hover:-translate-y-1 duration-200 ease-out font-lato"
                   cover={
                     <Image

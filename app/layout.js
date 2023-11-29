@@ -5,6 +5,7 @@ import { Lato } from "next/font/google";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import StyledComponentsRegistry from "./(lib)/AntdRegistry";
 import Providers from "./providers";
+import JotaiProviders from "./jotaiProvider";
 // Prevent fontawesome from adding its CSS since we did it manually above:
 import { config } from "@fortawesome/fontawesome-svg-core";
 config.autoAddCss = false; /* eslint-disable import/first */
@@ -13,7 +14,7 @@ export const metadata = {
   description: "Technology Market",
 };
 const mooli = Lato({
-  weight: ["400", "700","100", "300", "900"],
+  weight: ["100", "400", "700", "100", "300", "900"],
   subsets: ["latin"],
   style: ["normal"],
   variable: "--font-Lato",
@@ -25,10 +26,12 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={`${mooli.variable} ` + mooli.className}>
         <Providers>
-          <NavbarJS />
-          <div className="container mx-auto ">
-            <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
-          </div>
+          <JotaiProviders>
+            <NavbarJS />
+            <div className="container mx-auto ">
+              <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
+            </div>
+          </JotaiProviders>
         </Providers>
         <FooterComp />
       </body>

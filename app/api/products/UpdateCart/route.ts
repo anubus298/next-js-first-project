@@ -11,8 +11,7 @@ export async function PATCH(request: NextRequest) {
     pb.authStore.isValid && (await pb.collection("users").authRefresh());
   } catch (_) {
     pb.authStore.clear();
-  return new Response("user not logged!", { status: 401 });
-
+    return new Response("user not logged!", { status: 401 });
   }
   try {
     const req = await pb

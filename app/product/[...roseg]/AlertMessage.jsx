@@ -8,7 +8,7 @@ function AlertMessage({ type }) {
   useEffect(() => {
     switch (type) {
       case "success":
-        setcontent("The item has been successfully added to your cart.");
+        setcontent("The item ha been successfully added to your cart.");
         break;
       case "error":
         setcontent("An error happened during the process.");

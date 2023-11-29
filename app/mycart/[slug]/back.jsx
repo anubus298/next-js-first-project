@@ -7,7 +7,7 @@ function BackComp() {
   const router = useRouter();
   return (
     <button
-      className="bg-main px-5 py-2 cursor-pointer text-white flex items-center gap-x-3 rounded-t-lg hover:text-secondary transition"
+      className="bg-main px-5 py-2 cursor-pointer text-white flex items-center gap-x-3 rounded-t-lg"
       onClick={() => router.back()}
     >
       <FontAwesomeIcon icon={faArrowLeft} className="font-semibold" />

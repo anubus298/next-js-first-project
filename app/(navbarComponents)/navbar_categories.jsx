@@ -26,7 +26,7 @@ function Navbar_categories() {
         >
           <Menu.Items className="bg-secondary flex flex-col rounded-lg gap-y-4 p-4 absolute  w-[150px] left-0 z-50">
             <Menu.Item>
-              {({ active }) => (
+              {() => (
                 <Link
                   className={`$ flex items-center space-x-3 p-1 rounded-lg transition`}
                   href="/productsSection/Mobiles"
@@ -37,7 +37,7 @@ function Navbar_categories() {
               )}
             </Menu.Item>
             <Menu.Item>
-              {({ active }) => (
+              {() => (
                 <Link
                   className={`$ flex items-center space-x-3 p-1 rounded-lg transition`}
                   href="/productsSection/Tvs"
@@ -48,7 +48,7 @@ function Navbar_categories() {
               )}
             </Menu.Item>
             <Menu.Item>
-              {({ active }) => (
+              {() => (
                 <Link
                   className={`$ flex items-center space-x-3 p-1 rounded-lg transition`}
                   href="/productsSection/Tablets"
@@ -59,7 +59,7 @@ function Navbar_categories() {
               )}
             </Menu.Item>
             <Menu.Item>
-              {({ active }) => (
+              {() => (
                 <Link
                   className={`$ flex items-center space-x-3 p-1 rounded-lg transition`}
                   href="/productsSection/Laptops"
@@ -70,7 +70,7 @@ function Navbar_categories() {
               )}
             </Menu.Item>
             <Menu.Item>
-              {({ active }) => (
+              {() => (
                 <Link
                   className={`$ flex items-center space-x-3 p-1 rounded-lg transition`}
                   href="/productsSection/Accessories"
@@ -97,7 +97,7 @@ function Navbar_categories() {
         >
           <Menu.Items className="bg-secondary flex flex-col rounded-lg gap-y-4 p-4 absolute left-0 w-[180px] z-50">
             <Menu.Item>
-              {({ active }) => (
+              {() => (
                 <Link
                   className={`$ transition p-1 rounded-lg `}
                   href="/WhoWeAre"
@@ -107,7 +107,7 @@ function Navbar_categories() {
               )}
             </Menu.Item>
             <Menu.Item>
-              {({ active }) => (
+              {() => (
                 <Link
                   className={`transition p-1 rounded-lg`}
                   href="/WorkWithUs"
@@ -117,7 +117,7 @@ function Navbar_categories() {
               )}
             </Menu.Item>
             <Menu.Item>
-              {({ active }) => (
+              {() => (
                 <Link
                   className={`transition p-1 rounded-lg`}
                   href="/Feedback"
@@ -127,12 +127,12 @@ function Navbar_categories() {
               )}
             </Menu.Item>
             <Menu.Item>
-              {({ active }) => (
+              {() => (
                 <Link
                   className={`transition p-1 rounded-lg`}
                   href="/ProductSupport"
                 >
-                  Product Support
+                  Product support
                 </Link>
               )}
             </Menu.Item>

@@ -18,6 +18,9 @@ import { ConfigProvider } from "antd";
 
 function AddToMyFavorite({ collectionName, id, already }) {
   const [messageApi, contextHolder] = message.useMessage();
+  message.config({
+    top: 80,
+  });
   const [isloading, setisloading] = useState(false);
   const router = useRouter();
   const [notifCount, setnotifCount] = useAtom(NotificationFavoriteCount);
@@ -47,7 +50,7 @@ function AddToMyFavorite({ collectionName, id, already }) {
   return (
     <ConfigProvider
       theme={{
-        token: { colorSuccess: "#d9535d", colorSuccessBorder: "#000000" },
+        token: {},
       }}
     >
       {contextHolder}

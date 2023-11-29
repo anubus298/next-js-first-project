@@ -18,7 +18,15 @@ async function PageCommands() {
       fields:
         "id,total_amount,costumer_name,costumer_number,total_amount,shipping_address,status,estimated_delivery_time,product_id,count,type,Notes,Returned",
     });
-    const commands = Promise.all(
+    //for notification only :
+    const makeItReaded = await Promise.all(
+      records.map(async (item) => {
+        const read = await pb
+          .collection("Commands")
+          .update(item.id, { readStatus: true }, { requestKey: null });
+      })
+    );
+    const commands = await Promise.all(
       records.map(async (item) => {
         const productInfo = await pb
           .collection(item.type)

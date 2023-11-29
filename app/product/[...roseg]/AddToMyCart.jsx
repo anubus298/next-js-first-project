@@ -1,6 +1,5 @@
 "use client";
-import Alert from "antd/es/alert/Alert";
-import AlertMessage from "./AlertMessage";
+
 import { AlertDialog, Button, Flex } from "@radix-ui/themes";
 import { NotificationCount } from "../../(navbarComponents)/cartIcon";
 
@@ -19,12 +18,6 @@ function AddToMyCart({ collectionName, id, already }) {
   const router = useRouter();
   const [notifCount, setnotifCount] = useAtom(NotificationCount);
   const [messageApi, contextHolder] = message.useMessage();
-
-  const [alertmessage, setalertmessagetype] = useState([
-    false,
-    "success",
-    "Done",
-  ]);
   async function handleADD(collectionName, id) {
     setisloading(true);
     let res = await addToCart(collectionName, id);
@@ -45,31 +38,13 @@ function AddToMyCart({ collectionName, id, already }) {
       messageApi.error("Error accrued");
     }
   }
-  useEffect(() => {
-    if (alertmessage[0]) {
-      setTimeout(() => {
-        setalertmessagetype([false, "success", "Done"]);
-      }, 7000);
-    }
-  }, [alertmessage]);
   return (
     <ConfigProvider
       theme={{
-        token: { colorSuccess: "#d9535d", colorSuccessBorder: "#000000" },
+        token: {},
       }}
     >
       {contextHolder}
-      {alertmessage[0] && (
-        <Alert
-          closable={true}
-          showIcon={true}
-          description={<AlertMessage Message type={alertmessage[1]} />}
-          message={alertmessage[2]}
-          type={alertmessage[1]}
-          className="fixed w-[450px] bottom-1 left-2 z-[99] font-lato"
-        />
-      )}
-
       <Theme>
         <AlertDialog.Root>
           <AlertDialog.Trigger style={{ width: "100%" }}>

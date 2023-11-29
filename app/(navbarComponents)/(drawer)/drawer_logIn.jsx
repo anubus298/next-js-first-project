@@ -1,5 +1,6 @@
 "use client";
 import {
+  faBell,
   faBox,
   faChevronRight,
   faGear,
@@ -71,14 +72,20 @@ function Drawer_logIn() {
                   </div>
                   <div className="flex items-center gap-x-1 p-2">
                     <FontAwesomeIcon icon={faBox} />
-                    <Link className="text-white" href="/account-settings">
+                    <Link className="text-white" href="/commands">
+                      Commands
+                    </Link>
+                  </div>
+                  <div className="flex items-center gap-x-1 p-2">
+                    <FontAwesomeIcon icon={faBell} />
+                    <Link className="text-white" href="/notifications">
                       Commands
                     </Link>
                   </div>
                   <div className="flex items-center gap-x-1 p-2">
                     <FontAwesomeIcon icon={faSignOut} />
                     <a
-                    className="text-white"
+                      className="text-white"
                       onClick={() => {
                         pb.authStore.clear();
                         router.push("/");

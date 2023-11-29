@@ -1,9 +1,11 @@
-import { atom, useAtom } from "jotai";
+import {  useAtom } from "jotai";
+import { atomWithStorage } from 'jotai/utils'
+
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
-import { ConfigProvider, Popover } from "antd";
-export const NotificationFavoriteCount = atom(0);
+import { Badge, ConfigProvider, Popover } from "antd";
+export const NotificationFavoriteCount = atomWithStorage("NotificationFavoriteCount", 0);
 function FavoriteIcon({ size }) {
   const [notifCount, setnotifCount] = useAtom(NotificationFavoriteCount);
   return (
@@ -11,6 +13,8 @@ function FavoriteIcon({ size }) {
       theme={{
         token: {
           colorBgElevated: "#D64550",
+          colorError: "#D64550",
+          colorBorderBg: "#000000",
         },
       }}
     >
@@ -21,23 +25,15 @@ function FavoriteIcon({ size }) {
             setnotifCount(0);
             localStorage.setItem("NotificationFavoriteCount", 0);
           }}
-          className=" mx-2 flex items-center gap-x-1 cursor-pointer relative"
+          className=" mx-2 flex items-center gap-x-1 cursor-pointer "
         >
-          {notifCount > 0 && (
-            <div
-              className={
-                "absolute bg-white text-secondary rounded-full top-0 left-2 h-4 w-4 flex justify-center items-center text-xs" +
-                (size && "left-[1.5rem] -top-[7px] h-5 w-5")
-              }
-            >
-              <p>{notifCount}</p>
-            </div>
-          )}
-          <FontAwesomeIcon
-            icon={faHeart}
-            className=" hover:text-secondaryLight text-secondary transition"
-            size={size ? size : "1x"}
-          />
+          <Badge size="small" count={notifCount}>
+            <FontAwesomeIcon
+              icon={faHeart}
+              className="text-secondary transition"
+              size={size ? size : "xl"}
+            />
+          </Badge>
         </Link>
       </Popover>
     </ConfigProvider>

@@ -1,11 +1,18 @@
 "use client";
+import { AlertDialog, Button, Flex } from "@radix-ui/themes";
 import { faCancel, faPerson, faPhone } from "@fortawesome/free-solid-svg-icons";
+import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { ConfigProvider, Steps } from "antd";
 import Image from "next/image";
 import Link from "next/link";
+import { ColorRing } from "react-loader-spinner";
+import { useRouter } from "next/navigation";
 
-function Command_cart({ product }) {
+function Command_cart({ product, deleteCommand }) {
+  const [isCancellingLoading, setisCancellingLoading] = useState(false);
+  const router = useRouter();
+
   let regex = /(.{4})/g;
   let formattedCode = product.id.replace(regex, "$1-");
   formattedCode = formattedCode.replace(/-$/, "");
@@ -128,7 +135,7 @@ function Command_cart({ product }) {
               <div className="flex flex-col w-[150px] md:w-[180px]">
                 <p className="text-gray-500 text-sm">Ordered from :</p>
                 <div className="flex items-center gap-x-2">
-                  <div className="h-[30px] flex justify-center items-center bg-gray-300 px-[.5px] rounded-lg overflow-hidden">
+                  <div className="h-[30px] flex justify-center items-center px-[.5px] rounded-lg overflow-hidden">
                     <Image
                       width={30}
                       height={30}
@@ -180,7 +187,6 @@ function Command_cart({ product }) {
         </div>
       </div>
       <div className="flex px-2 md:px-4 bg-white md:p-4 w-full md:w-3/12 rounded-b-xl md:rounded-b-none md:rounded-e-xl ">
-        
         <ConfigProvider
           theme={{
             token: {
@@ -205,11 +211,71 @@ function Command_cart({ product }) {
         </ConfigProvider>
       </div>
       {product.status != "Problem/Error" && current < 3 && (
-          <div className="absolute bottom-2 text-xs font-medium right-2 flex items-center gap-1 cursor-pointer">
-            <FontAwesomeIcon icon={faCancel} />
-            <p>Cancel order</p>
-          </div>
-        )}
+        <AlertDialog.Root>
+          <AlertDialog.Trigger>
+            {!isCancellingLoading ? (
+              <div className="absolute bottom-2 right-2 text-xs font-medium  flex items-center gap-1 cursor-pointer">
+                <FontAwesomeIcon icon={faCancel} />
+                <p>Cancel order</p>
+              </div>
+            ) : (
+              <div className="absolute bottom-0 right-6">
+                <ColorRing
+                  width={"30"}
+                  height={30}
+                  colors={[
+                    "#e15b64",
+                    "#f47e60",
+                    "#f8b26a",
+                    "#abbd81",
+                    "#849b87",
+                  ]}
+                  visible={true}
+                />
+              </div>
+            )}
+          </AlertDialog.Trigger>
+          <AlertDialog.Content
+            className="select-none"
+            style={{ maxWidth: 450 }}
+          >
+            <AlertDialog.Title className="font-black">
+              Canceling order
+            </AlertDialog.Title>
+            <AlertDialog.Description className="font-semibold" size="2">
+              Are you sure you want to Cancel this order?
+            </AlertDialog.Description>
+
+            <Flex gap="3" mt="4" justify="end">
+              <AlertDialog.Cancel>
+                <Button
+                  className="font-semibold cursor-pointer"
+                  variant="soft"
+                  color="gray"
+                >
+                  Cancel
+                </Button>
+              </AlertDialog.Cancel>
+              <AlertDialog.Action>
+                <Button
+                  variant="solid"
+                  className="font-semibold cursor-pointer"
+                  color="red"
+                  onClick={async () => {
+                    setisCancellingLoading(true);
+                    let res = await deleteCommand(product.id);
+                    if (res == 200) {
+                      router.refresh();
+                    }
+                  }}
+                >
+                  Yes
+                </Button>
+              </AlertDialog.Action>
+            </Flex>
+          </AlertDialog.Content>
+        </AlertDialog.Root>
+      )}
     </div>
   );
 }

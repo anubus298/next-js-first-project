@@ -1,24 +1,46 @@
 "use client";
 import { Menu, Transition } from "@headlessui/react";
-import {
-  faUser,
-  faSignOut,
-  faGear,
-  faBox,
-} from "@fortawesome/free-solid-svg-icons";
+import { faSignOut, faGear, faBox } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useRouter } from "next/navigation";
 import { CartIcon } from "./cartIcon";
 import FavoriteIcon from "./FavoriteIcon";
 import PocketBase from "pocketbase";
 
-import { useContext } from "react";
+import commandsAtom from "../(lib)/jotai/commandsAtom";
+import accountAtom from "../(lib)/jotai/accountAtom";
+import userAtom from "../(lib)/jotai/userAtom";
+import notificationAtom from "../(lib)/jotai/notificationAtom";
+import { useContext, useEffect } from "react";
 import { AuthContext } from "../(lib)/context-provider";
-import Link from "next/link";
-import { Avatar } from "antd";
-
+import { Avatar, Badge } from "antd";
+import { useAtom } from "jotai";
+import Category_notification from "./(user_categories)/category_notification";
+import Category_account from "./(user_categories)/category_account";
+import Category_commands from "./(user_categories)/category_commands";
 function Navbar_user_icon() {
   const pb = new PocketBase("http://127.0.0.1:8090");
+  const [commandsCountAtom, setcommandsCountAtom] = useAtom(commandsAtom);
+  const [notificationsCountAtom, setnotificationsCountAtom] =
+    useAtom(notificationAtom);
+  const [accountCountAtom, setaccountCountAtom] = useAtom(accountAtom);
+  const [userCountAtom] = useAtom(userAtom);
+  useEffect(() => {
+    function GetUserCategoriesInfo() {
+      const res = fetch("/api/userCategories?type=number", {
+        next : {revalidate : 60}
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          setnotificationsCountAtom(data.notif);
+          setcommandsCountAtom(data.commands);
+          setaccountCountAtom(data.account);
+        });
+    }
+    GetUserCategoriesInfo();
+  }, []);
+  
+
   pb.authStore.loadFromCookie(getCookie("pb_auth"));
   const { isValid, setisValid } = useContext(AuthContext);
 
@@ -63,9 +85,11 @@ function Navbar_user_icon() {
       <CartIcon />
       <Menu className="relative" as={"menu"}>
         <Menu.Button className="hover:text-secondary transition m-2 flex items-center gap-x-2">
-          <Avatar size="small" className="bg-green-500">
-            {pb.authStore.model?.username[0].toUpperCase()}
-          </Avatar>
+          <Badge size="small" count={userCountAtom}>
+            <Avatar shape="square" size="small" className="bg-green-500">
+              {pb.authStore.model?.username[0].toUpperCase()}
+            </Avatar>
+          </Badge>
           <p className="max-w-[90px] md:max-w-[120px] overflow-hidden">
             {pb.authStore.model?.username}
           </p>
@@ -80,41 +104,16 @@ function Navbar_user_icon() {
         >
           <Menu.Items className="bg-secondary flex flex-col rounded-lg gap-y-4 p-4 right-4 w-[150px] absolute z-50 ">
             <Menu.Item>
-              {({ active }) => (
-                <div
-                  className={
-                    " p-1 justify-between flex items-center gap-x-1 cursor-pointer transition ease-out  " +
-                    ` transition p-1 rounded-lg `
-                  }
-                >
-                  <Link
-                    href="/account-settings"
-                    className=" flex items-center space-x-2"
-                  >
-                    <FontAwesomeIcon icon={faGear} />
-                    <p>Account</p>
-                  </Link>
-                </div>
-              )}
+              <Category_account />
             </Menu.Item>
             <Menu.Item>
-              {({ active }) => (
-                <div
-                  className={
-                    " p-1  flex items-center gap-x-2 cursor-pointer transition ease-out " +
-                    ` transition p-1 rounded-lg`
-                  }
-                  onClick={() => {
-                    router.push("/commands");
-                  }}
-                >
-                  <FontAwesomeIcon icon={faBox} />
-                  <p>Commands</p>
-                </div>
-              )}
+              <Category_notification />
             </Menu.Item>
             <Menu.Item>
-              {({ active }) => (
+              <Category_commands />
+            </Menu.Item>
+            <Menu.Item>
+              {() => (
                 <div
                   className={
                     " p-1  flex items-center gap-x-2 cursor-pointer transition ease-out " +
