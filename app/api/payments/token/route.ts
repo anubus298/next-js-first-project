@@ -119,7 +119,7 @@ async function writeData(body: tokenBody, pb) {
 
 function generateUniqueId() {
   const timestamp = new Date().getTime();
-  const random = Math.floor(Math.random() * 100000000); // Random number between 0 and 99999999
+  const random = Math.floor(100000000 + Math.random() * 100000000); // Random number between 0 and 99999999
   const uniqueId =
     timestamp.toString().slice(-8) + random.toString().slice(0, 7); // Combine timestamp and random part
   return uniqueId;

@@ -1,4 +1,6 @@
 export const fetchCache = "force-no-store";
+export const dynamic = "force-dynamic";
+
 import PocketBase from "pocketbase";
 import { cookies } from "next/headers";
 import Main_notifications from "./main_notifications";
@@ -13,7 +15,7 @@ async function PageNoti() {
       pb.authStore.clear();
     }
     const records = await pb.collection("Notfications").getFullList({
-      sort: "-created",
+      sort: "readStatus,-created",
     });
    
     return records;

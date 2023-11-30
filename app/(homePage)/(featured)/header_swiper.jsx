@@ -55,7 +55,7 @@ function Header_swiper(props) {
                     {product.productName}
                   </p>
                   <p className=" tracking-wider text-secondary font-semibold">
-                    {product.price}$
+                    ${product.price}
                   </p>
                 </Link>
               </SwiperSlide>

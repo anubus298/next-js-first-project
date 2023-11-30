@@ -5,7 +5,7 @@ import Cart_product_section from "./cart_product_section";
 import Cart_payment_methods from "./cart_payment_methods";
 import { useState } from "react";
 import Refresh from "./Refresh";
-function CartUI({ products, count, fullStartingPrice, id ,arrayOfproductCounts}) {
+function CartUI({ products, count, fullStartingPrice, id,err,arrayOfproductCounts }) {
   const [priceSummary, setpriceSummary] = useState(fullStartingPrice);
   return (
     <>
@@ -14,6 +14,7 @@ function CartUI({ products, count, fullStartingPrice, id ,arrayOfproductCounts})
         <div className="md:w-9/12 max-h-[600px] overflow-y-auto">
           <Cart_product_section
             id={id}
+            err={err}
             products={products}
             count={count}
             priceSummary={priceSummary}
@@ -29,7 +30,7 @@ function CartUI({ products, count, fullStartingPrice, id ,arrayOfproductCounts})
               count={count}
             />
           )}
-          <Refresh/>
+          <Refresh />
           <Cart_payment_methods />
         </div>
       </div>

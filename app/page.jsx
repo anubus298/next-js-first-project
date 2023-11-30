@@ -1,3 +1,4 @@
+export const fetchCache = "force-cache"
 import { Suspense } from "react";
 import ProductSection from "./(homePage)/(products section)/productSection";
 import Featured from "./(homePage)/(featured)/featured";

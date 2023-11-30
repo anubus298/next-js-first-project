@@ -15,7 +15,7 @@ function Category_account() {
         className="flex items-center space-x-2"
         onClick={() => {
           setaccountCountAtom(0);
-          router.push("/user/home");
+          router.push("/user/account");
         }}
       >
         <Badge size="small" count={accountCountAtom}>

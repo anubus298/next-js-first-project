@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { Badge } from "antd";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBell } from "@fortawesome/free-solid-svg-icons";
@@ -6,9 +6,8 @@ import notificationAtom from "../../(lib)/jotai/notificationAtom";
 import { useAtom } from "jotai";
 import { useRouter } from "next/navigation";
 function Category_notification() {
-    const router = useRouter();
-    const [notificationsCountAtom, setnotificationsCountAtom] =
-    useAtom(notificationAtom);
+  const router = useRouter();
+  const [notificationsCountAtom] = useAtom(notificationAtom);
   return (
     <div
       className={
@@ -16,7 +15,6 @@ function Category_notification() {
         ` transition p-1 rounded-lg`
       }
       onClick={() => {
-        setnotificationsCountAtom(0);
         router.push("/user/notifications");
       }}
     >

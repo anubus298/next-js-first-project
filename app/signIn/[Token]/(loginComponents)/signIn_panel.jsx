@@ -6,10 +6,11 @@ import { useForm } from "react-hook-form";
 import { getCookie } from "../../../functions/cookiesFunctions";
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+import { faArrowLeft, faExclamation } from "@fortawesome/free-solid-svg-icons";
 import { AuthContext } from "../../../(lib)/context-provider";
 import { useContext } from "react";
 import Link from "next/link";
+import { Popover } from "antd";
 function Login_panel() {
   const {
     register,
@@ -26,27 +27,14 @@ function Login_panel() {
   const onSubmit = async (data) => {
     try {
       setErrorMsg("");
-      const res = await fetch("/api/signIn", {
+      const res = await fetch("/api/register?subscribe=" + data.Subscribe, {
         method: "POST",
         "Content-Type": "application/json",
         body: JSON.stringify(data),
-        headers: {
-          remember: data.remember,
-        },
       });
-      if (res.status == 200) {
-        pb.authStore.loadFromCookie(getCookie("pb_auth"));
-        try {
-          pb.authStore.isValid && (await pb.collection("users").authRefresh());
-        } catch (_) {
-          pb.authStore.clear();
-        }
-        setisValid(true);
-        router.push("/");
-      } else throw new Error();
     } catch (e) {
       console.log(e);
-      setErrorMsg("error : " + e);
+      setErrorMsg("error : " + e.message);
     }
   };
   return (
@@ -58,7 +46,7 @@ function Login_panel() {
         onSubmit={handleSubmit(onSubmit)}
         className="flex flex-col gap-y-5 justify-center items-center font-lato"
       >
-        <div className="flex gap-x-3 w-full p-2 justify-start items-center">
+        <div className="flex gap-x-3 w-full p-2 justify-start items-center relative">
           <input
             autoComplete="off"
             type="text"
@@ -69,6 +57,11 @@ function Login_panel() {
               pattern: /^[a-zA-ZÀ-ÖØ-öø-ÿ']+$/,
             })}
           />
+          {errors.first_name && (
+            <p className="absolute -bottom-4 font-black text-red-600">
+              Invalid first name
+            </p>
+          )}
           <input
             autoComplete="off"
             type="text"
@@ -79,9 +72,13 @@ function Login_panel() {
               pattern: /^[a-zA-ZÀ-ÖØ-öø-ÿ']+$/,
             })}
           />
-          {errors.exampleRequired && <span>This field is required</span>}
+          {errors.last_name && (
+            <p className="absolute -bottom-4 right-36 font-black text-red-600">
+              Invalid last name
+            </p>
+          )}
         </div>
-        <div className="flex gap-x-3 w-full p-2 justify-start items-center">
+        <div className="flex gap-x-3 w-full p-2 justify-start items-center relative">
           <input
             autoComplete="off"
             type="email"
@@ -92,10 +89,14 @@ function Login_panel() {
               pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
             })}
           />
-          {errors.exampleRequired && <span>This field is required</span>}
+          {errors.email && (
+            <p className="absolute -bottom-4 font-black text-red-600">
+              Invalid Email
+            </p>
+          )}
         </div>
 
-        <div className="flex gap-x-3 w-full p-2 justify-start items-center">
+        <div className="flex gap-x-3 w-full p-2 justify-start items-center relative">
           <input
             autoComplete="off"
             type="password"
@@ -103,13 +104,35 @@ function Login_panel() {
             className="w-full text-lg text-main border-main border-2 font-semibold py-1 md:py-4 px-3  focus-visible:outline-none"
             {...register("password", {
               required: true,
-              pattern:
-                /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
+              pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,}$/,
             })}
           />
-          {errors.exampleRequired && <span>This field is required</span>}
+          <Popover
+            className="absolute -right-4 "
+            placement="right"
+            content={
+              <p className=" text-sm font-semibold">
+                - At least 8 characters long.
+                <br />
+                - Must contain at least one lowercase letter.
+                <br />
+                - Must contain at least one uppercase letter.
+                <br />- Must include at least one digit (0-9).
+              </p>
+            }
+            title={<p className="font-extrabold">Password rules :</p>}
+          >
+            <div className="bg-main text-textWhiteWithSecondary p-1 w-5 h-5 rounded-full flex justify-center items-center relative">
+              <FontAwesomeIcon icon={faExclamation} />
+            </div>
+          </Popover>
+          {errors.password && (
+            <p className="absolute -bottom-4 font-black text-red-600">
+              Invalid input
+            </p>
+          )}
         </div>
-        <div className="flex gap-x-3 w-full p-2 justify-start items-center">
+        <div className="flex gap-x-3 w-full p-2 justify-start items-center relative">
           <input
             autoComplete="off"
             type="password"
@@ -117,19 +140,22 @@ function Login_panel() {
             className="w-full text-lg text-main border-main border-2 font-semibold py-1 md:py-4 px-3  focus-visible:outline-none"
             {...register("passwordConfirm", {
               required: true,
-              pattern:
-                /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
+              pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,}$/,
             })}
           />
-          {errors.exampleRequired && <span>This field is required</span>}
+          {errors.passwordConfirm && (
+            <p className="absolute -bottom-4 font-black text-red-600">
+              Invalid matching
+            </p>
+          )}
         </div>
         {errorMsg && <p className="text-red-600">{errorMsg}</p>}
 
         <div className="flex-col flex w-full justify-between space-y-3">
-          <div className="flex  items-center space-x-2">
-            <Checkbox
+          <div className="flex  items-center space-x-2 relative">
+            <input
+              type={"checkbox"}
               className="cursor-pointer"
-              color="red"
               {...register("Term", { required: true })}
             />
             <p>
@@ -138,10 +164,13 @@ function Login_panel() {
                 <Link href="/termOfUse "> term of use</Link>
               </span>
             </p>
+            {errors.Term && (
+              <p className=" font-black text-red-600">Required</p>
+            )}
           </div>
           <div className="flex  items-center space-x-2">
-            <Checkbox
-              color="red"
+            <input
+              type={"checkbox"}
               {...register("Subscribe", { required: false })}
             />
             <p>Subscribe to email notifications</p>

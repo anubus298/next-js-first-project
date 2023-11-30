@@ -1,13 +1,29 @@
 "use client";
-import React, { useState } from "react";
-import { Button, ConfigProvider, message, Steps, theme } from "antd";
+import { useState, useEffect } from "react";
+import { ConfigProvider, Steps } from "antd";
 import Payment_method from "./Payment_method";
+import PocketBase from "pocketbase";
 import Payment_paypal from "./(methods)/Payment_paypal";
 import Payment_manual from "./(methods)/Payment_manual";
 import Cart_Review from "./Cart_Review";
 import Shipping_Billing from "./Shipping_Billing";
 import Order_Confirmation from "./Order_Confirmation";
 function Checkout_main({ data, melon }) {
+  const pb = new PocketBase("http://127.0.0.1:8090");
+
+  useEffect(() => {
+    function getCookie(name) {
+      let matches = document.cookie.match(
+        new RegExp(
+          "(?:^|; )" +
+            name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, "\\$1") +
+            "=([^;]*)"
+        )
+      );
+      return matches ? decodeURIComponent(matches[1]) : undefined;
+    }
+    pb.authStore.loadFromCookie(getCookie("pb_auth"));
+  }, []);
   const [method, setmethod] = useState(false);
   const [current, setCurrent] = useState(0);
   const [userInfo, setuserInfo] = useState({
@@ -41,8 +57,10 @@ function Checkout_main({ data, melon }) {
           products={data.products.map((product, index) => {
             return { ...product, count: melon[index] };
           })}
+          username={pb.authStore.model.username}
           userInfo={userInfo}
           setCurrent={setCurrent}
+          productProcessingIds={productProcessingIds}
           current={current}
           addToShelterOnce={addToShelterOnce}
           setaddToShelterOnce={setaddToShelterOnce}
@@ -83,6 +101,7 @@ function Checkout_main({ data, melon }) {
       content: <Order_Confirmation />,
     },
   ];
+
   const next = () => {
     setCurrent(current + 1);
   };
@@ -110,6 +129,10 @@ function Checkout_main({ data, melon }) {
           items={items}
         />
         <div>{steps[current].content}</div>
+      </div>
+      <div className="text-main">
+        <button onClick={() => setCurrent(current + 1)}>go</button>
+        <button onClick={() => setCurrent(current - 1)}>ff</button>
       </div>
     </ConfigProvider>
   );

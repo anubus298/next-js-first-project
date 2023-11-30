@@ -1,5 +1,4 @@
-export const fetchCache = "force-no-store";
-
+export const fetchCache = "force-cache"
 import PocketBase from "pocketbase";
 import SidePallete from "./SidePallete";
 import MainPallete from "./MainPallete";

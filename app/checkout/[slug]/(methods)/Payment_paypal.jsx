@@ -5,6 +5,7 @@ import paypalCreateOrder from "../../../(lib)/paypal/functions/paypalCreateOrder
 import paypalCaptureOrder from "../../../(lib)/paypal/functions/paypalCaptureOrder";
 import { useState } from "react";
 import { useRef } from "react";
+import Image from "next/image";
 function Payment_paypal({
   current,
   setCurrent,
@@ -21,36 +22,51 @@ function Payment_paypal({
         intent: "capture",
       }}
     >
-      <div className="w-full min-h-[450px] flex flex-col justify-center items-center bg-secondarySecondarylight p-4 font-semibold mt-5">
-        <PayPalButtons
-          style={{
-            color: "gold",
-            shape: "rect",
-            label: "pay",
-          }}
-          createOrder={async () => {
-            let order = await paypalCreateOrder(
-              productProcessingIds,
-              setisError
-            );
-            SSdm.current = order;
-            return order;
-          }}
-          onApprove={async (data, action) => {
-            let order = await paypalCaptureOrder(
-              productProcessingIds,
-              data.orderID,
-              setisError
-            );
-            if (!isError) {
-              setCurrent(current + 1);
-            }
-          }}
-          onError={() => {
-            setisError(true);
-          }}
-        />
-        {isError && <p className="text-4xl text-red-600">Error happened</p>}
+      <div className="w-full min-h-[450px] flex gap-8 justify-center items-center bg-secondarySecondarylight p-4 font-semibold mt-5 select-none">
+        <div className="flex flex-col items-center gap-8">
+          <p className="text-5xl font-black ">
+            Use <span className="text-secondaryYellow strokeF">Paypal</span>
+          </p>
+
+          <PayPalButtons
+            style={{
+              color: "gold",
+              shape: "rect",
+              label: "paypal",
+            }}
+            createOrder={async () => {
+              let order = await paypalCreateOrder(
+                productProcessingIds,
+                setisError
+              );
+              SSdm.current = order;
+              return order;
+            }}
+            onApprove={async (data, action) => {
+              let order = await paypalCaptureOrder(
+                productProcessingIds,
+                data.orderID,
+                setisError
+              );
+              if (!isError) {
+                setCurrent(current + 1);
+              }
+            }}
+            onError={() => {
+              setisError(true);
+            }}
+          />
+          {isError && (
+            <p className=" text-red-600 font-extrabold text-center">
+              Failed to purchase
+              <br />
+              <span className="text-xs font-medium">
+                if this message keep appearing please contact the support
+              </span>
+            </p>
+          )}
+        </div>
+        <Image alt="phone check" width={450} height={450} src="/Payment.png" />
       </div>
     </PayPalScriptProvider>
   );

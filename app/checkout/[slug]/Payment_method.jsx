@@ -5,32 +5,42 @@ import Image from "next/image";
 
 function Payment_method({ setmethod, setCurrent, current }) {
   return (
-    <div className="w-full h-[450px] flex justify-center items-center bg-secondarySecondarylight p-4 font-semibold mt-5">
-      <form className="w-[200px] flex flex-col gap-y-3">
-        <Button
-          onClick={() => {
-            setmethod("manual");
-            setCurrent(current + 1);
-          }}
-          className="rounded-3xl py-2 px-5 w-full bg-secondary text-white h-16 text-lg"
-        >
-          ADD NEW CART
-        </Button>
-        <Button
-          onClick={() => {
-            setmethod("paypal");
-            setCurrent(current + 1);
-          }}
-          className="rounded-3xl py-2 px-5 w-full bg-secondary text-white flex h-16 justify-center items-center"
-        >
-          <Image
-            alt="paypal"
-            src={"/paymethods/paypal-logo-checkout.png"}
-            width={70}
-            height={70}
-          />
-        </Button>
-      </form>
+    <div className="w-full h-[450px] flex  select-none justify-between items-center bg-secondarySecondarylight p-4 font-semibold mt-5">
+      <div className="w-1/3 flex justify-center items-center">
+        <Image alt="moneeey" width={450} height={450} src={"/Finance.png"} />
+      </div>
+      <div className="flex items-center flex-col gap-8 w-1/3">
+        <p className="text-3xl font-black">Select your <span className="stroke-black strokeF text-secondaryYellow">Payment</span> method</p>
+        <form className="w-[200px] flex flex-col gap-y-3">
+          <Button
+            onClick={() => {
+              setmethod("manual");
+              setCurrent(current + 1);
+            }}
+            className=" py-2 px-5 w-full border-main border-2 rounded-none  font-extrabold bg-white h-16 text-lg hover:text-main"
+          >
+            ADD NEW CART
+          </Button>
+          <p className="text-lg font-semibold w-full text-center">OR</p>
+          <Button
+            onClick={() => {
+              setmethod("paypal");
+              setCurrent(current + 1);
+            }}
+            className="  flex  justify-center items-center  py-2 px-5 w-full border-main border-2 rounded-none  font-extrabold bg-secondaryYellow h-16 text-lg"
+          >
+            <Image
+              alt="paypal"
+              src={"/paymethods/paypal-logo-checkout.png"}
+              width={110}
+              height={110}
+            />
+          </Button>
+        </form>
+      </div>
+      <div className="w-1/3 flex justify-center items-center">
+        <Image alt="moneeey" width={320} height={320} src={"/Securelock.png"} />
+      </div>
     </div>
   );
 }

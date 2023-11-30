@@ -131,7 +131,7 @@ function Command_cart({ product, deleteCommand }) {
             </p>
           </div>
           <div className="flex justify-between ">
-            {product.productInfo.expand.brand && (
+            {product.productInfo?.expand?.brand && (
               <div className="flex flex-col w-[150px] md:w-[180px]">
                 <p className="text-gray-500 text-sm">Ordered from :</p>
                 <div className="flex items-center gap-x-2">
@@ -139,12 +139,12 @@ function Command_cart({ product, deleteCommand }) {
                     <Image
                       width={30}
                       height={30}
-                      alt={`${product.productInfo.expand.brand.brandName} logo`}
-                      src={`${process.env.pocketBaseUrl}/api/files/${product.productInfo.expand.brand.collectionId}/${product.productInfo.expand.brand.id}/${product.productInfo.expand.brand.img}`}
+                      alt={`${product.productInfo?.expand?.brand.brandName} logo`}
+                      src={`${process.env.pocketBaseUrl}/api/files/${product.productInfo?.expand?.brand.collectionId}/${product.productInfo?.expand?.brand.id}/${product.productInfo?.expand?.brand.img}`}
                     />
                   </div>
                   <p className="text-main font-semibold">
-                    {product.productInfo.expand.brand.brandName}
+                    {product.productInfo?.expand?.brand.brandName}
                   </p>
                 </div>
               </div>

@@ -25,34 +25,6 @@ function Login_panel() {
   const [isloading, setisloading] = useState(false);
   const router = useRouter();
   function ONSubmit(data) {
-    // try {
-    //   setErrorMsg("");
-    //   setisloading(true);
-    //   const res = await fetch(
-    //     `http://localhost:8000/api/login?survive=${data.remember}`,
-    //     {
-    //       method: "POST",
-    //       "Content-Type": "application/json",
-    //       body: JSON.stringify(data),
-    //       headers: {
-    //         remember: data.remember,
-    //       },
-    //     }
-    //   );
-    //   setisloading(false);
-
-    //   if (res.status == 200) {
-    //     pb.authStore.loadFromCookie(getCookie("pb_auth"));
-    //     try {
-    //       pb.authStore.isValid && (await pb.collection("users").authRefresh());
-    //     } catch (_) {
-    //       pb.authStore.clear();
-    //     }
-    //     pb.authStore.isValid && router.push("/");
-    //   } else throw new Error();
-    // } catch (e) {
-    //   setErrorMsg(e);
-    // }
     setErrorMsg("");
     setisloading(true);
     fetch(`/api/login?survive=${data.remember}`, {
@@ -77,6 +49,7 @@ function Login_panel() {
         pb.authStore.isValid && router.push("/");
       });
   }
+
   return (
     <div className="bg-secondarySecondarylight  h-[500px] w-full md:w-1/2  sm:px-10 flex flex-col justify-evenly  text-main text-center font-bold select-none font-lato">
       <div className=" text-center md:text-start">
@@ -94,7 +67,7 @@ function Login_panel() {
         <div className="flex gap-x-3 w-full p-2 justify-start items-center">
           <input
             autoComplete="off"
-            value={"darknight22@gmail.com"}
+            value={"araristaf@gmail.com"}
             type="email"
             placeholder="email"
             className="w-full text-lg  border-2 border-main text-main  font-semibold py-2 md:py-6 px-3  placeholder:text-red-200 focus-visible:outline-none"
@@ -110,7 +83,6 @@ function Login_panel() {
             type="password"
             placeholder="password"
             className="w-full text-lg  border-2 border-main text-main  font-semibold py-2 md:py-6 px-3  placeholder:text-red-200 focus-visible:outline-none"
-
             {...register("password", { required: true })}
           />
           {errors.exampleRequired && <span>This field is required</span>}
@@ -119,10 +91,10 @@ function Login_panel() {
 
         <div className="flex px-4 md:px-0 w-full justify-between items-center">
           <div className="flex  items-center space-x-2">
-            <Checkbox
-              className="cursor-pointer"
-              color="red"
-              {...register("remember", { required: true })}
+            <input
+              type={"checkbox"}
+              className="cursor-pointer bg-secondary text-secondary"
+              {...register("remember", { required: false })}
             />
             <p>Remember me</p>
           </div>
@@ -154,6 +126,9 @@ function Login_panel() {
           <p>Sign up</p>
           <FontAwesomeIcon icon={faArrowRight} />
         </Link>
+      </div>
+      <div className="text-center w-full font-semibold">
+        <p>Or</p>
       </div>
     </div>
   );

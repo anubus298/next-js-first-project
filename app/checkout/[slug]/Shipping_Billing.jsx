@@ -1,6 +1,18 @@
 "use client";
+import ReactPDF, {
+  Page,
+  Text,
+  View,
+  Document,
+  StyleSheet,
+} from "@react-pdf/renderer";
+import { PDFViewer } from "@react-pdf/renderer";
 
-import { Table } from "antd";
+// Create styles
+
+import { faNoteSticky } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Avatar, Table } from "antd";
 import { useEffect, useState } from "react";
 
 function Shipping_Billing({
@@ -9,10 +21,24 @@ function Shipping_Billing({
   setCurrent,
   current,
   setproductProcessingIds,
+  productProcessingIds,
   addToShelterOnce,
   setaddToShelterOnce,
+  username,
 }) {
+  const styles = StyleSheet.create({
+    page: {
+      flexDirection: "row",
+      backgroundColor: "#E4E4E4",
+    },
+    section: {
+      margin: 10,
+      padding: 10,
+      flexGrow: 1,
+    },
+  });
   const [fetchedBillInformtion, setfetchedBillInformtion] = useState(undefined);
+  const [total, settotal] = useState(0);
   const [isloading, setisloading] = useState(true);
   const columns = [
     {
@@ -77,100 +103,109 @@ function Shipping_Billing({
     }
     if (isloading && addToShelterOnce) {
       CallToken(data);
-      setisloading(false)
-      setaddToShelterOnce(false)
+      setisloading(false);
+      setaddToShelterOnce(false);
     }
   }, []);
+  const now = new Date();
+  const prettyDate = now.toLocaleString("en-US", {
+    year: "numeric",
+    month: "short",
+    hour12: false,
+    day: "numeric",
+    hour: "2-digit",
+    minute: "numeric",
+  });
   return (
-    <div className="w-full gap-y-4  min-h-[450px] flex flex-col md:flex-row justify-evenly items-center bg-secondarySecondarylight p-4 mt-5">
-      <div className="w-full md:w-auto mx-auto bg-white p-6 rounded-md shadow-md">
-        <h2 className="text-2xl font-extrabold mb-4">Payment Summary</h2>
-
-        <div className=" md:w-auto bg-gray-200 text-lg w-full p-1 md:p-4 rounded-md mb-4">
-          <div className="flex justify-between mb-2">
-            <span className="font-extrabold">First Name:</span>
-            <span>{userInfo.first_name}</span>
+    <>
+      <div className="w-full gap-y-4 gap-x-6 min-h-[450px] flex flex-col md:flex-row justify-center items-center bg-secondarySecondarylight p-4 mt-5 font-semibold">
+        <div className="w-full md:w-1/3 mx-auto bg-white rounded-md shadow-md flex flex-col p-4">
+          <div className="flex justify-center gap-x-2 items-center py-2 text-sm border-b-2 cursor-pointer hover:bg-gray-100 transition">
+            <FontAwesomeIcon icon={faNoteSticky} />
+            <p>Download pdf</p>
           </div>
-
-          <div className="flex justify-between mb-2">
-            <span className="font-extrabold">Last Name:</span>
-            <span>{userInfo.last_name}</span>
+          <div className="flex items-center justify-between mt-2">
+            <div className="">
+              <Avatar shape="square" size="large" className="bg-green-500">
+                {username}
+              </Avatar>
+            </div>
+            <p className="text-xs text-gray-600">Issued in : {prettyDate}</p>
           </div>
+          <div>
+            <div className="text-main text-end">
+              {productProcessingIds &&
+                productProcessingIds.map((id, index) => {
+                  return (
+                    <p key={id} className="text-xs text-gray-600">
+                      Bill {index} No : {id}
+                    </p>
+                  );
+                })}
 
-          <div className="flex justify-between mb-2">
-            <span className="font-extrabold">Phone:</span>
-            <span>{userInfo.phone}</span>
+              <p className="text-lg font-extrabold">
+                {userInfo.first_name} {userInfo.last_name}
+              </p>
+              <p className="text-sm text-gray-600">{userInfo.phone}</p>
+              <p className="text-sm text-gray-600">
+                {userInfo.address}, {userInfo.code_postal}, {userInfo.town_city}
+              </p>
+              <p className="text-sm text-gray-600">{userInfo.country}</p>
+              <p className=" font-extrabold">To</p>
+              <p className="text-lg font-extrabold">SafoMart</p>
+            </div>
           </div>
-
-          <div className="flex justify-between mb-2">
-            <span className="font-extrabold">Address:</span>
-            <span>{userInfo.address}</span>
-          </div>
-
-          <div className="flex justify-between mb-2">
-            <span className="font-extrabold">Postal Code:</span>
-            <span>{userInfo.code_postal}</span>
-          </div>
-
-          <div className="flex justify-between mb-2">
-            <span className="font-extrabold">Country:</span>
-            <span>{userInfo.country}</span>
-          </div>
-
-          <div className="flex justify-between mb-2">
-            <span className="font-extrabold">Town/City:</span>
-            <span>{userInfo.town_city}</span>
-          </div>
-          <div className="flex justify-between mt-4 overflow-auto">
-            <Table
-              columns={columns}
-              pagination={{ hideOnSinglePage: true }}
-              loading={!fetchedBillInformtion}
-              summary={(data) => {
-                let totalSummary = 0;
-
-                data.forEach(({ Total, TaxesBill, shippingBill }) => {
-                  totalSummary += parseInt(Total.substring(1), 10);
-                });
-                return (
-                  <>
-                    <Table.Summary.Row>
-                      <Table.Summary.Cell index={0}></Table.Summary.Cell>
-                      <Table.Summary.Cell index={1}></Table.Summary.Cell>
-                      <Table.Summary.Cell index={2}></Table.Summary.Cell>
-                      <Table.Summary.Cell index={3}></Table.Summary.Cell>
-                      <Table.Summary.Cell index={4}>
-                        <p className="font-extrabold text-lg text-green-500">
-                          Total :
-                        </p>
-                      </Table.Summary.Cell>
-                      <Table.Summary.Cell index={5}>
-                        <p className="font-extrabold text-lg text-green-500">
-                          ${totalSummary}
-                        </p>
-                      </Table.Summary.Cell>
-                    </Table.Summary.Row>
-                  </>
-                );
-              }}
-              dataSource={
-                fetchedBillInformtion &&
-                fetchedBillInformtion.map((item, index) => {
-                  return {
-                    key: index,
-                    Product: products[index].name,
-                    PerOne: "$" + item.products.perOne,
-                    Count: item.products.count,
-                    Total: "$" + item.products.totalAmount,
-                    shippingBill: "$" + item.products.shipping,
-                    TaxesBill: "$" + item.products.taxes,
-                  };
-                })
-              }
-            />
+          <div className="w-full border-y-2 py-2 flex justify-between">
+            <p className="text-gray-600">Amount</p>
+            <p className="text-gray-600">${total}</p>
           </div>
         </div>
+        <Table
+          className="w-2/3 h-full"
+          columns={columns}
+          pagination={{ hideOnSinglePage: true }}
+          loading={!fetchedBillInformtion}
+          summary={(data) => {
+            let totalSummary = 0;
 
+            data.forEach(({ Total, TaxesBill, shippingBill }) => {
+              totalSummary += parseInt(Total.substring(1), 10);
+            });
+            settotal(totalSummary)
+            return (
+              <>
+                <Table.Summary.Row>
+                  <Table.Summary.Cell index={0}></Table.Summary.Cell>
+                  <Table.Summary.Cell index={1}></Table.Summary.Cell>
+                  <Table.Summary.Cell index={2}></Table.Summary.Cell>
+                  <Table.Summary.Cell index={3}></Table.Summary.Cell>
+                  <Table.Summary.Cell index={4}></Table.Summary.Cell>
+                  <Table.Summary.Cell index={5}>
+                    <p className="font-extrabold text-lg text-green-500">
+                      ${totalSummary}
+                    </p>
+                  </Table.Summary.Cell>
+                </Table.Summary.Row>
+              </>
+            );
+          }}
+          dataSource={
+            fetchedBillInformtion &&
+            fetchedBillInformtion.map((item, index) => {
+              return {
+                key: index,
+                Product: products[index].name,
+                PerOne: "$" + item.products.perOne,
+                Count: item.products.count,
+                Total: "$" + item.products.totalAmount,
+                shippingBill: "$" + item.products.shipping,
+                TaxesBill: "$" + item.products.taxes,
+              };
+            })
+          }
+        />
+      </div>
+      <div className="w-full justify-center bg-secondarySecondarylight pb-4">
         <div className="text-center">
           <button
             type="button"
@@ -181,7 +216,7 @@ function Shipping_Billing({
           </button>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 

@@ -5,7 +5,6 @@ import CartUI from "./cartUI";
 async function Page() {
   async function getCartInfo() {
     const pb = new PocketBase(process.env.pocketBaseUrl);
-
     let pb_auth_cookie = await cookies().get("pb_auth");
     pb.authStore.loadFromCookie(pb_auth_cookie?.value);
     try {
@@ -17,25 +16,23 @@ async function Page() {
       expand:
         "product_laptops,product_mobiles,product_tvs,product_tablets,product_wearables",
     });
-    let data = await res;
     try {
       let result = [],
         fullPRICE = 0,
         count = 0;
-      Object.values(data[0]?.expand).map((type) => {
+      Object.values(res[0]?.expand).map((type) => {
         type.map((product) => {
           result.push(product);
           fullPRICE += Number(product.price);
           count += 1;
         });
       });
-      // pb.authStore.exportToCookie({ httpOnly: false });
       return {
         products: result,
         fullStartingPrice: fullPRICE,
         count: count,
-        origin: data,
-        arrayOfproductCounts: result.map((i) => 1),
+        origin: res,
+        arrayOfproductCounts: result.map(() => 1),
       };
     } catch (error) {
       return {
@@ -44,6 +41,7 @@ async function Page() {
         count: undefined,
         origin: undefined,
         arrayOfproductCounts: undefined,
+        err : error.message
       };
     }
   }
@@ -54,6 +52,7 @@ async function Page() {
         id={info?.origin ? info?.origin[0]?.id : undefined}
         products={info.products}
         count={info.count}
+        err={info.err}
         fullStartingPrice={info.fullStartingPrice}
         arrayOfproductCounts={info.arrayOfproductCounts}
       />

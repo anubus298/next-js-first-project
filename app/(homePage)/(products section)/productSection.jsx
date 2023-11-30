@@ -52,9 +52,7 @@ async function ProductSection({
       <div className="bg-main">
         <div className="   border-white w-full flex justify-start  font-extrabold pt-2 px-2 ">
           {showHeader && (
-            <div
-              className="bg-main select-none cursor-pointer text-secondary flex pt-2 px-2 rounded-t-lg justify-center text-center items-center gap-x-3 text-4xl py-2"
-            >
+            <div className="bg-main select-none text-secondary flex pt-2 px-2 rounded-t-lg justify-center text-center items-center gap-x-3 text-4xl py-2">
               <p className="">{type.toUpperCase()}</p>
               {type === "laptops" ? (
                 <FontAwesomeIcon size="1x" icon={faLaptop} />

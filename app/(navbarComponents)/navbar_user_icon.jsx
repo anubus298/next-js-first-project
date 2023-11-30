@@ -1,10 +1,9 @@
 "use client";
 import { Menu, Transition } from "@headlessui/react";
-import { faSignOut, faGear, faBox } from "@fortawesome/free-solid-svg-icons";
+import { faSignOut } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useRouter } from "next/navigation";
 import { CartIcon } from "./cartIcon";
-import FavoriteIcon from "./FavoriteIcon";
 import PocketBase from "pocketbase";
 
 import commandsAtom from "../(lib)/jotai/commandsAtom";
@@ -81,7 +80,6 @@ function Navbar_user_icon() {
   const router = useRouter();
   return (
     <div className="flex">
-      <FavoriteIcon />
       <CartIcon />
       <Menu className="relative" as={"menu"}>
         <Menu.Button className="hover:text-secondary transition m-2 flex items-center gap-x-2">

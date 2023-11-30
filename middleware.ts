@@ -17,7 +17,9 @@ export function middleware(request: NextRequest) {
   }
   //return response if trying to update cart without login
   if (
-    ((request.method == "PATCH" || request.method == "POST") && !request.nextUrl.pathname.startsWith('/api/login')) &&
+    (request.method == "PATCH" || request.method == "POST") &&
+    !request.nextUrl.pathname.startsWith("/api/login") &&
+    !request.nextUrl.pathname.startsWith("/api/register") &&
     !pb.authStore.isValid
   ) {
     return new Response(request.nextUrl.pathname, { status: 401 });
