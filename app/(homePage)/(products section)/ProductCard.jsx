@@ -3,36 +3,20 @@ import ProductImg from "./productImg";
 import BrandImg from "./brandImg";
 import StarComp from "./StarComp";
 function ProductCard({ item, type }) {
-  let wdth = 0;
-  let wdth5 = 0;
   const reg = /[,|]/;
-  if (item.expand?.brand) {
-    wdth = 30;
-    if (item.expand?.brand.brandName == "lenovo") wdth = 120;
-    if (item.expand?.brand.brandName == "acer") wdth = 50;
-    if (item.expand?.brand.brandName == "honor") wdth = 70;
-    if (item.expand?.brand.brandName == "samsung") wdth = 53;
-    if (item.expand?.brand.brandName == "asus") wdth = 65;
-    if (item.expand?.brand.brandName == "oppo") wdth = 65;
-    if (item.expand?.brand.brandName == "lg") wdth = 70;
-    if (item.expand?.brand.brandName == "nokia") wdth = 70;
-    if (item.expand?.brand.brandName == "realme") wdth = 50;
-  }
-  type == "mobiles" ? (wdth5 = 150) : (wdth5 = 250);
 
   return (
     <div className="flex justify-center h-[380px] select-none w-11/12 md:w-auto rounded-lg md:rounded-none">
       <div className="w-full mx-5 sm:mx-0 sm:w-[300px] bg-secondarySecondarylight  h-full rounded-lg p-5">
         <div className="flex justify-center h-[180px] relative">
           <ProductImg
-            width={wdth5}
             fill={type != "mobiles" && true}
             id={item.id}
             type={type}
             clickable={true}
             height={280}
             name={item.name.split(" ", 2).join(" ")}
-            src={`http://127.0.0.1:8090/api/files/${item.collectionId}/${item.id}/${item.imgs[0]}?thumb=Wx0`}
+            src={`${process.env.pocketBaseUrl}api/files/${item.collectionId}/${item.id}/${item.imgs[0]}?thumb=Wx0`}
           />
         </div>
         <div className="h-[0.5px] bg-gray-300 w-full  "></div>
@@ -48,24 +32,21 @@ function ProductCard({ item, type }) {
         <div className="h-[30px] flex justify-center relative ">
           {item.expand && (
             <BrandImg
-              width={wdth}
-              height={250}
-              name={""}
-              src={`http://127.0.0.1:8090/api/files/${item.expand?.brand.collectionId}/${item.expand?.brand.id}/${item.expand?.brand.img}?thumb=0x30`}
+              name={item.expand?.brand.name}
+              src={`${process.env.pocketBaseUrl}api/files/${item.expand?.brand.collectionId}/${item.expand?.brand.id}/${item.expand?.brand.img}?thumb=0x30`}
             />
           )}
         </div>
-
         <div className="flex justify-evenly items-center mt-auto">
           <ProductDescription
-            classes="text-secondary text-2xl "
+            classes="text-indigo-950 text-2xl "
             add="$"
             text={item.price}
             type={type}
             id={item.id}
           />
           <StarComp count={item.rating} size={15} readonly={true} />
-          <p className="text-secondary text-xs">({item.totalRated} user)</p>
+          <p className="text-indigo-950 text-xs font-semibold">({item.totalRated} user)</p>
         </div>
       </div>
     </div>

@@ -1,4 +1,3 @@
-"use client";
 import { Suspense } from "react";
 import Fallback_page from "../../(fallback)/Fallback_page";
 import ProductSection from "../../(homePage)/(products section)/productSection";

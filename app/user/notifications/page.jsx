@@ -1,5 +1,5 @@
 export const fetchCache = "force-no-store";
-export const dynamic = "force-dynamic";
+
 
 import PocketBase from "pocketbase";
 import { cookies } from "next/headers";

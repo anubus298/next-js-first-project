@@ -37,17 +37,18 @@ function SwiperProducts(props) {
           disableOnInteraction: true,
         }}
       >
-        {props.data.items.map((item) => {
-          return (
-            <SwiperSlide className="flex justify-center" key={item.id}>
-              {domloaded ? (
-                <ProductCard item={item} type={props.type} />
-              ) : (
-                <Fallback_productCard />
-              )}
-            </SwiperSlide>
-          );
-        })}
+        {props.data &&
+          props.data.items.map((item) => {
+            return (
+              <SwiperSlide className="flex justify-center" key={item.id}>
+                {domloaded ? (
+                  <ProductCard item={item} type={props.type} />
+                ) : (
+                  <Fallback_productCard />
+                )}
+              </SwiperSlide>
+            );
+          })}
       </Swiper>
     </div>
   );

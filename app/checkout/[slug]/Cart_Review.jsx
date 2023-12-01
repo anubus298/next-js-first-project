@@ -27,7 +27,7 @@ function Cart_Review({ data, melon, setuserInfo, setCurrent, current }) {
               <div className="flex gap-x-5 items-center h-[120px] overflow-auto sm:overflow-hidden">
                 <div className="h-[70px] flex  items-center">
                   <Image
-                    src={`http://127.0.0.1:8090/api/files/${product.collectionId}/${product.id}/${product.imgs[0]}`}
+                    src={`${process.env.pocketBaseUrl}api/files/${product.collectionId}/${product.id}/${product.imgs[0]}`}
                     alt={product.name}
                     height={70}
                     width={70}
@@ -351,7 +351,7 @@ function Cart_Review({ data, melon, setuserInfo, setCurrent, current }) {
             {...register("code_postal", { required: true, pattern: /^\d{5}$/ })}
           />
         </div>
-        <button type="submit" className="bg-secondary text-white p-2 text-lg">
+        <button type="submit" className="bg-secondaryGreen text-white p-2 text-lg">
           NEXT
         </button>
       </form>

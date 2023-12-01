@@ -1,4 +1,3 @@
-export const fetchCache = "force-no-store";
 
 import SuspenseSupport from "./SuspenseSupport";
 import Fallback_page from "../(fallback)/Fallback_page";

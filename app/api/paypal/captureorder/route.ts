@@ -107,9 +107,11 @@ async function HandlingTheDataBase(body, pb) {
     let ReturnedElem = [];
     const ff = await Promise.all(
       body.productProcessingIds.map(async (id) => {
-        const shelter = await pb.collection("paymentsShelter").getOne(id);
+        const shelter = await pb
+          .collection("paymentsShelter")
+          .getOne(id, { requestKey: null });
         const data = {
-          user: "xeo58bi1pecko4m",
+          user: pb.authStore.model.id,
           id: generateUniqueId(),
           estimated_delivery_time: "2024-01-01 10:00:00.123Z",
           total_amount: shelter.total,
@@ -121,6 +123,7 @@ async function HandlingTheDataBase(body, pb) {
           count: shelter.count,
           status: "Processing",
           shipping_cost: shelter.shipping_cost,
+          readStatus : false,
           Returned: false,
           Notes: "",
         };

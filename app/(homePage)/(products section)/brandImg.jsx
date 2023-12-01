@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-function BrandImg({ name, width, height, src, clickable, id, type, fill }) {
+function BrandImg({ name, src, clickable, id, type }) {
   const router = useRouter();
   return (
     <Image

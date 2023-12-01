@@ -1,16 +1,14 @@
-export const revalidate = 60
+export const fetchCache = "force-no-store";
 import PocketBase from "pocketbase";
 import { NextRequest, NextResponse } from "next/server";
-
 export async function GET(request: NextRequest) {
   try {
     const pb = new PocketBase(process.env.pocketBaseUrl);
     const searchParams = request.nextUrl.searchParams;
     const token = request.cookies.get("pb_auth");
     pb.authStore.loadFromCookie(token.value);
-    try {
-      pb.authStore.isValid && (await pb.collection("users").authRefresh());
-    } catch (_) {
+
+    if (!pb.authStore.isValid) {
       pb.authStore.clear();
       return new Response("user not logged!", { status: 401 });
     }
@@ -25,25 +23,19 @@ export async function GET(request: NextRequest) {
         fields: "readStatus",
         filter: "readStatus = false",
       });
-      //region for account collection (soon)
+
+      //region for an account collection (soon)
       //commands
       return NextResponse.json({
         success: true,
         notif: notif.length,
         commands: commands.length,
-        account: 2,
+        account: 0,
       });
     }
   } catch (error) {
     return new Response(error.message, {
       status: 400,
     });
-    //use below
-    // return NextResponse.json({
-    //         success: true,
-    //         notif: notif.length,
-    //         commands: commands.length,
-    //         account: 2,
-    //       });
   }
 }

@@ -32,7 +32,7 @@ export default function ImgSection({ imgs, id, cId, searchParams }) {
               >
                 <Suspense fallback={<Skeleton.Image />}>
                   <Image
-                    src={`http://127.0.0.1:8090/api/files/${cId}/${id}/${imgs[j]}`}
+                    src={`${process.env.pocketBaseUrl}api/files/${cId}/${id}/${imgs[j]}`}
                     alt=""
                     height={50}
                     width={50}
@@ -46,7 +46,7 @@ export default function ImgSection({ imgs, id, cId, searchParams }) {
         <div className="bg-white p-2 rounded-lg flex overflow-hidden justify-center items-center h-[500px] md:w-[500px] w-11/12 ">
           <Image
             className="w-auto"
-            src={`http://127.0.0.1:8090/api/files/${cId}/${id}/${imgs[index]}?thumb=0x500`}
+            src={`${process.env.pocketBaseUrl}api/files/${cId}/${id}/${imgs[index]}?thumb=0x500`}
             height={500}
             width={500}
             sizes={"(max-width: 768px) 90vw ,(max-width: 1024px) 60vw,40vw"}

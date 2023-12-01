@@ -1,17 +1,7 @@
 "use client";
-import ReactPDF, {
-  Page,
-  Text,
-  View,
-  Document,
-  StyleSheet,
-} from "@react-pdf/renderer";
-import { PDFViewer } from "@react-pdf/renderer";
 
 // Create styles
 
-import { faNoteSticky } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Avatar, Table } from "antd";
 import { useEffect, useState } from "react";
 
@@ -26,17 +16,6 @@ function Shipping_Billing({
   setaddToShelterOnce,
   username,
 }) {
-  const styles = StyleSheet.create({
-    page: {
-      flexDirection: "row",
-      backgroundColor: "#E4E4E4",
-    },
-    section: {
-      margin: 10,
-      padding: 10,
-      flexGrow: 1,
-    },
-  });
   const [fetchedBillInformtion, setfetchedBillInformtion] = useState(undefined);
   const [total, settotal] = useState(0);
   const [isloading, setisloading] = useState(true);
@@ -45,6 +24,11 @@ function Shipping_Billing({
       title: "Product",
       dataIndex: "Product",
       key: "Product",
+    },
+    {
+      title: "Bill",
+      dataIndex: "Bill",
+      key: "Bill",
     },
     {
       title: "Per one",
@@ -57,12 +41,12 @@ function Shipping_Billing({
       key: "Count",
     },
     {
-      title: "shipping bill",
+      title: "Shipping",
       dataIndex: "shippingBill",
       key: "shippingbill",
     },
     {
-      title: "Taxes bill",
+      title: "Taxes",
       dataIndex: "TaxesBill",
       key: "Taxesbill",
     },
@@ -117,13 +101,10 @@ function Shipping_Billing({
     minute: "numeric",
   });
   return (
-    <>
-      <div className="w-full gap-y-4 gap-x-6 min-h-[450px] flex flex-col md:flex-row justify-center items-center bg-secondarySecondarylight p-4 mt-5 font-semibold">
+    <div className="min-h-[450px]">
+      <div className="w-full min-h-[410px] gap-y-4 gap-x-6  flex flex-col md:flex-row justify-center items-center bg-secondarySecondarylight p-4 pb-0 mt-5 font-semibold">
         <div className="w-full md:w-1/3 mx-auto bg-white rounded-md shadow-md flex flex-col p-4">
-          <div className="flex justify-center gap-x-2 items-center py-2 text-sm border-b-2 cursor-pointer hover:bg-gray-100 transition">
-            <FontAwesomeIcon icon={faNoteSticky} />
-            <p>Download pdf</p>
-          </div>
+          <div></div>
           <div className="flex items-center justify-between mt-2">
             <div className="">
               <Avatar shape="square" size="large" className="bg-green-500">
@@ -161,7 +142,7 @@ function Shipping_Billing({
           </div>
         </div>
         <Table
-          className="w-2/3 h-full"
+          className="w-full overflow-x-auto md:w-2/3 h-full"
           columns={columns}
           pagination={{ hideOnSinglePage: true }}
           loading={!fetchedBillInformtion}
@@ -171,7 +152,7 @@ function Shipping_Billing({
             data.forEach(({ Total, TaxesBill, shippingBill }) => {
               totalSummary += parseInt(Total.substring(1), 10);
             });
-            settotal(totalSummary)
+            settotal(totalSummary);
             return (
               <>
                 <Table.Summary.Row>
@@ -180,8 +161,9 @@ function Shipping_Billing({
                   <Table.Summary.Cell index={2}></Table.Summary.Cell>
                   <Table.Summary.Cell index={3}></Table.Summary.Cell>
                   <Table.Summary.Cell index={4}></Table.Summary.Cell>
-                  <Table.Summary.Cell index={5}>
-                    <p className="font-extrabold text-lg text-green-500">
+                  <Table.Summary.Cell index={5}></Table.Summary.Cell>
+                  <Table.Summary.Cell index={6}>
+                    <p className="font-extrabold text-lg text-green-600">
                       ${totalSummary}
                     </p>
                   </Table.Summary.Cell>
@@ -195,6 +177,7 @@ function Shipping_Billing({
               return {
                 key: index,
                 Product: products[index].name,
+                Bill: index + 1,
                 PerOne: "$" + item.products.perOne,
                 Count: item.products.count,
                 Total: "$" + item.products.totalAmount,
@@ -209,14 +192,14 @@ function Shipping_Billing({
         <div className="text-center">
           <button
             type="button"
-            className="bg-green-500 text-white p-2 rounded-md hover:bg-green-700 focus:outline-none focus:ring focus:border-indigo-300"
+            className="bg-green-500 font-semibold  text-white p-2 rounded-md hover:bg-green-700 focus:outline-none focus:ring focus:border-indigo-300"
             onClick={() => setCurrent(current + 1)}
           >
             Make Payment
           </button>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 

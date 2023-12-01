@@ -1,4 +1,4 @@
-export const fetchCache = "force-cache"
+export const fetchCache = "force-no-store"
 import PocketBase from "pocketbase";
 import SidePallete from "./SidePallete";
 import MainPallete from "./MainPallete";
@@ -6,7 +6,6 @@ import { Suspense } from "react";
 async function Page({ params }) {
   async function getAllItems() {
     const pb = new PocketBase(process.env.pocketBaseUrl);
-
     const type = "Pro" + params.type;
     let res = pb
       .collection(type)

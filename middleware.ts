@@ -15,6 +15,7 @@ export function middleware(request: NextRequest) {
   ) {
     return NextResponse.redirect(new URL("/", request.url));
   }
+
   //return response if trying to update cart without login
   if (
     (request.method == "PATCH" || request.method == "POST") &&
@@ -22,16 +23,17 @@ export function middleware(request: NextRequest) {
     !request.nextUrl.pathname.startsWith("/api/register") &&
     !pb.authStore.isValid
   ) {
-    return new Response(request.nextUrl.pathname, { status: 401 });
+    return new Response("not authorized", { status: 401 });
   }
 
-  // go to login page if user try to access cart
+  // go to login page if user try to access those routes
   if (
     (request.nextUrl.pathname.startsWith("/mycart") ||
       request.nextUrl.pathname.startsWith("/commands") ||
       request.nextUrl.pathname.startsWith("/notification") ||
       request.nextUrl.pathname.startsWith("/checkout") ||
-      request.nextUrl.pathname.startsWith("/favorite")) &&
+      request.nextUrl.pathname.startsWith("/commands") ||
+      request.nextUrl.pathname.startsWith("/user")) &&
     !pb.authStore.isValid
   ) {
     return NextResponse.redirect(

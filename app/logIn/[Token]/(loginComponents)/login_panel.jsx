@@ -37,16 +37,17 @@ function Login_panel() {
     })
       .then((res) => {
         res.json();
-        setisloading(false);
       })
       .catch((e) => setErrorMsg(e))
       .then((data) => {
         pb.authStore.loadFromCookie(getCookie("pb_auth"));
+        setisloading(false);
+        pb.authStore.isValid && router.push("/");
         if (pb.authStore.isValid) {
           setisValid(false);
           setisValid(true);
         }
-        pb.authStore.isValid && router.push("/");
+       
       });
   }
 

@@ -14,7 +14,7 @@ export const metadata = {
   description: "Technology Market",
 };
 const mooli = Lato({
-  weight: ["100", "400", "700", "100", "300", "900"],
+  weight: ["100","400","400", "700", "100", "300", "900"],
   subsets: ["latin"],
   style: ["normal"],
   variable: "--font-Lato",

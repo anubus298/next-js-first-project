@@ -10,7 +10,7 @@ import Shipping_Billing from "./Shipping_Billing";
 import Order_Confirmation from "./Order_Confirmation";
 function Checkout_main({ data, melon }) {
   const pb = new PocketBase("http://127.0.0.1:8090");
-
+  const [width, setwidth] = useState(1000);
   useEffect(() => {
     function getCookie(name) {
       let matches = document.cookie.match(
@@ -23,6 +23,7 @@ function Checkout_main({ data, melon }) {
       return matches ? decodeURIComponent(matches[1]) : undefined;
     }
     pb.authStore.loadFromCookie(getCookie("pb_auth"));
+    setwidth(document.documentElement.clientWidth);
   }, []);
   const [method, setmethod] = useState(false);
   const [current, setCurrent] = useState(0);
@@ -39,7 +40,7 @@ function Checkout_main({ data, melon }) {
   const [addToShelterOnce, setaddToShelterOnce] = useState(true);
   const steps = [
     {
-      title: "Cart Review",
+      title: "Review",
       content: (
         <Cart_Review
           data={data}
@@ -51,13 +52,13 @@ function Checkout_main({ data, melon }) {
       ),
     },
     {
-      title: "Shipping & Billing",
+      title: "Billing",
       content: (
         <Shipping_Billing
           products={data.products.map((product, index) => {
             return { ...product, count: melon[index] };
           })}
-          username={pb.authStore.model.username}
+          username={pb.authStore?.model?.username}
           userInfo={userInfo}
           setCurrent={setCurrent}
           productProcessingIds={productProcessingIds}
@@ -69,7 +70,7 @@ function Checkout_main({ data, melon }) {
       ),
     },
     {
-      title: "Payment method",
+      title: "method",
       content: (
         <Payment_method
           setmethod={setmethod}
@@ -97,7 +98,7 @@ function Checkout_main({ data, melon }) {
         )),
     },
     {
-      title: "Order Confirmation",
+      title: "Confirmation",
       content: <Order_Confirmation />,
     },
   ];
@@ -113,7 +114,7 @@ function Checkout_main({ data, melon }) {
     <ConfigProvider
       theme={{
         token: {
-          colorPrimary: "#D64550",
+          colorPrimary: "#55D186",
         },
         components: {
           Steps: {
@@ -122,17 +123,18 @@ function Checkout_main({ data, melon }) {
         },
       }}
     >
-      <div className="my-16">
+      <div className="my-16 w-full md:w-auto">
         <Steps
-          className="font-extrabold select-none"
+          type={width > 500 ? "default" : "inline"}
+          className="font-extrabold select-none w-full md:w-auto justify-between text-main"
           current={current}
           items={items}
         />
         <div>{steps[current].content}</div>
       </div>
       <div className="text-main">
-        <button onClick={() => setCurrent(current + 1)}>go</button>
-        <button onClick={() => setCurrent(current - 1)}>ff</button>
+        <button onClick={() => setCurrent(current + 1)}> NEXT </button>
+        <button onClick={() => setCurrent(current - 1)}> Pervious </button>
       </div>
     </ConfigProvider>
   );

@@ -31,7 +31,7 @@ function Header_swiper(props) {
               >
                 <div className="flex items-center bg-white h-5/6">
                   <Image
-                    src={`http://127.0.0.1:8090/api/files/${product.collectionId}/${product.id}/${product.mainImg}?thumb=300x300`}
+                    src={`${process.env.pocketBaseUrl}api/files/${product.collectionId}/${product.id}/${product.mainImg}?thumb=300x300`}
                     alt="SafoMart"
                     onClick={() =>
                       router.push(

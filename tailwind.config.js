@@ -18,6 +18,7 @@ module.exports = {
         secondary: "#D64550",
         secondaryYellow: "#fecc3d",
         secondaryOrange: "#FF8B37",
+        secondaryGreen: "#55D186",
         secondaryLight: "#EA9E8D",
         secondarySecondary: "#ffffff",
         secondarySecondarylight: "#f2f1f1",

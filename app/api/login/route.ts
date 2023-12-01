@@ -8,9 +8,11 @@ export async function POST(request: NextRequest) {
   let date = new Date();
   date.setTime(date.getTime() + 10 * 24 * 60 * 60 * 1000);
   try {
-    await pb.collection("users").authWithPassword(body.email, body.password);
+    const res = await pb
+      .collection("users")
+      .authWithPassword(body.email, body.password);
     if (pb.authStore.isValid) {
-      if (path == "on") {
+      if (path) {
         cookies().set(
           "pb_auth",
           pb.authStore.exportToCookie({

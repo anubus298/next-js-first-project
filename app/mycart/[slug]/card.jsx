@@ -31,7 +31,7 @@ function Card({ product, setpriceSummary, priceSummary, deleteItemFromCart }) {
         <div className="flex md:flex-row flex-col items-center space-x-5 h-[120px] overflow-auto sm:overflow-hidden">
           <div className="h-full flex items-center">
             <Image
-              src={`http://127.0.0.1:8090/api/files/${product.collectionId}/${product.id}/${product.imgs[0]}`}
+              src={`${process.env.pocketBaseUrl}api/files/${product.collectionId}/${product.id}/${product.imgs[0]}`}
               alt=""
               height={70}
               width={50}

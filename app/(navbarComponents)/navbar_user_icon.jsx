@@ -10,7 +10,7 @@ import commandsAtom from "../(lib)/jotai/commandsAtom";
 import accountAtom from "../(lib)/jotai/accountAtom";
 import userAtom from "../(lib)/jotai/userAtom";
 import notificationAtom from "../(lib)/jotai/notificationAtom";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { AuthContext } from "../(lib)/context-provider";
 import { Avatar, Badge } from "antd";
 import { useAtom } from "jotai";
@@ -20,28 +20,31 @@ import Category_commands from "./(user_categories)/category_commands";
 function Navbar_user_icon() {
   const pb = new PocketBase("http://127.0.0.1:8090");
   const [commandsCountAtom, setcommandsCountAtom] = useAtom(commandsAtom);
+  const [userCountAtom] = useAtom(userAtom);
+  const [accountCountAtom, setaccountCountAtom] = useAtom(accountAtom);
   const [notificationsCountAtom, setnotificationsCountAtom] =
     useAtom(notificationAtom);
-  const [accountCountAtom, setaccountCountAtom] = useAtom(accountAtom);
-  const [userCountAtom] = useAtom(userAtom);
+  const { isValid, setisValid } = useContext(AuthContext);
+  const [loop, setloop] = useState(false);
   useEffect(() => {
     function GetUserCategoriesInfo() {
       const res = fetch("/api/userCategories?type=number", {
-        next : {revalidate : 60}
+        cache: "no-store",
       })
         .then((res) => res.json())
         .then((data) => {
-          setnotificationsCountAtom(data.notif);
-          setcommandsCountAtom(data.commands);
-          setaccountCountAtom(data.account);
+          if (data.success) {
+            setnotificationsCountAtom(data.notif);
+            setcommandsCountAtom(data.commands);
+            setaccountCountAtom(data.account);
+          }
         });
     }
     GetUserCategoriesInfo();
-  }, []);
-  
+  }, [loop]);
+  setInterval(() => setloop(!loop), 30000);
 
   pb.authStore.loadFromCookie(getCookie("pb_auth"));
-  const { isValid, setisValid } = useContext(AuthContext);
 
   function deleteCookie(name) {
     setCookie(name, "", {

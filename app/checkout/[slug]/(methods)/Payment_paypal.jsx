@@ -3,7 +3,7 @@
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 import paypalCreateOrder from "../../../(lib)/paypal/functions/paypalCreateOrder";
 import paypalCaptureOrder from "../../../(lib)/paypal/functions/paypalCaptureOrder";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRef } from "react";
 import Image from "next/image";
 function Payment_paypal({
@@ -12,6 +12,10 @@ function Payment_paypal({
   productProcessingIds,
   settrackingIds,
 }) {
+  const [width, setwidth] = useState(1000);
+  useEffect(() => {
+    setwidth(document.documentElement.clientWidth);
+  }, []);
   const SSdm = useRef(undefined);
   const [isError, setisError] = useState(false);
   return (
@@ -24,8 +28,8 @@ function Payment_paypal({
     >
       <div className="w-full min-h-[450px] flex gap-8 justify-center items-center bg-secondarySecondarylight p-4 font-semibold mt-5 select-none">
         <div className="flex flex-col items-center gap-8">
-          <p className="text-5xl font-black ">
-            Use <span className="text-secondaryYellow strokeF">Paypal</span>
+          <p className="text-3xl text-center md:text-start font-black ">
+            Complete your payment with PayPal
           </p>
 
           <PayPalButtons
@@ -56,6 +60,10 @@ function Payment_paypal({
               setisError(true);
             }}
           />
+          <p className="text-sm text-center text-green-800 italic">
+            Your financial information is encrypted <br />
+            ensuring a safe and reliable payment process.
+          </p>
           {isError && (
             <p className=" text-red-600 font-extrabold text-center">
               Failed to purchase
@@ -66,7 +74,14 @@ function Payment_paypal({
             </p>
           )}
         </div>
-        <Image alt="phone check" width={450} height={450} src="/Payment.png" />
+        {width > 825 && (
+          <Image
+            alt="phone check"
+            width={450}
+            height={450}
+            src="/Payment.png"
+          />
+        )}
       </div>
     </PayPalScriptProvider>
   );

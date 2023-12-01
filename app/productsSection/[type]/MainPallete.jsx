@@ -129,7 +129,7 @@ function MainPallete({ data, typeForHref }) {
                     <Image
                       alt="ss"
                       className="h-[150px] w-auto mx-auto cursor-pointer"
-                      src={`http://127.0.0.1:8090/api/files/${product.collectionId}/${product.id}/${product.imgs[0]}`}
+                      src={`${process.env.pocketBaseUrl}api/files/${product.collectionId}/${product.id}/${product.imgs[0]}`}
                       height={150}
                       width={150}
                       onClick={() =>
@@ -192,7 +192,7 @@ function CardTitle({ collectionId, img, id, brandId, name, typeForHref }) {
             alt="brandName"
             className=""
             height={30}
-            src={`http://127.0.0.1:8090/api/files/${collectionId}/${brandId}/${img}?thumb=0x30`}
+            src={`${process.env.pocketBaseUrl}api/files/${collectionId}/${brandId}/${img}?thumb=0x30`}
           />
         )}
       </div>

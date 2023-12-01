@@ -15,10 +15,10 @@ objectives :
 
 remember : 
 add validation pattern to api
--select all method in cart and wishlist
+-"select all" method in cart and wishlist
 to delete error responses in api routes
-optimise payer info in paypal
-
+-optimise payer info in paypal
+-remove auth cookie from the client from server if user isnt auth
 additional : 
 make shipment cost calculator api
 

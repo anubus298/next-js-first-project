@@ -66,7 +66,7 @@ function Card_favorite({
           <div className="bg-white flex justify-between md:justify-normal md:flex-row relative flex-col items-center space-x-5 md:w-auto min-h-[200px] md:min-h-fit md:h-[120px] overflow-y-auto overflow-x-hidden shadow-lg sm:overflow-hidden p-3 md:p-6 rounded-lg">
             <div className="flex gap-x-2 items-center w-full md:w-9/12 md:gap-x-5">
               <Image
-                src={`http://127.0.0.1:8090/api/files/${product.collectionId}/${product.id}/${product.imgs[0]}`}
+                src={`${process.env.pocketBaseUrl}files/${product.collectionId}/${product.id}/${product.imgs[0]}`}
                 alt=""
                 height={90}
                 width={90}
