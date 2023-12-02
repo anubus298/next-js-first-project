@@ -1,4 +1,4 @@
-import { Suspense } from "react";
+export const fetchCache = "default-cache";
 import ProductSection from "./(homePage)/(products section)/productSection";
 import Featured from "./(homePage)/(featured)/featured";
 import Newsletter_main from "./(homePage)/(newsletter)/Newsletter_main";
@@ -8,10 +8,25 @@ export default function Page() {
     <div className="w-full bg-secondarySecondary">
       <Home_slider />
       <Featured />
-      <ProductSection showHeader={true} cache={true} count={16} type={"laptops"} />
-      <ProductSection showHeader={true} cache={true} count={16} type={"mobiles"} />
+      <ProductSection
+        showHeader={true}
+        cache={true}
+        count={16}
+        type={"laptops"}
+      />
+      <ProductSection
+        showHeader={true}
+        cache={true}
+        count={16}
+        type={"mobiles"}
+      />
       <ProductSection showHeader={true} cache={true} count={16} type={"tvs"} />
-      <ProductSection showHeader={true} cache={true} count={16} type={"tablets"} />
+      <ProductSection
+        showHeader={true}
+        cache={true}
+        count={16}
+        type={"tablets"}
+      />
       <Newsletter_main />
     </div>
   );

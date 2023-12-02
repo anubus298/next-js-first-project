@@ -1,3 +1,4 @@
+export const fetchCache = "default-cache";
 import BackComp from "../back";
 import DescripSection from "./DescripSection";
 import PocketBase from "pocketbase";

@@ -86,9 +86,9 @@ function UserSidePanel() {
             size={"large"}
             className="bg-secondaryGreen flex justify-center items-center mb-1"
           />
-          <p className="text-2xl font-bold">{pb.authStore.model.username}</p>
+          <p className="text-2xl font-bold">{pb.authStore?.model?.username}</p>
           <p className="text-gray-500 font-normal">
-            {pb.authStore.model.email}
+            {pb.authStore?.model?.email}
           </p>
         </div>
         <div className="h-[1px] w-full bg-gray-400 my-2"></div>
