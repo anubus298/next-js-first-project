@@ -39,7 +39,14 @@ function Cart_product_section({
       {products && (
         <Table.Root>
           <Table.Header>
-            <p className="font-extrabold text-lg p-1">Your list : ({products.length}) items </p>
+            <div className="md:w-full">
+              <p className="text-5xl md:text-4xl font-bold text-center md:text-start bg-white pt-2">
+                Favorites
+              </p>
+            </div>
+            <p className="font-semibold text-center md:text-start bg-main text-white md:text-main md:bg-none text-lg p-1">
+              Your list : ({products.length}) items{" "}
+            </p>
           </Table.Header>
           <Table.Body>
             <Favorite_cards

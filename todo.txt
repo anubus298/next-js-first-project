@@ -19,8 +19,12 @@ add validation pattern to api
 to delete error responses in api routes
 -optimise payer info in paypal
 -remove auth cookie from the client from server if user isnt auth
+-return payment if canceled
+add inbox/notifications
+
 additional : 
-make shipment cost calculator api
+-make shipment cost calculator api
+-improve performance/Seo
 
 paypal : 
 email : sb-2pyjd28351401@personal.example.com

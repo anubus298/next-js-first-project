@@ -14,7 +14,7 @@ function Navbar_banner() {
   }, []);
   return (
     !isloading &&
-    showbanner && (
+    !showbanner && (
       <div className="w-full h-9 py-2 text-main bg-secondaryLight flex text-center items-center justify-center text-xs md:text-sm font-lato font-semibold gap-x-2">
         <p>
           🎁 Unwrap Joyful Savings! Shop Now for Exclusive Deals and
@@ -22,7 +22,7 @@ function Navbar_banner() {
         </p>
         <FontAwesomeIcon
           icon={faXmark}
-          onClick={() => setshowbanner(false)}
+          onClick={() => setshowbanner(true)}
           size="2x"
           className="cursor-pointer"
         />

@@ -69,7 +69,7 @@ function AddToMyFavorite({ collectionName, id, already }) {
                 ? faHeartCircleCheck
                 : faHeartCirclePlus
             }
-            className=" "
+            className="transition"
             size="2x"
           />
         )}

@@ -3,7 +3,7 @@ import { AlertDialog, Button, Flex } from "@radix-ui/themes";
 import { faCancel, faPerson, faPhone } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { ConfigProvider, Steps } from "antd";
+import { ConfigProvider, Dropdown, Input, Steps } from "antd";
 import Image from "next/image";
 import Link from "next/link";
 import { ColorRing } from "react-loader-spinner";
@@ -11,6 +11,7 @@ import { useRouter } from "next/navigation";
 
 function Command_cart({ product, deleteCommand }) {
   const [isCancellingLoading, setisCancellingLoading] = useState(false);
+  const [currentReason, setcurrentReason] = useState("");
   const router = useRouter();
 
   let regex = /(.{4})/g;
@@ -38,7 +39,6 @@ function Command_cart({ product, deleteCommand }) {
       description: "",
     },
   ];
-
   const dateOFship = new Date(product.estimated_delivery_time);
   let dateDescription = "";
   if (product.estimated_delivery_time) {
@@ -68,7 +68,6 @@ function Command_cart({ product, deleteCommand }) {
     "Order is currently in transit.",
     "Order has been successfully completed.",
   ];
-
   const current = items.findIndex((item, index) => {
     if (item.title == product.status) {
       item.description = (
@@ -118,7 +117,7 @@ function Command_cart({ product, deleteCommand }) {
             height={150}
             alt=""
             className="h-auto "
-            src={`${process.env.pocketBaseUrl}/api/files/${product.productInfo.collectionId}/${product.productInfo.id}/${product.productInfo.imgs}`}
+            src={`${process.env.pocketBaseUrl}api/files/${product.productInfo.collectionId}/${product.productInfo.id}/${product.productInfo.imgs}`}
           />
         </div>
         <div className="flex flex-col w-full p-4 gap-5">
@@ -129,6 +128,7 @@ function Command_cart({ product, deleteCommand }) {
                 #{formattedCode}
               </span>
             </p>
+            <p className="text-gray-200 text-sm"> </p>
           </div>
           <div className="flex justify-between ">
             {product.productInfo?.expand?.brand && (
@@ -140,7 +140,7 @@ function Command_cart({ product, deleteCommand }) {
                       width={30}
                       height={30}
                       alt={`${product.productInfo?.expand?.brand.brandName} logo`}
-                      src={`${process.env.pocketBaseUrl}/api/files/${product.productInfo?.expand?.brand.collectionId}/${product.productInfo?.expand?.brand.id}/${product.productInfo?.expand?.brand.img}`}
+                      src={`${process.env.pocketBaseUrl}api/files/${product.productInfo?.expand?.brand.collectionId}/${product.productInfo?.expand?.brand.id}/${product.productInfo?.expand?.brand.img}`}
                     />
                   </div>
                   <p className="text-main font-semibold">
@@ -237,13 +237,44 @@ function Command_cart({ product, deleteCommand }) {
           </AlertDialog.Trigger>
           <AlertDialog.Content
             className="select-none"
+            content=""
             style={{ maxWidth: 450 }}
           >
             <AlertDialog.Title className="font-black">
               Canceling order
             </AlertDialog.Title>
-            <AlertDialog.Description className="font-semibold" size="2">
-              Are you sure you want to Cancel this order?
+            <AlertDialog.Description
+              className="font-semibold whitespace-pre-line"
+              size="2"
+            >
+              <div>
+                <p>
+                  Are you sure you want to cancel your order? <br />
+                  We want to make sure you have the best shopping experience
+                  with us.
+                  <br /> If there&apos;s anything we can assist you with or
+                  resolve, please let us know before proceeding.
+                  <br />
+                  <br /> - Order ID: <strong>{formattedCode}</strong> <br />-
+                  Items: <strong>{product.productInfo.name}</strong>
+                  <br /> - Total Amount:<strong> {product.count}</strong>
+                  <br /> <br />
+                  Please note that once you confirm the cancellation, the order
+                  will be canceled, and any payment made will be refunded.
+                  <br />
+                  <br />
+                </p>
+                <div className="flex flex-col item-center gap-3 mt-1">
+                  <p>
+                    Your feedback is important to us, and it helps us enhance
+                    our services.
+                  </p>
+                  <Input
+                    placeholder="Canceling reason"
+                    onChange={(e) => setcurrentReason(e.target.value)}
+                  />
+                </div>
+              </div>
             </AlertDialog.Description>
 
             <Flex gap="3" mt="4" justify="end">
@@ -261,12 +292,14 @@ function Command_cart({ product, deleteCommand }) {
                   variant="solid"
                   className="font-semibold cursor-pointer"
                   color="red"
+                  disabled={currentReason.length < 5}
                   onClick={async () => {
                     setisCancellingLoading(true);
-                    let res = await deleteCommand(product.id);
+                    let res = await deleteCommand(product.id, currentReason);
                     if (res == 200) {
                       router.refresh();
                     }
+                    setisCancellingLoading(false);
                   }}
                 >
                   Yes

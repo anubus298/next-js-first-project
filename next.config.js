@@ -3,7 +3,7 @@ const nextConfig = {
   env: {
     customUrl: "http://localhost:8000",
     pocketBaseUrl: "https://remarkable-gate.pockethost.io/",
-    pocketBaseUrlo: "http://127.0.0.1:8090",
+    pocketBaseUrlo: "http://127.0.0.1:8090/",
   },
   experimental: {
     swcPlugins: [["@swc-jotai/react-refresh", {}]],
@@ -11,14 +11,15 @@ const nextConfig = {
 
   images: {
     remotePatterns: [
-    
-      {
-        hostname: "remarkable-gate.pockethost.io",
-        protocol: "https",
-        pathname : "/api/files/**"
-      },
+     {
+  hostname: "remarkable-gate.pockethost.io",
+  protocol: "https",
+  pathname : "/api/files/**"
+},
     ],
   },
 };
 
 module.exports = nextConfig;
+
+

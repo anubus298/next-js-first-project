@@ -4,22 +4,23 @@ import "@radix-ui/themes/styles.css";
 import BackComp from "../mycart/[slug]/back";
 import Command_cart from "./command_cart";
 import { useRef } from "react";
-import { Empty } from "antd";
+import { ConfigProvider, Empty } from "antd";
 
 function Commands_main({ commands }) {
   const card = useRef(null);
-  async function deleteCommand(id) {
+  async function deleteCommand(id, reason) {
     const res = await fetch("/api/commands/cancelCommand", {
       method: "PATCH",
       body: JSON.stringify({
         id: id,
+        reason: reason,
       }),
     });
     return res.status;
   }
 
   return (
-    <>
+    <ConfigProvider>
       <BackComp />
       <div className="w-full bg-main flex justify-center p-2 md:rounded-tr-lg select-none">
         <p className="text-secondary font-extrabold text-3xl">Your orders</p>
@@ -45,7 +46,7 @@ function Commands_main({ commands }) {
           </div>
         )}
       </div>
-    </>
+    </ConfigProvider>
   );
 }
 

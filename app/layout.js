@@ -13,13 +13,14 @@ export const metadata = {
   title: "SafoMart",
   description: "Technology Market",
 };
-const mooli = Lato({
-  weight: ["100","400","400", "700", "100", "300", "900"],
+const mooli = Poppins({
+  weight: ["100", "600", "200", "400", "700", "800", "500", "300", "900"],
   subsets: ["latin"],
   style: ["normal"],
   variable: "--font-Lato",
   preload: true,
 });
+import { Poppins } from "next/font/google";
 
 export default function RootLayout({ children }) {
   return (

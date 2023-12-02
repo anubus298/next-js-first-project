@@ -35,7 +35,7 @@ function Card_favorite({
   }, [quantity]);
   async function handleAddToCartFromFavorite(collectionName, id) {
     let res = await addToCartFromFavorite(collectionName, id);
-    let d = await deleteItemFromCart(product, "-")
+    let d = await deleteItemFromCart(product, "-");
     if (res.status == 200) {
       localStorage.setItem("NotificationCount", Number(notifCount + 1));
       setnotifCount(notifCount + 1);
@@ -63,10 +63,10 @@ function Card_favorite({
       {contextHolder}
       <Table.Row align={"center"} className="">
         <Table.RowHeaderCell>
-          <div className="bg-white flex justify-between md:justify-normal md:flex-row relative flex-col items-center space-x-5 md:w-auto min-h-[200px] md:min-h-fit md:h-[120px] overflow-y-auto overflow-x-hidden shadow-lg sm:overflow-hidden p-3 md:p-6 rounded-lg">
+          <div className="bg-white m-3 md:m-0 flex justify-between md:justify-normal md:flex-row relative flex-col items-center space-x-5 md:w-auto min-h-[200px] md:min-h-fit md:h-[120px] overflow-y-auto overflow-x-hidden shadow-lg sm:overflow-hidden p-3 md:p-6 rounded-lg">
             <div className="flex gap-x-2 items-center w-full md:w-9/12 md:gap-x-5">
               <Image
-                src={`${process.env.pocketBaseUrl}files/${product.collectionId}/${product.id}/${product.imgs[0]}`}
+                src={`${process.env.pocketBaseUrl}api/files/${product.collectionId}/${product.id}/${product.imgs}`}
                 alt=""
                 height={90}
                 width={90}
@@ -75,9 +75,9 @@ function Card_favorite({
                   router.push("/product" + "/" + type + "/" + product.id)
                 }
               />
-              <div className="flex gap-y-2 flex-col md:text-center md:text-start justify-between">
+              <div className="flex gap-y-2 flex-col md:text-start justify-between">
                 <Link
-                  className="text-lg font-extrabold"
+                  className="text-lg font-bold"
                   href={"/product" + "/" + type + "/" + product.id}
                 >
                   {product.name}
@@ -95,13 +95,13 @@ function Card_favorite({
                 </div>
                 <Link
                   href={"/product" + "/" + type + "/" + product.id}
-                  className="text-indigo-950 text-xl font-extrabold w-fit"
+                  className="text-indigo-950 text-xl font-semibold w-fit"
                 >
                   ${product.price}
                 </Link>
               </div>
             </div>
-            <div className="flex flex-row md:flex-col justify-between w-full md:w-3/12 h-full">
+            <div className="flex flex-row md:flex-col justify-between px-3 w-full md:w-3/12 h-full">
               <div className="flex items-center md:justify-end">
                 <AlertDialog.Root>
                   <AlertDialog.Trigger>
@@ -140,7 +140,7 @@ function Card_favorite({
                 </AlertDialog.Root>
               </div>
               <button
-                className="bg-secondaryYellow px-4 py-2 w-1/2 md:w-full text-center text-textWhiteWithSecondary self-end place-self-end font-semibold"
+                className="bg-secondaryGreen rounded-md px-4 h-[50px] md:h-auto md:py-2 w-1/2 md:w-full text-center text-textWhiteWithSecondary self-end place-self-end font-semibold"
                 onClick={() =>
                   handleAddToCartFromFavorite(
                     product.collectionName,

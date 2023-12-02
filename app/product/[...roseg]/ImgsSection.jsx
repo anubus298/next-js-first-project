@@ -1,20 +1,18 @@
 "use client";
 import Image from "next/image";
 import { Suspense, useEffect, useState } from "react";
-import ReactImageZoom from "react-image-zoom";
+
 import { faFacebook, faXTwitter } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
+import Zoom from "react-medium-image-zoom";
+import "react-medium-image-zoom/dist/styles.css";
 import { Skeleton } from "antd";
-import { faShare } from "@fortawesome/free-solid-svg-icons";
-export default function ImgSection({ imgs, id, cId, searchParams }) {
+import {
+  faDownLeftAndUpRightToCenter,
+  faShare,
+} from "@fortawesome/free-solid-svg-icons";
+export default function ImgSection({ imgs, id, cId }) {
   const [index, setIndex] = useState(0);
-  const [wdthclient, setWdthclient] = useState(500);
-  useEffect(() => {
-    document.documentElement.clientWidth < 500
-      ? setWdthclient(document.documentElement.clientWidth - 10)
-      : setWdthclient(500);
-  }, []);
   return (
     <div className="flex flex-col md:w-1/2 justify-between">
       <div className="w-full flex flex-col-reverse md:flex-row justify-start gap-5 items-center">
@@ -44,14 +42,16 @@ export default function ImgSection({ imgs, id, cId, searchParams }) {
         </div>
 
         <div className="bg-white p-2 rounded-lg flex overflow-hidden justify-center items-center h-[500px] md:w-[500px] w-11/12 ">
-          <Image
-            className="w-auto"
-            src={`${process.env.pocketBaseUrl}api/files/${cId}/${id}/${imgs[index]}?thumb=0x500`}
-            height={500}
-            width={500}
-            sizes={"(max-width: 768px) 90vw ,(max-width: 1024px) 60vw,40vw"}
-            alt=""
-          />
+          <Zoom>
+            <Image
+              className="w-auto"
+              src={`${process.env.pocketBaseUrl}api/files/${cId}/${id}/${imgs[index]}?thumb=0x500`}
+              height={500}
+              width={500}
+              sizes={"(max-width: 768px) 90vw ,(max-width: 1024px) 60vw,40vw"}
+              alt=""
+            />
+          </Zoom>
         </div>
       </div>
       <div className="flex w-full justify-start select-none">

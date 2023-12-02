@@ -30,6 +30,14 @@ async function Page() {
           count += 1;
         });
       });
+      result.forEach((item)=>{
+        delete item["brand"]
+        delete item["created"]
+        delete item["updated"]
+        delete item["description"]
+        item["imgs"] = item["imgs"][0]
+        
+      })
       return {
         products: result,
         fullStartingPrice: fullPRICE,

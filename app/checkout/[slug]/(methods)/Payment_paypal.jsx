@@ -19,13 +19,7 @@ function Payment_paypal({
   const SSdm = useRef(undefined);
   const [isError, setisError] = useState(false);
   return (
-    <PayPalScriptProvider
-      options={{
-        clientId: process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID,
-        currency: "USD",
-        intent: "capture",
-      }}
-    >
+    
       <div className="w-full min-h-[450px] flex gap-8 justify-center items-center bg-secondarySecondarylight p-4 font-semibold mt-5 select-none">
         <div className="flex flex-col items-center gap-8">
           <p className="text-3xl text-center md:text-start font-black ">
@@ -83,7 +77,6 @@ function Payment_paypal({
           />
         )}
       </div>
-    </PayPalScriptProvider>
   );
 }
 

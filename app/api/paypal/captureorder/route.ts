@@ -92,16 +92,6 @@ export async function POST(requesT: NextRequest) {
   }
 }
 
-function configureEnvironment() {
-  const clientId = process.env.PAYPAL_CLIENT_ID;
-  const clientSecret = process.env.PAYPAL_CLIENT_SECRET;
-  let env = new checkoutNodeJssdk.core.SandboxEnvironment(
-    clientId,
-    clientSecret
-  );
-  return new checkoutNodeJssdk.core.PayPalHttpClient(env);
-}
-
 async function HandlingTheDataBase(body, pb) {
   try {
     let ReturnedElem = [];
@@ -123,7 +113,8 @@ async function HandlingTheDataBase(body, pb) {
           count: shelter.count,
           status: "Processing",
           shipping_cost: shelter.shipping_cost,
-          readStatus : false,
+          bill: id,
+          readStatus: false,
           Returned: false,
           Notes: "",
         };
@@ -156,4 +147,14 @@ function generateUniqueId() {
   const uniqueId =
     timestamp.toString().slice(-8) + random.toString().slice(0, 7); // Combine timestamp and random part
   return uniqueId;
+}
+
+function configureEnvironment() {
+  const clientId = process.env.PAYPAL_CLIENT_ID;
+  const clientSecret = process.env.PAYPAL_CLIENT_SECRET;
+  let env = new checkoutNodeJssdk.core.SandboxEnvironment(
+    clientId,
+    clientSecret
+  );
+  return new checkoutNodeJssdk.core.PayPalHttpClient(env);
 }

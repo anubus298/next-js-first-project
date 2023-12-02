@@ -52,6 +52,7 @@ function DropdownByPrice({
           icon={faFilterCircleDollar}
         />
       ),
+
       children: [
         {
           key: "1-1",

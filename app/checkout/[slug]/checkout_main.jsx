@@ -1,6 +1,8 @@
 "use client";
 import { useState, useEffect } from "react";
 import { ConfigProvider, Steps } from "antd";
+import { PayPalScriptProvider } from "@paypal/react-paypal-js";
+
 import Payment_method from "./Payment_method";
 import PocketBase from "pocketbase";
 import Payment_paypal from "./(methods)/Payment_paypal";
@@ -103,40 +105,42 @@ function Checkout_main({ data, melon }) {
     },
   ];
 
-  const next = () => {
-    setCurrent(current + 1);
-  };
-  const prev = () => {
-    setCurrent(current - 1);
-  };
   const items = steps.map((item) => ({ key: item.title, title: item.title }));
   return (
-    <ConfigProvider
-      theme={{
-        token: {
-          colorPrimary: "#55D186",
-        },
-        components: {
-          Steps: {
-            customIconFontSize: 46,
-          },
-        },
+    <PayPalScriptProvider
+      options={{
+        clientId: process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID,
+        currency: "USD",
+        intent: "capture",
       }}
     >
-      <div className="my-16 w-full md:w-auto">
-        <Steps
-          type={width > 500 ? "default" : "inline"}
-          className="font-extrabold select-none w-full md:w-auto justify-between text-main"
-          current={current}
-          items={items}
-        />
-        <div>{steps[current].content}</div>
-      </div>
-      <div className="text-main">
-        <button onClick={() => setCurrent(current + 1)}> NEXT </button>
-        <button onClick={() => setCurrent(current - 1)}> Pervious </button>
-      </div>
-    </ConfigProvider>
+      <ConfigProvider
+        theme={{
+          token: {
+            colorPrimary: "#55D186",
+          },
+          components: {
+            Steps: {
+              customIconFontSize: 46,
+            },
+          },
+        }}
+      >
+        <div className="my-16 w-full md:w-auto">
+          <Steps
+            type={width > 500 ? "default" : "inline"}
+            className="font-extrabold select-none w-full md:w-auto justify-between text-main"
+            current={current}
+            items={items}
+          />
+          <div>{steps[current].content}</div>
+        </div>
+        <div className="text-main">
+          <button onClick={() => setCurrent(current + 1)}> NEXT </button>
+          <button onClick={() => setCurrent(current - 1)}> Pervious </button>
+        </div>
+      </ConfigProvider>
+    </PayPalScriptProvider>
   );
 }
 

@@ -27,6 +27,7 @@ export async function PATCH(request: NextRequest) {
       const data = {
         status: "Cancelled",
         Returned: true,
+        reason : body.reason
       };
       const record = await pb.collection("Commands").update(body.id, data);
       //create cancelling record notification :
@@ -41,7 +42,7 @@ export async function PATCH(request: NextRequest) {
         CANCELED ORDER DETAILS:
         - Order ID: #${formattedCode}
         - Order Date: ${orderDateRes.created}
-        - Cancellation Reason: none
+        - Cancellation Reason: ${body.reason}
         
         If you have any questions or need further assistance, please do not hesitate to contact our customer support.
         

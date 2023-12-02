@@ -35,7 +35,10 @@ async function Page({ searchParams }) {
     }
   }
   let info = await getCartInfo();
-  return <Checkout_main data={info} melon={searchParams.melon.split(",")} />;
+  return (
+   
+      <Checkout_main data={info} melon={searchParams.melon.split(",")} />
+  );
 }
 
 export default Page;

@@ -17,31 +17,25 @@ async function Page() {
         "product_laptops,product_mobiles,product_tvs,product_tablets,product_wearables",
     });
     try {
-      let result = [],
-        fullPRICE = 0,
-        count = 0;
+      let result = [];
       Object.values(res[0]?.expand).map((type) => {
         type.map((product) => {
+          delete product["brand"];
+          delete product["created"];
+          delete product["updated"];
+          delete product["description"];
+          product["imgs"] = product["imgs"][0];
           result.push(product);
-          fullPRICE += Number(product.price);
-          count += 1;
         });
       });
       return {
         products: result,
-        fullStartingPrice: fullPRICE,
-        count: count,
         origin: res,
-        arrayOfproductCounts: result.map(() => 1),
       };
     } catch (error) {
       return {
         products: undefined,
-        fullStartingPrice: undefined,
-        count: undefined,
         origin: undefined,
-        arrayOfproductCounts: undefined,
-        err : error.message
       };
     }
   }
@@ -51,10 +45,10 @@ async function Page() {
       <CartUI
         id={info?.origin ? info?.origin[0]?.id : undefined}
         products={info.products}
-        count={info.count}
-        err={info.err}
-        fullStartingPrice={info.fullStartingPrice}
-        arrayOfproductCounts={info.arrayOfproductCounts}
+        count={info.products?.length}
+        arrayOfproductCountsServer={info.products?.map(() => {
+          return 1;
+        })}
       />
     </>
   );

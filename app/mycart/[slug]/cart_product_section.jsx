@@ -10,8 +10,8 @@ function Cart_product_section({
   id,
   products,
   count,
-  priceSummary,
-  setpriceSummary,
+  setarrayOfproductCounts,
+  arrayOfproductCounts,
 }) {
   async function deleteItemFromCart(deleteThisProduct, sign) {
     const reg = /(Pro)(\w*)/;
@@ -31,7 +31,6 @@ function Cart_product_section({
         id: id,
       },
     });
-
     router.refresh();
   }
   const router = useRouter();
@@ -44,11 +43,11 @@ function Cart_product_section({
             <TableHeader />
             <Table.Body>
               <Cart_cards
+                setarrayOfproductCounts={setarrayOfproductCounts}
+                arrayOfproductCounts={arrayOfproductCounts}
                 deleteItemFromCart={deleteItemFromCart}
                 products={products}
                 count={count}
-                setpriceSummary={setpriceSummary}
-                priceSummary={priceSummary}
               />
             </Table.Body>
           </Table.Root>

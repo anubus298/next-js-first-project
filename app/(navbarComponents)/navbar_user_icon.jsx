@@ -18,14 +18,14 @@ import Category_notification from "./(user_categories)/category_notification";
 import Category_account from "./(user_categories)/category_account";
 import Category_commands from "./(user_categories)/category_commands";
 function Navbar_user_icon() {
-  const pb = new PocketBase("http://127.0.0.1:8090");
+  const pb = new PocketBase(process.env.pocketBaseUrl);
   const [commandsCountAtom, setcommandsCountAtom] = useAtom(commandsAtom);
   const [userCountAtom] = useAtom(userAtom);
   const [accountCountAtom, setaccountCountAtom] = useAtom(accountAtom);
   const [notificationsCountAtom, setnotificationsCountAtom] =
     useAtom(notificationAtom);
   const { isValid, setisValid } = useContext(AuthContext);
-  const [loop, setloop] = useState(false);
+
   useEffect(() => {
     function GetUserCategoriesInfo() {
       const res = fetch("/api/userCategories?type=number", {
@@ -41,8 +41,7 @@ function Navbar_user_icon() {
         });
     }
     GetUserCategoriesInfo();
-  }, [loop]);
-  setInterval(() => setloop(!loop), 30000);
+  }, []);
 
   pb.authStore.loadFromCookie(getCookie("pb_auth"));
 
