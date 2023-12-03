@@ -5,7 +5,7 @@ import { Suspense } from "react";
 async function getFrontProducts() {
   try {
     const ps = await fetch(
-      `${process.env.pocketBaseUrl}/api/collections/frontProducts/records?page=1&perPage=15&skipTotal=1&sort=-created`,
+      `${process.env.pocketBaseUrl}api/collections/frontProducts/records?page=1&perPage=15&skipTotal=1&sort=-created`,
     );
     const res = await ps.json();
 

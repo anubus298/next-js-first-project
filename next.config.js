@@ -11,15 +11,20 @@ const nextConfig = {
 
   images: {
     remotePatterns: [
-     {
-  hostname: "remarkable-gate.pockethost.io",
-  protocol: "https",
-  pathname : "/api/files/**"
-},
+      {
+        hostname: "remarkable-gate.pockethost.io",
+        protocol: "https",
+        pathname: "/api/files/**",
+      },
     ],
   },
 };
 
 module.exports = nextConfig;
 
-
+// {
+//   hostname: "127.0.0.1",
+//   protocol: "http",
+//   port: "8090",
+//   pathname: "/api/files/**",
+// },

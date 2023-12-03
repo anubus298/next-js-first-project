@@ -1,9 +1,9 @@
 "use client";
 import { useState, useEffect } from "react";
 import { ConfigProvider, Steps } from "antd";
-import { PayPalScriptProvider } from "@paypal/react-paypal-js";
-
 import Payment_method from "./Payment_method";
+import { AnimatePresence } from "framer-motion";
+
 import PocketBase from "pocketbase";
 import Payment_paypal from "./(methods)/Payment_paypal";
 import Payment_manual from "./(methods)/Payment_manual";
@@ -107,40 +107,32 @@ function Checkout_main({ data, melon }) {
 
   const items = steps.map((item) => ({ key: item.title, title: item.title }));
   return (
-    <PayPalScriptProvider
-      options={{
-        clientId: process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID,
-        currency: "USD",
-        intent: "capture",
+    <ConfigProvider
+      theme={{
+        token: {
+          colorPrimary: "#55D186",
+        },
+        components: {
+          Steps: {
+            customIconFontSize: 46,
+          },
+        },
       }}
     >
-      <ConfigProvider
-        theme={{
-          token: {
-            colorPrimary: "#55D186",
-          },
-          components: {
-            Steps: {
-              customIconFontSize: 46,
-            },
-          },
-        }}
-      >
-        <div className="my-16 w-full md:w-auto">
-          <Steps
-            type={width > 500 ? "default" : "inline"}
-            className="font-extrabold select-none w-full md:w-auto justify-between text-main"
-            current={current}
-            items={items}
-          />
-          <div>{steps[current].content}</div>
-        </div>
-        <div className="text-main">
-          <button onClick={() => setCurrent(current + 1)}> NEXT </button>
-          <button onClick={() => setCurrent(current - 1)}> Pervious </button>
-        </div>
-      </ConfigProvider>
-    </PayPalScriptProvider>
+      <div className="my-16 w-full md:w-auto">
+        <Steps
+          type={width > 500 ? "default" : "inline"}
+          className="font-extrabold select-none w-full md:w-auto justify-between text-main"
+          current={current}
+          items={items}
+        />
+        <AnimatePresence>{steps[current].content}</AnimatePresence>
+      </div>
+      <div className="text-main">
+        <button onClick={() => setCurrent(current + 1)}> NEXT </button>
+        <button onClick={() => setCurrent(current - 1)}> Pervious </button>
+      </div>
+    </ConfigProvider>
   );
 }
 

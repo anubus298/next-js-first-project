@@ -47,14 +47,15 @@ function Login_panel() {
           setisValid(false);
           setisValid(true);
         }
-       
       });
   }
 
   return (
-    <div className="bg-secondarySecondarylight  h-[500px] w-full md:w-1/2  sm:px-10 flex flex-col justify-evenly  text-main text-center font-bold select-none font-lato">
+    <div className="bg-secondarySecondarylight  h-[500px] w-full md:w-1/2 pt-2 md:pt-5 sm:px-10 flex flex-col justify-evenly  text-main text-center select-none font-lato">
       <div className=" text-center md:text-start">
-        <p className="text-2xl md:text-4xl mb-2">Login to Safomart</p>
+        <p className="text-2xl md:text-4xl mb-2 font-semibold">
+          Login to Safomart
+        </p>
         <p className="text-gray-400 text-sm md:text-base font-normal">
           Login to your SafoMart account to be able to purchase items, customize
           your cart and benefit from the best sales in your country.
@@ -68,10 +69,9 @@ function Login_panel() {
         <div className="flex gap-x-3 w-full p-2 justify-start items-center">
           <input
             autoComplete="off"
-            value={"araristaf@gmail.com"}
             type="email"
             placeholder="email"
-            className="w-full text-lg  border-2 border-main text-main  font-semibold py-2 md:py-6 px-3  placeholder:text-red-200 focus-visible:outline-none"
+            className="w-full text-lg  border-2 border-main text-main  font-semibold py-2 md:py-6 px-3 placeholder:font-medium placeholder:text-gray-400 focus-visible:outline-none"
             {...register("email", { required: true })}
           />
           {errors.exampleRequired && <span>This field is required</span>}
@@ -80,10 +80,9 @@ function Login_panel() {
         <div className="flex gap-x-3 w-full p-2 justify-start items-center">
           <input
             autoComplete="off"
-            value={"987612345saf"}
             type="password"
             placeholder="password"
-            className="w-full text-lg  border-2 border-main text-main  font-semibold py-2 md:py-6 px-3  placeholder:text-red-200 focus-visible:outline-none"
+            className="w-full text-lg  border-2 border-main text-main  font-semibold py-2 md:py-6 px-3  placeholder:font-medium placeholder:text-gray-400 focus-visible:outline-none"
             {...register("password", { required: true })}
           />
           {errors.exampleRequired && <span>This field is required</span>}
@@ -97,14 +96,17 @@ function Login_panel() {
               className="cursor-pointer bg-secondary text-secondary"
               {...register("remember", { required: false })}
             />
-            <p>Remember me</p>
+            <p className="font-semibold">Remember me</p>
           </div>
-          <Link href="/forgot-password" className="text-gray-500 text-sm">
+          <Link
+            href="/forgot-password"
+            className="text-gray-500 text-sm font-semibold"
+          >
             forgot password?
-          </Link>
+          </Link>{" "}
         </div>
         <button
-          className="bg-secondary  p-2 text-white w-full flex justify-center items-center"
+          className="bg-secondary font-semibold p-2 text-white w-full flex justify-center items-center"
           type="submit"
         >
           <ColorRing

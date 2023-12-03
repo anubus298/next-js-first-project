@@ -17,31 +17,40 @@ export async function PATCH(request: NextRequest) {
     let formattedCode = body.id.replace(regex, "$1-");
     formattedCode = formattedCode.replace(/-$/, "");
     // end of id serialized ****-****-
-    const orderDateRes = await await pb
-      .collection("Commands")
-      .getOne(body.id, {
-        fields: "created",
-      });
+    const orderDateRes = await await pb.collection("Commands").getOne(body.id, {
+      fields: "created",
+    });
 
     try {
       const data = {
         status: "Cancelled",
         Returned: true,
-        reason : body.reason
+        reason: body.reason,
       };
       const record = await pb.collection("Commands").update(body.id, data);
       //create cancelling record notification :
+      const dateformat = new Date(orderDateRes.created);
+
+      const formatted = dateformat.toLocaleString("en-US", {
+        weekday: "short",
+        year: "numeric",
+        month: "short",
+        day: "numeric",
+        hour: "numeric",
+        minute: "numeric",
+        hour12: false,
+      });
       const dataForNotification = {
         user: pb.authStore.model.id,
         message: `Subject: Order Cancellation
 
         Dear ${pb.authStore.model.username},
         
-        We regret to inform you that your order (#${formattedCode}) placed on ${orderDateRes.created} has been canceled. We understand that circumstances may have led to this decision, and we're here to assist you with any concerns.
+        We regret to inform you that your order (#${formattedCode}) placed on ${formatted} has been canceled. We understand that circumstances may have led to this decision, and we're here to assist you with any concerns.
         
         CANCELED ORDER DETAILS:
         - Order ID: #${formattedCode}
-        - Order Date: ${orderDateRes.created}
+        - Order Date: ${formatted}
         - Cancellation Reason: ${body.reason}
         
         If you have any questions or need further assistance, please do not hesitate to contact our customer support.

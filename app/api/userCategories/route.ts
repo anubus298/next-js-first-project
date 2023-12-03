@@ -15,7 +15,7 @@ export async function GET(request: NextRequest) {
 
     if (searchParams.get("type") == "number") {
       //notification
-      const notif = await pb.collection("Notfications").getFullList({
+      const notif = await pb.collection("Inboxs").getFullList({
         fields: "readStatus",
         filter: "readStatus = false",
       });

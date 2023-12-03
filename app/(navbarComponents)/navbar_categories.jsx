@@ -24,7 +24,7 @@ function Navbar_categories() {
           leaveFrom="transform opacity-100 scale-y-100"
           leaveTo="transform opacity-0 scale-y-75"
         >
-          <Menu.Items className="bg-secondary flex flex-col rounded-lg gap-y-4 p-4 absolute  w-[150px] left-0 z-50">
+          <Menu.Items className="bg-secondary flex flex-col rounded-lg gap-y-4 p-3 absolute  w-[150px] left-0 z-50">
             <Menu.Item>
               {() => (
                 <Link
@@ -95,7 +95,7 @@ function Navbar_categories() {
           leaveFrom="transform opacity-100 scale-y-100"
           leaveTo="transform opacity-0 scale-y-75"
         >
-          <Menu.Items className="bg-secondary flex flex-col rounded-lg gap-y-4 p-4 absolute left-0 w-[180px] z-50">
+          <Menu.Items className="bg-secondary flex flex-col rounded-lg gap-y-4 p-3 absolute left-0 w-[180px] z-50">
             <Menu.Item>
               {() => (
                 <Link
