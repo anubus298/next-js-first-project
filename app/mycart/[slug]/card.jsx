@@ -23,12 +23,12 @@ function Card({
     <Table.Row align={"center"} className="relative">
       <Table.RowHeaderCell>
         <div className="flex md:flex-row flex-col items-center space-x-5 h-[120px] overflow-auto sm:overflow-hidden">
-          <div className="h-full flex items-center">
+          <div className=" flex items-center p-1 bg-white">
             <Image
               src={`${process.env.pocketBaseUrl}api/files/${product.collectionId}/${product.id}/${product.imgs}`}
               alt=""
               height={70}
-              width={50}
+              width={80}
               className="w-auto h-auto cursor-pointer"
               onClick={() =>
                 router.push("/product" + "/" + type + "/" + product.id)
@@ -37,7 +37,7 @@ function Card({
           </div>
           <div className="flex flex-col items-start justify-between">
             <Link
-              className="text-lg font-bold"
+              className="text-lg font-semibold"
               href={"/product" + "/" + type + "/" + product.id}
             >
               {product.name}

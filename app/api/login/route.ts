@@ -35,7 +35,24 @@ export async function POST(request: NextRequest) {
         msg: "Account is not verified,check your email address.",
       });
     }
+    pb.authStore.model.username = pb.authStore.model.username.split("_").join(' ');
     if (pb.authStore.isValid) {
+      if (!pb.authStore.model.isFieldsCreated) {
+        const dataForCreate = {
+          user: pb.authStore.model.id,
+          id: pb.authStore.model.id,
+          product_laptops: [],
+          product_mobiles: [],
+          product_tablets: [],
+          product_tvs: [],
+          product_wearables: [],
+        };
+        const fav = await pb.collection("Favorites").create(dataForCreate);
+        const cart = await pb.collection("Carts").create(dataForCreate);
+        const change = await pb
+          .collection("users")
+          .update(pb.authStore.model.id, { isFieldsCreated: true });
+      }
       if (path) {
         cookies().set(
           "pb_auth",
@@ -54,22 +71,6 @@ export async function POST(request: NextRequest) {
           })
         );
       }
-      if (!pb.authStore.model.isFieldsCreated) {
-        const dataForCreate = {
-          user: pb.authStore.model.id,
-          id: pb.authStore.model.id,
-          product_laptops: [],
-          product_mobiles: [],
-          product_tablets: [],
-          product_tvs: [],
-          product_wearables: [],
-        };
-        const fav = await pb.collection("Favorites").create(dataForCreate);
-        const cart = await pb.collection("Carts").create(dataForCreate);
-        const change = await pb
-          .collection("users")
-          .update(pb.authStore.model.id, { isFieldCreated: true });
-      }
       return NextResponse.json({
         success: true,
         msg: "successfully authenticated",
@@ -80,6 +81,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({
         success: false,
         msg: "no such email or password.",
+        err : error.message
       });
     } else {
       return NextResponse.json({

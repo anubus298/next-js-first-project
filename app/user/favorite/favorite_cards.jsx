@@ -6,7 +6,7 @@ function Favorite_cards({
   setpriceSummary,
 }) {
   return (
-    <div className="bg-gray-200">
+    <div className="bg-gray-200 flex gap-4 flex-col">
       {products.map((product, i) => {
         return (
           <Card_favorite

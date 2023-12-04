@@ -172,10 +172,10 @@ function Main_notifications({ notifications, inbox }) {
             id={"top"}
           />
 
-          <div className="flex gap-3 flex-col w-full  md:max-h-[50vh] overflow-x-hidden">
+          <div className="flex gap-3 flex-col w-full md:h-[50vh] overflow-x-hidden bg-gray-200">
             {!isInbox && notifications.length != 0 && (
               <motion.div
-                className="gap-2 flex w-full flex-col bg-gray-400 "
+                className="gap-2 flex w-full flex-col  "
                 animate={{ opacity: [0, 0.5, 1] }}
               >
                 <p className="text-center md:text-start text-sm p-1 bg-main  text-white md:rounded-lg md:px-4">
@@ -195,7 +195,7 @@ function Main_notifications({ notifications, inbox }) {
 
             {isInbox && inbox.length != 0 && (
               <motion.div
-                className="gap-2 flex w-full flex-col bg-gray-400 "
+                className="gap-2 flex w-full flex-col "
                 animate={{ opacity: [0, 0.5, 1] }}
               >
                 <p className="text-center md:text-start text-sm p-1 bg-main  text-white md:rounded-lg md:px-4">

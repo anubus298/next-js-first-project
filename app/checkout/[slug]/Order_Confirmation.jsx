@@ -40,12 +40,7 @@ function Order_Confirmation() {
             </span>
             icon.
           </p>
-          <p className="text-green-900">
-            {" "}
-            If you have any questions or need assistance,
-            <br /> feel free to contact our customer support at
-            <Link href={"/support"}> Support page</Link>
-          </p>
+          
           <Link href={"/"}>Back to main page</Link>
         </div>
       </div>
