@@ -13,13 +13,13 @@ function Header_swiper(props) {
   const router = useRouter();
   return (
     <div className="">
-      <div className="w-full p-2 flex justify-center bg-main text-white text-lg tracking-widest font-bold rounded-t-lg"></div>
+      <div className="w-full p-2 flex justify-center bg-main text-white text-lg tracking-widest font-bold rounded-t-lg md:shadow-md"></div>
       <Suspense fallback={<Fallback_header_swiper />}>
         <Swiper
           effect={"cards"}
           grabCursor={true}
           modules={[EffectCards]}
-          className=" h-[290px] w-[200px] md:h-[400px] md:w-[300px]"
+          className=" h-[350px] w-[300px] md:h-[400px] md:w-[300px]"
         >
           {props.products.map((product, index) => {
             return (

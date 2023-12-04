@@ -15,7 +15,11 @@ export async function GET(request: NextRequest) {
 
     if (searchParams.get("type") == "number") {
       //notification
-      const notif = await pb.collection("Inboxs").getFullList({
+      const inbox = await pb.collection("Inboxs").getFullList({
+        fields: "readStatus",
+        filter: "readStatus = false",
+      });
+      const notif = await pb.collection("notifications").getFullList({
         fields: "readStatus",
         filter: "readStatus = false",
       });
@@ -28,7 +32,7 @@ export async function GET(request: NextRequest) {
       //commands
       return NextResponse.json({
         success: true,
-        notif: notif.length,
+        notif: notif.length + inbox.length,
         commands: commands.length,
         account: 0,
       });

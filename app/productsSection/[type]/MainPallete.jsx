@@ -91,7 +91,7 @@ function MainPallete({ data, typeForHref }) {
 
   return (
     <div className="rounded-lg">
-      <div className="p-1 flex items-center md:p-4 rounded-t-md h-14 border-[.5px] border-secondarySecondarylight">
+      <div className="p-1 flex items-center md:pe-0 md:py-4 md:ps-4 rounded-t-md h-14 border-[.5px] border-secondarySecondarylight">
         <FilterPallete
           Reference={Reference}
           setIsLoading={setIsLoading}
@@ -196,7 +196,7 @@ function CardTitle({ collectionId, img, id, brandId, name, typeForHref }) {
           />
         )}
       </div>
-      <Link href={`/product/${typeForHref}/${id}`}>
+      <Link href={`/product/${typeForHref}/${id}`} className="text-main">
         <p className="text-sm md:text-base">{name}</p>
       </Link>
     </div>

@@ -66,36 +66,41 @@ function Main_notifications({ notifications, inbox }) {
   );
   async function handleAllRead() {
     const array = isInbox ? [...inbox] : [...notifications];
-    console.log(array);
-    const list = Promise.all(
-      array.map((item) => {
+    const list = await Promise.all(
+      array.map(async (item) => {
         if (!item.readStatus) {
-          fetch("/api/userCategories/readRecord", {
+          const res = await fetch("/api/userCategories/readRecord", {
             method: "PATCH",
             body: JSON.stringify({
               id: item.id,
               collectionName: item.collectionName,
             }),
-          }).then(() => {
-            setnotificationCount(notificationCount - 1);
-            console.log(notificationCount);
           });
+          const data = await res.text();
+          return 1;
         }
       })
     );
+
     if (isInbox) {
       setreadedArrayInbox(
         readedArrayInbox.map((item) => {
+          if (item) {
+          }
           return false;
         })
       );
     } else {
       setReadedArray(
         ReadedArray.map((item) => {
+          if (item) {
+            console.log("d");
+          }
           return false;
         })
       );
     }
+    setnotificationCount(notificationCount - list.length);
   }
   return (
     <ConfigProvider
@@ -117,12 +122,20 @@ function Main_notifications({ notifications, inbox }) {
               Messages
             </p>
           </div>
-          <Button
-            onClick={() => handleAllRead()}
-            className="bg-secondaryGreen p-2 h-[40px]  text-white"
-          >
-            make all readed
-          </Button>
+          {((isInbox && inbox.length != 0) ||
+            (!isInbox && notifications.length != 0)) && (
+            <Button
+              disabled={
+                (isInbox &&
+                  readedArrayInbox.findIndex((i) => i == true) == -1) ||
+                (!isInbox && ReadedArray.findIndex((i) => i == true) == -1)
+              }
+              onClick={() => handleAllRead()}
+              className="bg-secondaryGreen p-2 h-[40px]  text-white"
+            >
+              make all readed
+            </Button>
+          )}
         </div>
         <div className="flex flex-col gap-2  font-semibold  py-2 md:py-10 h-full">
           <Segmented
@@ -132,8 +145,7 @@ function Main_notifications({ notifications, inbox }) {
                 label: (
                   <div
                     onClick={() => setIsInbox(true)}
-                    style={{ padding: 4 }}
-                    className="flex items-center gap-2 justify-center"
+                    className="flex items-center gap-2 justify-center py-2"
                   >
                     <FontAwesomeIcon icon={faInbox} />
                     <div>Inbox</div>
@@ -148,8 +160,7 @@ function Main_notifications({ notifications, inbox }) {
                       setIsInbox(false);
                       handleNotifReading();
                     }}
-                    style={{ padding: 4 }}
-                    className="flex items-center gap-2 justify-center"
+                    className="flex items-center gap-2 justify-center py-2"
                   >
                     <FontAwesomeIcon icon={faBell} />
                     <div>Notifications</div>
@@ -162,12 +173,12 @@ function Main_notifications({ notifications, inbox }) {
           />
 
           <div className="flex gap-3 flex-col w-full  md:max-h-[50vh] overflow-x-hidden">
-            {!isInbox && notifications && (
+            {!isInbox && notifications.length != 0 && (
               <motion.div
-                className="gap-2 flex w-full flex-col"
+                className="gap-2 flex w-full flex-col bg-gray-400 "
                 animate={{ opacity: [0, 0.5, 1] }}
               >
-                <p className="text-center md:text-start text-sm p-1 bg-main text-white md:rounded-lg md:px-4">
+                <p className="text-center md:text-start text-sm p-1 bg-main  text-white md:rounded-lg md:px-4">
                   Your have ({notificationCount}) unreaded messages
                 </p>
                 {notifications.map((item, index) => {
@@ -181,12 +192,13 @@ function Main_notifications({ notifications, inbox }) {
                 })}
               </motion.div>
             )}
-            {isInbox && inbox && (
+
+            {isInbox && inbox.length != 0 && (
               <motion.div
-                className="gap-2 flex w-full flex-col"
+                className="gap-2 flex w-full flex-col bg-gray-400 "
                 animate={{ opacity: [0, 0.5, 1] }}
               >
-                <p className="text-center md:text-start text-sm p-1 bg-main text-white md:rounded-lg md:px-4">
+                <p className="text-center md:text-start text-sm p-1 bg-main  text-white md:rounded-lg md:px-4">
                   Your have ({notificationCount}) unreaded notifications
                 </p>
                 {inbox.map((item, index) => {
@@ -203,9 +215,13 @@ function Main_notifications({ notifications, inbox }) {
                 })}
               </motion.div>
             )}
+            {!isInbox && notifications.length == 0 && (
+              <Empty_notifications name={"Notifications"} />
+            )}
+            {isInbox && inbox.length == 0 && (
+              <Empty_notifications name={"Inbox"} />
+            )}
           </div>
-
-          {notifications.length == 0 && <Empty_notifications />}
         </div>
       </div>
     </ConfigProvider>

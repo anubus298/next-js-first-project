@@ -6,7 +6,7 @@ function Favorite_cards({
   setpriceSummary,
 }) {
   return (
-    <>
+    <div className="bg-gray-200">
       {products.map((product, i) => {
         return (
           <Card_favorite
@@ -18,7 +18,7 @@ function Favorite_cards({
           />
         );
       })}
-    </>
+    </div>
   );
 }
 

@@ -23,7 +23,7 @@ function DescripSection({
       </div>
       <div className="flex justify-between items-center">
         <div className="flex justify-between gap-x-5 items-center">
-          <p className="text-secondary text-4xl font-black select-none">
+          <p className="text-indigo-950 text-4xl font-semibold select-none">
             ${price}
             <span className="block md:inline text-xs ">(including VAT)</span>
           </p>
@@ -37,7 +37,7 @@ function DescripSection({
       </div>
       <div>
         <p className="text-lg font-black mb-5">Product Details :</p>
-        <ul className="list-disc min-h-[300px] font-semibold">
+        <ul className="list-disc min-h-[300px] font-medium">
           {description &&
             description
               .split(/\n/)

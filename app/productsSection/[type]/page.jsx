@@ -14,11 +14,11 @@ async function Page({ params }) {
   }
   let data = await getAllItems();
   return (
-    <div className="w-full min-h-[600px] md:min-h-screen flex flex-col md:flex-row  md:gap-x-6">
-      <div className="w-full md:w-1/5 md:min-h-[screen] ">
+    <div className="w-full max-h-[75vh] overflow-y-auto md:min-h-screen flex flex-col md:flex-row  md:gap-x-6">
+      <div className="w-full md:w-1/6 md:min-h-[screen] ">
         <SidePallete count={data.length} type={params.type} />
       </div>
-      <div className="w-full md:w-4/5 min-h[500px] md:min-h-screen">
+      <div className="w-full md:w-5/6 min-h[500px] md:min-h-screen">
         <Suspense fallback={<div className="w-full h-full bg-red-600"></div>}>
           <MainPallete data={data} typeForHref={params.type.toLowerCase()} />
         </Suspense>

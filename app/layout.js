@@ -14,7 +14,7 @@ export const metadata = {
   description: "Technology Market",
 };
 const mooli = Poppins({
-  weight: ["100","100", "600", "200", "400", "700", "800", "500", "300", "900"],
+  weight: ["100","100", "600", "200", "400", "700",  "500", "300"],
   subsets: ["latin"],
   style: ["normal"],
   variable: "--font-Lato",

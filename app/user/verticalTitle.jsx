@@ -8,6 +8,7 @@ import { ConfigProvider } from "antd";
 import { Router } from "next/router";
 import { AuthContext } from "../(lib)/context-provider";
 import { useContext } from "react";
+import { ColorRing } from "react-loader-spinner";
 
 function VerticalTitle() {
   const pathname = usePathname();
@@ -70,17 +71,28 @@ function VerticalTitle() {
         <div className="flex items-center justify-between p-3">
           <p className="font-semibold text-xl md:text-3xl">Personal account</p>
           <Button
-            className="font-semibold w-[200px] py-2 h-[50px] text-white bg-main hover:bg-main  "
+            className="font-semibold flex items-center justify-center w-[200px] py-2 h-[50px] text-white bg-main hover:bg-main  "
             type="primary"
+            disabled={!isValid}
             onClick={() => {
               router.push("/");
               setisValid(false);
               pb.authStore.clear();
               deleteCookie("pb_auth");
-              Router;
             }}
           >
-            Sign out
+            {isValid && <p>Sign out</p>}
+            {!isValid && (
+              <ColorRing
+                visible={true}
+                height="30"
+                width="30"
+                ariaLabel="blocks-loading"
+                wrapperStyle={{}}
+                wrapperClass="blocks-wrapper"
+                colors={["#e15b64", "#f47e60", "#f8b26a", "#abbd81", "#849b87"]}
+              />
+            )}
           </Button>
         </div>
         <div className="w-full h-[1px] bg-gray-300"></div>

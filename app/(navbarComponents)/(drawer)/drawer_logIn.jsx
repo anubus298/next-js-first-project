@@ -4,6 +4,7 @@ import {
   faBox,
   faChevronRight,
   faGear,
+  faMessage,
   faSignOut,
   faUser,
 } from "@fortawesome/free-solid-svg-icons";
@@ -30,7 +31,7 @@ function Drawer_logIn() {
         Log in
       </Link>
       <Link
-        href="/signIn/"
+        href="/signIn/afesq"
         className="w-full  text-secondarySecondarylight border-secondarySecondarylight border-2 font-bold text-center rounded-lg text-lg p-2"
       >
         Sign up
@@ -39,7 +40,7 @@ function Drawer_logIn() {
   ) : (
     <div className="w-full flex flex-col gap-y-1 text-white">
       <div className="flex flex-col items-center gap-x-2 justify-center">
-        <Avatar size="default" className="bg-green-500">
+        <Avatar size="large" shape="square"  className="bg-green-500 h-20 w-20 flex justify-center items-center font-semibold text-5xl">
           {pb.authStore.model?.username[0].toUpperCase()}
         </Avatar>
         <Collapse
@@ -77,9 +78,9 @@ function Drawer_logIn() {
                     </Link>
                   </div>
                   <div className="flex items-center gap-x-1 p-2">
-                    <FontAwesomeIcon icon={faBell} />
-                    <Link className="text-white" href="/notifications">
-                      Commands
+                    <FontAwesomeIcon icon={faMessage} />
+                    <Link className="text-white" href="/user/notifications">
+                      Messages
                     </Link>
                   </div>
                   <div className="flex items-center gap-x-1 p-2">

@@ -8,7 +8,7 @@ export default function JotaiProviders({ children }) {
     <Provider>
       <PayPalScriptProvider
         options={{
-          clientId: process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID,
+          clientId: "NEXT_PUBLIC_ANALYTICS_ID",
           currency: "USD",
           intent: "capture",
         }}

@@ -24,36 +24,37 @@ function Login_panel() {
 
   const [isloading, setisloading] = useState(false);
   const router = useRouter();
-  function ONSubmit(data) {
+  async function ONSubmit(data) {
     setErrorMsg("");
     setisloading(true);
-    fetch(`/api/login?survive=${data.remember}`, {
+    const res = await fetch(`/api/login?survive=${data.remember}`, {
       method: "POST",
       "Content-Type": "application/json",
       body: JSON.stringify(data),
       headers: {
         remember: data.remember,
       },
-    })
-      .then((res) => {
-        res.json();
-      })
-      .catch((e) => setErrorMsg(e))
-      .then((data) => {
-        pb.authStore.loadFromCookie(getCookie("pb_auth"));
+    });
+    const Json = await res.json();
+    if (Json.success) {
+      pb.authStore.loadFromCookie(getCookie("pb_auth"));
+      if (pb.authStore.isValid) {
+        router.push("/");
+        setisValid(false);
+        setisValid(true);
+      } else {
         setisloading(false);
-        pb.authStore.isValid && router.push("/");
-        if (pb.authStore.isValid) {
-          setisValid(false);
-          setisValid(true);
-        }
-      });
+        setErrorMsg("error happend");
+      }
+    } else {
+      setisloading(false);
+      setErrorMsg(Json.msg);
+    }
   }
-
   return (
-    <div className="bg-secondarySecondarylight  h-[500px] w-full md:w-1/2 pt-2 md:pt-5 sm:px-10 flex flex-col justify-evenly  text-main text-center select-none font-lato">
+    <div className="bg-secondarySecondarylight  min-h-[500px] w-full md:w-1/2 pt-2 md:pt-5 sm:px-10 flex flex-col justify-evenly  text-main text-center select-none font-lato">
       <div className=" text-center md:text-start">
-        <p className="text-2xl md:text-4xl mb-2 font-semibold">
+        <p className="text-2xl md:text-4xl mb-2 font-bold">
           Login to Safomart
         </p>
         <p className="text-gray-400 text-sm md:text-base font-normal">
@@ -71,7 +72,7 @@ function Login_panel() {
             autoComplete="off"
             type="email"
             placeholder="email"
-            className="w-full text-lg  border-2 border-main text-main  font-semibold py-2 md:py-6 px-3 placeholder:font-medium placeholder:text-gray-400 focus-visible:outline-none"
+            className="w-full text-lg  border-2 border-main text-main  font-medium py-2 md:py-6 px-3 placeholder:text-gray-400 focus-visible:outline-none"
             {...register("email", { required: true })}
           />
           {errors.exampleRequired && <span>This field is required</span>}
@@ -82,12 +83,12 @@ function Login_panel() {
             autoComplete="off"
             type="password"
             placeholder="password"
-            className="w-full text-lg  border-2 border-main text-main  font-semibold py-2 md:py-6 px-3  placeholder:font-medium placeholder:text-gray-400 focus-visible:outline-none"
+            className="w-full text-lg  border-2 border-main text-main  font-medium py-2 md:py-6 px-3  placeholder:text-gray-400 focus-visible:outline-none"
             {...register("password", { required: true })}
           />
           {errors.exampleRequired && <span>This field is required</span>}
         </div>
-        {errorMsg && <p className="text-red-600">{errorMsg}</p>}
+        {errorMsg && <p className="text-red-600 font-medium">{errorMsg}</p>}
 
         <div className="flex px-4 md:px-0 w-full justify-between items-center">
           <div className="flex  items-center space-x-2">
@@ -96,7 +97,7 @@ function Login_panel() {
               className="cursor-pointer bg-secondary text-secondary"
               {...register("remember", { required: false })}
             />
-            <p className="font-semibold">Remember me</p>
+            <p className="font-medium">Remember me</p>
           </div>
           <Link
             href="/forgot-password"
@@ -136,4 +137,5 @@ function Login_panel() {
     </div>
   );
 }
+
 export default Login_panel;

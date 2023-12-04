@@ -11,10 +11,15 @@ import { faBars } from "@fortawesome/free-solid-svg-icons";
 import Drawer_main from "./(navbarComponents)/(drawer)/Drawer_main";
 import User_skeleton from "./(navbarComponents)/User_skeleton";
 import Navbar_banner from "./(navbarComponents)/banner";
-function NavbarJS() {
+import { usePathname } from "next/navigation";
+function NavbarJS({params}) {
+  const path = usePathname()
   const [issmallscreen, setissmallscreen] = useState(false);
   const [open, setOpen] = useState(false);
   const [show, setshow] = useState(true);
+  useEffect(() => {
+    setOpen(false)
+  }, [path]);
   const showDrawer = () => {
     setOpen(true);
   };
@@ -33,7 +38,7 @@ function NavbarJS() {
       </Suspense>
       <div className="bg-main select-none text-secondarySecondarylight w-full justify-between flex sm:gap-x-5 p-2 md:p-5 mb-2 items-center  font-semibold    ">
         <div className="flex items-center gap-x-1">
-          <Navbar_logo />
+          <Navbar_logo height={200} width={200}/>
           <Navbar_ship_to_region />
         </div>
         <div className="flex items-center w-full sm:w-auto justify-end sm:justify-normal sm:gap-x-1">
@@ -51,7 +56,7 @@ function NavbarJS() {
           )}
         </div>
       </div>
-      {issmallscreen && <Drawer_main open={open} onClose={onClose} />}
+      {issmallscreen && <Drawer_main setOpen={setOpen} open={open} onClose={onClose} />}
     </Sticky>
   );
 }
