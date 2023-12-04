@@ -1,7 +1,7 @@
 import "./globals.css";
 import NavbarJS from "./NavbarJS";
 import FooterComp from "./(footer)/FooterJS";
-import { Lato } from "next/font/google";
+import { Analytics } from "@vercel/analytics/react";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import StyledComponentsRegistry from "./(lib)/AntdRegistry";
 import Providers from "./providers";
@@ -14,7 +14,7 @@ export const metadata = {
   description: "Technology Market",
 };
 const mooli = Poppins({
-  weight: ["100","100", "600", "200", "400", "700",  "500", "300"],
+  weight: ["100", "100", "600", "200", "400", "700", "500", "300"],
   subsets: ["latin"],
   style: ["normal"],
   variable: "--font-Lato",
@@ -35,6 +35,7 @@ export default function RootLayout({ children }) {
           </JotaiProviders>
         </Providers>
         <FooterComp />
+        <Analytics />
       </body>
     </html>
   );

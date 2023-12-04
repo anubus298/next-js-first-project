@@ -2,8 +2,10 @@
 const nextConfig = {
   env: {
     customUrl: "http://localhost:8000",
-    pocketBaseUrl: "https://remarkable-gate.pockethost.io/",
-    pocketBaseUrlo: "http://127.0.0.1:8090/",
+    pocketBaseUrl:
+      process.env.NODE_ENV === "development"
+        ? "http://127.0.0.1:8090/"
+        : "https://remarkable-gate.pockethost.io*",
   },
   experimental: {
     swcPlugins: [["@swc-jotai/react-refresh", {}]],
