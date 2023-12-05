@@ -12,21 +12,49 @@ function DescripSection({
   alreadyForFavorite,
   price,
   totalRated,
+  sale,
   collectionName,
   id,
 }) {
   return (
     <div className="md:w-1/2 flex flex-col gap-y-10">
       <div className=" flex gap-x-4 items flex-col ">
-        <p className="text-secondaryGreen text-xl font-black">In stock</p>
+        <p className="text-secondaryGreen text-xl font-black">
+          In stock{" "}
+          {sale != 0 && (
+            <span className="bg-secondary text-textWhiteWithSecondary p-1 rounded-lg ">
+              {sale * 100}% OFF
+            </span>
+          )}
+        </p>
         <p className="text-2xl sm:text-3xl font-black">{name}</p>
       </div>
       <div className="flex justify-between items-center">
         <div className="flex justify-between gap-x-5 items-center">
-          <p className="text-indigo-950 text-4xl font-semibold select-none">
-            ${price}
-            <span className="block md:inline text-xs ">(including VAT)</span>
-          </p>
+          <div className="flex flex-col">
+            {sale != 0 && (
+              <>
+                <p className="text-gray-500 decoration-black line-through font-semibold select-none text-3xl">
+                  ${price}
+                </p>
+                <p className="text-green-600 text-4xl font-semibold select-none">
+                  ${price - price * sale}
+                  <span className="block md:inline text-xs ">
+                    (including VAT)
+                  </span>
+                </p>
+              </>
+            )}
+            {sale == 0 && (
+              <p className="text-indigo-950 text-4xl font-semibold select-none">
+                ${price}
+                <span className="block md:inline text-xs ">
+                  (including VAT)
+                </span>
+              </p>
+            )}
+          </div>
+
           <div className="flex items-end gap-x-2 select-none">
             <StarComp count={rating} size={20} readonly={true} />
             <p className="block md:inline text-sm text-gray-400">

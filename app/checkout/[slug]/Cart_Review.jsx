@@ -38,7 +38,7 @@ function Cart_Review({ data, melon, setuserInfo, setCurrent, current }) {
                   </div>
                   <div className="flex flex-col h-full justify-evenly">
                     <p className="text-lg font-bold ">{product.name}</p>
-                    <p className="text-sm text-gray-600 ">${product.price}</p>
+                    <p className="text-sm text-gray-600 ">${product.price - product.price * product.sale}</p>
                     <p className="text-sm">Quantity : {melon[i]}</p>
                   </div>
                 </div>

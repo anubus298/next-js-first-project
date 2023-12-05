@@ -1,12 +1,10 @@
 "use client";
 import {
-  faBell,
   faBox,
   faChevronRight,
   faGear,
   faMessage,
   faSignOut,
-  faUser,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { deleteCookie, getCookie } from "../../functions/cookiesFunctions";

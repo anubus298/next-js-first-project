@@ -1,17 +1,26 @@
 "use client";
-import { Navigation, Pagination, Autoplay } from "swiper/modules";
+import { Navigation, Autoplay } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/effect-cards";
 import "public/swiper.css";
-import Home_slider_iphone_15 from "./sliders/home_slider_iphone_15";
-import Sliders_galaxy_s23 from "./sliders/sliders_galaxy_s23";
-import Sliders_surface_14 from "./sliders/sliders_surface_14";
-import { Suspense } from "react";
+import Image from "next/image";
+
+import { Suspense, useEffect, useRef, useState } from "react";
 import { ColorRing } from "react-loader-spinner";
+import { useRouter } from "next/navigation";
 function Home_slider() {
+  const router = useRouter();
+  const swiperRef = useRef(null);
+  const [width, setwidth] = useState();
+  useEffect(() => {
+    setwidth(document.documentElement.clientWidth);
+  }, []);
   return (
-    <div className="w-full mb-4 select-none h-fit overflow-hidden">
+    <div
+      ref={swiperRef}
+      className="w-full mb-4  select-none h-fit overflow-hidden"
+    >
       <Suspense
         fallback={
           <div className="w-full h-full">
@@ -29,19 +38,42 @@ function Home_slider() {
       >
         <Swiper
           modules={[Navigation, Autoplay]}
-          navigation={true}
+          navigation={width > 768}
           slidesPerView={1}
           grabCursor={false}
           autoplay={{
             delay: 3000,
             disableOnInteraction: true,
           }}
+          className="relative"
         >
           <SwiperSlide>
-            <Sliders_galaxy_s23 />
+            <Image
+              alt="ll"
+              width={1280}
+              height={500}
+              src={`/sliders/3${width < 768 ? "_small" : ""}.png`}
+            />
           </SwiperSlide>
           <SwiperSlide>
-            <Home_slider_iphone_15 />
+            <Image
+              alt="ll"
+              width={1280}
+              height={500}
+              src={`/sliders/4${width < 768 ? "_small" : ""}.png`}
+              className="cursor-pointer"
+              onClick={() => router.push("/product/mobiles/59kkyk5iv6d61wz")}
+            />
+          </SwiperSlide>
+          <SwiperSlide>
+            <Image
+              alt="ll"
+              width={1280}
+              height={500}
+              src={`/sliders/5${width < 768 ? "_small" : ""}.png`}
+              className="cursor-pointer"
+              onClick={() => router.push("/product/mobiles/59kkyk5iv6d61wz")}
+            />
           </SwiperSlide>
         </Swiper>
       </Suspense>

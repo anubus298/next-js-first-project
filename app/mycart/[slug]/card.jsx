@@ -58,7 +58,7 @@ function Card({
       </Table.RowHeaderCell>
 
       <Table.Cell justify={"center"}>
-        <p className="text-lg ">${product.price}</p>
+        <p className="text-lg ">${product.price - product.price * product.sale}</p>
       </Table.Cell>
 
       <Table.Cell justify={"center"}>

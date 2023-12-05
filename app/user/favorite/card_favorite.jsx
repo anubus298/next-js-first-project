@@ -95,7 +95,7 @@ function Card_favorite({
                 href={"/product" + "/" + type + "/" + product.id}
                 className="text-indigo-950 text-xl font-semibold w-fit"
               >
-                ${product.price}
+                ${product.price - product.price * product.sale}
               </Link>
             </div>
           </div>

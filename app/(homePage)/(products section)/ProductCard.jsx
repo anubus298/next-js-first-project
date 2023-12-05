@@ -24,6 +24,7 @@ function ProductCard({ item, type }) {
           <ProductDescription
             text={item.name.split(reg, 3).join(",")}
             type={type}
+            sale={0}
             classes={"transition"}
             id={item.id}
           />
@@ -42,11 +43,14 @@ function ProductCard({ item, type }) {
             classes="text-indigo-950 text-2xl "
             add="$"
             text={item.price}
+            sale={item.sale}
             type={type}
             id={item.id}
           />
           <StarComp count={item.rating} size={15} readonly={true} />
-          <p className="text-indigo-950 text-xs font-semibold">({item.totalRated} user)</p>
+          <p className="text-indigo-950 text-xs font-semibold">
+            ({item.totalRated} user)
+          </p>
         </div>
       </div>
     </div>

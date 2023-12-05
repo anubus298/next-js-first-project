@@ -9,7 +9,7 @@ async function Page({ params }) {
     const type = "Pro" + params.type;
     let res = pb
       .collection(type)
-      .getFullList({ sort: "@random", expand: "brand" });
+      .getFullList({ sort: "-sale", expand: "brand" },{cache : "no-store"});
     return res;
   }
   let data = await getAllItems();

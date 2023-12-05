@@ -1,11 +1,12 @@
-import {  useAtom } from "jotai";
-import { atomWithStorage } from 'jotai/utils'
+import { useAtom } from "jotai";
+import { atomWithStorage } from "jotai/utils";
 
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
 import { Badge, ConfigProvider, Popover } from "antd";
-export const NotificationCount = atomWithStorage("NotificationCount",0);
+
+export const NotificationCount = atomWithStorage("NotificationCount", 0);
 function CartIcon({ size }) {
   const [notifCount, setnotifCount] = useAtom(NotificationCount);
 
@@ -19,7 +20,10 @@ function CartIcon({ size }) {
         },
       }}
     >
-      <Popover content={<p className="font-bold text-white">My cart</p>}>
+      <Popover
+        destroyTooltipOnHide={true}
+        content={<p className="font-bold text-white">My cart</p>}
+      >
         <Link
           href="/mycart/user"
           onClick={() => {

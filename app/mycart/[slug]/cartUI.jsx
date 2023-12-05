@@ -14,7 +14,10 @@ function CartUI({ products, count, id, arrayOfproductCountsServer }) {
     let hasib = 0;
     if (arrayOfproductCounts) {
       arrayOfproductCounts.forEach((element, index) => {
-        hasib += element * products[index].price;
+        hasib +=
+          element *
+          (products[index].price -
+            products[index].price * products[index].sale);
       });
     }
     setpriceSummary(hasib);

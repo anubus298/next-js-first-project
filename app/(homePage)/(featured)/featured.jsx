@@ -34,7 +34,7 @@ async function Featured() {
   return (
     <>
       <div className="border-t-main  border-t-2  w-full flex justify-center text-center bg-main font-extrabold p-2 select-none">
-        <p className="text-secondary text-4xl">Featured</p>
+        <p className="text-textWhiteWithSecondary text-4xl">🔥 30% Sales</p>
       </div>
       <div
         className={`w-full py-8 bg-secondarySecondarylight  gap-y-3 gap-x-8 sm:gap-x-16 flex justify-center flex-wrap u  items-center `}

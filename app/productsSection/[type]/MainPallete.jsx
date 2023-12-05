@@ -124,7 +124,10 @@ function MainPallete({ data, typeForHref }) {
               >
                 <Card
                   bordered={true}
-                  className="w-44 md:w-56 h-72 py-2 md:py-4 hover:shadow-lg hover:-translate-y-1 duration-200 ease-out font-lato"
+                  className={
+                    "w-44 md:w-56 h-80 py-2 md:py-4 hover:shadow-lg hover:-translate-y-1 duration-200 ease-out font-lato "  
+                      
+                  }
                   cover={
                     <Image
                       alt="ss"
@@ -152,6 +155,7 @@ function MainPallete({ data, typeForHref }) {
                     description={
                       <CardDescription
                         price={product.price}
+                        sale={product.sale}
                         rating={product.rating}
                         id={product.id}
                         totalRated={product.totalRated}
@@ -202,15 +206,9 @@ function CardTitle({ collectionId, img, id, brandId, name, typeForHref }) {
     </div>
   );
 }
-function CardDescription({ price, rating, id, typeForHref, totalRated }) {
+function CardDescription({ price, sale, rating, id, typeForHref, totalRated }) {
   return (
-    <div className="flex flex-col-reverse md:flex-row items-center justify-evenly">
-      <Link
-        href={`/product/${typeForHref}/${id}`}
-        className="text-secondary font-bold text-lg"
-      >
-        ${price}
-      </Link>
+    <div className="flex flex-col items-center justify-evenly">
       <Popover
         content={
           <div className="flex flex-col items-center">
@@ -226,6 +224,26 @@ function CardDescription({ price, rating, id, typeForHref, totalRated }) {
           disabled
         />
       </Popover>
+      {sale == 0 && (
+        <Link
+          href={`/product/${typeForHref}/${id}`}
+          className="text-secondary font-bold text-lg"
+        >
+          ${price}
+        </Link>
+      )}
+      {sale != 0 && (
+        <div className="flex flex-col text-center">
+          <p className="line-through decoration-black">${price}</p>
+          <Link
+            href={`/product/${typeForHref}/${id}`}
+            className="text-green-600 font-bold text-lg"
+          >
+            ${price - price * sale}
+            <span className="text-sm"> ({sale * 100 + "% OFF"})</span>
+          </Link>
+        </div>
+      )}
     </div>
   );
 }

@@ -15,7 +15,7 @@ async function ProductSection({
     const ProType = "Pro" + type[0].toUpperCase() + type.slice(1, type.length);
     let data = await pb.collection(ProType).getList(1, count, {
       expand: "brand",
-      sort: "@random",
+      sort: "-sale",
       cache: cacheOption,
     });
     data["items"] = shuffle(data["items"]);

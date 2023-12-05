@@ -69,11 +69,11 @@ async function writeData(body: tokenBody, pb) {
       try {
         const price = await pb
           .collection(item.collectionName)
-          .getOne(item.id, { fields: "price" });
+          .getOne(item.id, { fields: "price,sale" });
         let data = {
           user: pb.authStore.model.id,
           id: uniqueId,
-          total: Number(price.price) + 15,
+          total: Number(price.price - price.price * price.sale) + 15,
           shipping_cost: 15,
           costumer_name: body.first_name + " " + body.last_name,
           costumer_number: body.phone,
@@ -90,10 +90,10 @@ async function writeData(body: tokenBody, pb) {
           products: {
             productId: item.id,
             count: item.count,
-            perOne: Number(price.price),
+            perOne: Number(price.price - price.price * price.sale),
             shipping: 10,
             taxes: 5,
-            totalAmount: Number(price.price) + 15,
+            totalAmount: Number(price.price - price.price * price.sale) + 15,
           },
           success: true,
           processingId: uniqueId,

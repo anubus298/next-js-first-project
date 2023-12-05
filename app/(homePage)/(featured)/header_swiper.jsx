@@ -54,8 +54,13 @@ function Header_swiper(props) {
                   <p className="tracking-widest text-sm sm:text-lg font-semibold">
                     {product.productName}
                   </p>
-                  <p className=" tracking-wider text-secondary font-semibold">
-                    ${product.price}
+                  <p className=" tracking-wider  font-semibold">
+                    <span className="text-gray-400 line-through mx-1">
+                      ${product.price}
+                    </span>
+                    <span className="text-secondary mx-1">
+                      ${Math.floor(product.price - product.price * 0.3)}
+                    </span>
                   </p>
                 </Link>
               </SwiperSlide>
