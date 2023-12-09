@@ -1,5 +1,6 @@
+import Main_notification from "./main_account";
 function Page() {
-    return ( <p>account</p> );
+  return <Main_notification />;
 }
 
 export default Page;

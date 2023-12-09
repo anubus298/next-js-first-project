@@ -3,10 +3,8 @@ import PocketBase from "pocketbase";
 
 import {
   faBagShopping,
-  faBell,
   faCreditCard,
   faGear,
-  faHeart,
   faMessage,
   faUser,
 } from "@fortawesome/free-solid-svg-icons";
@@ -14,13 +12,16 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Avatar, Badge, ConfigProvider } from "antd";
 import { useAtom } from "jotai";
 import { usePathname, useRouter } from "next/navigation";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import notificationAtom from "../(lib)/jotai/notificationAtom";
+import { AuthContext } from "../(lib)/context-provider";
 function UserSidePanel() {
   const pb = new PocketBase(process.env.pocketBaseUrl);
   const pathname = usePathname();
   const [notiCount, setnotiCount] = useAtom(notificationAtom);
   const [username, setusername] = useState("");
+  const { color, setcolor } = useContext(AuthContext);
+
   const [email, setemail] = useState("");
   const [ColoredArray, setColoredArray] = useState([
     {
@@ -58,7 +59,11 @@ function UserSidePanel() {
       item.current = false;
       return item;
     });
-    arr[index].current = true;
+    if (pathname.startsWith("/user/account")) {
+      arr[0].current = true;
+    } else {
+      arr[index].current = true;
+    }
     setColoredArray(arr);
   }, [pathname]);
   useEffect(() => {
@@ -86,13 +91,14 @@ function UserSidePanel() {
         },
       }}
     >
-      <div className="flex w-full py-1 md:py-4 px-2 md:ps-8 md:pe-4 md:min-h-[75vh] flex-col md:gap-y-10  justify-between md:justify-center text-main border-gray-300 border-r-2">
-        <div className="w-full justify-center bg-white md:bg-transparent py-2 px-1 md:p-3 flex flex-col font  items-center md:items-start select-none">
+      <div className="flex w-full pb-4 md:py-4 px-2 md:ps-8 md:pe-4 md:min-h-[75vh] flex-col md:gap-y-10  justify-between md:justify-center text-main border-gray-300 border-r-2">
+        <div className="w-full justify-center  md:bg-transparent py-2 px-1 md:p-3 flex flex-col font  items-center md:items-start select-none">
           <Avatar
             icon={<FontAwesomeIcon icon={faUser} size="2x" />}
             shape="square"
             size={"large"}
-            className="bg-secondaryGreen flex justify-center items-center mb-1"
+            className=" flex justify-center items-center mb-1"
+            style={{ backgroundColor: color }}
           />
           <p className="text-2xl font-bold">{username}</p>
           <p className="text-gray-500 font-normal">{email}</p>
@@ -103,8 +109,7 @@ function UserSidePanel() {
               <div
                 key={index * 45 + "dok"}
                 className={
-                  "flex justify-center items-center md:w-full gap-1 transition  " +
-                  (item.current && "text-secondaryGreen")
+                  "flex justify-center items-center md:w-full gap-1 transition  "
                 }
               >
                 <div
@@ -116,12 +121,11 @@ function UserSidePanel() {
                   }
                 >
                   <Avatar
-                  shape="square"
+                    shape="square"
                     className={
-                      "flex  justify-center transition items-center text-sm md:text-lg text-white " +
-                      (item.current && " bg-secondaryGreen ") +
-                      (!item.current && " bg-main ")
+                      "flex  justify-center transition items-center text-sm md:text-lg text-white "
                     }
+                    style={{ backgroundColor: item.current ? color : "black" }}
                   >
                     {item.icon}
                   </Avatar>

@@ -3,7 +3,7 @@
 import StarComp from "../../(homePage)/(products section)/StarComp";
 import AddToMyCart from "./AddToMyCart";
 import AddToMyFavorite from "./AddToMyFavorite";
-
+import ShareButton from "./ShareButton";
 function DescripSection({
   rating,
   name,
@@ -14,6 +14,7 @@ function DescripSection({
   totalRated,
   sale,
   collectionName,
+  imgs,
   id,
 }) {
   return (
@@ -66,15 +67,18 @@ function DescripSection({
       <div>
         <p className="text-lg font-black mb-5">Product Details :</p>
         <ul className="list-disc min-h-[300px] font-medium">
-          {description &&
-            description
-              .split(/\n/)
-              .slice(1, description.split(/\n/).length - 1)
-              .map((i, j) => (
-                <li className=" text-sm my-2 text-gray-800" key={j * 542}>
-                  {i}
-                </li>
-              ))}
+          {description && (
+            <div className="max-h-[50vh] overflow-y-auto">
+              {description
+                .split(/\n/)
+                .slice(1, description.split(/\n/).length - 1)
+                .map((i, j) => (
+                  <li className=" text-sm my-2 text-gray-800" key={j * 542}>
+                    {i}
+                  </li>
+                ))}
+            </div>
+          )}
         </ul>
       </div>
 
@@ -89,6 +93,7 @@ function DescripSection({
           collectionName={collectionName}
           id={id}
         />
+        <ShareButton cId={collectionName} url={imgs[0]} id={id} name={name} />
       </div>
     </div>
   );

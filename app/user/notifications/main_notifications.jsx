@@ -115,10 +115,10 @@ function Main_notifications({ notifications, inbox }) {
         },
       }}
     >
-      <div className="bg-secondarySecondarylight w-full md:w-10/12 ps-5">
-        <div className="w-full gap-y-6 flex flex-col mt-5 md:mt-0 md:flex-row justify-center items-center md:justify-between">
-          <div className="md:w-full">
-            <p className="text-5xl md:text-4xl font-semibold  md:text-start bg-white md:bg-transparent pt-2">
+      <div className="w-full bg-secondarySecondarylight md:w-10/12 md:ps-5">
+        <div className="flex flex-col items-center justify-center w-full mt-5 gap-y-6 md:mt-0 md:flex-row md:justify-between">
+          <div className="w-full py-2 text-center text-white bg-main md:bg-transparent md:text-main md:py-0">
+            <p className="pt-2 text-5xl font-semibold md:text-4xl md:text-start md:bg-transparent">
               Messages
             </p>
           </div>
@@ -137,7 +137,7 @@ function Main_notifications({ notifications, inbox }) {
             </Button>
           )}
         </div>
-        <div className="flex flex-col gap-2  font-semibold  py-2 md:py-10 h-full">
+        <div className="flex flex-col h-full gap-2 py-2 font-semibold md:py-10">
           <Segmented
             block
             options={[
@@ -145,7 +145,7 @@ function Main_notifications({ notifications, inbox }) {
                 label: (
                   <div
                     onClick={() => setIsInbox(true)}
-                    className="flex items-center gap-2 justify-center py-2"
+                    className="flex items-center justify-center gap-2 py-2"
                   >
                     <FontAwesomeIcon icon={faInbox} />
                     <div>Inbox</div>
@@ -160,7 +160,7 @@ function Main_notifications({ notifications, inbox }) {
                       setIsInbox(false);
                       handleNotifReading();
                     }}
-                    className="flex items-center gap-2 justify-center py-2"
+                    className="flex items-center justify-center gap-2 py-2"
                   >
                     <FontAwesomeIcon icon={faBell} />
                     <div>Notifications</div>
@@ -175,10 +175,10 @@ function Main_notifications({ notifications, inbox }) {
           <div className="flex gap-3 flex-col w-full md:h-[50vh] overflow-x-hidden bg-gray-200">
             {!isInbox && notifications.length != 0 && (
               <motion.div
-                className="gap-2 flex w-full flex-col  "
+                className="flex flex-col w-full gap-2 "
                 animate={{ opacity: [0, 0.5, 1] }}
               >
-                <p className="text-center md:text-start text-sm p-1 bg-main  text-white md:rounded-lg md:px-4">
+                <p className="p-1 text-sm text-center text-white md:text-start bg-main md:rounded-lg md:px-4">
                   Your have ({notificationCount}) unreaded messages
                 </p>
                 {notifications.map((item, index) => {
@@ -195,10 +195,10 @@ function Main_notifications({ notifications, inbox }) {
 
             {isInbox && inbox.length != 0 && (
               <motion.div
-                className="gap-2 flex w-full flex-col "
+                className="flex flex-col w-full gap-2 "
                 animate={{ opacity: [0, 0.5, 1] }}
               >
-                <p className="text-center md:text-start text-sm p-1 bg-main  text-white md:rounded-lg md:px-4">
+                <p className="p-1 text-sm text-center text-white md:text-start bg-main md:rounded-lg md:px-4">
                   Your have ({notificationCount}) unreaded notifications
                 </p>
                 {inbox.map((item, index) => {
@@ -257,13 +257,13 @@ function Inbox_card({ item, date, ReadedArray, index, handleReading }) {
       expandIcon={() => (
         <FontAwesomeIcon icon={ReadedArray ? faEnvelope : faEnvelopeOpenText} />
       )}
-      className="text-main bg-white rounded-lg shadow-lg mx-2 "
+      className="mx-2 bg-white rounded-lg shadow-lg text-main "
       onChange={() => handleReading(item.id, item.collectionName, index)}
       items={[
         {
           key: "1",
           label: (
-            <p className="font-semibold w-full justify-between">
+            <p className="justify-between w-full font-semibold">
               {firstLine.trim()}
               <span className="text-xs font-normal text-gray-400">
                 {" "}
@@ -272,8 +272,8 @@ function Inbox_card({ item, date, ReadedArray, index, handleReading }) {
             </p>
           ),
           children: (
-            <div className="w-full justify-end flex flex-col">
-              <p className="whitespace-pre-line font-normal">{item.message}</p>
+            <div className="flex flex-col justify-end w-full">
+              <p className="font-normal whitespace-pre-line">{item.message}</p>
               <a className="text-xs md:hidden text-end" href="#top">
                 go top
               </a>
@@ -289,7 +289,7 @@ function Inbox_card({ item, date, ReadedArray, index, handleReading }) {
 }
 function Notification_card({ item, ReadedArray }) {
   return (
-    <div className="text-main bg-white rounded-lg text-sm shadow-lg mx-2 p-3 flex items-center justify-between select-none">
+    <div className="flex items-center justify-between p-3 mx-2 text-sm bg-white rounded-lg shadow-lg select-none text-main">
       <p>{item.message}</p>
       {ReadedArray && <p className={" text-secondary  "}>New</p>}
     </div>

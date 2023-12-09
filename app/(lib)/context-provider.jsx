@@ -10,10 +10,18 @@ function IsValidProvider({ children }) {
   const pb = new PocketBase(process.env.pocketBaseUrl);
 
   const [isValid, setisValid] = useState(pb.authStore.isValid);
+  const [color, setcolor] = useState("#22c55e");
   const [showbanner, setshowbanner] = useState(true);
   return (
     <AuthContext.Provider
-      value={{ isValid, setisValid, showbanner, setshowbanner }}
+      value={{
+        isValid,
+        setisValid,
+        showbanner,
+        setshowbanner,
+        color,
+        setcolor,
+      }}
     >
       {children}
     </AuthContext.Provider>

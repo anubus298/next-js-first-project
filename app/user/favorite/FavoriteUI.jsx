@@ -6,8 +6,9 @@ function CartUI({ products, count, fullStartingPrice, id }) {
   const [priceSummary, setpriceSummary] = useState(fullStartingPrice);
   return (
     <>
-      <div className="bg-secondarySecondarylight w-full md:w-10/12 ps-5">
-        <div className="w-full gap-y-6 flex flex-col mt-5 md:mt-0 md:flex-row justify-center items-center md:justify-between">
+      <div className="bg-secondarySecondarylight w-full md:w-10/12 md:ps-5">
+      <div className="text-center py-2 w-full bg-main text-white md:bg-transparent md:text-main md:py-0">
+
           <p className="text-5xl md:text-4xl font-semibold text-center md:text-start pt-2">
             Favorites
           </p>

@@ -1,5 +1,5 @@
 import "./globals.css";
-import NavbarJS from "./NavbarJS";
+import NavbarServer from "./NavbarServer";
 import FooterComp from "./(footer)/FooterJS";
 import { Analytics } from "@vercel/analytics/react";
 import "@fortawesome/fontawesome-svg-core/styles.css";
@@ -38,7 +38,7 @@ export const metadata = {
   author: "SafoMart Team",
 };
 const mooli = Poppins({
-  weight: ["100", "100", "600", "200", "400", "700", "500", "300"],
+  weight: ["300", "100", "600", "200", "400", "700", "500", "300"],
   subsets: ["latin"],
   style: ["normal"],
   variable: "--font-Lato",
@@ -49,14 +49,10 @@ import { Poppins } from "next/font/google";
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body
-        className={
-          `${mooli.variable} ` + mooli.className + " touch-none md:touch-auto"
-        }
-      >
+      <body className={`${mooli.variable} ` + mooli.className + " "}>
         <Providers>
           <JotaiProviders>
-            <NavbarJS />
+            <NavbarServer />
             <div className="container mx-auto ">
               <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
             </div>

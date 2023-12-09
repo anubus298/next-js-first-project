@@ -3,10 +3,7 @@ objectives :
 -make all the pages responsive
 -add wearables items
 -add setting page
--add
--add costumers rating and reviews
 -arrange your project files
--fix cart hydration error -D
 -fix BrandImg size
 -make share buttons working
 
@@ -18,7 +15,6 @@ to delete error responses in api routes
 -remove auth cookie from the client from server if user isnt auth
 
 -return payment if canceled
-add inbox/notifications
 
 additional : 
 -make shipment cost calculator api
@@ -27,3 +23,9 @@ additional :
 paypal : 
 email : sb-2pyjd28351401@personal.example.com
 password :  qU/f.2k[
+
+
+done :
+-add costumers rating and reviews
+-fix cart hydration error -D
+-add inbox/notifications

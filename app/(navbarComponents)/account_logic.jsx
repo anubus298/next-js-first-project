@@ -7,11 +7,10 @@ import { useContext, useEffect, useState } from "react";
 import PocketBase from "pocketbase";
 
 import { AuthContext } from "../(lib)/context-provider";
-function Account_logic() {
+function Account_logic({ notiff }) {
   const { isValid, setisValid } = useContext(AuthContext);
 
   const [domloaded, setdomloaded] = useState(false);
-  const pb = new PocketBase("http://127.0.0.1:8090");
   useEffect(() => {
     setdomloaded(true);
   }, []);
@@ -19,9 +18,9 @@ function Account_logic() {
     <div>
       {domloaded ? (
         isValid ? (
-          <Navbar_user_icon />
+          <Navbar_user_icon notiff={notiff} />
         ) : (
-          <div className="flex sm:flex-row flex-col-reverse md:gap-y-2 items-center">
+          <div className="flex flex-col-reverse items-center sm:flex-row md:gap-y-2">
             <Navbar_log_in />
             <Navbar_sign_in />
           </div>

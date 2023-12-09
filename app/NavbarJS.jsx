@@ -12,7 +12,7 @@ import Drawer_main from "./(navbarComponents)/(drawer)/Drawer_main";
 import User_skeleton from "./(navbarComponents)/User_skeleton";
 import Navbar_banner from "./(navbarComponents)/banner";
 import { usePathname } from "next/navigation";
-function NavbarJS({params}) {
+function NavbarJS({notiff}) {
   const path = usePathname()
   const [issmallscreen, setissmallscreen] = useState(false);
   const [open, setOpen] = useState(false);
@@ -36,17 +36,17 @@ function NavbarJS({params}) {
       <Suspense fallback={<div className="w-full h-9 bg-secondaryLight"></div>}>
       <Navbar_banner show={show} setshow={setshow} />
       </Suspense>
-      <div className="bg-main select-none text-secondarySecondarylight w-full justify-between flex sm:gap-x-5 p-2 md:p-5 mb-2 items-center  font-semibold    ">
+      <div className="flex items-center justify-between w-full p-2 mb-2 font-semibold select-none bg-main text-secondarySecondarylight sm:gap-x-5 md:p-5 ">
         <div className="flex items-center gap-x-1">
           <Navbar_logo height={200} width={200}/>
           <Navbar_ship_to_region />
         </div>
-        <div className="flex items-center w-full sm:w-auto justify-end sm:justify-normal sm:gap-x-1">
+        <div className="flex items-center justify-end w-full sm:w-auto sm:justify-normal sm:gap-x-1">
           {!issmallscreen && (
             <Suspense fallback={<User_skeleton />}>
               <SearchBar />
               <Navbar_categories />
-              <Account_logic />
+              <Account_logic notiff={notiff} />
             </Suspense>
           )}
           {issmallscreen && (

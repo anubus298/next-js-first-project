@@ -32,7 +32,7 @@ function Cart_product_section({
   }
   const router = useRouter();
   return (
-    <div className="md:h-[75vh] bg-gray-200 p-5  select-none md:me-5">
+    <div className="md:h-[75vh] bg-gray-200 md:p-5  select-none md:me-5">
       {!products && <Cart_empty />}
       {products && (
         <Favorite_cards

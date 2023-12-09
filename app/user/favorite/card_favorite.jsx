@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { AlertDialog, Button, Flex } from "@radix-ui/themes";
 import { Table } from "@radix-ui/themes";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useEffect } from "react";
 import { message } from "antd";
 import { useRouter } from "next/navigation";
@@ -12,6 +12,7 @@ import Link from "next/link";
 import { Rate } from "antd";
 import { NotificationCount } from "../../(navbarComponents)/cartIcon";
 import { useAtom } from "jotai";
+import { AuthContext } from "../../(lib)/context-provider";
 function Card_favorite({
   product,
   setpriceSummary,
@@ -21,6 +22,8 @@ function Card_favorite({
   const [notifCount, setnotifCount] = useAtom(NotificationCount);
   const [quantity, setquantity] = useState(1);
   const [sign, setsign] = useState(1);
+  const { color, setcolor } = useContext(AuthContext);
+
   const regex = /(Pro)(\S)/;
   const [messageApi, contextHolder] = message.useMessage();
   const type = product.collectionName.replace(regex, (str, p1, p2) => {
@@ -57,19 +60,23 @@ function Card_favorite({
     });
     return res;
   }
-
+  const [width, setwidth] = useState(1280);
+  useEffect(() => {
+    setwidth(document.documentElement.clientWidth);
+  }, []);
   return (
     <>
       {contextHolder}
 
       <div className="w-full">
-        <div className="bg-white m-3 md:m-0 flex w-full justify-between md:justify-normal md:flex-row relative flex-col items-center space-x-5 md:w-auto min-h-[200px] md:min-h-fit md:h-[120px] overflow-y-auto overflow-x-hidden shadow-lg sm:overflow-hidden p-3 md:p-6 rounded-lg">
+        <div className="bg-white m-1 md:m-0 flex w-full justify-between md:justify-normal md:flex-row relative flex-col items-center space-x-5 md:w-auto min-h-[200px] md:min-h-fit md:h-[120px] overflow-y-auto overflow-x-hidden shadow-lg sm:overflow-hidden p-3 md:p-6 rounded-lg">
           <div className="flex gap-x-2 items-center w-full md:w-9/12 md:gap-x-5">
             <Image
               src={`${process.env.pocketBaseUrl}api/files/${product.collectionId}/${product.id}/${product.imgs}`}
               alt=""
-              height={90}
-              width={90}
+              height={width > 768 ? 90 : 65}
+              width={width > 768 ? 90 : 65}
+              s
               className="w-auto cursor-pointer"
               onClick={() =>
                 router.push("/product" + "/" + type + "/" + product.id)
@@ -139,7 +146,10 @@ function Card_favorite({
             </div>
             <AlertDialog.Root>
               <AlertDialog.Trigger>
-                <button className="bg-secondaryGreen rounded-md px-4 h-[50px] md:h-auto md:py-2 w-1/2 md:w-full text-center text-textWhiteWithSecondary self-end place-self-end font-medium">
+                <button
+                  style={{ backgroundColor: color }}
+                  className=" rounded-md px-4 h-[35px]  md:py-2 w-1/2 md:w-full text-center text-textWhiteWithSecondary self-end place-self-end font-medium"
+                >
                   Add to Cart
                 </button>
               </AlertDialog.Trigger>

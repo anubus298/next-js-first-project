@@ -43,7 +43,19 @@ const Term = z.boolean().refine((value) => value === true, {
   message: "Required",
 });
 
+const ReviewZod = z.string().min(10).max(1000);
+
+const ratingSchema = z.number().refine(
+  (value: number) => {
+    return value >= 0 && value <= 5 && value % 0.5 === 0;
+  },
+  {
+    message: "Rating must be a number between 0.5 and 5 with a step of 0.5",
+  }
+);
 export { passwordSchema };
 export { Term };
+export { ReviewZod };
 export { emailSchema };
 export { NameSchema };
+export { ratingSchema };

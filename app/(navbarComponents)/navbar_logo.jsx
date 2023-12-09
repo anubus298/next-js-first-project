@@ -9,6 +9,7 @@ function Navbar_logo({height,width}) {
         className="w-auto"
         src={"/logo.svg"}
         width={height}
+        quality={100}
         height={width}
         alt="SafoMart logo"
       />

@@ -17,7 +17,7 @@ import { useAtom } from "jotai";
 import Category_notification from "./(user_categories)/category_notification";
 import Category_account from "./(user_categories)/category_account";
 import Category_commands from "./(user_categories)/category_commands";
-function Navbar_user_icon() {
+function Navbar_user_icon({ notiff }) {
   const pb = new PocketBase(process.env.pocketBaseUrl);
   const [commandsCountAtom, setcommandsCountAtom] = useAtom(commandsAtom);
   const [userCountAtom] = useAtom(userAtom);
@@ -25,24 +25,16 @@ function Navbar_user_icon() {
   const [notificationsCountAtom, setnotificationsCountAtom] =
     useAtom(notificationAtom);
   const { isValid, setisValid } = useContext(AuthContext);
+  const { color, setcolor } = useContext(AuthContext);
 
   useEffect(() => {
-    function GetUserCategoriesInfo() {
-      const res = fetch("/api/userCategories?type=number", {
-        cache: "no-store",
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          if (data.success) {
-            setnotificationsCountAtom(data.notif);
-            setcommandsCountAtom(data.commands);
-            setaccountCountAtom(data.account);
-          }
-        });
-    }
-    GetUserCategoriesInfo();
+    setnotificationsCountAtom(notiff.notif);
+    setcommandsCountAtom(notiff.commands);
+    setaccountCountAtom(notiff.account);
   }, []);
-
+  useEffect(() => {
+    setcolor(notiff.color);
+  }, []);
   pb.authStore.loadFromCookie(getCookie("pb_auth"));
 
   function deleteCookie(name) {
@@ -84,9 +76,14 @@ function Navbar_user_icon() {
     <div className="flex">
       <CartIcon />
       <Menu className="relative" as={"menu"}>
-        <Menu.Button className="hover:text-secondary transition m-2 flex items-center gap-x-2">
+        <Menu.Button className="flex items-center m-2 transition hover:text-secondary gap-x-2">
           <Badge size="small" count={userCountAtom}>
-            <Avatar shape="square" size="small" className="bg-green-500">
+            <Avatar
+              style={{ backgroundColor: color }}
+              shape="square"
+              size="small"
+              className=""
+            >
               {pb.authStore.model?.username[0].toUpperCase()}
             </Avatar>
           </Badge>

@@ -21,7 +21,7 @@ module.exports = {
         secondaryGreen: "#55D186",
         secondaryLight: "#EA9E8D",
         secondarySecondary: "#ffffff",
-        secondarySecondarylight: "#f2f1f1",
+        secondarySecondarylight: "#f3f5f7",
         textWhiteWithSecondary : "#F2F7F2",
         gold : "#F6BA00"
       },

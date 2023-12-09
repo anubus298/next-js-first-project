@@ -49,7 +49,8 @@ function Home_slider() {
         >
           <SwiperSlide>
             <Image
-              alt="ll"
+              alt="laptop sale 30%"
+              quality={100}
               width={1280}
               height={500}
               src={`/sliders/3${width < 768 ? "_small" : ""}.png`}
@@ -57,7 +58,8 @@ function Home_slider() {
           </SwiperSlide>
           <SwiperSlide>
             <Image
-              alt="ll"
+              alt="laptop sale 50%"
+              quality={100}
               width={1280}
               height={500}
               src={`/sliders/4${width < 768 ? "_small" : ""}.png`}
@@ -67,7 +69,8 @@ function Home_slider() {
           </SwiperSlide>
           <SwiperSlide>
             <Image
-              alt="ll"
+              alt="black friday poster"
+              quality={100}
               width={1280}
               height={500}
               src={`/sliders/5${width < 768 ? "_small" : ""}.png`}

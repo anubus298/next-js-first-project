@@ -13,7 +13,9 @@ function Header_swiper(props) {
   const router = useRouter();
   return (
     <div className="">
-      <div className="w-full p-2 flex justify-center bg-main text-white text-lg tracking-widest font-bold rounded-t-lg md:shadow-md"></div>
+      <div className="w-full p-2 flex justify-center bg-main text-secondary text-lg tracking-widest font-bold rounded-t-lg md:shadow-md">
+        {props.type[0].toUpperCase() + props.type.slice(1, props.type.length)}s
+      </div>
       <Suspense fallback={<Fallback_header_swiper />}>
         <Swiper
           effect={"cards"}

@@ -25,7 +25,7 @@ function Bill_card({item}) {
           {prettyDate}
         </p>
       }
-      className="1 md:w-[220px] md:shadow-md"
+      className=" md:my-0 w-full md:w-[280px] md:shadow-md"
       size="small"
     >
       <Meta
@@ -45,7 +45,7 @@ function Bill_card({item}) {
             </p>
 
             <Link
-              href={`/product/${item.productInfo.collectionName}/${item.productInfo.id}`}
+              href={`/product/${item.productInfo.collectionName?.match(/Pro(.+)/)[1]?.toLowerCase()}/${item.productInfo.id}`}
               className="text-xs"
             >
               <span className="text-main">product Name:</span> <br />

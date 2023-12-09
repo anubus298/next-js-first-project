@@ -5,6 +5,7 @@ import PocketBase from "pocketbase";
 import SuggestedSection from "./SuggestedSection";
 import ImgSection from "./ImgsSection";
 import { cookies } from "next/headers";
+import ReviewsSection from "./reviews/ReviewsSection";
 async function SuspenseSupport({ params, searchParams }) {
   const pb = new PocketBase(process.env.pocketBaseUrl);
   const pb_auth_cookie = await cookies().get("pb_auth");
@@ -47,8 +48,8 @@ async function SuspenseSupport({ params, searchParams }) {
         .collection("Favorites")
         .getOne(pb.authStore.model.id, { cache: "no-store" });
       return {
-        alreadyForCart: resForCart[field].includes(id, 0),
-        alreadyForFavorite: resForFavorite[field].includes(id, 0),
+        alreadyForCart: resForCart[field]?.includes(id, 0),
+        alreadyForFavorite: resForFavorite[field]?.includes(id, 0),
       };
     } else {
       return {
@@ -57,16 +58,51 @@ async function SuspenseSupport({ params, searchParams }) {
       };
     }
   }
+  async function getReviews() {
+    const resultList = await pb.collection("Reviews").getList(1, 50, {
+      filter:
+        params.roseg[0].slice(0, params.roseg[0].length - 1) +
+        " = " +
+        `'${params.roseg[1]}'`,
+      expand: "user",
+      fields: "expand.user.username,comment,rating,created,likesOwners,id",
+      cache: "no-store",
+    });
+    let body = resultList.items.map((review) => {
+      let changeable = { ...review };
+      const num = changeable?.likesOwners?.findIndex((item) => {
+        return pb.authStore?.model?.id == item;
+      });
+      changeable["numberOflikes"] = changeable.likesOwners.length;
+      delete changeable["likesOwners"];
+      num == !-1
+        ? (changeable["isLiked"] = true)
+        : (changeable["isLiked"] = false);
+
+      return changeable;
+    });
+    body = body.sort((a, b) => {
+      return b.numberOflikes - a.numberOflikes;
+    });
+    return body;
+  }
   let data = await getDescription();
   let addedOrNot = await getAddedOrNot();
+  let reviews = await getReviews();
   data = { ...addedOrNot, ...data };
   return (
     <>
       <BackComp />
-      <div className="bg-secondarySecondarylight  w-full gap-y-5 flex p-5 md:flex-row flex-col">
+      <div className="flex flex-col w-full p-5 bg-secondarySecondarylight gap-y-5 md:flex-row">
         <ImgSection imgs={data.imgs} id={data.id} cId={data.collectionId} />
         <DescripSection {...data} searchParams={searchParams} />
       </div>
+      <ReviewsSection
+        reviews={reviews}
+        name={data.name}
+        id={params.roseg[1]}
+        type={params.roseg[0].slice(0, params.roseg[0].length - 1)}
+      />
       <SuggestedSection CurrentPageProductId={data.id} type={data.type} />
     </>
   );

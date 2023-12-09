@@ -56,21 +56,7 @@ export default function ImgSection({ imgs, id, cId }) {
       </div>
       <div className="flex w-full justify-start select-none">
         <div className="flex items-center">
-          <div className="flex gap-x-2 bg-main py-1 px-3 text-textWhiteWithSecondary  justify-evenly w-fit rounded-s-lg">
-            <FontAwesomeIcon
-              icon={faXTwitter}
-              size="1x"
-              className="cursor-pointer"
-            />
-            <FontAwesomeIcon
-              icon={faFacebook}
-              size="1x"
-              className="cursor-pointer"
-            />
-          </div>
-          <div className="bg-secondary text-white p-1 h-full flex items-center rounded-e-lg">
-            <FontAwesomeIcon icon={faShare} flip="horizontal" />
-          </div>
+          
         </div>
       </div>
     </div>
