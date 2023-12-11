@@ -75,7 +75,7 @@ async function writeData(body: tokenBody, pb) {
           id: uniqueId,
           total: Number(price.price - price.price * price.sale) + 15,
           shipping_cost: 15,
-          costumer_name: body.first_name + " " + body.last_name,
+          costumer_name: pb.authStore.model.username.split("_").join(" "),
           costumer_number: body.phone,
           shipping_address:
             body.country + ", " + body.address + ", " + body.code_postal,

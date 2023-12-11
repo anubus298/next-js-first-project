@@ -38,18 +38,20 @@ export const metadata = {
   author: "SafoMart Team",
 };
 const mooli = Poppins({
-  weight: ["300", "100", "600", "200", "400", "700", "500", "300"],
+  weight: ["300", "100", "100", "600", "200", "400", "700", "500", "300"],
   subsets: ["latin"],
   style: ["normal"],
   variable: "--font-Lato",
   preload: true,
 });
 import { Poppins } from "next/font/google";
+import Image from "next/image";
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${mooli.variable} ` + mooli.className + " "}>
+      <body className={`${mooli.variable} ` + mooli.className + " relative"}>
+        
         <Providers>
           <JotaiProviders>
             <NavbarServer />

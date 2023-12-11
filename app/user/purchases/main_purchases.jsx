@@ -11,7 +11,7 @@ function Main_purchases({ purchases }) {
           </p>
         </div>
       </div>
-      <div className="w-full flex flex-wrap gap-x-2 gap-y-6 py-2 md:my-10 h-[75vh] overflow-y-auto justify-evenly bg-gray-200">
+      <div className="w-full flex flex-wrap gap-x-2 gap-y-6 py-2 md:my-10 h-full overflow-y-auto justify-evenly bg-gray-200">
         {purchases.map((item, index) => {
           return <Bill_card item={item} key={index * 112 + index + 45} />;
         })}

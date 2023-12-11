@@ -10,6 +10,8 @@ import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { ColorRing } from "react-loader-spinner";
 import { AuthContext } from "../../../(lib)/context-provider";
 import Link from "next/link";
+import { useAtom } from "jotai";
+import userColorAtom from "../../../(lib)/jotai/userColor";
 function Login_panel() {
   const {
     register,
@@ -21,7 +23,7 @@ function Login_panel() {
 
   const [errorMsg, setErrorMsg] = useState("");
   const { isValid, setisValid } = useContext(AuthContext);
-
+  const [color, setcolor] = useState(userColorAtom);
   const [isloading, setisloading] = useState(false);
   const router = useRouter();
   async function ONSubmit(data) {
@@ -36,12 +38,13 @@ function Login_panel() {
       },
     });
     const Json = await res.json();
+    setcolor(Json.color);
+
     if (Json.success) {
       pb.authStore.loadFromCookie(getCookie("pb_auth"));
       if (pb.authStore.isValid) {
-        router.push("/");
-        setisValid(false);
         setisValid(true);
+        router.push("/");
       } else {
         setisloading(false);
         setErrorMsg("error happend");
@@ -54,9 +57,7 @@ function Login_panel() {
   return (
     <div className="bg-secondarySecondarylight  min-h-[500px] w-full md:w-1/2 pt-2 md:pt-5 sm:px-10 flex flex-col justify-evenly  text-main text-center select-none font-lato">
       <div className=" text-center md:text-start">
-        <p className="text-2xl md:text-4xl mb-2 font-bold">
-          Login to Safomart
-        </p>
+        <p className="text-2xl md:text-4xl mb-2 font-bold">Login to Safomart</p>
         <p className="text-gray-400 text-sm md:text-base font-normal">
           Login to your SafoMart account to be able to purchase items, customize
           your cart and benefit from the best sales in your country.

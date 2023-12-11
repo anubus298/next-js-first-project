@@ -9,6 +9,7 @@ import PocketBase from "pocketbase";
 import commandsAtom from "../(lib)/jotai/commandsAtom";
 import accountAtom from "../(lib)/jotai/accountAtom";
 import userAtom from "../(lib)/jotai/userAtom";
+import userColorAtom from "../(lib)/jotai/userColor";
 import notificationAtom from "../(lib)/jotai/notificationAtom";
 import { useContext, useEffect, useRef, useState } from "react";
 import { AuthContext } from "../(lib)/context-provider";
@@ -25,15 +26,11 @@ function Navbar_user_icon({ notiff }) {
   const [notificationsCountAtom, setnotificationsCountAtom] =
     useAtom(notificationAtom);
   const { isValid, setisValid } = useContext(AuthContext);
-  const { color, setcolor } = useContext(AuthContext);
-
+  const [color, setcolor] = useAtom(userColorAtom);
   useEffect(() => {
     setnotificationsCountAtom(notiff.notif);
     setcommandsCountAtom(notiff.commands);
     setaccountCountAtom(notiff.account);
-  }, []);
-  useEffect(() => {
-    setcolor(notiff.color);
   }, []);
   pb.authStore.loadFromCookie(getCookie("pb_auth"));
 
@@ -82,12 +79,12 @@ function Navbar_user_icon({ notiff }) {
               style={{ backgroundColor: color }}
               shape="square"
               size="small"
-              className=""
+              className="transition"
             >
               {pb.authStore.model?.username[0].toUpperCase()}
             </Avatar>
           </Badge>
-          <p className="max-w-[90px] md:max-w-[120px] overflow-hidden">
+          <p className="max-w-[90px] md:max-w-[120px] overflow-hidden text-xs">
             {pb.authStore.model?.username}
           </p>
         </Menu.Button>

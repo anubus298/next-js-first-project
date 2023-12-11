@@ -15,12 +15,13 @@ import { usePathname, useRouter } from "next/navigation";
 import { useState, useEffect, useContext } from "react";
 import notificationAtom from "../(lib)/jotai/notificationAtom";
 import { AuthContext } from "../(lib)/context-provider";
+import userColorAtom from "../(lib)/jotai/userColor";
 function UserSidePanel() {
   const pb = new PocketBase(process.env.pocketBaseUrl);
   const pathname = usePathname();
   const [notiCount, setnotiCount] = useAtom(notificationAtom);
   const [username, setusername] = useState("");
-  const { color, setcolor } = useContext(AuthContext);
+  const [color, setcolor] = useAtom(userColorAtom);
 
   const [email, setemail] = useState("");
   const [ColoredArray, setColoredArray] = useState([

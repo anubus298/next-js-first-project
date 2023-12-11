@@ -1,3 +1,4 @@
+export const fetchCache = "force-no-store";
 import PocketBase from "pocketbase";
 import { cookies } from "next/headers";
 import { NextResponse, type NextRequest } from "next/server";
@@ -28,15 +29,22 @@ export async function POST(request: NextRequest) {
   try {
     const res = await pb
       .collection("users")
-      .authWithPassword(body.email, body.password);
+      .authWithPassword(body.email, body.password, { expand: "information" });
     if (!pb.authStore.model.verified) {
       return NextResponse.json({
         success: false,
         msg: "Account is not verified,check your email address.",
       });
     }
-    pb.authStore.model.username = pb.authStore.model.username.split("_").join(' ');
+    pb.authStore.model.username = pb.authStore.model.username
+      .split("_")
+      .join(" ");
     if (pb.authStore.isValid) {
+      const colorRes = await pb
+        .collection("Accounts_informations")
+        .getFirstListItem(`user="${pb.authStore.model.id}"`, {
+          fields: "color",
+        });
       if (!pb.authStore.model.isFieldsCreated) {
         const dataForCreate = {
           user: pb.authStore.model.id,
@@ -74,6 +82,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({
         success: true,
         msg: "successfully authenticated",
+        color: colorRes.color,
       });
     }
   } catch (error) {
@@ -81,7 +90,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({
         success: false,
         msg: "no such email or password.",
-        err : error.message
+        err: error.message,
       });
     } else {
       return NextResponse.json({

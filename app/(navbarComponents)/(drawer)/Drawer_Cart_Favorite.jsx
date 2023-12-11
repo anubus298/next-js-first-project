@@ -1,7 +1,6 @@
 "use client";
 import { useContext } from "react";
 import { CartIcon } from "../../(navbarComponents)/cartIcon";
-import FavoriteIcon from "../../(navbarComponents)/FavoriteIcon";
 import { AuthContext } from "../../(lib)/context-provider";
 
 function Drawer_Cart_Favorite() {

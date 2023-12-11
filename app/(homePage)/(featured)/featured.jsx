@@ -37,26 +37,8 @@ async function Featured() {
         <p className="text-textWhiteWithSecondary text-4xl">🔥 30% Sales</p>
       </div>
       <div className="w-full flex items-center bg-secondarySecondarylight">
-        <div className="w-2/12 h-3/12  bg-secondary  text-textWhiteWithSecondary p-4 flex flex-col justify-start text-start items-start gap-2 font-semibold rounded-e-lg">
-          <p className="text-2xl">Brands :</p>
-          <p className="cursor-pointer font-medium text-sm">Apple</p>
-          <p className="cursor-pointer font-medium text-sm">Samsung</p>
-          <p className="cursor-pointer font-medium text-sm">Huawei</p>
-          <p className="cursor-pointer font-medium text-sm">Xiaomi</p>
-          <p className="cursor-pointer font-medium text-sm">Oppo</p>
-          <p className="cursor-pointer font-medium text-sm">Vivo</p>
-          <p className="cursor-pointer font-medium text-sm">OnePlus</p>
-          <p className="cursor-pointer font-medium text-sm">Google</p>
-          <p className="cursor-pointer font-medium text-sm">Motorola</p>
-          <p className="cursor-pointer font-medium text-sm">Sony</p>
-          <p className="cursor-pointer font-medium text-sm">LG</p>
-          <p className="cursor-pointer font-medium text-sm">Nokia</p>
-          <p className="cursor-pointer font-medium text-sm">HTC</p>
-          <p className="cursor-pointer font-medium text-sm">Lenovo</p>
-          <p className="cursor-pointer font-medium text-sm">BlackBerry</p>
-        </div>
         <div
-          className={`w-8/12 py-8   gap-y-3 gap-x-8 sm:gap-x-16 flex justify-center flex-wrap u  items-center `}
+          className={`w-full py-8   gap-y-3 gap-x-8 sm:gap-x-16 flex justify-center flex-wrap u  items-center `}
         >
           <Suspense fallback={<Fallback_header_swiper />}>
             {data &&
@@ -70,24 +52,6 @@ async function Featured() {
                 );
               })}
           </Suspense>
-        </div>
-        <div className="w-2/12 h-3/12  bg-secondary  text-textWhiteWithSecondary p-4 flex flex-col justify-end text-end items-end gap-2 font-semibold rounded-s-lg">
-          <p className="text-2xl">: Brands</p>
-          <p className="cursor-pointer font-medium text-sm">Apple</p>
-          <p className="cursor-pointer font-medium text-sm">Samsung</p>
-          <p className="cursor-pointer font-medium text-sm">Huawei</p>
-          <p className="cursor-pointer font-medium text-sm">Xiaomi</p>
-          <p className="cursor-pointer font-medium text-sm">Oppo</p>
-          <p className="cursor-pointer font-medium text-sm">Vivo</p>
-          <p className="cursor-pointer font-medium text-sm">OnePlus</p>
-          <p className="cursor-pointer font-medium text-sm">Google</p>
-          <p className="cursor-pointer font-medium text-sm">Motorola</p>
-          <p className="cursor-pointer font-medium text-sm">Sony</p>
-          <p className="cursor-pointer font-medium text-sm">LG</p>
-          <p className="cursor-pointer font-medium text-sm">Nokia</p>
-          <p className="cursor-pointer font-medium text-sm">HTC</p>
-          <p className="cursor-pointer font-medium text-sm">Lenovo</p>
-          <p className="cursor-pointer font-medium text-sm">BlackBerry</p>
         </div>
       </div>
     </>

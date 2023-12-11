@@ -5,14 +5,13 @@ export async function PATCH(request: NextRequest) {
     const pb = new PocketBase(process.env.pocketBaseUrl);
     const body = await request.json();
     const token = request.cookies.get("pb_auth");
-    pb.authStore.loadFromCookie(token?.value);
+    pb.authStore.loadFromCookie(token.value);
     let data = {};
     if (body.isUserLiked) {
       data["likesOwners-"] = pb.authStore.model.id;
     } else {
       data["likesOwners+"] = pb.authStore.model.id;
     }
-    pb.authStore.loadFromCookie(token.value);
     const record = await pb.collection("Reviews").update(body.id, data);
   } catch (error) {
     return new Response("failed", {

@@ -64,8 +64,9 @@ async function SuspenseSupport({ params, searchParams }) {
         params.roseg[0].slice(0, params.roseg[0].length - 1) +
         " = " +
         `'${params.roseg[1]}'`,
-      expand: "user",
-      fields: "expand.user.username,comment,rating,created,likesOwners,id",
+      expand: "user,user.information",
+      fields:
+        "expand.user.username,comment,rating,created,likesOwners,id,expand.user.expand.information.color",
       cache: "no-store",
     });
     let body = resultList.items.map((review) => {

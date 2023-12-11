@@ -1,9 +1,7 @@
 "use client";
-import { NotificationFavoriteCount } from "../../(navbarComponents)/FavoriteIcon";
 
 import { ColorRing } from "react-loader-spinner";
 
-import { useAtom } from "jotai";
 import addToFavorite from "../../functions/addToFavorite";
 import "@radix-ui/themes/styles.css";
 import { useRouter } from "next/navigation";
@@ -23,7 +21,6 @@ function AddToMyFavorite({ collectionName, id, already }) {
   });
   const [isloading, setisloading] = useState(false);
   const router = useRouter();
-  const [notifCount, setnotifCount] = useAtom(NotificationFavoriteCount);
   const [IsAddedfromThebutton, setIsAddedfromThebutton] = useState(false);
   async function handleFavorite(collectionName, id) {
     setisloading(true);
@@ -40,7 +37,6 @@ function AddToMyFavorite({ collectionName, id, already }) {
     if (res.status == 200) {
       messageApi.success("Added successfully to favoritesss");
       localStorage.setItem("NotificationFavoriteCount", Number(notifCount + 1));
-      setnotifCount(notifCount + 1);
       setIsAddedfromThebutton(true);
     }
     if (res.status == 400) {

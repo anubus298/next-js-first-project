@@ -22,7 +22,7 @@ function SearchBar({ className }) {
   };
   return (
     searchParams != "" && (
-      <div className={"rounded-md bg-white p-1 " + className}>
+      <div className={"rounded-md bg-white p-1 md:me-6 " + className}>
         <form
           onSubmit={handleSubmit(onSubmit)}
           className="flex items-center font-lato"
@@ -32,7 +32,7 @@ function SearchBar({ className }) {
             name="searchValue"
             autoComplete="off"
             onChange={(e) => setvalue(e.target.value)}
-            className="placeholder:bg-white placeholder:font-lato placeholder:text-lg text-lg p-2 md:py-0 md:pe-0 md:ps-1 focus-visible:outline-none text-main placeholder:text-gray-500  w-full md:w-[150px] "
+            className="placeholder:bg-white font-normal p-2 md:py-0 md:pe-0 md:ps-1 focus-visible:outline-none text-main placeholder:text-gray-500  w-full md:w-[150px] "
             placeholder="Search"
             {...register("search", { required: true })}
           />

@@ -10,7 +10,7 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Button, ConfigProvider, Segmented } from "antd";
 import { useAtom } from "jotai";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import notificationAtom from "../../(lib)/jotai/notificationAtom";
 import Empty_notifications from "./empty_notifications";
 function Main_notifications({ notifications, inbox }) {
@@ -64,6 +64,7 @@ function Main_notifications({ notifications, inbox }) {
       }
     })
   );
+
   async function handleAllRead() {
     const array = isInbox ? [...inbox] : [...notifications];
     const list = await Promise.all(
@@ -131,7 +132,7 @@ function Main_notifications({ notifications, inbox }) {
                 (!isInbox && ReadedArray.findIndex((i) => i == true) == -1)
               }
               onClick={() => handleAllRead()}
-              className="bg-secondaryGreen p-2 h-[40px]  text-white"
+              className=" p-2 h-[40px]  text-white bg-secondaryGreen"
             >
               make all readed
             </Button>

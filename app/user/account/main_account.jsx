@@ -3,9 +3,6 @@
 import {
   faCreditCard,
   faGear,
-  faPaperPlane,
-  faShieldHalved,
-  faTruck,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
@@ -20,10 +17,10 @@ function Main_notification() {
           </p>
         </div>
       </div>
-      <div className="flex h-full  justify- gap-8 py-2 font-semibold md:py-10 flex-wrap">
+      <div className="flex h-full  gap-1 gap-y-4 justify-evenly md:justify-normal md:gap-8 py-2 font-semibold md:py-10 flex-wrap">
         <Link
           href={"/user/account/account_information"}
-          className="bg-white rounded-lg p-4 flex flex-col justify-center items-center w-3/12 h-[120px] gap-2 text-center
+          className="bg-white rounded-lg p-4 flex flex-col justify-center items-center w-5/12 md:w-3/12 h-[120px] gap-2 text-center
         hover:bg-gray-50 transition"
         >
           <FontAwesomeIcon icon={faGear} size="2x" />
@@ -31,35 +28,19 @@ function Main_notification() {
         </Link>
         <Link
           href={"/user/account/account_information"}
-          className="bg-white rounded-lg p-4 flex flex-col justify-center items-center w-3/12 h-[120px] gap-2 text-center
-        hover:bg-gray-50 transition"
-        >
-          <FontAwesomeIcon icon={faPaperPlane} size="2x" />
-          Communication Preferences
-        </Link>
-        <Link
-          href={"/user/account/account_information"}
-          className="bg-white rounded-lg p-4 flex flex-col justify-center items-center w-3/12 h-[120px] gap-2 text-center
-        hover:bg-gray-50 transition"
-        >
-          <FontAwesomeIcon icon={faShieldHalved} size="2x" />
-          Privacy settings
-        </Link>
-        <Link
-          href={"/user/account/account_information"}
-          className="bg-white rounded-lg p-4 flex flex-col justify-center items-center w-3/12 h-[120px] gap-2 text-center
-        hover:bg-gray-50 transition"
-        >
-          <FontAwesomeIcon icon={faCreditCard} size="2x" />
-          Payments methods
-        </Link>
-        <Link
-          href={"/user/account/account_information"}
-          className="bg-white rounded-lg p-4 flex flex-col justify-center items-center w-3/12 h-[120px] gap-2 text-center
+          className="bg-white rounded-lg p-4 flex flex-col justify-center items-center w-5/12 md:w-3/12 h-[120px] gap-2 text-center
         hover:bg-gray-50 transition"
         >
           <FontAwesomeIcon icon={faGear} size="2x" />
           Shipping Preferences
+        </Link>
+        <Link
+          href={"/user/account/account_information"}
+          className="bg-white rounded-lg p-4 flex flex-col justify-center items-center w-5/12 md:w-3/12 h-[120px] gap-2 text-center
+        hover:bg-gray-50 transition"
+        >
+          <FontAwesomeIcon icon={faCreditCard} size="2x" />
+          Payments methods
         </Link>
       </div>
     </div>

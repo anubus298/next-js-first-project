@@ -24,7 +24,8 @@ paypal :
 email : sb-2pyjd28351401@personal.example.com
 password :  qU/f.2k[
 
-
+fix = 
+- user main color doesnt show up in the first login
 done :
 -add costumers rating and reviews
 -fix cart hydration error -D

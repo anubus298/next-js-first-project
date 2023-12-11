@@ -38,6 +38,17 @@ const NameSchema = z.string().refine(
     message: "Invalid first name format.",
   }
 );
+const HexSchema = z.string().refine(
+  (color: string) => {
+    // Custom validation logic
+    const isValidFormat = /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/.test(color);
+
+    return isValidFormat;
+  },
+  {
+    message: "Invalid color format.",
+  }
+);
 
 const Term = z.boolean().refine((value) => value === true, {
   message: "Required",
@@ -59,3 +70,4 @@ export { ReviewZod };
 export { emailSchema };
 export { NameSchema };
 export { ratingSchema };
+export { HexSchema };

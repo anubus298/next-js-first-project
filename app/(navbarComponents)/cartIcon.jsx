@@ -20,27 +20,22 @@ function CartIcon({ size }) {
         },
       }}
     >
-      <Popover
-        destroyTooltipOnHide={true}
-        content={<p className="font-bold text-white">My cart</p>}
+      <Link
+        href="/mycart/user"
+        onClick={() => {
+          setnotifCount(0);
+          localStorage.setItem("NotificationCount", 0);
+        }}
+        className=" me-2 flex items-center gap-x-1 cursor-pointer "
       >
-        <Link
-          href="/mycart/user"
-          onClick={() => {
-            setnotifCount(0);
-            localStorage.setItem("NotificationCount", 0);
-          }}
-          className=" me-2 flex items-center gap-x-1 cursor-pointer "
-        >
-          <Badge size="small" count={notifCount}>
-            <FontAwesomeIcon
-              icon={faCartShopping}
-              className="text-white"
-              size={size ? size : "xl"}
-            />
-          </Badge>
-        </Link>
-      </Popover>
+        <Badge size="small" count={notifCount}>
+          <FontAwesomeIcon
+            icon={faCartShopping}
+            className="text-white"
+            size={size ? size : "xl"}
+          />
+        </Badge>
+      </Link>
     </ConfigProvider>
   );
 }

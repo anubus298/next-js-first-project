@@ -1,19 +1,23 @@
 export const fetchCache = "force-no-store";
+
 import { cookies } from "next/headers";
-import NavbarJS from "./NavbarJS";
+import NavbarJS from "./(navbarComponents)/NavbarJS";
+import PocketBase from "pocketbase";
+
 async function NavbarServer() {
   async function GetUserCategoriesInfo() {
+    const pb = new PocketBase(process.env.pocketBaseUrl);
     try {
-      const pb = new PocketBase(process.env.pocketBaseUrl);
       const token = cookies().get("pb_auth");
-      pb.authStore.loadFromCookie(token.value);
+      pb.authStore.loadFromCookie(token?.value);
       if (!pb.authStore.isValid) {
         pb.authStore.clear();
         return {
           notif: 0,
           commands: 0,
           account: 0,
-          color: undefined,
+          color: "",
+          err : "not-valid"
         };
       }
       //notification
@@ -47,7 +51,8 @@ async function NavbarServer() {
         notif: 0,
         commands: 0,
         account: 0,
-        color: undefined,
+        color: "",
+        err: error.message,
       };
     }
   }

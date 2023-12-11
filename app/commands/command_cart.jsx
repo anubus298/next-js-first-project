@@ -111,7 +111,7 @@ function Command_cart({ product, deleteCommand }) {
     <div className="flex flex-col md:flex-row gap-1 w-full md:h-[300px}] relative">
       <div className="rounded-t-lg w-full h-4 md:rounded-s-lg md:h-full md:w-4 bg-main"></div>
       <div className="bg-white flex flex-col md:flex-row w-full md:w-9/12 md:p-4 gap-8 ">
-        <div className="flex items-center justify-center h-[180px] md:h-auto w-full md:w-4/12">
+        <div className="flex items-center justify-center h-[250px] md:h-auto w-full md:w-4/12">
           <Image
             width={150}
             height={150}

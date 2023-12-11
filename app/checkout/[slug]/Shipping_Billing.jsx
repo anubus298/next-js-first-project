@@ -5,7 +5,8 @@
 import { Avatar, Table } from "antd";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-
+import { useAtom } from "jotai";
+import userColorAtom from "../../(lib)/jotai/userColor";
 function Shipping_Billing({
   userInfo,
   products,
@@ -20,6 +21,7 @@ function Shipping_Billing({
   const [fetchedBillInformtion, setfetchedBillInformtion] = useState(undefined);
   const [total, settotal] = useState(0);
   const [isloading, setisloading] = useState(true);
+  const [color, setcolor] = useAtom(userColorAtom);
   const columns = [
     {
       title: "Product",
@@ -102,16 +104,18 @@ function Shipping_Billing({
     minute: "numeric",
   });
   return (
-    <motion.div
-      animate={{ opacity: [0, 0.5, 1] }}
-    >
+    <motion.div animate={{ opacity: [0, 0.5, 1] }}>
       <div className="min-h-[450px]">
         <div className="w-full min-h-[410px] gap-y-4 gap-x-6  flex flex-col md:flex-row justify-center items-center bg-secondarySecondarylight p-4 pb-0 mt-5 font-semibold">
           <div className="w-full md:w-1/3 mx-auto bg-white rounded-md shadow-md flex flex-col p-4">
             <div></div>
             <div className="flex items-center justify-between mt-2">
               <div className="">
-                <Avatar shape="square" size="large" className="bg-green-500">
+                <Avatar
+                  shape="square"
+                  size="large"
+                  style={{ backgroundColor: color }}
+                >
                   {username}
                 </Avatar>
               </div>
@@ -128,9 +132,7 @@ function Shipping_Billing({
                     );
                   })}
 
-                <p className="text-lg font-extrabold">
-                  {userInfo.first_name} {userInfo.last_name}
-                </p>
+                <p className="text-lg font-extrabold">{username}</p>
                 <p className="text-sm text-gray-600">{userInfo.phone}</p>
                 <p className="text-sm text-gray-600">
                   {userInfo.address}, {userInfo.code_postal},{" "}

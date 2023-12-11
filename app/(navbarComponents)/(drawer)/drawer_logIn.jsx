@@ -15,10 +15,13 @@ import { AuthContext } from "../../(lib)/context-provider";
 import { useContext } from "react";
 import Link from "next/link";
 import Avatar from "antd/es/avatar/avatar";
+import userColorAtom from "../../(lib)/jotai/userColor";
+import { useAtom } from "jotai";
 
 function Drawer_logIn() {
   const { isValid, setisValid } = useContext(AuthContext);
-  const pb = new PocketBase("http://127.0.0.1:8090");
+  const [color, setcolor] = useAtom(userColorAtom);
+  const pb = new PocketBase(process.env.pocketBaseUrl);
   const router = useRouter();
   return !isValid ? (
     <div className="w-full flex flex-col gap-y-1">
@@ -38,7 +41,12 @@ function Drawer_logIn() {
   ) : (
     <div className="w-full flex flex-col gap-y-1 text-white">
       <div className="flex flex-col items-center gap-x-2 justify-center">
-        <Avatar size="large" shape="square"  className="bg-green-500 h-20 w-20 flex justify-center items-center font-semibold text-5xl">
+        <Avatar
+          size="large"
+          shape="square"
+          style={{ backgroundColor: color }}
+          className=" h-20 w-20 flex justify-center items-center font-semibold text-5xl"
+        >
           {pb.authStore.model?.username[0].toUpperCase()}
         </Avatar>
         <Collapse
@@ -65,7 +73,10 @@ function Drawer_logIn() {
                 <div className="bg-secondary rounded-lg text-white flex flex-col gap-y-2 p-2 font-bold text-lg font-lato">
                   <div className="flex items-center gap-x-1 p-2">
                     <FontAwesomeIcon icon={faGear} />
-                    <Link className="text-white" href="/account-settings">
+                    <Link
+                      className="text-white"
+                      href="/user/account/"
+                    >
                       Account
                     </Link>
                   </div>

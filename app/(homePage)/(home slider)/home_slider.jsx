@@ -48,35 +48,41 @@ function Home_slider() {
           className="relative"
         >
           <SwiperSlide>
-            <Image
-              alt="laptop sale 30%"
-              quality={100}
-              width={1280}
-              height={500}
-              src={`/sliders/3${width < 768 ? "_small" : ""}.png`}
-            />
+            <div className="flex justify-center">
+              <Image
+                alt="laptop sale 30%"
+                quality={100}
+                width={1280}
+                height={500}
+                src={`/sliders/3${width < 768 ? "_small" : ""}.png`}
+              />
+            </div>
           </SwiperSlide>
           <SwiperSlide>
-            <Image
-              alt="laptop sale 50%"
-              quality={100}
-              width={1280}
-              height={500}
-              src={`/sliders/4${width < 768 ? "_small" : ""}.png`}
-              className="cursor-pointer"
-              onClick={() => router.push("/product/mobiles/59kkyk5iv6d61wz")}
-            />
+            <div className="flex justify-center">
+              <Image
+                alt="laptop sale 50%"
+                quality={100}
+                width={1280}
+                height={500}
+                src={`/sliders/4${width < 768 ? "_small" : ""}.png`}
+                className="cursor-pointer"
+                onClick={() => router.push("/product/mobiles/59kkyk5iv6d61wz")}
+              />
+            </div>
           </SwiperSlide>
           <SwiperSlide>
-            <Image
-              alt="black friday poster"
-              quality={100}
-              width={1280}
-              height={500}
-              src={`/sliders/5${width < 768 ? "_small" : ""}.png`}
-              className="cursor-pointer"
-              onClick={() => router.push("/product/mobiles/59kkyk5iv6d61wz")}
-            />
+            <div className="flex justify-center">
+              <Image
+                alt="black friday poster"
+                quality={100}
+                width={1280}
+                height={500}
+                src={`/sliders/5${width < 768 ? "_small" : ""}.png`}
+                className="cursor-pointer"
+                onClick={() => router.push("/product/mobiles/59kkyk5iv6d61wz")}
+              />
+            </div>
           </SwiperSlide>
         </Swiper>
       </Suspense>

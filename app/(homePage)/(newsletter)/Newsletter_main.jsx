@@ -17,7 +17,7 @@ function Newsletter_main() {
     });
     setDone(true);
     setprovided(true);
-    setshowconfetti(true)
+    setshowconfetti(true);
   }
   const {
     register,
@@ -51,7 +51,7 @@ function Newsletter_main() {
           ready for exclusive insights, expert reviews, and unbeatable deals.
         </p>
       </div>
-      <div className="flex px-2 md:px-0 gap-y-2 flex-wrap md:flex-nowrap justify-center h-[150px] w-full md:w-5/12 items-end">
+      <div className="flex flex-col items-center px-2 md:px-0 gap-y-2 flex-wrap md:flex-nowrap justify-end md:h-[150px] w-full md:w-5/12 ">
         <form onSubmit={handleSubmit(OnSubmit)} className="w-full shadow-md">
           <input
             className={
@@ -84,6 +84,7 @@ function Newsletter_main() {
             )}
           </button>
         </form>
+        {provided && <p className="text-sm">You already subscribed , gracias ! </p>}
       </div>
     </div>
   );

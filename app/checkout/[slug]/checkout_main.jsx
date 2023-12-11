@@ -10,43 +10,47 @@ import Payment_manual from "./(methods)/Payment_manual";
 import Cart_Review from "./Cart_Review";
 import Shipping_Billing from "./Shipping_Billing";
 import Order_Confirmation from "./Order_Confirmation";
-function Checkout_main({ data, melon }) {
-  const pb = new PocketBase("http://127.0.0.1:8090");
-  const [width, setwidth] = useState(1000);
-  useEffect(() => {
-    function getCookie(name) {
-      let matches = document.cookie.match(
-        new RegExp(
-          "(?:^|; )" +
-            name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, "\\$1") +
-            "=([^;]*)"
-        )
-      );
-      return matches ? decodeURIComponent(matches[1]) : undefined;
-    }
+function Checkout_main({ data, melon, addresses }) {
+  const pb = new PocketBase(process.env.pocketBaseUrl);
+  try {
     pb.authStore.loadFromCookie(getCookie("pb_auth"));
-    setwidth(document.documentElement.clientWidth);
-  }, []);
+  } catch {}
+  const [width, setwidth] = useState(1000);
+  const [username, setusername] = useState(undefined);
   const [method, setmethod] = useState(false);
   const [current, setCurrent] = useState(0);
   const [userInfo, setuserInfo] = useState({
+    first_name: undefined,
+    last_name: undefined,
     address: undefined,
     code_postal: undefined,
     country: undefined,
-    first_name: undefined,
-    last_name: undefined,
     phone: undefined,
     town_city: undefined,
   });
   const [productProcessingIds, setproductProcessingIds] = useState(undefined);
   const [addToShelterOnce, setaddToShelterOnce] = useState(true);
+  function getCookie(name) {
+    let matches = document.cookie.match(
+      new RegExp(
+        "(?:^|; )" +
+          name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, "\\$1") +
+          "=([^;]*)"
+      )
+    );
+
+    return matches ? decodeURIComponent(matches[1]) : undefined;
+  }
   const steps = [
     {
       title: "Review",
       content: (
         <Cart_Review
           data={data}
+          username={pb.authStore?.model?.username}
+          addresses={addresses}
           melon={melon}
+          userInfo={userInfo}
           setuserInfo={setuserInfo}
           setCurrent={setCurrent}
           current={current}
@@ -104,7 +108,19 @@ function Checkout_main({ data, melon }) {
       content: <Order_Confirmation />,
     },
   ];
-
+  useEffect(() => {
+    setusername(pb.authStore.model.username);
+    setuserInfo({
+      first_name: username?.split("_")[0],
+      last_name: username?.split("_")[1],
+      address: undefined,
+      code_postal: undefined,
+      country: undefined,
+      phone: undefined,
+      town_city: undefined,
+    });
+    setwidth(document.documentElement.clientWidth);
+  }, []);
   const items = steps.map((item) => ({ key: item.title, title: item.title }));
   return (
     <ConfigProvider
@@ -127,10 +143,6 @@ function Checkout_main({ data, melon }) {
           items={items}
         />
         <AnimatePresence>{steps[current].content}</AnimatePresence>
-      </div>
-      <div className="text-main">
-        <button onClick={() => setCurrent(current + 1)}> NEXT </button>
-        <button onClick={() => setCurrent(current - 1)}> Pervious </button>
       </div>
     </ConfigProvider>
   );
