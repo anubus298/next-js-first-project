@@ -64,7 +64,45 @@ const ratingSchema = z.number().refine(
     message: "Rating must be a number between 0.5 and 5 with a step of 0.5",
   }
 );
+
+const phoneNumberSchema = z.string().refine(
+  (value) => {
+    const phoneRegex = /^\+(?:[0-9] ?){6,14}[0-9]$/;
+    return phoneRegex.test(value);
+  },
+  {
+    message: "Invalid phone number format",
+  }
+);
+
+const genderSchema = z.string().refine(
+  (value) => {
+    const validGenders = ["male", "female"];
+    return validGenders.includes(value.toLowerCase());
+  },
+  {
+    message: "Invalid gender value",
+  }
+);
+
+const ageGreaterThan18Schema = z.string().refine(
+  (data) => {
+    const today = new Date();
+    const birthdate = new Date(data);
+    const age = today.getFullYear() - birthdate.getFullYear();
+
+    // Check if the calculated age is greater than 18
+    return age > 18;
+  },
+  {
+    message: "User must be 18 years or older.",
+  }
+);
+
 export { passwordSchema };
+export { ageGreaterThan18Schema };
+export { genderSchema };
+export { phoneNumberSchema };
 export { Term };
 export { ReviewZod };
 export { emailSchema };

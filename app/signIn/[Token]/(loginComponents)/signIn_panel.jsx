@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft, faCircleInfo } from "@fortawesome/free-solid-svg-icons";
+import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { zodResolver } from "@hookform/resolvers/zod";
 import z from "zod";
 import Link from "next/link";
@@ -28,30 +29,32 @@ function Login_panel() {
   const {
     register,
     handleSubmit,
-    watch,reset,
+    watch,
+    reset,
     formState: { errors },
   } = useForm({ resolver: zodResolver(zodSchema) });
 
   const [errorMsg, setErrorMsg] = useState("");
   const router = useRouter();
+  const [isPasswordShowen, setisPasswordShowen] = useState(false);
 
   async function onSubmiter(data) {
     try {
-      if(data.password != data.passwordConfirm){
-        throw new Error("no matching")
+      if (data.password != data.passwordConfirm) {
+        throw new Error("no matching");
       }
       const res = await fetch("/api/register?subscribe=" + data.Subscribe, {
         method: "POST",
         "Content-Type": "application/json",
         body: JSON.stringify(data),
       });
-      reset()
+      reset();
       const datares = await res.json();
       !datares.success && setErrorMsg(datares.error);
       datares.success && router.push("/sentByServer/email_verification");
     } catch (error) {
-      reset()
-      setErrorMsg(error.message)
+      reset();
+      setErrorMsg(error.message);
     }
   }
   return (
@@ -107,7 +110,7 @@ function Login_panel() {
         <div className="flex gap-x-3 w-full p-2 justify-start items-center relative">
           <input
             autoComplete="off"
-            type="password"
+            type={isPasswordShowen ? "text" : "password"}
             placeholder="Password"
             className="w-full text-lg text-main border-main border-2 py-1 font-medium md:py-4 px-3  focus-visible:outline-none"
             {...register("password")}
@@ -140,6 +143,11 @@ function Login_panel() {
               {errors.password.message}
             </p>
           )}
+          <FontAwesomeIcon
+            icon={isPasswordShowen ? faEye : faEyeSlash}
+            onClick={() => setisPasswordShowen(!isPasswordShowen)}
+            className="absolute top-1/2 -translate-y-1/2 right-12 cursor-pointer"
+          />
         </div>
         <div className="flex gap-x-3 w-full p-2 justify-start items-center relative">
           <input

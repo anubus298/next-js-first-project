@@ -2,17 +2,19 @@
 import PocketBase from "pocketbase";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
-import { faFacebook } from "@fortawesome/free-brands-svg-icons";
 import { getCookie } from "../../../functions/cookiesFunctions";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
+import {
+  faArrowRight,
+  faEye,
+  faEyeSlash,
+} from "@fortawesome/free-solid-svg-icons";
 import { ColorRing } from "react-loader-spinner";
 import { AuthContext } from "../../../(lib)/context-provider";
 import Link from "next/link";
 import userColorAtom from "../../../(lib)/jotai/userColor";
-import Image from "next/image";
-function Login_panel({ setisLoginPanel ,providers}) {
+function Login_panel({ setisLoginPanel, providers }) {
   const {
     register,
     handleSubmit,
@@ -25,6 +27,7 @@ function Login_panel({ setisLoginPanel ,providers}) {
   const [errorMsg, setErrorMsg] = useState("");
   const { isValid, setisValid } = useContext(AuthContext);
   const [color, setcolor] = useState(userColorAtom);
+  const [isPasswordShowen, setisPasswordShowen] = useState(false);
   const [isloading, setisloading] = useState(false);
   const router = useRouter();
   async function ONSubmit(data) {
@@ -45,7 +48,7 @@ function Login_panel({ setisLoginPanel ,providers}) {
       pb.authStore.loadFromCookie(getCookie("pb_auth"));
       if (pb.authStore.isValid) {
         setisValid(true);
-        router.push("/");
+        router.push(Json.redirect);
       } else {
         setisloading(false);
         setErrorMsg("error happend");
@@ -56,14 +59,6 @@ function Login_panel({ setisLoginPanel ,providers}) {
     }
   }
 
-  async function handleAuthO2(provider) {
-    const res = await fetch("/api/oauth2-redirect", {
-      method: "POST",
-      body: JSON.stringify({
-        provider: provider,
-      }),
-    });
-  }
   return (
     <div className="bg-secondarySecondarylight  min-h-[500px] w-full md:w-1/2 pt-2 md:pt-5 sm:px-10 flex flex-col justify-evenly  text-main text-center select-none font-lato">
       <div className=" text-center md:text-start">
@@ -89,15 +84,20 @@ function Login_panel({ setisLoginPanel ,providers}) {
           {errors.exampleRequired && <span>This field is required</span>}
         </div>
 
-        <div className="flex gap-x-3 w-full p-2 justify-start items-center">
+        <div className="flex gap-x-3 w-full p-2 justify-start items-center relative">
           <input
             autoComplete="off"
-            type="password"
+            type={isPasswordShowen ? "text" : "password"}
             placeholder="password"
             className="w-full text-lg  border-2 border-main text-main  font-medium py-2 md:py-6 px-3  placeholder:text-gray-400 focus-visible:outline-none"
             {...register("password", { required: true })}
           />
           {errors.exampleRequired && <span>This field is required</span>}
+          <FontAwesomeIcon
+            icon={isPasswordShowen ? faEye : faEyeSlash}
+            onClick={() => setisPasswordShowen(!isPasswordShowen)}
+            className="absolute top-1/2 -translate-y-1/2 right-4 cursor-pointer"
+          />
         </div>
         {errorMsg && <p className="text-red-600 font-medium">{errorMsg}</p>}
 
@@ -110,12 +110,12 @@ function Login_panel({ setisLoginPanel ,providers}) {
             />
             <p className="font-medium">Remember me</p>
           </div>
-          <button
-            className="text-gray-500 text-sm font-semibold"
+          <a
+            className="text-gray-500 text-sm font-semibold cursor-pointer"
             onClick={() => setisLoginPanel(false)}
           >
             forgot password?
-          </button>{" "}
+          </a>{" "}
         </div>
         <button
           className="bg-secondary font-semibold p-2 text-white w-full flex justify-center items-center"

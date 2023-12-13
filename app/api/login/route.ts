@@ -39,28 +39,39 @@ export async function POST(request: NextRequest) {
     pb.authStore.model.username = pb.authStore.model.username
       .split("_")
       .join(" ");
+
+    if (!pb.authStore.model.isFieldsCreated) {
+      const dataForCreate = {
+        user: pb.authStore.model.id,
+        id: pb.authStore.model.id,
+        product_laptops: [],
+        product_mobiles: [],
+        product_tablets: [],
+        product_tvs: [],
+        product_wearables: [],
+      };
+      const fav = await pb.collection("Favorites").create(dataForCreate);
+      const cart = await pb.collection("Carts").create(dataForCreate);
+      const infoAcc = await pb.collection("Accounts_informations").create({
+        user: pb.authStore.model.id,
+        birth: "2000-01-01 10:00:00.123Z",
+        phone: "test",
+        gender: "male",
+        color: "#22c55e",
+      });
+      const change = await pb
+        .collection("users")
+        .update(pb.authStore.model.id, {
+          isFieldsCreated: true,
+          information: infoAcc.id,
+        });
+    }
     if (pb.authStore.isValid) {
       const colorRes = await pb
         .collection("Accounts_informations")
         .getFirstListItem(`user="${pb.authStore.model.id}"`, {
           fields: "color",
         });
-      if (!pb.authStore.model.isFieldsCreated) {
-        const dataForCreate = {
-          user: pb.authStore.model.id,
-          id: pb.authStore.model.id,
-          product_laptops: [],
-          product_mobiles: [],
-          product_tablets: [],
-          product_tvs: [],
-          product_wearables: [],
-        };
-        const fav = await pb.collection("Favorites").create(dataForCreate);
-        const cart = await pb.collection("Carts").create(dataForCreate);
-        const change = await pb
-          .collection("users")
-          .update(pb.authStore.model.id, { isFieldsCreated: true });
-      }
       if (path) {
         cookies().set(
           "pb_auth",
@@ -79,11 +90,21 @@ export async function POST(request: NextRequest) {
           })
         );
       }
-      return NextResponse.json({
-        success: true,
-        msg: "successfully authenticated",
-        color: colorRes.color,
-      });
+      if (!pb.authStore.model.isHisInfoProvided) {
+        return NextResponse.json({
+          success: true,
+          msg: "successfully authenticated",
+          color: colorRes.color,
+          redirect: "/completInfo",
+        });
+      } else {
+        return NextResponse.json({
+          success: true,
+          msg: "successfully authenticated",
+          color: colorRes.color,
+          redirect: "/",
+        });
+      }
     }
   } catch (error) {
     if ((error.message = "Failed to authenticate.")) {

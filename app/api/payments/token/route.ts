@@ -35,7 +35,7 @@ export async function POST(request: NextRequest) {
     const token = request.cookies.get("pb_auth");
 
     try {
-      pb.authStore.loadFromCookie(token?.value);
+      pb.authStore.loadFromCookie(token.value);
       pb.authStore.isValid && (await pb.collection("users").authRefresh());
     } catch (_) {
       pb.authStore.clear();
