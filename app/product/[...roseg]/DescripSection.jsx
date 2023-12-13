@@ -18,54 +18,54 @@ function DescripSection({
   id,
 }) {
   return (
-    <div className="md:w-1/2 flex flex-col gap-y-10">
-      <div className=" flex gap-x-4 items flex-col ">
-        <p className="text-secondaryGreen text-xl font-black">
+    <div className="flex flex-col md:w-1/2 gap-y-10">
+      <div className="flex flex-col gap-x-4 items">
+        <p className="text-xl font-black text-secondaryGreen">
           In stock{" "}
           {sale != 0 && (
-            <span className="bg-secondary text-textWhiteWithSecondary p-1 rounded-lg ">
+            <span className="p-1 mx-2 text-sm rounded-lg bg-secondary text-textWhiteWithSecondary">
               {sale * 100}% OFF
             </span>
           )}
         </p>
-        <p className="text-2xl sm:text-3xl font-black">{name}</p>
+        <p className="text-2xl font-black sm:text-3xl">{name}</p>
       </div>
-      <div className="flex justify-between items-center">
-        <div className="flex justify-between gap-x-5 items-center">
+      <div className="flex items-center justify-between w-full">
+        <div className="flex items-center justify-between w-full gap-x-5">
           <div className="flex flex-col">
             {sale != 0 && (
               <>
-                <p className="text-gray-500 decoration-black line-through font-semibold select-none text-3xl">
+                <p className="text-3xl font-semibold text-gray-500 line-through select-none decoration-black">
                   ${price}
                 </p>
-                <p className="text-green-600 text-4xl font-semibold select-none">
+                <p className="text-4xl font-semibold text-green-600 select-none">
                   ${price - price * sale}
-                  <span className="block md:inline text-xs ">
+                  <span className="block text-xs md:inline ">
                     (including VAT)
                   </span>
                 </p>
               </>
             )}
             {sale == 0 && (
-              <p className="text-indigo-950 text-4xl font-semibold select-none">
+              <p className="text-4xl font-semibold select-none text-indigo-950">
                 ${price}
-                <span className="block md:inline text-xs ">
+                <span className="block text-xs md:inline ">
                   (including VAT)
                 </span>
               </p>
             )}
           </div>
 
-          <div className="flex items-end gap-x-2 select-none">
+          <div className="flex flex-col items-end select-none md:flex-row gap-x-2">
             <StarComp count={rating} size={20} readonly={true} />
-            <p className="block md:inline text-sm text-gray-400">
+            <p className="block text-sm text-gray-400 md:inline">
               ({totalRated} users )
             </p>
           </div>
         </div>
       </div>
       <div>
-        <p className="text-lg font-black mb-5">Product Details :</p>
+        <p className="mb-5 text-lg font-black">Product Details :</p>
         <ul className="list-disc min-h-[300px] font-medium">
           {description && (
             <div className="max-h-[50vh] overflow-y-auto">
@@ -73,7 +73,7 @@ function DescripSection({
                 .split(/\n/)
                 .slice(1, description.split(/\n/).length - 1)
                 .map((i, j) => (
-                  <li className=" text-sm my-2 text-gray-800" key={j * 542}>
+                  <li className="my-2 text-sm text-gray-800 " key={j * 542}>
                     {i}
                   </li>
                 ))}

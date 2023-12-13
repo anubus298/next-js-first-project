@@ -1,12 +1,8 @@
 "use client";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Autoplay, EffectFade } from "swiper/modules";
-// Import Swiper styles
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
 import ProductCard from "./ProductCard";
-import { Suspense, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Fallback_productCard from "./(fallback)/Fallback_productCard";
 function SwiperProducts(props) {
   const [swiperPreview, setSwiperPreview] = useState(4);
@@ -21,9 +17,10 @@ function SwiperProducts(props) {
       setSwiperPreview(1);
       setNavigationEnabled(false);
     }
+  }, []);
+  useEffect(() => {
     setdomloaded(true);
   }, []);
-
   return (
     <div className="text-center">
       <Swiper
@@ -44,7 +41,15 @@ function SwiperProducts(props) {
                 {domloaded ? (
                   <ProductCard item={item} type={props.type} />
                 ) : (
-                  <Fallback_productCard />
+                  <Fallback_productCard
+                    num={
+                      swiperPreview == 1
+                        ? [1]
+                        : swiperPreview == 2
+                        ? [1, 2]
+                        : [1, 2, 3, 4]
+                    }
+                  />
                 )}
               </SwiperSlide>
             );

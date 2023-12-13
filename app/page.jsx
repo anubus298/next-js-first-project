@@ -3,6 +3,10 @@ import ProductSection from "./(homePage)/(products section)/productSection";
 import Featured from "./(homePage)/(featured)/featured";
 import Newsletter_main from "./(homePage)/(newsletter)/Newsletter_main";
 import Home_slider from "./(homePage)/(home slider)/home_slider";
+import "swiper/css";
+import "swiper/css/navigation";
+import "public/swiper.css";
+import 'swiper/css/effect-fade';
 export default function Page() {
   return (
     <div className="w-full bg-secondarySecondary">

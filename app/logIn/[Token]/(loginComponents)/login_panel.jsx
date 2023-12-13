@@ -60,7 +60,7 @@ function Login_panel({ setisLoginPanel, providers }) {
   }
 
   return (
-    <div className="bg-secondarySecondarylight  min-h-[500px] w-full md:w-1/2 pt-2 md:pt-5 sm:px-10 flex flex-col justify-evenly  text-main text-center select-none font-lato">
+    <>
       <div className=" text-center md:text-start">
         <p className="text-2xl md:text-4xl mb-2 font-bold">Login to Safomart</p>
         <p className="text-gray-400 text-sm md:text-base font-normal">
@@ -163,7 +163,7 @@ function Login_panel({ setisLoginPanel, providers }) {
           <p className="text-sm">Sign in with Facebook</p>
         </button> */}
       </div>
-    </div>
+    </>
   );
 }
 

@@ -23,19 +23,19 @@ function ShareButton({ cId, id, url, name }) {
         </button>
       </AlertDialog.Trigger>
       <AlertDialog.Content
-        className="select-none z-50"
+        className="z-50 select-none"
         style={{ maxWidth: 450 }}
       >
-        <AlertDialog.Title>Adding item</AlertDialog.Title>
-        <AlertDialog.Description size="2">
-          <div className="flex items-center gap-3 p-2 border-2 border-main">
+        <AlertDialog.Title>Share</AlertDialog.Title>
+        <AlertDialog.Description size="2" c>
+          <div className="flex items-center gap-3 p-2 overflow-auto border-2 border-main">
             <Image
               src={`${process.env.pocketBaseUrl}api/files/${cId}/${id}/${url}`}
               alt=""
               height={150}
               width={150}
             />
-            <div className="bg-gray-100 p-1">
+            <div className="p-1 text-xs bg-gray-100 md:text-inherit">
               <p>
                 🚀 Exciting News! 🛍️ Uncover Unbeatable Deals on {name} at
                 SafoMart! 🌟
@@ -62,7 +62,7 @@ function ShareButton({ cId, id, url, name }) {
             </Button>
           </AlertDialog.Action>
           <AlertDialog.Action onClick={() => handleTwitterShare()}>
-            <Button variant="solid" className="cursor-pointer bg-black">
+            <Button variant="solid" className="bg-black cursor-pointer">
               <FontAwesomeIcon icon={faXTwitter} className="cursor-pointer" />
             </Button>
           </AlertDialog.Action>

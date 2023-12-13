@@ -10,7 +10,6 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import SwiperProducts from "./swiper_products";
 import Link from "next/link";
-import { Suspense } from "react";
 function SubProductSection({ showHeader, data, type }) {
   return (
     <div className="bg-main">

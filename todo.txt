@@ -1,6 +1,5 @@
 objectives :
--add all footer/support pages 
--make all the pages responsive
+-add all support pages 
 -add wearables items
 -add setting page
 -arrange your project files
@@ -8,11 +7,9 @@ objectives :
 -make share buttons working
 
 remember : 
-add validation pattern to api
 -"select all" method in cart and wishlist
 to delete error responses in api routes
 -optimise payer info in paypal
--remove auth cookie from the client from server if user isnt auth
 
 -return payment if canceled
 
@@ -26,7 +23,13 @@ password :  qU/f.2k[
 
 fix = 
 - user main color doesnt show up in the first login
+
+
 done :
 -add costumers rating and reviews
 -fix cart hydration error -D
 -add inbox/notifications
+-add validation pattern to api
+-remove auth cookie from the client from server if user isnt auth
+-make all the pages responsive
+-add footer

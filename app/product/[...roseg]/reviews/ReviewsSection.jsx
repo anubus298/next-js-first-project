@@ -89,13 +89,6 @@ function ReviewsSection({ reviews, name, id, type }) {
           }}
           className="flex flex-col items-start self-stretch justify-start w-full max-h-full md:pt-10 md:w-3/12"
         >
-          {pb.authStore.isValid ? (
-            <p className="text-lg font-semibold text-center">Add a comment !</p>
-          ) : (
-            <p className="text-lg font-semibold text-center">
-              Login to add a Comment
-            </p>
-          )}
           <TextArea
             rows={5}
             maxLength={950}
@@ -120,12 +113,21 @@ function ReviewsSection({ reviews, name, id, type }) {
             <button
               style={{ backgroundColor: color }}
               disabled={!pb.authStore.isValid}
-              className="px-3 py-1 rounded-lg text-white"
+              className={"px-3 py-1 text-white rounded-lg " + (!pb.authStore.isValid && "bg-gray-400")}
               type="submit"
             >
               Add
             </button>
           </div>
+          {pb.authStore.isValid ? (
+            <p className="w-full my-2 text-sm font-semibold text-center md:text-start md:w-auto">
+              Add a comment !
+            </p>
+          ) : (
+            <p className="w-full my-2 text-sm font-semibold text-center md:text-start md:w-auto">
+              Login to add a Comment
+            </p>
+          )}
         </form>
       </div>
     </div>

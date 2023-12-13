@@ -14,9 +14,14 @@ export async function PATCH(request: NextRequest) {
     return new Response("user not logged!", { status: 401 });
   }
   try {
+    const resForFavorite = await pb
+      .collection("Carts")
+      .getFirstListItem(`user="${pb.authStore.model.id}"`, {
+        fields: "id",
+      });
     const req = await pb
       .collection("Favorites")
-      .update(pb.authStore.model.id, body);
+      .update(resForFavorite.id, body);
   } catch (error) {
     return new Response(error.message, {
       status: 400,

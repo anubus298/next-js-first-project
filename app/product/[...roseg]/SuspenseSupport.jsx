@@ -43,10 +43,15 @@ async function SuspenseSupport({ params, searchParams }) {
       const field = "product_" + params.roseg[0];
       const resForCart = await pb
         .collection("Carts")
-        .getOne(pb.authStore.model.id, { cache: "no-store" });
+        .getFirstListItem(`user="${pb.authStore.model.id}"`, {
+          cache: "no-store",
+        });
       const resForFavorite = await pb
-        .collection("Favorites")
-        .getOne(pb.authStore.model.id, { cache: "no-store" });
+        .collection("Carts")
+        .getFirstListItem(`user="${pb.authStore.model.id}"`, {
+          cache: "no-store",
+        });
+
       return {
         alreadyForCart: resForCart[field]?.includes(id, 0),
         alreadyForFavorite: resForFavorite[field]?.includes(id, 0),

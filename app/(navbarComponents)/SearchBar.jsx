@@ -28,6 +28,7 @@ function SearchBar({ className }) {
           className="flex items-center font-lato"
         >
           <input
+          disabled
             type="text"
             name="searchValue"
             autoComplete="off"
@@ -36,7 +37,7 @@ function SearchBar({ className }) {
             placeholder="Search"
             {...register("search", { required: true })}
           />
-          <button type="submit" className="text-main cursor-pointer">
+          <button type="submit" className="cursor-pointer text-main">
             <FontAwesomeIcon icon={faSearch} size="1x" />
           </button>
         </form>

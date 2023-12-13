@@ -1,9 +1,8 @@
 "use client";
 import { Skeleton } from "antd";
-function productCard() {
-  const num = [1, 2, 3, 4];
+function productCard({ num }) {
   return (
-    <div className="flex justify-between w-full select-none bg-main p-2">
+    <div className="flex justify-between w-full p-2 select-none bg-main">
       {num.map((item, index) => {
         return (
           <div
