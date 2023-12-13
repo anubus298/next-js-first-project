@@ -5,7 +5,7 @@ const nextConfig = {
     pocketBaseUrl:
       process.env.NODE_ENV === "development"
         ? "http://127.0.0.1:8090/"
-        : "https://remarkable-gate.pockethost.io/",
+        : "https://safomart-app.pockethost.io/",
   },
   experimental: {
     swcPlugins: [["@swc-jotai/react-refresh", {}]],
@@ -14,7 +14,7 @@ const nextConfig = {
   images: {
     remotePatterns: [
       {
-        hostname: "remarkable-gate.pockethost.io",
+        hostname: "safomart-app.pockethost.io",
         protocol: "https",
         pathname: "/api/files/**",
       },

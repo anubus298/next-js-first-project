@@ -29,7 +29,7 @@ export async function POST(request: NextRequest) {
     Subscribe: z.boolean(),
   });
   try {
-    const pb = new PocketBase("https://remarkable-gate.pockethost.io");
+    const pb = new PocketBase(process.env.pocketBaseUrl);
     const body: regiserData = await request.json();
     try {
       zodSchema.parse(body);
