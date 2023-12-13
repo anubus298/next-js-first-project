@@ -1,24 +1,9 @@
-import Image from "next/image";
-import Login_panel from "./(loginComponents)/login_panel";
-import "@radix-ui/themes/styles.css";
-import { Theme } from "@radix-ui/themes";
-import "../../../public/css/theme-config.css";
-function Page() {
-  return (
-    <Theme>
-      <div className="flex justify-around items-center w-full h-full  p-5 sm:p-10 font-lato">
-        <Image
-          className="hidden md:block"
-          alt="man shopping"
-          height={450}
-          sizes={"(max-width : 767px) 0vw"}
-          width={450}
-          src="/loginPage/x35.png"
-        />
-        <Login_panel />
-      </div>
-    </Theme>
-  );
+import PocketBase from "pocketbase";
+import SupportForServer from "./supportForServer";
+async function Page() {
+  const pb = new PocketBase(process.env.pocketBaseUrl);
+  const authMethods = await pb.collection("users").listAuthMethods();
+  return <SupportForServer providers={authMethods.authProviders} />;
 }
 
 export default Page;

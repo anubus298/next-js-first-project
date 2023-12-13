@@ -28,7 +28,7 @@ function Login_panel() {
   const {
     register,
     handleSubmit,
-    watch,
+    watch,reset,
     formState: { errors },
   } = useForm({ resolver: zodResolver(zodSchema) });
 
@@ -45,10 +45,12 @@ function Login_panel() {
         "Content-Type": "application/json",
         body: JSON.stringify(data),
       });
+      reset()
       const datares = await res.json();
       !datares.success && setErrorMsg(datares.error);
-      datares.success && router.push("/");
+      datares.success && router.push("/sentByServer/email_verification");
     } catch (error) {
+      reset()
       setErrorMsg(error.message)
     }
   }
@@ -189,7 +191,7 @@ function Login_panel() {
       </form>
       <div className="flex justify-start w-full">
         <Link
-          href="/Login/new"
+          href="/logIn/new"
           className=" p-2 rounded-lg text-main hover:text-gray-900 transition w-fit flex items-center space-x-2"
         >
           <FontAwesomeIcon icon={faArrowLeft} />

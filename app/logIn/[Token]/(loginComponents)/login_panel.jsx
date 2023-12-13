@@ -1,22 +1,23 @@
 "use client";
 import PocketBase from "pocketbase";
-import { Checkbox } from "@radix-ui/themes";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
+import { faFacebook } from "@fortawesome/free-brands-svg-icons";
 import { getCookie } from "../../../functions/cookiesFunctions";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { ColorRing } from "react-loader-spinner";
 import { AuthContext } from "../../../(lib)/context-provider";
 import Link from "next/link";
-import { useAtom } from "jotai";
 import userColorAtom from "../../../(lib)/jotai/userColor";
-function Login_panel() {
+import Image from "next/image";
+function Login_panel({ setisLoginPanel ,providers}) {
   const {
     register,
     handleSubmit,
     watch,
+    reset,
     formState: { errors },
   } = useForm();
   const pb = new PocketBase(process.env.pocketBaseUrl);
@@ -39,7 +40,7 @@ function Login_panel() {
     });
     const Json = await res.json();
     setcolor(Json.color);
-
+    reset();
     if (Json.success) {
       pb.authStore.loadFromCookie(getCookie("pb_auth"));
       if (pb.authStore.isValid) {
@@ -53,6 +54,15 @@ function Login_panel() {
       setisloading(false);
       setErrorMsg(Json.msg);
     }
+  }
+
+  async function handleAuthO2(provider) {
+    const res = await fetch("/api/oauth2-redirect", {
+      method: "POST",
+      body: JSON.stringify({
+        provider: provider,
+      }),
+    });
   }
   return (
     <div className="bg-secondarySecondarylight  min-h-[500px] w-full md:w-1/2 pt-2 md:pt-5 sm:px-10 flex flex-col justify-evenly  text-main text-center select-none font-lato">
@@ -100,12 +110,12 @@ function Login_panel() {
             />
             <p className="font-medium">Remember me</p>
           </div>
-          <Link
-            href="/forgot-password"
+          <button
             className="text-gray-500 text-sm font-semibold"
+            onClick={() => setisLoginPanel(false)}
           >
             forgot password?
-          </Link>{" "}
+          </button>{" "}
         </div>
         <button
           className="bg-secondary font-semibold p-2 text-white w-full flex justify-center items-center"
@@ -133,7 +143,25 @@ function Login_panel() {
         </Link>
       </div>
       <div className="text-center w-full font-semibold">
-        <p>Or</p>
+        {/* <p>Or</p>
+        <a
+        target={"_blank"}
+          className="bg-white flex justify-center items-center w-full px-1 py-3 my-3 h-[50px] gap-4"
+          href={providers[0].authUrl + "/"}
+        >
+          <Image
+            src={"/loginPage/google.png"}
+            alt="google logo"
+            height={30}
+            width={30}
+          />
+          <p className="text-sm">Sign in with google</p>
+        </a>
+        <button className="bg-blue-700 text-white flex justify-center items-center w-full px-1 py-3 my-3 h-[50px] gap-4">
+          <FontAwesomeIcon icon={faFacebook} className="h-[2  0px]" />
+
+          <p className="text-sm">Sign in with Facebook</p>
+        </button> */}
       </div>
     </div>
   );
