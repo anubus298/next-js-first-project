@@ -42,6 +42,15 @@ export async function middleware(request: NextRequest) {
       return responseToLogin;
     }
   }
+  if (
+    request.nextUrl.pathname.startsWith("/confirmation") &&
+    pb.authStore.isValid
+  ) {
+    const responseToStrictedUrl = NextResponse.redirect(
+      new URL("/", request.url)
+    );
+    return responseToStrictedUrl;
+  }
 
   // go to login page if user try to access those routes
   if (
@@ -49,6 +58,7 @@ export async function middleware(request: NextRequest) {
     request.nextUrl.pathname.startsWith("/commands") ||
     request.nextUrl.pathname.startsWith("/notification") ||
     request.nextUrl.pathname.startsWith("/checkout") ||
+    request.nextUrl.pathname.startsWith("/completInfo") ||
     request.nextUrl.pathname.startsWith("/commands") ||
     request.nextUrl.pathname.startsWith("/user")
   ) {

@@ -39,11 +39,12 @@ function Home_slider() {
           modules={[Navigation, Autoplay,EffectFade]}
           navigation={width > 768}
           slidesPerView={1}
+
           effect="fade"
           grabCursor={false}
           autoplay={{
-            delay: 3000,
-            disableOnInteraction: true,
+            delay: 6000,
+            disableOnInteraction: false,
           }}
           className="relative"
         >

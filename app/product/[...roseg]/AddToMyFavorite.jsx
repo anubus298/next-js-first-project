@@ -36,7 +36,6 @@ function AddToMyFavorite({ collectionName, id, already }) {
     }
     if (res.status == 200) {
       messageApi.success("Added successfully to favoritesss");
-      localStorage.setItem("NotificationFavoriteCount", Number(notifCount + 1));
       setIsAddedfromThebutton(true);
     }
     if (res.status == 400) {

@@ -22,8 +22,8 @@ function Card({
   return (
     <Table.Row align={"center"} className="relative">
       <Table.RowHeaderCell>
-        <div className="flex md:flex-row flex-col items-center space-x-5 h-[120px] overflow-auto sm:overflow-hidden">
-          <div className=" flex items-center p-1 bg-white">
+        <div className="flex md:flex-row flex-col items-center md:space-x-5 h-[120px] overflow-auto sm:overflow-hidden">
+          <div className="flex items-center p-1 bg-white ">
             <Image
               src={`${process.env.pocketBaseUrl}api/files/${product.collectionId}/${product.id}/${product.imgs}`}
               alt=""
@@ -35,21 +35,21 @@ function Card({
               }
             />
           </div>
-          <div className="flex flex-col items-start justify-between">
+          <div className="flex flex-col items-start justify-center w-full md:justify-between">
             <Link
-              className="text-lg font-semibold"
+              className="w-full text-xs font-semibold text-center md:text-lg"
               href={"/product" + "/" + type + "/" + product.id}
             >
               {product.name}
             </Link>
-            <div className="flex items-center">
+            <div className="items-center hidden md:flex">
               <StarComp
                 className="fill-secondaryYellow"
                 count={product.rating}
                 size={10}
                 readonly={true}
               />
-              <p className="block md:inline text-xs text-gray-400">
+              <p className="block text-xs text-gray-400 md:inline">
                 ({product.totalRated})
               </p>
             </div>
@@ -58,7 +58,9 @@ function Card({
       </Table.RowHeaderCell>
 
       <Table.Cell justify={"center"}>
-        <p className="text-lg ">${product.price - product.price * product.sale}</p>
+        <p className="md:text-lg ">
+          ${product.price - product.price * product.sale}
+        </p>
       </Table.Cell>
 
       <Table.Cell justify={"center"}>

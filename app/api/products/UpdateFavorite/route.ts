@@ -15,7 +15,7 @@ export async function PATCH(request: NextRequest) {
   }
   try {
     const resForFavorite = await pb
-      .collection("Carts")
+      .collection("Favorites")
       .getFirstListItem(`user="${pb.authStore.model.id}"`, {
         fields: "id",
       });

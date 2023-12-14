@@ -1,24 +1,25 @@
 "use client";
 import { Footer } from "flowbite-react";
+import Link from "next/link";
 
 function FooterComp() {
   return (
-    <Footer container={true} className="bg-main  rounded-none mt-16 font-semibold">
+    <Footer
+      container={true}
+      className="mt-16 font-semibold rounded-none bg-main"
+    >
       <div className="w-full text-center ">
-        <div className="w-full justify-between sm:flex sm:items-center sm:justify-between ">
+        <div className="justify-between w-full sm:flex sm:items-center sm:justify-between ">
           <Footer.LinkGroup>
-            <Footer.Link className="mx-2 text-white" href="/aboutUs" >
+            <Link className="mx-2 text-white" href="/info/aboutUs">
               About us
-            </Footer.Link>
-            <Footer.Link className="mx-2 text-white" href="/privacy" >
+            </Link>
+            <Link className="mx-2 text-white" href="/info/privacyPolicy">
               Privacy Policy
-            </Footer.Link>
-            <Footer.Link className="mx-2 text-white" href="/ads">
-              Ads
-            </Footer.Link>
-            <Footer.Link className="mx-2 text-white" href="/contact" >
+            </Link>
+            <Link className="mx-2 text-white" href="/info/contact">
               Contact
-            </Footer.Link>
+            </Link>
           </Footer.LinkGroup>
         </div>
         <Footer.Divider />

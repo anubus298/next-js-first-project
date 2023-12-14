@@ -65,7 +65,7 @@ export async function POST(requesT: NextRequest) {
 function configureEnvironment() {
   const clientId = process.env.PAYPAL_CLIENT_ID;
   const clientSecret = process.env.PAYPAL_CLIENT_SECRET;
-  let env = new checkoutNodeJssdk.core.SandboxEnvironment(
+  let env = new checkoutNodeJssdk.core.LiveEnvironment(
     clientId,
     clientSecret
   );

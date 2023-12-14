@@ -28,21 +28,23 @@ function Newsletter_main() {
   const [Done, setDone] = useState(false);
   return (
     <div
-      className="w-full bg-secondary text-textWhiteWithSecondary columns-2 font-lato p-2 py-4 md:p-8 md:py-16 flex flex-col md:flex-row select-none overflow-hidden relative"
+      className="relative flex flex-col w-full p-2 py-8 overflow-hidden select-none gap-y-8 bg-secondary text-textWhiteWithSecondary columns-2 font-lato md:p-8 md:py-16 md:flex-row"
       ref={pallete}
     >
       {showconfetti && (
         <Confetti
           numberOfPieces={400}
           recycle={false}
-          className="left-1/2 -translate-x-1/2"
+          className="-translate-x-1/2 left-1/2"
           width={pallete.clientWidth}
           height={pallete.clientHeight}
         />
       )}
-      <div className="flex text-center md:text-start flex-col items-center justify-center gap-y-2 md:gap-y-5 w-full md:w-7/12">
-        <p className="text-6xl font-extrabold">Spark Your Tech Adventure</p>
-        <p className="font-semibold text-sm">
+      <div className="flex flex-col items-center justify-center w-full text-center md:text-start gap-y-2 md:gap-y-5 md:w-7/12">
+        <p className="text-4xl font-extrabold md:text-6xl">
+          Spark Your Tech Adventure
+        </p>
+        <p className="text-xs font-semibold leading-5 md:leading-normal md:text-sm">
           Embark on a journey through the latest and greatest in technology with
           our newsletter.
           <br /> Immerse yourself in the world of cutting-edge electronic
@@ -55,7 +57,7 @@ function Newsletter_main() {
         <form onSubmit={handleSubmit(OnSubmit)} className="w-full shadow-md">
           <input
             className={
-              "focus-visible:outline-none mb-2 md:mb-0  font-bold placeholder:text-lg  md:rounded-r-none  p-4 border-t mr-0 border-b border-l text-gray-800 border-main  bg-white placeholder:font-lato w-full md:w-9/12 " +
+              "focus-visible:outline-none mb-2 md:mb-0  font-bold md:placeholder:text-lg  md:rounded-r-none  p-4 border-t mr-0 border-b border-l text-gray-800 border-main  bg-white placeholder:font-lato w-full md:w-9/12 " +
               ((Done || provided) && "cursor-not-allowed bg-gray-400")
             }
             placeholder="your@mail.com"
@@ -84,7 +86,9 @@ function Newsletter_main() {
             )}
           </button>
         </form>
-        {provided && <p className="text-sm">You already subscribed , gracias ! </p>}
+        {provided && (
+          <p className="text-sm">You already subscribed , gracias ! </p>
+        )}
       </div>
     </div>
   );

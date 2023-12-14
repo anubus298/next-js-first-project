@@ -1,8 +1,7 @@
-import Image from "next/image";
-function AboutPage() {
+function Feedback() {
   return (
-    <div className="w-full  ">
-      <div className=" w-full items-center justify-center p-3 bg-secondarySecondarylight">
+    <div className="flex justify-center w-full">
+      <div className="items-center justify-center w-1/3 p-3  bg-secondarySecondarylight">
         <h1 class="text-3xl font-semibold mb-6 text-gray-800">
           Give Us Your Feedback
         </h1>
@@ -76,4 +75,4 @@ function AboutPage() {
   );
 }
 
-export default AboutPage;
+export default Feedback;

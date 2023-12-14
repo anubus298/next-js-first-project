@@ -8,10 +8,10 @@ function TotalCell({ deleteItemFromCart, product, quantity }) {
   const [isloading, setisloading] = useState(false);
   return (
     <div className="flex flex-col items-center">
-      <p className="font-semibold text-indigo-950  text-lg">
+      <p className="font-semibold text-indigo-950 md:text-lg">
         ${(product.price - product.price * product.sale) * quantity}
       </p>
-      <div className="absolute bottom-1 right-0 ">
+      <div className="absolute right-4 md:right-0 bottom-1 ">
         <AlertDialog.Root>
           <AlertDialog.Trigger>
             {!isloading ? (

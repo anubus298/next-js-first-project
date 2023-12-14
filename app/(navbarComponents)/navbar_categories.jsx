@@ -13,7 +13,7 @@ function Navbar_categories() {
   return (
     <div className="flex ">
       <Menu className="relative" as={"menu"}>
-        <Menu.Button className="hover:text-secondary transition p-2 ">
+        <Menu.Button className="p-2 transition hover:text-secondary ">
           Categories
         </Menu.Button>
         <Transition
@@ -84,7 +84,7 @@ function Navbar_categories() {
         </Transition>
       </Menu>
       <Menu className="relative" as={"menu"}>
-        <Menu.Button className="hover:text-secondary transition p-2 ">
+        <Menu.Button className="p-2 transition hover:text-secondary ">
           Support
         </Menu.Button>
         <Transition
@@ -99,10 +99,10 @@ function Navbar_categories() {
             <Menu.Item>
               {() => (
                 <Link
-                  className={`$ transition p-1 rounded-lg `}
-                  href="/WhoWeAre"
+                  className={`$ transition p-1 rounded-lg`}
+                  href="/aboutUs"
                 >
-                  Who we are
+                  About the dev
                 </Link>
               )}
             </Menu.Item>
@@ -110,9 +110,9 @@ function Navbar_categories() {
               {() => (
                 <Link
                   className={`transition p-1 rounded-lg`}
-                  href="/WorkWithUs"
+                  href="/info/refundPolicies"
                 >
-                  Work with us
+                  Refund Policies
                 </Link>
               )}
             </Menu.Item>
@@ -120,7 +120,7 @@ function Navbar_categories() {
               {() => (
                 <Link
                   className={`transition p-1 rounded-lg`}
-                  href="/Feedback"
+                  href="/info/Feedback"
                 >
                   Feedback
                 </Link>
@@ -130,7 +130,7 @@ function Navbar_categories() {
               {() => (
                 <Link
                   className={`transition p-1 rounded-lg`}
-                  href="/ProductSupport"
+                  href="/info/productSupport"
                 >
                   Product support
                 </Link>
