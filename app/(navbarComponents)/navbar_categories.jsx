@@ -100,7 +100,7 @@ function Navbar_categories() {
               {() => (
                 <Link
                   className={`$ transition p-1 rounded-lg`}
-                  href="/aboutUs"
+                  href="/info/aboutUs"
                 >
                   About the dev
                 </Link>
