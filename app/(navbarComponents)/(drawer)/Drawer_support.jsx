@@ -8,32 +8,33 @@ function Drawer_Support() {
   const items = [
     {
       key: "1",
-      label: <p className="text-white font-bold text-lg">Support</p>,
+      label: <p className="text-lg font-bold text-white">Support</p>,
       children: (
-        <div className="bg-secondary text-white flex flex-col gap-y-2 p-3 rounded-lg text-lg font-semibold">
+        <div className="flex flex-col p-3 text-lg font-semibold text-white rounded-lg bg-secondary gap-y-2">
           <Link
-            href="/productsSection/Mobiles"
-            className="flex items-center gap-x-1 p-2 border-b-2 border-white text-white"
+            href="/info/aboutUs"
+            className="flex items-center p-2 text-white border-b-2 border-white gap-x-1"
           >
-            <p>Who we are</p>
+            <p>About The Dev</p>
           </Link>
           <Link
-            href="/productsSection/Tvs"
-            className="flex items-center gap-x-1 p-2 border-b-2 border-white text-white"
+            href="/info/refundPolicy"
+            className="flex items-center p-2 text-white border-b-2 border-white gap-x-1"
           >
-            <p>Work with us</p>
+            <p>Refund Policy</p>
           </Link>
           <Link
-            href="/productsSection/Tablets"
-            className="flex items-center gap-x-1 p-2 border-b-2 border-white text-white"
+            href="/info/contact"
+            className="flex items-center p-2 text-white border-b-2 border-white gap-x-1"
+          >
+            <p>Contact</p>
+          </Link>
+
+          <Link
+            href="/info/feedbacks"
+            className="flex items-center p-2 text-white border-b-2 border-white gap-x-1"
           >
             <p>Feedback</p>
-          </Link>
-          <Link
-            href="/productsSection/Laptops"
-            className="flex items-center gap-x-1 p-2  text-white"
-          >
-            <p>Product support</p>
           </Link>
         </div>
       ),
@@ -44,7 +45,7 @@ function Drawer_Support() {
       <Collapse
         expandIcon={({ isActive }) => (
           <FontAwesomeIcon
-            className="text-white ease-out duration-100"
+            className="text-white duration-100 ease-out"
             icon={faChevronRight}
             size="2x"
             rotation={isActive ? 90 : 0}
@@ -52,7 +53,7 @@ function Drawer_Support() {
         )}
         expandIconPosition="end"
         ghost
-        className="border-2 border-white text-white font-lato"
+        className="text-white border-2 border-white font-lato"
         items={items}
       />
     </div>

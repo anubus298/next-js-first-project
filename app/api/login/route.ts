@@ -15,6 +15,7 @@ export async function POST(request: NextRequest) {
   });
   const pb = new PocketBase(process.env.pocketBaseUrl);
   const body: loginData = await request.json();
+  //zod verification
   try {
     zodSchema.parse(body);
   } catch (error) {
@@ -56,7 +57,7 @@ export async function POST(request: NextRequest) {
         user: pb.authStore.model.id,
         birth: "2000-01-01 10:00:00.123Z",
         phone: "test",
-        gender: "male",
+        gender: "Male",
         color: "#22c55e",
       });
       const change = await pb
@@ -67,11 +68,14 @@ export async function POST(request: NextRequest) {
         });
     }
     if (pb.authStore.isValid) {
-      const colorRes = await pb
-        .collection("Accounts_informations")
-        .getFirstListItem(`user="${pb.authStore.model.id}"`, {
-          fields: "color",
-        });
+      let colorRes = { color: "#ffffff" };
+      try {
+        colorRes = await pb
+          .collection("Accounts_informations")
+          .getFirstListItem(`user="${pb.authStore.model.id}"`, {
+            fields: "color",
+          });
+      } catch (_) {}
       if (path) {
         cookies().set(
           "pb_auth",

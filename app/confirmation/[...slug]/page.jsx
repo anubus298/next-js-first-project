@@ -2,7 +2,7 @@ import PocketBase from "pocketbase";
 import ConfirmationIcon from "./confirmationIcon";
 async function Page({ params }) {
   async function getConfirmationStatue() {
-    const pb = new PocketBase("https://remarkable-gate.pockethost.io");
+    const pb = new PocketBase(process.env.pocketBaseUrl);
     if (params.slug[0] == "verif") {
       try {
         const res = await pb

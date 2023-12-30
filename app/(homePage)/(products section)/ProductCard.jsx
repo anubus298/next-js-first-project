@@ -30,25 +30,27 @@ function ProductCard({ item, type }) {
           />
         </div>
 
-        <div className="h-[30px] flex justify-center relative ">
-          {item.expand && (
-            <BrandImg
-              name={item.expand?.brand.name}
-              src={`${process.env.pocketBaseUrl}api/files/${item.expand?.brand.collectionId}/${item.expand?.brand.id}/${item.expand?.brand.img}?thumb=0x30`}
-            />
-          )}
+        <div className="flex justify-center w-full">
+          <div className="h-[30px]  ">
+            {item.expand && (
+              <BrandImg
+                name={item.expand?.brand.name}
+                src={`${process.env.pocketBaseUrl}api/files/${item.expand?.brand.collectionId}/${item.expand?.brand.id}/${item.expand?.brand.img}?thumb=0x30`}
+              />
+            )}
+          </div>
         </div>
-        <div className="flex justify-evenly items-center mt-auto">
+        <div className="flex items-center mt-auto justify-evenly">
           <ProductDescription
             classes="text-indigo-950 text-2xl "
             add="$"
-            text={item.price}
+            text={parseFloat(item.price).toFixed(2)}
             sale={item.sale}
             type={type}
             id={item.id}
           />
           <StarComp count={item.rating} size={15} readonly={true} />
-          <p className="text-indigo-950 text-xs font-semibold">
+          <p className="text-xs font-semibold text-indigo-950">
             ({item.totalRated} user)
           </p>
         </div>

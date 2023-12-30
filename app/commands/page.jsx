@@ -2,7 +2,9 @@ export const fetchCache = "force-no-store";
 import PocketBase from "pocketbase";
 import { cookies } from "next/headers";
 import Commands_main from "./commands_main";
-
+export const metadata = {
+  title: 'Commands',
+}
 async function PageCommands() {
   async function GetCommands() {
     const pb = new PocketBase(process.env.pocketBaseUrl);

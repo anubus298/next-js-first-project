@@ -10,7 +10,10 @@ import JotaiProviders from "./jotaiProvider";
 import { config } from "@fortawesome/fontawesome-svg-core";
 config.autoAddCss = false; /* eslint-disable import/first */
 export const metadata = {
-  title: "SafoMart",
+  title: {
+    template: "SafoMart | %s",
+    default: "SafoMart",
+  },
   description:
     "Discover the Latest Tech Gadgets, Electronics, and Innovations at Unbeatable Prices!",
   keywords: [
@@ -51,7 +54,6 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={`${mooli.variable} ` + mooli.className + " relative"}>
-        
         <Providers>
           <JotaiProviders>
             <NavbarServer />

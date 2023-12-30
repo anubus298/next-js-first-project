@@ -1,7 +1,7 @@
 "use client";
 import { faRightToBracket } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { ConfigProvider, Popover } from "antd";
+import { ConfigProvider } from "antd";
 import { useRouter } from "next/navigation";
 function Navbar_log_in() {
   const router = useRouter();
@@ -13,9 +13,8 @@ function Navbar_log_in() {
         },
       }}
     >
-      <Popover content={<p className="font-bold text-white">Log in</p>}>
         <div
-          className="bg-secondarySecondarylight px-2 py-1 rounded-lg cursor-pointer text-main"
+          className="px-2 py-1 rounded-lg cursor-pointer bg-secondarySecondarylight text-main"
           onClick={() => router.push("/logIn/pch46f5f6qqaaz=")}
         >
           <FontAwesomeIcon
@@ -24,7 +23,6 @@ function Navbar_log_in() {
             className=""
           />
         </div>
-      </Popover>
     </ConfigProvider>
     
   );

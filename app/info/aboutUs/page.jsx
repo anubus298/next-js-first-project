@@ -1,49 +1,44 @@
-import {
-  faInstagram,
-  faLinkedin,
-  faUpwork,
-} from "@fortawesome/free-brands-svg-icons";
+import { faInstagram, faLinkedin } from "@fortawesome/free-brands-svg-icons";
 import { faGlobe } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Image from "next/image";
 
+export const metadata = {
+  title: "About Us",
+};
+
 function AboutUs() {
   return (
-    <div className="flex flex-col md:flex-row justify-between items-center  w-full md:h-[540px] gap-x-16 relative px-2 md:px-0 pt-14 md:pt-0">
-      {/* <Image alt="logo" height={200} width={500} src="/logo.svg" /> */}
-      <div className="w-full md:w-1/2 ">
+    <div className="flex flex-col md:flex-row justify-between items-center w-full md:h-[540px] gap-x-16 relative px-2 md:px-0 pt-14 md:pt-0">
+      <div className="w-full md:w-1/2">
         <h1 className="text-6xl font-extrabold text-center md:text-8xl boujee-text md:text-start">
-          ABOUT ME
+          About Us
         </h1>
         <p className="text-sm md:text-base">
-          Hello there! 👋 I&apos;m Safouane a passionate 20-year-old web
-          developer deeply enthralled by the world of technology.
-          <br className="mb-1" /> I&apos;ve dedicated myself to mastering the
-          art of web development, showcasing my skills through the creation of
-          this web app.
-          <br className="mb-1" /> Within this digital realm, I excel in
-          problem-solving, crafting smart solutions, seamlessly integrating REST
-          APIs, designing intuitive interfaces, and putting in the hard work to
-          bring ideas to life. <br className="mb-1" />
-          Join me on this exciting journey where innovation meets dedication,
-          and let&apos;s build a future powered by code!
+          Hi, I&apos;m Safouane El Arari, the creator of this web app. I&apos;ve
+          designed this space to provide you with a straightforward and
+          enjoyable shopping experience.
         </p>
-        <div className="flex items-center w-full my-6 gap-x-6 justify-evenly md:w-auto md:justify-normal">
+        <p className="text-lg font-semibold text-secondary">Visit me here</p>
+        <div className="flex items-center w-full mt-2 gap-x-6 justify-evenly md:w-auto md:justify-normal">
           <a
-            className="text-5xl md:text-7xl text-secondary"
+            className="text-xl md:text-5xl text-secondary"
             href="https://www.linkedin.com/in/safouane-el-arari/"
-            target={"_blank"}
+            target="_blank"
           >
             <FontAwesomeIcon icon={faLinkedin} />
           </a>
           <a
-            className="text-5xl md:text-7xl text-secondaryOrange"
+            className="text-xl md:text-5xl text-secondaryOrange"
             href="https://www.instagram.com/wdyn572/"
-            target={"_blank"}
+            target="_blank"
           >
             <FontAwesomeIcon icon={faInstagram} />
           </a>
-          <a className="text-5xl md:text-7xl text-secondaryYellow">
+          <a
+            href="https://safouane-portfolio.vercel.app/"
+            className="text-xl md:text-5xl text-secondaryYellow"
+          >
             <FontAwesomeIcon icon={faGlobe} />
           </a>
         </div>

@@ -28,9 +28,11 @@ function Card_favorite({
   });
   const router = useRouter();
   useEffect(() => {
-    setpriceSummary(priceSummary + sign * product.price);
+    setpriceSummary(priceSummary + sign * parseFloat(product.price).toFixed(2));
     return () => {
-      setpriceSummary(priceSummary - quantity * product.price);
+      setpriceSummary(
+        priceSummary - quantity * parseFloat(product.price).toFixed(2)
+      );
     };
   }, [quantity]);
   async function handleAddToCartFromFavorite(collectionName, id) {
@@ -69,9 +71,9 @@ function Card_favorite({
         <Skeleton>
           <div className="w-full">
             <div className="bg-white m-1 md:m-0 flex w-full justify-between md:justify-normal md:flex-row relative flex-col items-center space-x-5 md:w-auto min-h-[200px] md:min-h-fit md:h-[120px] overflow-y-auto overflow-x-hidden shadow-lg sm:overflow-hidden p-3 md:p-6 rounded-lg">
-              <div className="flex gap-x-2 items-center w-full md:w-9/12 md:gap-x-5">
+              <div className="flex items-center w-full gap-x-2 md:w-9/12 md:gap-x-5">
                 <Skeleton.Image />
-                <div className="flex gap-y-2 flex-col md:text-start justify-between">
+                <div className="flex flex-col justify-between gap-y-2 md:text-start">
                   <Link
                     className="text-lg font-medium"
                     href={"/product" + "/" + type + "/" + product.id}
@@ -84,7 +86,7 @@ function Card_favorite({
                   <p>lorelorem</p>
                 </div>
               </div>
-              <div className="flex flex-row md:flex-col justify-between px-3 w-full md:w-3/12 h-full">
+              <div className="flex flex-row justify-between w-full h-full px-3 md:flex-col md:w-3/12">
                 <div className="flex items-center md:justify-end">
                   <p>loremloremlorem</p>
 
@@ -98,7 +100,7 @@ function Card_favorite({
       {domloaded && (
         <div className="w-full">
           <div className="bg-white m-1 md:m-0 flex w-full justify-between md:justify-normal md:flex-row relative flex-col items-center space-x-5 md:w-auto min-h-[200px] md:min-h-fit md:h-[120px] overflow-y-auto overflow-x-hidden shadow-lg sm:overflow-hidden p-3 md:p-6 rounded-lg">
-            <div className="flex gap-x-2 items-center w-full md:w-9/12 md:gap-x-5">
+            <div className="flex items-center w-full gap-x-2 md:w-9/12 md:gap-x-5">
               <Image
                 src={`${process.env.pocketBaseUrl}api/files/${product.collectionId}/${product.id}/${product.imgs}`}
                 alt=""
@@ -110,7 +112,7 @@ function Card_favorite({
                   router.push("/product" + "/" + type + "/" + product.id)
                 }
               />
-              <div className="flex gap-y-2 flex-col md:text-start justify-between">
+              <div className="flex flex-col justify-between gap-y-2 md:text-start">
                 <Link
                   className="text-lg font-medium"
                   href={"/product" + "/" + type + "/" + product.id}
@@ -130,13 +132,15 @@ function Card_favorite({
                 </div>
                 <Link
                   href={"/product" + "/" + type + "/" + product.id}
-                  className="text-indigo-950 text-xl font-semibold w-fit"
+                  className="text-xl font-semibold text-indigo-950 w-fit"
                 >
-                  ${product.price - product.price * product.sale}
+                  $
+                  {parseFloat(product.price).toFixed(2) -
+                    parseFloat(product.price).toFixed(2) * product.sale}
                 </Link>
               </div>
             </div>
-            <div className="flex flex-row md:flex-col justify-between px-3 w-full md:w-3/12 h-full">
+            <div className="flex flex-row justify-between w-full h-full px-3 md:flex-col md:w-3/12">
               <div className="flex items-center md:justify-end">
                 <AlertDialog.Root>
                   <AlertDialog.Trigger>

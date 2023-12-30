@@ -2,6 +2,9 @@ export const fetchCache = "force-no-store";
 import PocketBase from "pocketbase";
 import { cookies } from "next/headers";
 import CartUI from "./cartUI";
+export const metadata = {
+  title: 'My Cart',
+}
 async function Page() {
   async function getCartInfo() {
     const pb = new PocketBase(process.env.pocketBaseUrl);

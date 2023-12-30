@@ -2,9 +2,9 @@ import Image from "next/image";
 
 function NotFound() {
   return (
-    <div className="h-[60vh] w-full flex justify-center items-center flex-col">
+    <div className="h-[75vh] w-full flex justify-center items-center flex-col">
       <Image
-        alt="not-found-illustration"
+        alt="not-found illustration"
         height={400}
         width={400}
         src={"/404.png"}

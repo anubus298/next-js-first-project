@@ -101,7 +101,7 @@ function MainPallete({ data, typeForHref }) {
           brandList={brandList}
         />
       </div>
-      <div className=" p-1 md:p-4 rounded-b-md bg-secondarySecondarylight h-full flex justify-evenly md:justify-normal gap-y-4 md:gap-x-6 md:gap-y-8 flex-wrap">
+      <div className="flex flex-wrap h-full p-1  md:p-4 rounded-b-md bg-secondarySecondarylight justify-evenly md:justify-normal gap-y-4 md:gap-x-6 md:gap-y-8">
         {!domloaded && (
           <div className="w-full h-[300px] flex justify-center items-center">
             <ColorRing
@@ -154,7 +154,7 @@ function MainPallete({ data, typeForHref }) {
                     }
                     description={
                       <CardDescription
-                        price={product.price}
+                        price={parseFloat(product.price).toFixed(2)}
                         sale={product.sale}
                         rating={product.rating}
                         id={product.id}
@@ -212,7 +212,7 @@ function CardDescription({ price, sale, rating, id, typeForHref, totalRated }) {
       <Popover
         content={
           <div className="flex flex-col items-center">
-            <p className=" font-extrabold">{rating}/5</p>
+            <p className="font-extrabold ">{rating}/5</p>
             <p className="text-xs text-gray-600">({totalRated})</p>
           </div>
         }
@@ -227,7 +227,7 @@ function CardDescription({ price, sale, rating, id, typeForHref, totalRated }) {
       {sale == 0 && (
         <Link
           href={`/product/${typeForHref}/${id}`}
-          className="text-secondary font-bold text-lg"
+          className="text-lg font-bold text-secondary"
         >
           ${price}
         </Link>
@@ -237,7 +237,7 @@ function CardDescription({ price, sale, rating, id, typeForHref, totalRated }) {
           <p className="line-through decoration-black">${price}</p>
           <Link
             href={`/product/${typeForHref}/${id}`}
-            className="text-green-600 font-bold text-lg"
+            className="text-lg font-bold text-green-600"
           >
             ${price - price * sale}
             <span className="text-sm"> ({sale * 100 + "% OFF"})</span>

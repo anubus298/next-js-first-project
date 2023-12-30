@@ -110,7 +110,7 @@ function Navbar_categories() {
               {() => (
                 <Link
                   className={`transition p-1 rounded-lg`}
-                  href="/info/refundPolicies"
+                  href="/info/refundPolicy"
                 >
                   Refund Policies
                 </Link>
@@ -120,9 +120,9 @@ function Navbar_categories() {
               {() => (
                 <Link
                   className={`transition p-1 rounded-lg`}
-                  href="/info/Feedback"
+                  href="/info/contact"
                 >
-                  Feedback
+                  Contact
                 </Link>
               )}
             </Menu.Item>
@@ -130,12 +130,13 @@ function Navbar_categories() {
               {() => (
                 <Link
                   className={`transition p-1 rounded-lg`}
-                  href="/info/productSupport"
+                  href="/info/feedbacks"
                 >
-                  Product support
+                  Feedback
                 </Link>
               )}
             </Menu.Item>
+            
           </Menu.Items>
         </Transition>
       </Menu>

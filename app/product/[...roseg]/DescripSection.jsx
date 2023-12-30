@@ -36,10 +36,10 @@ function DescripSection({
             {sale != 0 && (
               <>
                 <p className="text-3xl font-semibold text-gray-500 line-through select-none decoration-black">
-                  ${price}
+                  ${parseFloat( price).toFixed(2)}
                 </p>
                 <p className="text-4xl font-semibold text-green-600 select-none">
-                  ${price - price * sale}
+                  ${parseFloat( price).toFixed(2) - parseFloat( price).toFixed(2) * sale}
                   <span className="block text-xs md:inline ">
                     (including VAT)
                   </span>
@@ -48,7 +48,7 @@ function DescripSection({
             )}
             {sale == 0 && (
               <p className="text-4xl font-semibold select-none text-indigo-950">
-                ${price}
+                ${parseFloat( price).toFixed(2)}
                 <span className="block text-xs md:inline ">
                   (including VAT)
                 </span>

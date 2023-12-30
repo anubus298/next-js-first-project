@@ -2,6 +2,9 @@ export const fetchCache = "force-no-store";
 import Checkout_main from "./checkout_main";
 import PocketBase from "pocketbase";
 import { cookies } from "next/headers";
+export const metadata = {
+  title: 'Checkout',
+}
 async function Page({ searchParams }) {
   const pb = new PocketBase(process.env.pocketBaseUrl);
 

@@ -37,7 +37,7 @@ function Card({
           </div>
           <div className="flex flex-col items-start justify-center w-full md:justify-between">
             <Link
-              className="w-full text-xs font-semibold text-center md:text-lg"
+              className="w-full text-xs font-semibold text-start md:text-lg"
               href={"/product" + "/" + type + "/" + product.id}
             >
               {product.name}
@@ -59,7 +59,9 @@ function Card({
 
       <Table.Cell justify={"center"}>
         <p className="md:text-lg ">
-          ${product.price - product.price * product.sale}
+          $
+          {parseFloat(product.price).toFixed(2) -
+            parseFloat(product.price).toFixed(2) * product.sale}
         </p>
       </Table.Cell>
 

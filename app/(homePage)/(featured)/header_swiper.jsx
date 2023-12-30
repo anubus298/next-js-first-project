@@ -54,13 +54,13 @@ function Header_swiper(props) {
                     <p className="font-semibold sm:text-md">{product.name}</p>
                     <p className="text-xs font-semibold tracking-wider">
                       <span className="mx-1 font-medium text-gray-400 line-through">
-                        ${product.price}
+                        ${parseFloat(product.price).toFixed(2)}
                       </span>
                       <span className="mx-1 text-secondaryGreen">
                         $
-                        {Math.floor(
-                          product.price - product.price * product.sale
-                        )}{" "}
+                        {parseFloat(product.price).toFixed(2) -
+                          parseFloat(product.price).toFixed(2) *
+                            product.sale}{" "}
                         <span className="text-secondaryYellow">
                           {product.sale * 100}%
                         </span>
