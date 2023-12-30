@@ -117,4 +117,8 @@ To facilitate secure payments, I integrated a robust PayPal gateway with stringe
 ## Thank You
 
 It took a significant amount of time to complete the project, but the learning experience was invaluable. I take pride in the work I've accomplished. If you have any comments or questions, feel free to contact me through:
+<<<<<<< HEAD
 [araristaf@gmail.com](mailto:araristaf@gmail.com) or [LinkedIn - Safouane el arari](https://www.linkedin.com/in/safouane-el-arari/).
+=======
+[araristaf@gmail.com](mailto:araristaf@gmail.com) or [LinkedIn - Safouane el arari](https://www.linkedin.com/in/safouane-el-arari/).
+>>>>>>> ec7517acaa4d68ad9ae42d643dbd470c1f5d4764
