@@ -7,6 +7,7 @@ import Counter from "./counter";
 import TotalCell from "./(components)/TotalCell";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 function Card({
   product,
   deleteItemFromCart,
@@ -18,6 +19,13 @@ function Card({
   const type = product.collectionName.replace(regex, (str, p1, p2) => {
     return p2.toLowerCase();
   });
+  const [isMobileScreen, setisMobileScreen] = useState(false);
+
+  useEffect(() => {
+    if (document.documentElement.clientWidth < 768) {
+      setisMobileScreen(true);
+    }
+  }, []);
   const router = useRouter();
   return (
     <Table.Row align={"center"} className="relative">
@@ -27,8 +35,8 @@ function Card({
             <Image
               src={`${process.env.pocketBaseUrl}api/files/${product.collectionId}/${product.id}/${product.imgs}`}
               alt=""
-              height={70}
-              width={80}
+              height={isMobileScreen ? 50 : 70}
+              width={isMobileScreen ? 50 : 80}
               className="w-auto h-auto cursor-pointer"
               onClick={() =>
                 router.push("/product" + "/" + type + "/" + product.id)
@@ -37,7 +45,7 @@ function Card({
           </div>
           <div className="flex flex-col items-start justify-center w-full md:justify-between">
             <Link
-              className="w-full text-xs font-semibold text-start md:text-lg"
+              className="w-full text-xs font-semibold text-center md:text-start md:text-lg"
               href={"/product" + "/" + type + "/" + product.id}
             >
               {product.name}

@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-function BrandImg({ name, src, clickable, id, type }) {
+function BrandImg({ name, src, clickable, id, type, width, height }) {
   const router = useRouter();
   return (
     <Image
@@ -9,8 +9,8 @@ function BrandImg({ name, src, clickable, id, type }) {
       onClick={() => clickable && router.push(`/product/${type}/${id}`)}
       alt={name}
       sizes={"80px"}
-      width={30}
-      height={30}
+      width={width}
+      height={height}
       src={src}
     />
   );

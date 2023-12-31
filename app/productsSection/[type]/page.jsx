@@ -19,7 +19,7 @@ async function Page({ params }) {
   return (
     <div className="flex flex-col w-full md:min-h-screen md:flex-row md:gap-x-6">
       <div className="w-full  min-h[500px] md:min-h-screen">
-        <Suspense fallback={<div className="w-full h-full bg-red-600"></div>}>
+        <Suspense fallback={<div className="w-full h-full bg-white"></div>}>
           <MainPallete data={data} typeForHref={params.type.toLowerCase()} />
         </Suspense>
       </div>

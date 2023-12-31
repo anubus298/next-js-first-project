@@ -16,10 +16,7 @@ function Home_slider() {
     setdomloaded(true);
   }, []);
   return (
-    <div
-      ref={swiperRef}
-      className="w-full overflow-hidden select-none h-fit"
-    >
+    <div ref={swiperRef} className="w-full overflow-hidden select-none h-fit">
       <Suspense
         fallback={
           <div className="w-full h-full">
@@ -36,10 +33,8 @@ function Home_slider() {
         }
       >
         <Swiper
-          modules={[Navigation, Autoplay,EffectFade]}
-          navigation={width > 768}
+          modules={[Autoplay, EffectFade]}
           slidesPerView={1}
-
           effect="fade"
           grabCursor={false}
           autoplay={{

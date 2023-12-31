@@ -2,14 +2,14 @@
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useSearchParams } from "next/navigation";
 
 function SearchBar({ className }) {
   const [value, setvalue] = useState("");
   const searchParams = useSearchParams().get("for");
-
+  const [isDomLoaded, setisDomLoaded] = useState(false);
   const {
     register,
     handleSubmit,
@@ -20,15 +20,19 @@ function SearchBar({ className }) {
   const onSubmit = (data) => {
     router.push("/search?for=" + data.search.split(" ").join("+"));
   };
+  useEffect(() => {
+    setisDomLoaded(true);
+  }, []);
   return (
-    searchParams != "" && (
+    searchParams != "" &&
+    isDomLoaded && (
       <div className={"rounded-md bg-white p-1 md:me-6 " + className}>
         <form
           onSubmit={handleSubmit(onSubmit)}
           className="flex items-center font-lato"
         >
           <input
-          disabled
+            disabled
             type="text"
             name="searchValue"
             autoComplete="off"

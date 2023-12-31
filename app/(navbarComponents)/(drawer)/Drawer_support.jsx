@@ -1,7 +1,7 @@
 "use client";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Collapse } from "antd";
+import { Collapse, ConfigProvider } from "antd";
 import Link from "next/link";
 
 function Drawer_Support() {
@@ -41,22 +41,24 @@ function Drawer_Support() {
     },
   ];
   return (
-    <div className="w-full">
-      <Collapse
-        expandIcon={({ isActive }) => (
-          <FontAwesomeIcon
-            className="text-white duration-100 ease-out"
-            icon={faChevronRight}
-            size="2x"
-            rotation={isActive ? 90 : 0}
-          />
-        )}
-        expandIconPosition="end"
-        ghost
-        className="text-white border-2 border-white font-lato"
-        items={items}
-      />
-    </div>
+    <ConfigProvider theme={{ token: { motionDurationMid: 0 } }}>
+      <div className="w-full">
+        <Collapse
+          expandIcon={({ isActive }) => (
+            <FontAwesomeIcon
+              className="text-white duration-100 ease-out"
+              icon={faChevronRight}
+              size="2x"
+              rotation={isActive ? 90 : 0}
+            />
+          )}
+          expandIconPosition="end"
+          ghost
+          className="text-white border-2 border-white font-lato"
+          items={items}
+        />
+      </div>
+    </ConfigProvider>
   );
 }
 

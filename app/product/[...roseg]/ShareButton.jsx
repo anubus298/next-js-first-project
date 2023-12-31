@@ -1,17 +1,16 @@
 "use client";
-import {
-  faFacebook,
-  faTwitter,
-  faXTwitter,
-} from "@fortawesome/free-brands-svg-icons";
+import { faFacebook, faXTwitter } from "@fortawesome/free-brands-svg-icons";
 import { faArrowUpFromBracket } from "@fortawesome/free-solid-svg-icons";
+import { FacebookShareButton, TwitterShareButton } from "react-share";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { AlertDialog, Button, Flex } from "@radix-ui/themes";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 
 function ShareButton({ cId, id, url, name }) {
-  function handleTwitterShare() {}
-  function handleFacebookShare() {}
+  const pathname = usePathname();
+  const sharedUrl =
+    "https://safomart.vercel.app" + pathname + "/opengraph-image.js";
   return (
     <AlertDialog.Root>
       <AlertDialog.Trigger style={{ width: "100%" }}>
@@ -43,7 +42,7 @@ function ShareButton({ cId, id, url, name }) {
               <p>
                 Shop smart, shop SafoMart! 🌐
                 <span className="text-blue-600">
-                  <br /> #SavoMartDeals #SmartShopping <br /> #MustHave
+                  <br /> #SafoMartDeals #SmartShopping <br /> #MustHave
                 </span>
               </p>
             </div>
@@ -52,19 +51,29 @@ function ShareButton({ cId, id, url, name }) {
 
         <Flex gap="3" mt="4" justify="end">
           <AlertDialog.Cancel>
-            <Button variant="soft" color="gray">
+            <Button variant="soft" color="gray" className="cursor-pointer">
               Cancel
             </Button>
           </AlertDialog.Cancel>
-          <AlertDialog.Action onClick={() => handleFacebookShare()}>
-            <Button variant="solid" color="blue" className="cursor-pointer">
-              <FontAwesomeIcon icon={faFacebook} />
-            </Button>
+          <AlertDialog.Action>
+            <FacebookShareButton hashtag="#SafoMartDeals" url={sharedUrl}>
+              <Button variant="solid" color="blue" className="cursor-pointer">
+                <FontAwesomeIcon icon={faFacebook} />
+              </Button>
+            </FacebookShareButton>
           </AlertDialog.Action>
-          <AlertDialog.Action onClick={() => handleTwitterShare()}>
-            <Button variant="solid" className="bg-black cursor-pointer">
-              <FontAwesomeIcon icon={faXTwitter} className="cursor-pointer" />
-            </Button>
+          <AlertDialog.Action>
+            <TwitterShareButton
+              url={sharedUrl}
+              title={`🚀 Exciting News! 🛍️ Uncover Unbeatable Deals on ${name} at SafoMart! 🌟,
+Shop smart, shop SafoMart! 🌐
+              `}
+              hashtag={["#SafoMartDeals", "#SmartShopping", "#MustHave"]}
+            >
+              <Button variant="solid" className="bg-black cursor-pointer">
+                <FontAwesomeIcon icon={faXTwitter} />
+              </Button>
+            </TwitterShareButton>
           </AlertDialog.Action>
         </Flex>
       </AlertDialog.Content>

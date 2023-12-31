@@ -38,28 +38,27 @@ body {
   -webkit-text-stroke-width: 1px;
   -webkit-text-stroke-color: black;
 }
-
-
-
-
-
+.text-xxs {
+  font-size: 0.6rem !important;
+  line-height: 1rem !important;
+}
 
 .boujee-text {
   --bg-size: 400%;
-  --color-one: #D64550;
+  --color-one: #d64550;
   --color-two: hsl(40 95% 55%);
   background: linear-gradient(
-                90deg,
-                var(--color-one),
-                var(--color-two),
-                var(--color-one)
-              ) 0 0 / var(--bg-size) 100%;
+      90deg,
+      var(--color-one),
+      var(--color-two),
+      var(--color-one)
+    )
+    0 0 / var(--bg-size) 100%;
   color: transparent;
   background-clip: text;
   -webkit-background-clip: text;
   animation: move-bg 8s infinite linear;
 }
-
 
 @keyframes move-bg {
   to {

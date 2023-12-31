@@ -101,7 +101,7 @@ function MainPallete({ data, typeForHref }) {
           brandList={brandList}
         />
       </div>
-      <div className="flex flex-wrap h-full p-1  md:p-4 rounded-b-md bg-secondarySecondarylight justify-evenly md:justify-normal gap-y-4 md:gap-x-6 md:gap-y-8">
+      <div className="flex flex-wrap h-full p-1 md:p-4 rounded-b-md bg-secondarySecondarylight justify-evenly md:justify-normal gap-y-4 md:gap-x-6 md:gap-y-8">
         {!domloaded && (
           <div className="w-full h-[300px] flex justify-center items-center">
             <ColorRing
@@ -125,8 +125,7 @@ function MainPallete({ data, typeForHref }) {
                 <Card
                   bordered={true}
                   className={
-                    "w-44 md:w-56 h-80 py-2 md:py-4 hover:shadow-lg hover:-translate-y-1 duration-200 ease-out font-lato "  
-                      
+                    "w-44 md:w-56 h-80 py-2 md:py-4 hover:shadow-lg hover:-translate-y-1 duration-200 ease-out font-lato "
                   }
                   cover={
                     <Image
@@ -227,7 +226,7 @@ function CardDescription({ price, sale, rating, id, typeForHref, totalRated }) {
       {sale == 0 && (
         <Link
           href={`/product/${typeForHref}/${id}`}
-          className="text-lg font-bold text-secondary"
+          className="text-lg font-bold text-indigo-950"
         >
           ${price}
         </Link>

@@ -5,19 +5,21 @@ import { useRouter } from "next/navigation";
 function Cart_order_summary({ price, count, arrayOfproductCounts }) {
   const router = useRouter();
   return (
-    <div className="bg-main h-fit w-full pt-6 pb-1 px-8 md:px-2 text-white flex flex-col items-center gap-y-5 select-none">
+    <div className="flex flex-col items-center w-full px-8 pt-6 pb-1 text-white select-none bg-main h-fit md:px-2 gap-y-5">
       <p className="text-lg font-bold">Order Summary</p>
-      <p className="text-3xl self-end">${price}</p>
+      <p className="self-end text-3xl">${price}</p>
       <div className="w-full ">
         <div
-          className="bg-white text-main p-2 font-extrabold w-full md:p-3 cursor-pointer text-center"
+          className="w-full p-2 font-extrabold text-center bg-white cursor-pointer text-main md:p-3"
           onClick={() =>
             router.push(`/checkout/sqd?melon=${arrayOfproductCounts.join(",")}`)
           }
         >
           Checkout now ({count})
         </div>
-        <p className="text-xs text-gray-400">All pricing are including VAT</p>
+        <p className="text-xs text-gray-400">
+          All pricing are excluding VAT and shipment
+        </p>
       </div>
     </div>
   );

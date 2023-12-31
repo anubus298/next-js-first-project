@@ -10,11 +10,11 @@ function SwiperProducts(props) {
   const [domloaded, setdomloaded] = useState(false);
   useEffect(() => {
     if (document.documentElement.clientWidth < 1024) {
-      setSwiperPreview(2);
+      setSwiperPreview(4);
       setNavigationEnabled(false);
     }
     if (document.documentElement.clientWidth < 768) {
-      setSwiperPreview(1);
+      setSwiperPreview(3);
       setNavigationEnabled(false);
     }
   }, []);
