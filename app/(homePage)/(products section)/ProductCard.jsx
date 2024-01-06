@@ -34,7 +34,7 @@ function ProductCard({ item, type }) {
             text={item.name.split(reg, 3).join(",")}
             type={type}
             sale={0}
-            classes={"transition"}
+            classes={""}
             id={item.id}
           />
         </div>

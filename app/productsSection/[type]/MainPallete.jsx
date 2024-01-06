@@ -212,7 +212,7 @@ function CardDescription({ price, sale, rating, id, typeForHref, totalRated }) {
         content={
           <div className="flex flex-col items-center">
             <p className="font-extrabold ">{rating}/5</p>
-            <p className="text-xs text-gray-600">({totalRated})</p>
+            <p className="text-xs text-gray-600">({totalRated.toFixed(2)})</p>
           </div>
         }
       >
@@ -238,8 +238,11 @@ function CardDescription({ price, sale, rating, id, typeForHref, totalRated }) {
             href={`/product/${typeForHref}/${id}`}
             className="text-lg font-bold text-green-600"
           >
-            ${price - price * sale}
-            <span className="text-sm"> ({sale * 100 + "% OFF"})</span>
+            ${(price - price * sale).toFixed(0)}
+            <span className="text-sm">
+              {" "}
+              ({(sale * 100).toFixed(2) + "% OFF"})
+            </span>
           </Link>
         </div>
       )}

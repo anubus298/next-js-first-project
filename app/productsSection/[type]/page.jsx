@@ -1,3 +1,5 @@
+export const revalidate = 60;
+
 import PocketBase from "pocketbase";
 import MainPallete from "./MainPallete";
 import { Suspense } from "react";

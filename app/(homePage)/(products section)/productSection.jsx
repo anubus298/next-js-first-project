@@ -1,3 +1,4 @@
+export const revalidate = 600;
 import PocketBase from "pocketbase";
 import shuffle from "../../functions/shuffle";
 import SubProductSection from "./subProductSection";
@@ -11,7 +12,7 @@ async function ProductSection({
   const pb = new PocketBase(process.env.pocketBaseUrl);
   async function getPro(type, count) {
     let cacheOption;
-    cache ? (cacheOption = "force-cache") : (cacheOption = "no-store");
+    cache ? (cacheOption = "default") : (cacheOption = "no-store");
     const ProType = "Pro" + type[0].toUpperCase() + type.slice(1, type.length);
     let data = await pb.collection(ProType).getList(1, count, {
       expand: "brand",

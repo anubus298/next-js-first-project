@@ -69,7 +69,7 @@ function Card({
         <p className="md:text-lg ">
           $
           {parseFloat(product.price).toFixed(2) -
-            parseFloat(product.price).toFixed(2) * product.sale}
+            (parseFloat(product.price).toFixed(2) * product.sale).toFixed(2)}
         </p>
       </Table.Cell>
 

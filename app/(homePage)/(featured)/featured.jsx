@@ -1,3 +1,4 @@
+export const revalidate = 600;
 import PocketBase from "pocketbase";
 import Header_swiper from "./header_swiper";
 import Fallback_header_swiper from "./(fallback)/Fallback_header_swiper";
@@ -5,25 +6,30 @@ import { Suspense } from "react";
 const pb = new PocketBase(process.env.pocketBaseUrl);
 
 async function getImprovedProducts() {
-  const tablets = await pb.collection("ProTablets").getList(1, 5, {
+  const tablets = await pb.collection("ProTablets").getList(1, 3, {
     filter: 'sale != "0"',
     fields: "price,sale,imgs,name,id,collectionId",
+    sort: "-sale",
   });
-  const laptops = await pb.collection("ProLaptops").getList(1, 5, {
+  const laptops = await pb.collection("ProLaptops").getList(1, 3, {
     filter: 'sale != "0"',
     fields: "price,sale,imgs,name,id,collectionId",
+    sort: "-sale",
   });
-  const mobiles = await pb.collection("ProMobiles").getList(1, 5, {
+  const mobiles = await pb.collection("ProMobiles").getList(1, 3, {
     filter: 'sale != "0"',
     fields: "price,sale,imgs,name,id,collectionId",
+    sort: "-sale",
   });
-  const tvs = await pb.collection("ProTvs").getList(1, 5, {
+  const tvs = await pb.collection("ProTvs").getList(1, 3, {
     filter: 'sale != "0"',
     fields: "price,sale,imgs,name,id,collectionId",
+    sort: "-sale",
   });
-  const wearables = await pb.collection("ProWearables").getList(1, 5, {
+  const wearables = await pb.collection("ProWearables").getList(1, 3, {
     filter: 'sale != "0"',
     fields: "price,sale,imgs,name,id,collectionId",
+    sort: "-sale",
   });
   return {
     tablets: tablets.items,
@@ -38,7 +44,9 @@ async function Featured() {
   return (
     <>
       <div className="flex justify-center w-full p-2 font-extrabold text-center border-t-2 select-none border-t-main bg-main">
-        <p className="text-4xl text-textWhiteWithSecondary">🔥 Exclusive Sales</p>
+        <p className="text-4xl text-textWhiteWithSecondary">
+          🔥 Exclusive Sales
+        </p>
       </div>
       <div className="flex items-center w-full bg-secondarySecondarylight">
         <div

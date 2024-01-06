@@ -9,7 +9,8 @@ function TotalCell({ deleteItemFromCart, product, quantity }) {
   return (
     <div className="flex flex-col items-center">
       <p className="font-semibold text-indigo-950 md:text-lg w-[80px] text-center">
-        ${(product.price - product.price * product.sale) * quantity}
+        $
+        {((product.price - product.price * product.sale) * quantity).toFixed(2)}
       </p>
       <div className="absolute right-4 md:right-0 bottom-1 ">
         <AlertDialog.Root>

@@ -37,7 +37,7 @@
     "jotai": "^2.4.3",
     "localtunnel": "^2.0.2",
     "next": "13.5.2",
-    "pocketbase": "^0.18.0",
+    "pocketbase": "^0.18.3",
     "react": "18.2.0",
     "react-confetti": "^6.1.0",
     "react-countup": "^6.5.0",

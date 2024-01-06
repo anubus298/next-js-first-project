@@ -39,7 +39,7 @@ function Header_swiper(props) {
                     10 - index
                   }] rounded-b-lg cursor-pointer hover:brightness-95 force-flex flex-col  p-1 items-center font-lato`}
                 >
-                  <div className="flex items-center justify-center w-full overflow-hidden bg-white h-5/6">
+                  <div className="flex items-center justify-center w-full overflow-hidden bg-white h-4/6">
                     <Image
                       src={`${process.env.pocketBaseUrl}api/files/${product.collectionId}/${product.id}/${product?.imgs[0]}?thumb=300x300`}
                       alt="SafoMart"
@@ -56,9 +56,9 @@ function Header_swiper(props) {
                   </div>
                   <Link
                     href={`/product/${props.type}/${product?.id}?q=1`}
-                    className="flex flex-col justify-center w-full p-5 text-center rounded-b-lg bg-main text-secondarySecondarylight h-1/6"
+                    className="flex flex-col justify-center w-full p-5 text-center rounded-b-lg bg-main text-secondarySecondarylight h-2/6"
                   >
-                    <p className="text-xs font-semibold sm:text-base">
+                    <p className="font-semibold text-xxs sm:text-base">
                       {product.name}
                     </p>
                     <p className="text-xs font-semibold tracking-wider">
@@ -67,11 +67,12 @@ function Header_swiper(props) {
                       </span>
                       <span className="mx-1 text-secondaryGreen">
                         $
-                        {parseFloat(product.price).toFixed(2) -
-                          parseFloat(product.price).toFixed(2) *
-                            product.sale}{" "}
+                        {(
+                          parseFloat(product.price).toFixed(2) -
+                          parseFloat(product.price).toFixed(2) * product.sale
+                        ).toFixed(2)}{" "}
                         <span className="text-secondaryYellow">
-                          {product.sale * 100}%
+                          {(product.sale * 100).toFixed(0)}%
                         </span>
                       </span>
                     </p>

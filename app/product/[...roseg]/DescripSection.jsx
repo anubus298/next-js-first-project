@@ -24,7 +24,7 @@ function DescripSection({
           In stock{" "}
           {sale != 0 && (
             <span className="p-1 mx-2 text-sm rounded-lg bg-secondary text-textWhiteWithSecondary">
-              {sale * 100}% OFF
+              {(sale * 100).toFixed(0)}% OFF
             </span>
           )}
         </p>
@@ -36,10 +36,14 @@ function DescripSection({
             {sale != 0 && (
               <>
                 <p className="text-3xl font-semibold text-gray-500 line-through select-none decoration-black">
-                  ${parseFloat( price).toFixed(2)}
+                  ${parseFloat(price).toFixed(2)}
                 </p>
                 <p className="text-4xl font-semibold text-green-600 select-none">
-                  ${parseFloat( price).toFixed(2) - parseFloat( price).toFixed(2) * sale}
+                  $
+                  {(
+                    parseFloat(price).toFixed(2) -
+                    parseFloat(price).toFixed(2) * sale
+                  ).toFixed(2)}
                   <span className="block text-xs md:inline ">
                     (including VAT)
                   </span>
@@ -48,7 +52,7 @@ function DescripSection({
             )}
             {sale == 0 && (
               <p className="text-4xl font-semibold select-none text-indigo-950">
-                ${parseFloat( price).toFixed(2)}
+                ${parseFloat(price).toFixed(2)}
                 <span className="block text-xs md:inline ">
                   (including VAT)
                 </span>
@@ -65,7 +69,9 @@ function DescripSection({
         </div>
       </div>
       <div>
-        <p className="mb-5 text-lg font-black">Product Details :</p>
+        {description && (
+          <p className="mb-5 text-lg font-black">Product Details :</p>
+        )}
         <ul className="list-disc min-h-[300px] font-medium">
           {description && (
             <div className="max-h-[50vh] overflow-y-auto">

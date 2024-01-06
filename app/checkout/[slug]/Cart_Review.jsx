@@ -43,11 +43,11 @@ function Cart_Review({
           {data.products.map((product, i) => {
             return (
               <div
-                className="w-full items-center p-2 px-4 rounded-lg bg-white shadow-lg"
+                className="items-center w-full p-2 px-4 bg-white rounded-lg shadow-lg"
                 key={i + "qdq" + i}
               >
                 <div className="flex gap-x-5 items-center h-[120px] overflow-auto sm:overflow-hidden">
-                  <div className="h-[70px] flex  items-center">
+                  <div className="h-[70px] w-[70px] overflow-hidden flex  items-center">
                     <Image
                       src={`${process.env.pocketBaseUrl}api/files/${product.collectionId}/${product.id}/${product.imgs[0]}`}
                       alt={product.name}
@@ -59,7 +59,10 @@ function Cart_Review({
                   <div className="flex flex-col h-full justify-evenly">
                     <p className="text-lg font-bold ">{product.name}</p>
                     <p className="text-sm text-gray-600 ">
-                      ${product.price - product.price * product.sale}
+                      $
+                      {(product.price - product.price * product.sale).toFixed(
+                        2
+                      )}
                     </p>
                     <p className="text-sm">Quantity : {melon[i]}</p>
                   </div>
@@ -367,14 +370,14 @@ function Cart_Review({
                 </div>
                 <button
                   type="submit"
-                  className="bg-secondaryGreen text-white p-2 text-lg"
+                  className="p-2 text-lg text-white bg-secondaryGreen"
                 >
                   NEXT
                 </button>
               </form>
               <p>or</p>
               <button
-                className="bg-main text-textWhiteWithSecondary p-2 rounded-lg"
+                className="p-2 rounded-lg bg-main text-textWhiteWithSecondary"
                 onClick={() => setisUserInAddAdress(false)}
               >
                 Choose from your list
@@ -382,7 +385,7 @@ function Cart_Review({
             </>
           )}
           {!isUserInAddAdress && (
-            <div className="flex flex-col gap-2 items-center w-full">
+            <div className="flex flex-col items-center w-full gap-2">
               <Collapse
                 className="w-full"
                 items={addresses.map((address, index) => {
@@ -391,12 +394,12 @@ function Cart_Review({
                     label: "address " + index,
                     children: (
                       <div
-                        className="bg-white flex flex-col gap-2 w-full p-2 "
+                        className="flex flex-col w-full gap-2 p-2 bg-white "
                         key={index * 14 + 56}
                       >
                         <p
                           key={index * 4 + 78}
-                          className="font-medium w-full flex justify-between items-center"
+                          className="flex items-center justify-between w-full font-medium"
                         >
                           address :
                           <span className="font-normal">
@@ -406,14 +409,14 @@ function Cart_Review({
                         </p>
                         <p
                           key={index * 4 + 78}
-                          className="font-medium w-full flex justify-between items-center"
+                          className="flex items-center justify-between w-full font-medium"
                         >
                           phone :
                           <span className="font-normal"> {address.phone}</span>
                         </p>
                         <p
                           key={index * 4 + 78}
-                          className="font-medium w-full flex justify-between items-center"
+                          className="flex items-center justify-between w-full font-medium"
                         >
                           country :
                           <span className="font-normal">
@@ -423,7 +426,7 @@ function Cart_Review({
                         </p>
                         <p
                           key={index * 4 + 78}
-                          className="font-medium w-full flex justify-between items-center"
+                          className="flex items-center justify-between w-full font-medium"
                         >
                           code postal :
                           <span className="font-normal">
@@ -433,7 +436,7 @@ function Cart_Review({
                         </p>
                         <p
                           key={index * 4 + 78}
-                          className="font-medium w-full flex justify-between items-center"
+                          className="flex items-center justify-between w-full font-medium"
                         >
                           town/city :
                           <span className="font-normal">
@@ -457,7 +460,7 @@ function Cart_Review({
                           });
                           setCurrent(current + 1);
                         }}
-                        className="p-1 text-xs font-medium rounded-lg bg-secondaryGreen text-white"
+                        className="p-1 text-xs font-medium text-white rounded-lg bg-secondaryGreen"
                       >
                         Select
                       </button>
@@ -467,7 +470,7 @@ function Cart_Review({
               />
               <p>or</p>
               <button
-                className="bg-main text-textWhiteWithSecondary p-2 rounded-lg"
+                className="p-2 rounded-lg bg-main text-textWhiteWithSecondary"
                 onClick={() => setisUserInAddAdress(true)}
               >
                 Add new address

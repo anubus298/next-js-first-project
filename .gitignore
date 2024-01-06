@@ -16,12 +16,16 @@
 
 # production
 /build
-
+/webscraping
 # misc
 .DS_Store
 *.pem
-
-# debug
+/products.json
+/mobile_products.json
+/wearables_products.json
+/tablets_products.json
+/pc_products.json
+# debugs
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*

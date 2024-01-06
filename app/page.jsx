@@ -6,7 +6,7 @@ import Home_slider from "./(homePage)/(home slider)/home_slider";
 import "swiper/css";
 import "swiper/css/navigation";
 import "public/swiper.css";
-import 'swiper/css/effect-fade';
+import "swiper/css/effect-fade";
 export default function Page() {
   return (
     <div className="w-full bg-secondarySecondary">
@@ -30,6 +30,12 @@ export default function Page() {
         cache={true}
         count={16}
         type={"tablets"}
+      />
+      <ProductSection
+        showHeader={true}
+        cache={true}
+        count={16}
+        type={"wearables"}
       />
       <Newsletter_main />
     </div>
