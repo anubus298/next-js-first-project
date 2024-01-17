@@ -6,6 +6,7 @@
     "dev": "next dev -p 8000",
     "build": "next build",
     "start": "next start -p 8000",
+    "postbuild": "next-sitemap",
     "lint": "next lint",
     "cypress:open": "cypress open"
   },
@@ -37,6 +38,7 @@
     "jotai": "^2.4.3",
     "localtunnel": "^2.0.2",
     "next": "13.5.2",
+    "next-sitemap": "^4.2.3",
     "pocketbase": "^0.18.3",
     "react": "18.2.0",
     "react-confetti": "^6.1.0",

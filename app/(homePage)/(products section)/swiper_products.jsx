@@ -28,6 +28,8 @@ function SwiperProducts(props) {
         navigation={navigationEnabled}
         className=""
         slidesPerView={swiperPreview}
+        slidesPerGroup={4}
+        watchSlidesProgress={true}
         effect={swiperPreview == 1 ? "fade" : false}
         autoplay={{
           delay: 7000,

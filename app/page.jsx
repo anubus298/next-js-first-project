@@ -35,7 +35,7 @@ export default function Page() {
         showHeader={true}
         cache={true}
         count={16}
-        type={"wearables"}
+        type={"accessories"}
       />
       <Newsletter_main />
     </div>

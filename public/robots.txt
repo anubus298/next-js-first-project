@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://safomart.vercel.app
+
+# Sitemaps
+Sitemap: https://safomart.vercel.app/sitemap.xml
