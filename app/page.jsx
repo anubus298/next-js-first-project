@@ -31,12 +31,7 @@ export default function Page() {
         count={16}
         type={"tablets"}
       />
-      <ProductSection
-        showHeader={true}
-        cache={true}
-        count={16}
-        type={"accessories"}
-      />
+
       <Newsletter_main />
     </div>
   );

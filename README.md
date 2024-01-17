@@ -25,13 +25,13 @@
 ## Key Features
 
 - **User Authentication:** Secure registration and login functionality.
-- **User Dashboard:** Personalized dashboard for order tracking and management.
-- **Shopping Cart and Wishlist:** Effortless product management for a streamlined checkout.
+- **User Dashboard:** a dashboard for order tracking and management.
+- **Shopping Cart and Wishlist:** product management for a streamlined checkout.
 - **Notifications and Inbox:** Real-time updates and message management for users.
 - **Product Interaction:** Commenting on product pages for user engagement.
-- **Categories Pages:** Intuitive navigation with organized product listings.
-- **Support Page:** Dedicated support resources, FAQs, and contact options.
-- **Responsive Design:** Ensures a seamless experience across devices.
+- **Categories Pages:** navigation with organized product listings.
+- **Support Page:** support resources, FAQs, and contact options.
+- **Responsive Design:** across almost all devices.
 
 ## Security Measures
 
@@ -43,7 +43,7 @@
 ## Additional Features
 
 - Customizable user profiles.
-- Social media integration for sharing products and reviews: Facebook and Twitter share API (coming soon).
+- Social media integration for sharing products and reviews: Facebook and Twitter share API.
 - Dynamic and interactive user interfaces: Tailwind breakpoints.
 
 ## Built With
@@ -121,4 +121,5 @@ It took a significant amount of time to complete the project, but the learning e
 [araristaf@gmail.com](mailto:araristaf@gmail.com) or [LinkedIn - Safouane el arari](https://www.linkedin.com/in/safouane-el-arari/).
 =======
 [araristaf@gmail.com](mailto:araristaf@gmail.com) or [LinkedIn - Safouane el arari](https://www.linkedin.com/in/safouane-el-arari/).
->>>>>>> ec7517acaa4d68ad9ae42d643dbd470c1f5d4764
+
+> > > > > > > ec7517acaa4d68ad9ae42d643dbd470c1f5d4764
