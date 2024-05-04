@@ -39,7 +39,8 @@ export const metadata = {
     "wearable tech",
     "robotics",
   ],
-  verification: { google: "LzNzvYAHhE6tc2UNc2QTuzyPXYXBRPazjikMbWF7Y44" },
+  
+  verification: { google: "KuVJeIUDF5nldwYkX686ZBfg1UnWZBzqRb0nJAVmaGg" },
   author: "SafoMart Team",
 };
 const mooli = Poppins({
