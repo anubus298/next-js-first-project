@@ -1,199 +1,107 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
-	<url>
-		<loc>
-			https://safomart.vercel.app/api/SingleProduct
-		</loc>
-		<lastmod>
-			2024-01-17T06:42:07.564Z
-		</lastmod>
-		<changefreq>
-			daily
-		</changefreq>
-		<priority>
-			0.7
-		</priority>
-	</url>
-	<url>
-		<loc>
-			https://safomart.vercel.app/robots.txt
-		</loc>
-		<lastmod>
-			2024-01-17T06:42:07.566Z
-		</lastmod>
-		<changefreq>
-			daily
-		</changefreq>
-		<priority>
-			0.7
-		</priority>
-	</url>
-	<url>
-		<loc>
-			https://safomart.vercel.app/info/refundPolicy
-		</loc>
-		<lastmod>
-			2024-01-17T06:42:07.566Z
-		</lastmod>
-		<changefreq>
-			yearly
-		</changefreq>
-		<priority>
-			0.7
-		</priority>
-	</url>
-	<url>
-		<loc>
-			https://safomart.vercel.app/info/aboutUs
-		</loc>
-		<lastmod>
-			2024-01-17T06:42:07.566Z
-		</lastmod>
-		<changefreq>
-			yearly
-		</changefreq>
-		<priority>
-			0.7
-		</priority>
-	</url>
-	<url>
-		<loc>
-			https://safomart.vercel.app/info/privacyPolicy
-		</loc>
-		<lastmod>
-			2024-01-17T06:42:07.566Z
-		</lastmod>
-		<changefreq>
-			yearly
-		</changefreq>
-		<priority>
-			0.7
-		</priority>
-	</url>
-	<url>
-		<loc>
-			https://safomart.vercel.app/info/contact
-		</loc>
-		<lastmod>
-			2024-01-17T06:42:07.566Z
-		</lastmod>
-		<changefreq>
-			yearly
-		</changefreq>
-		<priority>
-			0.7
-		</priority>
-	</url>
-	<url>
-		<loc>
-			https://safomart.vercel.app/info/feedbacks
-		</loc>
-		<lastmod>
-			2024-01-17T06:42:07.566Z
-		</lastmod>
-		<changefreq>
-			yearly
-		</changefreq>
-		<priority>
-			0.7
-		</priority>
-	</url>
-	<url>
-		<loc>
-			https://safomart.vercel.app/productsSection/Mobiles
-		</loc>
-		<lastmod>
-			2024-01-17T06:42:07.566Z
-		</lastmod>
-		<changefreq>
-			daily
-		</changefreq>
-		<priority>
-			0.7
-		</priority>
-	</url>
-	<url>
-		<loc>
-			https://safomart.vercel.app/productsSection/Tvs
-		</loc>
-		<lastmod>
-			2024-01-17T06:42:07.566Z
-		</lastmod>
-		<changefreq>
-			daily
-		</changefreq>
-		<priority>
-			0.7
-		</priority>
-	</url>
-	<url>
-		<loc>
-			https://safomart.vercel.app/productsSection/Tablets
-		</loc>
-		<lastmod>
-			2024-01-17T06:42:07.566Z
-		</lastmod>
-		<changefreq>
-			daily
-		</changefreq>
-		<priority>
-			0.7
-		</priority>
-	</url>
-	<url>
-		<loc>
-			https://safomart.vercel.app/productsSection/Laptops
-		</loc>
-		<lastmod>
-			2024-01-17T06:42:07.566Z
-		</lastmod>
-		<changefreq>
-			daily
-		</changefreq>
-		<priority>
-			0.7
-		</priority>
-	</url>
-	<url>
-		<loc>
-			https://safomart.vercel.app/logIn/pch46f5f6qqaaz=
-		</loc>
-		<lastmod>
-			2024-01-17T06:42:07.566Z
-		</lastmod>
-		<changefreq>
-			monthly
-		</changefreq>
-		<priority>
-			0.7
-		</priority>
-	</url>
-	<url>
-		<loc>
-			https://safomart.vercel.app/signIn/fgd
-		</loc>
-		<lastmod>
-			2024-01-17T06:42:07.566Z
-		</lastmod>
-		<changefreq>
-			monthly
-		</changefreq>
-		<priority>
-			0.7
-		</priority>
-	</url>
-	<url>
-		<loc>
-			https://safomart.vercel.app/signIn/fgd
-		</loc>
-		<lastmod>
-			2024-01-17T06:42:07.566Z
-		</lastmod>
-		<changefreq>
-			monthly
-		</changefreq>
-		<priority>
-			0.7
-		</priority>
-	</url>
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
+
+
+<url>
+  <loc>https://safomart.vercel.app/</loc>
+  <lastmod>2024-05-04T03:11:55+00:00</lastmod>
+  <priority>1.00</priority>
+</url>
+<url>
+  <loc>https://safomart.vercel.app/info/aboutUs</loc>
+  <lastmod>2024-05-04T03:11:55+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://safomart.vercel.app/info/privacyPolicy</loc>
+  <lastmod>2024-05-04T03:11:55+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://safomart.vercel.app/info/contact</loc>
+  <lastmod>2024-05-04T03:11:55+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://safomart.vercel.app/productsSection/Tvs</loc>
+  <lastmod>2024-05-04T03:11:55+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://safomart.vercel.app/productsSection/Laptops</loc>
+  <lastmod>2024-05-04T03:11:55+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://safomart.vercel.app/productsSection/Tablets</loc>
+  <lastmod>2024-05-04T03:11:55+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://safomart.vercel.app/productsSection/Mobiles</loc>
+  <lastmod>2024-05-04T03:11:55+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://safomart.vercel.app/product/laptops/mkxfvy60cddx59d?q=1</loc>
+  <lastmod>2024-05-04T03:11:55+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://safomart.vercel.app/product/laptops/pev1yc63oi88f0l?q=1</loc>
+  <lastmod>2024-05-04T03:11:55+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://safomart.vercel.app/product/mobiles/tm7flw3rsucdgau?q=1</loc>
+  <lastmod>2024-05-04T03:11:55+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://safomart.vercel.app/product/mobiles/59kkyk5iv6d61wz?q=1</loc>
+  <lastmod>2024-05-04T03:11:55+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://safomart.vercel.app/product/mobiles/fjn48wux2w5588o?q=1</loc>
+  <lastmod>2024-05-04T03:11:55+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://safomart.vercel.app/product/tvs/eng6chs6fsmysyk?q=1</loc>
+  <lastmod>2024-05-04T03:11:55+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://safomart.vercel.app/product/tvs/mnagseiy55rzeug?q=1</loc>
+  <lastmod>2024-05-04T03:11:55+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://safomart.vercel.app/product/wearables/7sp7wey7b5zeap4?q=1</loc>
+  <lastmod>2024-05-04T03:11:55+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://safomart.vercel.app/product/wearables/tdxg0lq7x5o1qaf?q=1</loc>
+  <lastmod>2024-05-04T03:11:55+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://safomart.vercel.app/product/wearables/ecq5o40qcxxvzhe?q=1</loc>
+  <lastmod>2024-05-04T03:11:55+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://safomart.vercel.app/productsSection/Wearables</loc>
+  <lastmod>2024-05-04T03:11:55+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+
+
 </urlset>
