@@ -25,6 +25,9 @@ const nextConfig = {
         pathname: "/api/files/**",
       },
     ],
+     
+    unoptimized: true,
+  
   },
 };
 
